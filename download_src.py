@@ -34,7 +34,7 @@ def send_request(chain_id,address):
         if response.status_code!=200 or response.content==b'{"status":"0","message":"NOTOK"}':
             raise Exception
         else:
-            return json.loads(response.content)['result'][0]['SourceCode']
+            return json.loads(response.content)['result'][0]
     except Exception as e:
         print("--------------------------------------")
         print("error in send_request")
@@ -43,11 +43,22 @@ def send_request(chain_id,address):
         print("--------------------------------------")
         return None
 
-def save_to_mongodb(id,source):
+def save_to_mongodb(id,result):
     try:
+        source=result['SourceCode']
+        version=result['CompilerVersion']
+        contract_name=result['ContractName']
+        optimization=result['OptimizationUsed']
+        optimization_runs=result['Runs']
+        implementation=result['Implementation']
         client = MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
         collection_source=client['contracts']['top_contracts']
-        collection_source.update_one({'_id': id}, {'$set': {'source': source}})
+        collection_source.update_one({'_id': id}, {'$set': {'source': source,
+                                                'version': version,
+                                                'contract_name': contract_name,
+                                                'optimization': optimization,
+                                                'optimization_runs': optimization_runs,
+                                                'implementation': implementation}})
         print(f"Updated document with id {id} in MongoDB.")
         client.close()
     except Exception as e:
@@ -63,8 +74,8 @@ def main(args):
     chain_id=args['chain_id']
     cou=0
     while True:
-        source=send_request(chain_id,address)
-        if source is None:
+        result=send_request(chain_id,address)
+        if result is None:
             print(f"Failed to get source code for address {address}. Retrying...")
             time.sleep(5)
         else:
@@ -74,8 +85,8 @@ def main(args):
             print(f"Failed to get source code for address {address} after multiple attempts.")
             break
         cou+=1
-    if source is not None:
-        save_to_mongodb(id,source)
+    if result is not None:
+        save_to_mongodb(id,result)
     else:
         print(f"Failed to get source code for address {address}.")
 if __name__=="__main__":
@@ -83,15 +94,24 @@ if __name__=="__main__":
     client = MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
     collection_source=client['contracts']['top_contracts']
     # 查询MongoDB集合中的所有文档
-    documents = collection_source.find()
+    documents = collection_source.find({'source':{'$ne':''}},{'_id':1,'address':1,'chain_id':1,'source':1,'contract_name':1})
     # 遍历每个文档
     contract_address_list=[]
     for doc in documents:
         id=doc['_id']
         address=doc['address']
         chain_id=doc['chain_id']
-        contract_address_list.append({'id':id,'address':address,'chain_id':chain_id})
-    pool=multiprocessing.Pool(processes=20)
-    pool.map(main,contract_address_list)
-    # for contract in contract_address_list:
-    #     main(contract)
+        source=doc['source']
+        if address=='0xde4ee8057785a7e8e800db58f9784845a5c2cbd6':
+            
+        # if 'contract_name' in doc:
+        #     continue
+        # if not source.startswith('{'):
+        #     continue
+            contract_address_list.append({'id':id,'address':address,'chain_id':chain_id})
+    for contract in contract_address_list:
+        main(contract)
+    # print(f"Total contracts to process: {len(contract_address_list)}")
+    # time.sleep(5)
+    # pool=multiprocessing.Pool(processes=20)
+    # pool.map(main, contract_address_list)
