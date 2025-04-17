@@ -60,7 +60,9 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    root_path = "/home/liuhan/utils_download/simliar_code"
+    temp_cou=2
+    root_path = f"/home/liuhan/utils_download/simliar_code{temp_cou}"
+    os.makedirs(root_path, exist_ok=True)
     example_str=""
     cou=0
     for file in tqdm(os.listdir(root_path)):
@@ -70,8 +72,8 @@ if __name__ == "__main__":
                 example_str+=f"EXAMPLE {cou} \n"
                 example_str+=f"{f.read()}\n"
                 example_str+="\n"
-    with open("/home/liuhan/utils_download/summary_test.txt",'r') as f:
+    with open(f"/home/liuhan/utils_download/summary_test{temp_cou}.txt",'r') as f:
         scenario=f.read()
     res=summarize_by_LLMs(scenario,example_str)
-    with open('/home/liuhan/utils_download/requirement_test_gpt4omini.txt','w') as f:
+    with open(f'/home/liuhan/utils_download/requirement_test_gpt4omini{temp_cou}.txt','w') as f:
         f.write(res)

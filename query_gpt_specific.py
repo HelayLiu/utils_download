@@ -67,10 +67,11 @@ def summarize_by_LLMs(desc,model="gpt-4o-mini-2024-07-18"):
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    with open('/home/liuhan/utils_download/test_contract.sol','r') as f:
+    temp_cou=2
+    with open(f'/home/liuhan/utils_download/test_contract{temp_cou}.sol','r') as f:
         code=f.read()
     code=truncate_token(code)
     summary=summarize_by_LLMs(code)
-    with open('/home/liuhan/utils_download/summary_test.txt','w') as f:
+    with open(f'/home/liuhan/utils_download/summary_test{temp_cou}.txt','w') as f:
         f.write(summary)
     

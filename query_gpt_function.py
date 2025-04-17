@@ -25,7 +25,7 @@ def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> i
     return truncated_code, len_tokens
 def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     role_content=f"""
-    You are now acting as a smart contract developer expert. You are given a scenario and a few requiements of smart contracts, and your task is to analyze and summarize the potential checks based on the given function signature.
+    You are now acting as a smart contract developer expert. You are given a scenario and a few requirements of smart contracts, and your task is to analyze and summarize the potential checks based on the given function signature.
     Instructions:
     1. Scenario and Requirements Learning
     You are given a scenario and a few examples of the scenarios and their corresponding requirements of smart contracts.
@@ -35,19 +35,20 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     - You need to analyze the arguments of the function signature, consider what are the contributions of the arguments to the function.
     - You can use the global variables in the contract to help you analyze the function, i.e., msg.sender, msg.value, block.timestamp, etc.
     - You will also be given some state variables, you need to analyze the state variables and consider how can the state variables be used in the function.
-    - You need to analyze the requirments, consider how can the requirements be realized in the contract.
+    - You need to analyze the requirements, consider how can the requirements be realized in the contract.
+    - You should also consider the potential checks between the arguments, because the arguments can be well-designed to bypass the checks.
     - YOUR DESIGNED CHECKS MUST ONLY REFLECT THE ISOLATION OF THE STATE VARIABLES OF DIFFERENT USERS, TRANSACTIONS, AND CONTRACTS. SHOULD NOT INCLUDE ANY OTHER FUNCTIONALITY OR SECURITY REQUIREMENTS.
     - DO NOT INCLUDE ANY STATE VARIABLES IN THE CHECKS.
     3. Output Format
-    - Provide the potential checks of the function signature, where each checks should be written as two natural language with a variable name to compare.
-    - The result should be a json object, in which the key and value are also a dictionary. In each dictionary, the key is the variable name and the value is the checks.
-    - THE VARIABLE NAME MUST BE THE SAME AS THE FUNCTION SIGNATURE. AND YOU ONLY NEED TO USE THE VARIABLE NAME IN THE FUNCTION SIGNATURE OR THE GLOBAL VARIABLES. 
-    - YOU ONLY NEED TO OUTPUT THE JSON OBJECT, DO NOT OUTPUT ANY OTHER TEXT.
-    - IF YOU WANT TO EXPRESS A VARIABLE IN THE STATE VARIABLE, YOU SHOULD USE THE value part of the dictionary to EXPLAIN THE VARIABLE, like this:{{"id":"The value of the id"}}.
+    - Please provide a set of arguments and global variables that might need to be compared. Please do not use state variables.
+    - The output should be a json format, with the keys being a list of arguments and global variables that might need to be compared, and the values being the descriptions of the comparisons.
+    - THE VARIABLE NAME MUST BE THE SAME AS THE FUNCTION SIGNATURE.
+    - YOU SHOULD USE THE ARGUMENTS OF THE FUNCTION AND THE GLOBAL VARIABLES (e.g., msg.sender, msg.value, block.timestamp, etc.) TO HELP YOU TO DESIGN THE CHECKS.
+    - YOU ONLY NEED TO OUTPUT THE JSON OBJECT, DO NOT OUTPUT ANY OTHER TEXT.    
 
     For example, the output should be like this:
     {{
-        {{"msg.sender":"The address of the sender"}}:{{"owner": "The address of the contract owner"}}
+        ["msg.sender","from","amount"]:"Compare the allowed amount of the sender with the amount to be transferred."
     }}
 
     The scenario is:
