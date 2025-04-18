@@ -2,8 +2,9 @@ import requests
 import json
 import time
 import csv
+from config import API_KEY
 # 替换为你的 Dune API Key
-API_KEY = 'uXnYlophdUaLwEplFDF8wlfHdvbGXs7f'
+
 QUERY_ID = '4082551'  # 查询的唯一ID
 CHAIN='fantom' # 链名称
 RESULT_LIMIT = 10000000
