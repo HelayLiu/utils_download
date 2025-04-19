@@ -33,20 +33,19 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     2. Analyze the function checks and constraint of the contract
     Based on the given function signature, you need to analyze the potential checks and constraint for the contract.
     - You need to analyze the arguments of the function signature, consider what are the contributions of the arguments to the function.
+    - You should analyze each of the requirements, consider whether the requirements should be checked in the function.
     - You can use the global variables in the contract to help you analyze the function, i.e., msg.sender, msg.value, block.timestamp, etc.
     - You will also be given some state variables, you need to analyze the state variables and consider how can the state variables be used in the function.
     - You need to analyze the requirements, consider how can the requirements be realized in the contract.
     - You should also consider the potential checks between the arguments, because the arguments can be well-designed to bypass the checks.
-    - You should also consider the potential visibility of the state variables, because the visibility of the state variables can expose the state variables to some users.
     - YOUR DESIGNED CHECKS OR CONSTRAINT MUST ONLY REFLECT THE ISOLATION READ AND WRITE ON THE STATE VARIABLES OF DIFFERENT USERS, AND CONTRACTS. SHOULD NOT INCLUDE ANY OTHER FUNCTIONALITY OR SECURITY REQUIREMENTS.
-    - YOU SHOULD ALSO CONSIDER THE TRANSPARENCY OF THE BLOCKCHAIN, i.e., all the transaction data is public and can be accessed by anyone.
+    - YOU SHOULD ALSO CONSIDER THE TRANSPARENCY OF THE BLOCKCHAIN, i.e., all the transaction data is public and can be accessed by anyone. Hence, the checks and constraints should also contains the encryptions like keccak256 etc. to ensure the integrity and security of the contract.
 
     3. Output Format
     - Please provide a set of arguments and global variables that might need to be compared. 
     - The output should be a json format, with the keys being a list of arguments and global variables that might need to be compared, and the values being the descriptions of the comparisons.
     - THE VARIABLE NAME MUST BE THE SAME AS THE FUNCTION SIGNATURE.
     - YOU SHOULD USE THE ARGUMENTS OF THE FUNCTION AND THE GLOBAL VARIABLES (e.g., msg.sender, msg.value, block.timestamp, etc.) TO HELP YOU TO DESIGN THE CHECKS.
-    - IF YOU THINK SOME STATE VARIABLES NEEDS TO BE PRIVATE, LIST IT IN A SINGLE LIST, i.e., ["amount"]:"The amount of the transaction should be private to the contract and not accessible to other users."
     - YOU ONLY NEED TO OUTPUT THE JSON OBJECT, DO NOT OUTPUT ANY OTHER TEXT.    
 
     For example, the output should be like this:
@@ -60,13 +59,13 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     </Scenario>.
 
     The requirements are:
-    1. The contract must allow two players to join the game by sending exactly 1 ether each.
-    2. The contract must store each player's address and their chosen number in a fixed-size array.
-    3. The contract must ensure that only two players can participate in the game at any given time.
-    4. The contract must calculate the sum of the chosen numbers of the two players.
-    5. The contract must determine the winner based on whether the sum of the chosen numbers is odd or even.
-    6. The contract must transfer the entire balance to the winner upon the completion of the game.
-    7. The state variables related to player addresses and chosen numbers must be isolated and accessible only to the contract's logic, preventing unauthorized access or modification by external entities. 
+    1. Each player must be represented by a struct that includes their address and chosen number.
+    2. The contract must ensure that only two players can participate in a game at any given time.
+    3. The chosen numbers of the players must be stored in a way that is isolated from other players' data.
+    4. The sum of the chosen numbers must be calculated securely, ensuring that the integrity of the numbers is maintained using keccak256 hashing.
+    5. The determination of the winner based on the odd or even nature of the sum must be executed without exposing the players' chosen numbers to unauthorized access.
+    6. The total balance of the contract must be securely transferred to the winner, ensuring that the transaction is recorded and verifiable.
+    7. After each game, the contract must reset its state variables to allow new players to join without interference from previous games. 
     </Requirements>.
 
     """

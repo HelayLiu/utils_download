@@ -2,4 +2,4 @@ simliar_code/*
 *.txt
 *.sol
 config.py
-__pycache__/*
+__pycache__/

@@ -35,8 +35,9 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     Based on the given scenario, you need to design the requirements for the contract.
     - The requirements should be designed based on the scenario.
     - The requirements should be clear, concise, and unambiguous.
-    - THE REQUIREMENTS MUST ONLY REFLECT THE ISOLATION OF READ AND WRITE ON THE STATE VARIABLES OF DIFFERENT USERS, TRANSACTIONS, AND CONTRACTS. SHOULD NOT INCLUDE ANY OTHER FUNCTIONALITY OR SECURITY REQUIREMENTS.
+    - THE REQUIREMENTS MUST ONLY REFLECT THE ISOLATION OF READ AND WRITE ON THE STATE VARIABLES OF DIFFERENT USERS, AND CONTRACTS. SHOULD NOT INCLUDE ANY OTHER FUNCTIONALITY REQUIREMENTS.
     - The requirements should not describe the implementation details but rather the expected behavior and constraints of the contract. 
+    - The requirements should also consider the keccak256 etc. encryption and the hash of the state variables to ensure the integrity and security of the contract.
     3. Output Format
     Provide several sentences that summarize the requirements of the contract.
     Your answer should be:
