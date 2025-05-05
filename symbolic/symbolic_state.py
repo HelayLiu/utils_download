@@ -5,7 +5,7 @@ from slither.core.declarations import SolidityVariableComposed
 from slither.slithir.operations import Operation
 from z3 import ExprRef, Solver, Int, String, BitVec, BitVecVal, Bool, Array, BitVecSort, ArraySort, BitVecRef, BoolRef,Or
 from .memory_model import MULocation, MemoryModel
-from gala.sequence import Transaction
+from .sequence import Transaction
 from .variable_monitor import VariableMonitor
 from slither.core.solidity_types import ElementaryType, ArrayType, MappingType, Type
 from slither.exceptions import SlitherException

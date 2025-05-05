@@ -25,29 +25,25 @@ def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> i
     return truncated_code, len_tokens
 def summarize_by_LLMs(desc,model="gpt-4o-mini-2024-07-18"):
     role_content="""
-    You are now acting as a smart contract audit expert. You are given a smart contract, and your task is to analyze and summarize its general scenario.
-    Instructions:
-    1. Code Analysis
-    First, inline all inherited contracts to get a complete view of the code.
-    Carefully examine the state variables and functions.
-    2. Contextual Understanding
-    Understand the context in which the contract operates. This includes its role within a larger system (e.g., DeFi, NFT, DAO, etc.), its potential interactions with other contracts, and its intended use cases.
-    3. Scenario and Purpose
-    Provide a clear and concise summary of the contract's general scenario and purpose. This should include:
-    - The main functionality of the contract.
-    - The specific use cases it addresses.
-    - Any unique features or mechanisms it employs.
-    - THE SCENARIO MUST REFLECT THE DEVELOPER'S INTENTION OF THE CONTRACT, AND SHOULD NOT INCLUDE ANY UNFAIR OR MALICIOUS INTENTIONS.
-    4. Inheritance Awareness
-    If the contract inherits from one or more parent contracts, you must also consider the functional and security requirements imposed by those parent contracts.
-    5. Output Format
-    Provide several sentences that summarize the general scenario of the contract.
+    Roles: You are a smart contract developer and requirements engineering expert. Your task is to analyze a given smart contract and generate User Stories of the contract.
 
-    Your answer should be:
-    The general scenario is 
-    <Scenario> 
-    general scenario 
-    </Scenario>.
+    Instructions:
+    1. Identify Actors
+    - Identify the main actors in the contract (e.g., users, external contracts).
+    - Determine the interactions between these actors and the contract.
+    - Ignore the incorrect actions in the contract against your knowledge.
+    2. User Stories
+    - Summarize the contract's purpose and use cases, emphasizing:
+        · How user-specific state isolation is enforced (e.g., per-user balances stored in mapping).
+        · How cross-contract interactions avoid unintended state leakage.
+    - Example: "As a user, I want my encrypted voting preferences isolated from others, even though the blockchain is public."
+    3. Output Format
+    You should only output the User Stories of the contract.
+    Structure your response as: 
+    The general User Stories are:  
+    <User Stories>  
+    [Several sentences that summarize the User Stories of the contract]
+    </User Stories> 
     """
 
 
@@ -68,7 +64,7 @@ def summarize_by_LLMs(desc,model="gpt-4o-mini-2024-07-18"):
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    temp_cou=2
+    temp_cou=3
     with open(f'/home/liuhan/utils_download/test_contract{temp_cou}.sol','r') as f:
         code=f.read()
     code=truncate_token(code)

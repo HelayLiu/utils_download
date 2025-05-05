@@ -5,7 +5,6 @@ from slither.slithir.operations import Operation
 from slither.slithir.variables import Constant
 from z3 import (ExprRef, Solver, Int, String, BitVec, Bool, BoolSort, Array, BitVecSort, ArraySort, BoolVal, BitVecVal, ArrayRef, DatatypeRef,
                 Datatype, ArraySortRef)
-from gala.sequence import Transaction
 from slither.core.solidity_types import ElementaryType, ArrayType, MappingType, Type, UserDefinedType
 
 from enum import Enum, auto

@@ -1,0 +1,138 @@
+import requests
+import re
+import json
+from openai import OpenAI
+from tqdm import tqdm
+import httpx
+import os
+import tiktoken
+from config import OPENAI_API_KEY
+proxy_1 = "http://127.0.0.1:20171"
+# 配置 HTTP 代理地址
+proxies = {
+    "http": "http://127.0.0.1:20171",
+    "https": "http://127.0.0.1:20171",
+}
+def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> int:
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+    except KeyError:
+        encoding = tiktoken.get_encoding("cl100k_base")
+    tokens = encoding.encode(text)
+    tokens = tokens[-max_token:]
+    len_tokens = len(tokens)
+    truncated_code = encoding.decode(tokens)
+    return truncated_code, len_tokens
+def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
+    role_content=f"""
+    Role: You are a smart contract security architect. Given User Stories and Domain Models, your task is to analyze function signatures and the state variables and derive checks/constraints that enforce state isolation and cryptographic integrity.
+    Instructions:
+    1. User Stories & Domain Models Learning
+    - Review User Stories to identify:
+        · Actors: User types (e.g., regular users, admins) and contracts.
+        · Corresponding Domain Models with the given state variables.
+        · Isolation Rules: Domain Models defining state variable isolation (e.g., private mapping(address => bytes)).
+        · Encryption Needs: Variables requiring hashing (e.g., keccak256) per Domain Models.
+    2. Function Analysis
+    - Analyze the function signature and read/written state variables to identify their roles and contributions.
+    - Identify isolation checks and constraints based on the Domain Models and User Stories:
+        - Read/Write Isolation:
+            · Use arguments/global variables (msg.sender, msg.value, this, etc.) to enforce per-user/contract access (e.g., msg.sender == _owner).
+        - Cross-Contract Encapsulation:
+            · Validate external contract interactions (e.g., _externalContract in whitelist).
+        - Integrity via Hashing:
+            · If a state variable is private, consider that it is necessary to using keccak256 or other hashing to ensure the integrity of seemingly private data (e.g., luckyNumber = keccak256(_luckyNumber)).
+    3. Output Format
+    You should ONLY output a JSON object in the following formate without any other text. 
+    Note that in your response of the keys, you should only include the global variables or arguments that are involved in the isolation checks or encryption-focused checks. The keys are a list of related arguments or global variables, and the values are the descriptions of the isolation or encryption-focused checks, i.e.,
+    - Keys: Arguments/global variables involved in isolation checks or encryption-focused checks.
+    - Values: Descriptions of isolation or encryption-focused checks.
+    For example, the output should be like this:
+    {{  
+        ["msg.sender", "_patient"]: "Verify msg.sender == _patient to enforce write access to _encryptedRecords.",  
+        ["_encryptedData", "recordHash"]: "Ensure keccak256(_encryptedData) == recordHash to validate data integrity."  
+    }}
+
+    The general User Stories are:  
+    - As a user, I want my ERC20 token balance to be isolated from others, ensuring that my transactions do not affect other users' balances.
+    - As a user, I want to mint ERC20 tokens by interacting with ERC721 and ERC1155 tokens, ensuring that my actions are secure and do not interfere with other users' transactions.
+    - As a user, I want to unwrap my ERC20 tokens back into ERC1155 tokens, with the assurance that my balance is accurately calculated and that I receive the correct amount of tokens in return.
+    - As a user, I want to ensure that my token transfers are protected against reentrancy attacks, so that my funds remain secure during transactions.
+    - As a contract owner, I want to control the opening and closing of the minting process, ensuring that I can manage the supply of tokens effectively.
+
+    This contract serves as a wrapper for ERC20 tokens, allowing users to mint tokens based on their holdings of ERC721 and ERC1155 tokens. It ensures user-specific state isolation by maintaining individual balances in a mapping, preventing any unintended state leakage between users. The contract also implements reentrancy guards to protect against potential attacks during token transfers and minting operations.
+
+    The Domain Models are:
+    <Domain Models>  
+    - **_balances**: mapping(address => uint256) private;  
+    - This mapping tracks the ERC20 token balances of each user privately, ensuring that no user can access another user's balance, thus enforcing read/write isolation.
+
+    - **_allowances**: mapping(address => mapping(address => uint256)) private;  
+    - This mapping allows users to set allowances for other users to spend their tokens. It is private, preventing unauthorized access to allowance details and ensuring that only the owner or approved users can modify it.
+
+    - **_totalSupply**: uint256 private;  
+    - This variable tracks the total supply of ERC20 tokens. It is private to prevent external contracts from manipulating the total supply directly, ensuring integrity and isolation.
+
+    - **_opened**: bool private;  
+    - This variable indicates whether the minting process is open. It is private to ensure that only the contract owner can modify the minting state, preventing unauthorized access.
+
+    - **_name**: string private;  
+    - This variable stores the name of the ERC20 token. It is private to ensure that the token's name is not exposed unnecessarily.
+
+    - **_symbol**: string private;  
+    - This variable stores the symbol of the ERC20 token. It is private to ensure that the token's symbol is not exposed unnecessarily.
+
+    - **_owner**: address private;  
+    - This variable holds the address of the contract owner. It is private to ensure that ownership information is not publicly accessible.
+
+    - **Visibility Constraints**:  
+    - All state variables related to user balances and allowances are marked as private to enforce data isolation and prevent unauthorized access.  
+    - Functions that modify state variables (e.g., minting, transferring) are restricted to the contract owner or authorized users, ensuring that only permitted actions can be performed.  
+    - Reentrancy guards are implemented in functions that handle token transfers and minting to protect against potential attacks.  
+    </Domain Models>
+    """
+
+    usr_content=f"""
+    The function signature is:
+    <function_signature>
+     function onERC1155Received(
+        address,
+        address from,
+        uint256 id,
+        uint256 amount,
+        bytes calldata
+    ) external returns (bytes4)
+    </function_signature>
+    This function has write the following state variables:
+    <written_state_variables>
+    mapping(address owner => uint256) private _balancesOfOwner;
+    uint256 private _holders;
+    mapping(address account => uint256) private _balances;
+    uint256 private _totalSupply;
+    </written_state_variables>
+    This function has read the following state variables:
+    <read_state_variables>
+    uint256 public immutable tokenID;
+    IERC721 public immutable erc721Contract;
+    </read_state_variables>
+    """
+    try:
+        client= OpenAI(api_key=OPENAI_API_KEY,http_client=httpx.Client(proxy=proxy_1))
+        response = client.chat.completions.create(
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": role_content},
+                                {"role": "user", "content": usr_content},
+                            ],
+                            temperature = 0,
+                        )
+    except Exception as e:
+        print('Error in response')
+        print(e)
+        return None
+    return response.choices[0].message.content
+
+if __name__ == "__main__":
+    res=summarize_by_LLMs("test","test")
+    with open('/home/liuhan/utils_download/checks_test_gpt4o3mini_new.txt','w') as f:
+        f.write(res)

@@ -13,8 +13,8 @@ def is_eoa_callable_func(func: Function) -> bool:
 class ICFGSlicer:
     def __init__(self):
         pass
-    def __init__(self, variables: Set[variable]):
-        pass
+
+        
     def slice(self, icfg: ICFG) -> SlicedGraph:
         # 对一个合约的每一个函数进行切片，一个函数的切片是当前函数的所有可行的执行路径
         # 用于模拟一个交易的执行流，因此仅对可以被eoa调用的函数进行切片

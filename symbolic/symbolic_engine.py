@@ -5,9 +5,9 @@ from slither.core.solidity_types import ElementaryType
 from slither.slithir.variables import Constant
 from z3 import Solver, sat, unsat, Z3Exception, unknown, ExprRef, BitVecVal, ModelRef, BitVecRef, BitVecNumRef, Or
 from .slither_op_parser import SlitherOpParser
-from gala.sequence import TxSeqGenerationResult, TxSequence, Transaction
+from .sequence import TxSeqGenerationResult, TxSequence, Transaction
 from typing import Set, List, Dict, TypeAlias, FrozenSet, Tuple, Optional
-from gala.graph import ICFGNode, SlicedGraph
+from icfg import ICFGNode, SlicedGraph
 from .symbolic_state import SymbolicState
 from slither.core.variables import StateVariable
 from slither.core.declarations import Function, Contract
