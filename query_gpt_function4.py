@@ -44,14 +44,21 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
             · If a state variable is private, consider that it is necessary to using keccak256 or other hashing to ensure the integrity of seemingly private data (e.g., luckyNumber = keccak256(_luckyNumber)).
     3. Output Format
     You should ONLY output a JSON object in the following formate without any other text. 
-    Note that in your response of the keys, you should only include the global variables or arguments that are involved in the isolation checks or encryption-focused checks. The keys are a list of related arguments or global variables, and the values are the descriptions of the isolation or encryption-focused checks, i.e.,
-    - Keys: Arguments/global variables involved in isolation checks or encryption-focused checks.
-    - Values: Descriptions of isolation or encryption-focused checks.
-    For example, the output should be like this:
-    {{  
-        ["msg.sender", "_patient"]: "Verify msg.sender == _patient to enforce write access to _encryptedRecords.",  
-        ["_encryptedData", "recordHash"]: "Ensure keccak256(_encryptedData) == recordHash to validate data integrity."  
-    }}
+    In your response, you should include three parts:
+    - Involved variables: A list of all the involved variables in the function signature and global variables.
+    - Potential checks: A string of the potential checks should be done in the function.
+    - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
+    Each part should be a dictionary, for example, the output should be like this:
+    [{{
+        "involved_variables": ["msg.sender", "_patient"],
+        "potential_checks": "msg.sender == _patient",
+        "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
+    }},
+    {{
+        "involved_variables": ["_encryptedData", "recordHash"],
+        "potential_checks": "keccak256(_encryptedData) == recordHash",
+        "descriptions": "Ensure keccak256(_encryptedData) == recordHash to validate data integrity."
+    }}]
 
     The general User Stories are:  
     1. As a user, I want to open a margin position with specific parameters, so that I can trade with leverage while ensuring my collateral is properly managed.
@@ -140,6 +147,7 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
                                 {"role": "user", "content": usr_content},
                             ],
                             temperature = 0,
+                            seed = 0,
                         )
     except Exception as e:
         print('Error in response')
@@ -149,5 +157,5 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
 
 if __name__ == "__main__":
     res=summarize_by_LLMs("test","test")
-    with open('/home/liuhan/utils_download/checks_test_gpt4omini_new.txt','w') as f:
+    with open('/home/liuhan/utils_download/checks_test_gpt41nano_new_with_def.txt','w') as f:
         f.write(res)

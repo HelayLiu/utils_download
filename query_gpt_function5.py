@@ -13,7 +13,7 @@ proxies = {
     "http": "http://127.0.0.1:20171",
     "https": "http://127.0.0.1:20171",
 }
-def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> int:
+def truncate_token(text: str, model: str = 'gpt-4.1-mini', max_token=128000) -> int:
     try:
         encoding = tiktoken.encoding_for_model(model)
     except KeyError:
@@ -23,7 +23,7 @@ def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> i
     len_tokens = len(tokens)
     truncated_code = encoding.decode(tokens)
     return truncated_code, len_tokens
-def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
+def summarize_by_LLMs(desc,examples,model="o3-mini"):
     role_content=f"""
     Role: You are a smart contract security architect. Given User Stories and Domain Models, your task is to analyze function signatures and the state variables and derive checks/constraints that enforce state isolation and cryptographic integrity.
     Instructions:
@@ -42,18 +42,55 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
             · Validate external contract interactions (e.g., _externalContract in whitelist).
         - Integrity via Hashing:
             · If a state variable is private, consider that it is necessary to using keccak256 or other hashing to ensure the integrity of seemingly private data (e.g., luckyNumber = keccak256(_luckyNumber)).
+    - NOTE THAT DO NOT CONTAIN ANY LOGIC OF THE FUNCTIONALITY, LIKE ASSIGNMENTS OR ADD OR SUBTRACTION, I.E., =, +=, -=, ETC.
+      YOU JUST NEED TO FOCUS ON THE ISOLATION CHECKS AND ENCRYPTION-FOCUSED CHECKS.
+        - For example, the amount should add to the balance of the user, i.e., _balances[msg.sender] = _balances[msg.sender] + amount.
+    - TRY TO SPLIT THE CHECKS IF THE CHECKS USING AND, YOU CAN SPLIT THEM INTO TWO PARTS.
+        - For example, 
+            [
+                {{
+                    "involved_variables": ["msg.sender", "_patient", "msg.value"],
+                    "potential_checks": "msg.sender == _patient && msg.value > 0",
+                    "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords and msg.value > 0 to ensure a valid transaction."
+                }}
+            ]
+            you should split them into two parts:
+            [
+                {{
+                    "involved_variables": ["msg.sender", "_patient"],
+                    "potential_checks": "msg.sender == _patient",
+                    "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
+                }},
+                {{
+                    "involved_variables": ["msg.value"],
+                    "potential_checks": "msg.value > 0",
+                    "descriptions": "Ensure msg.value > 0 to validate the transaction amount."
+                }}
+            ]            
+        
     3. Output Format
     You should ONLY output a JSON object in the following formate without any other text. 
-    Note that in your response of the keys, you should only include the global variables or arguments that are involved in the isolation checks or encryption-focused checks. The keys are a list of related arguments or global variables, and the values are the descriptions of the isolation or encryption-focused checks, i.e.,
-    - Keys: Arguments/global variables involved in isolation checks or encryption-focused checks.
-    - Values: Descriptions of isolation or encryption-focused checks.
-    For example, the output should be like this:
-    {{  
-        ["msg.sender", "_patient"]: "Verify msg.sender == _patient to enforce write access to _encryptedRecords.",  
-        ["_encryptedData", "recordHash"]: "Ensure keccak256(_encryptedData) == recordHash to validate data integrity."  
-    }}
+    In your response, you should include three parts:
+    - Involved variables: A list of all the involved variables in the function signature and global variables.
+    - Potential checks: The constraints of the potential checks should be done in the function.
+    - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
+    Each part should be a dictionary, for example, the output should be like this:
+    [{{
+        "involved_variables": ["msg.sender", "_patient"],
+        "potential_checks": "msg.sender == _patient",
+        "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
+    }},
+    {{
+        "involved_variables": ["_encryptedData", "recordHash"],
+        "potential_checks": "keccak256(_encryptedData) == recordHash",
+        "descriptions": "Ensure keccak256(_encryptedData) == recordHash to validate data integrity."
+    }}]
 
-    The general User Stories are:  
+
+    """
+
+    usr_content=f"""
+        The general User Stories are:  
     - As a user, I want my ERC20 token balance to be isolated from others, ensuring that my transactions do not affect other users' balances.
     - As a user, I want to mint ERC20 tokens by interacting with ERC721 and ERC1155 tokens, ensuring that my actions are secure and do not interfere with other users' transactions.
     - As a user, I want to unwrap my ERC20 tokens back into ERC1155 tokens, with the assurance that my balance is accurately calculated and that I receive the correct amount of tokens in return.
@@ -90,16 +127,13 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     - Functions that modify state variables (e.g., minting, transferring) are restricted to the contract owner or authorized users, ensuring that only permitted actions can be performed.  
     - Reentrancy guards are implemented in functions that handle token transfers and minting to protect against potential attacks.  
     </Domain Models>
-    """
 
-    usr_content=f"""
     The function signature is:
     <function_signature>
-     function onERC1155Received(
+     function onERC721Received(
         address,
         address from,
-        uint256 id,
-        uint256 amount,
+        uint256,
         bytes calldata
     ) external returns (bytes4)
     </function_signature>
@@ -112,8 +146,9 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     </written_state_variables>
     This function has read the following state variables:
     <read_state_variables>
-    uint256 public immutable tokenID;
+    bool private _opened;
     IERC721 public immutable erc721Contract;
+    uint256 private constant ERC721_RATIO = 400 * 1e18;
     </read_state_variables>
     """
     try:
@@ -124,15 +159,19 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
                                 {"role": "system", "content": role_content},
                                 {"role": "user", "content": usr_content},
                             ],
-                            temperature = 0,
+                            # temperature = 0,
+                            seed=42,
+                            # top_p=0
                         )
     except Exception as e:
         print('Error in response')
         print(e)
         return None
+    print(f"Prompt tokens: {response.usage.prompt_tokens}")
+    print(f"Completion tokens: {response.usage.completion_tokens}")
     return response.choices[0].message.content
 
 if __name__ == "__main__":
     res=summarize_by_LLMs("test","test")
-    with open('/home/liuhan/utils_download/checks_test_gpt4o3mini_new.txt','w') as f:
+    with open('/home/liuhan/utils_download/checks_test_gpt4o3mini_new1.txt','w') as f:
         f.write(res)
