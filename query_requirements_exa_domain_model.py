@@ -61,26 +61,22 @@ def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
     6. Domain Models
     - Provide a state variable overview.
     - Design models strictly reflecting state isolation:
-        · User Isolation:
-            How variables are scoped/encrypted per user (e.g., "User medical records are private and stored as encrypted bytes").
-        · Contract Isolation:
-            How variables avoid cross-contract leakage (e.g., "Token minting parameters are private and validated before passing to external contracts").
-        · Visibility Constraints:
-            Explicitly state variable visibility (e.g., "User rewards are private and accessible only via authorized functions").
-    - Example:
-        · allowance: mapping(address => mapping(address => uint256)) public;
-            - This allows users to approve spending limits for other users.
-            - This is a public mapping, the value is accessible to all users, but the change of value is restricted to the owner or the approved user.
-        · balanceOf: mapping(address => uint256) private;
-            - This allows users to check their own balance.
-            - This is a private mapping, the value is not accessible to other users, the change of value is restricted to the owner or the approved user.
-        · totalSupply: uint256 public;
-            - This allows users to check the total supply of the token.
-            - This is a public variable, the value is accessible to all users, the change of value is restricted to the owner or the approved user.
-        · players: mapping(address => Player) private;
-            - This allows users to check their own player information.
-            - This is a private mapping, the value is not accessible to other users, the change of value is restricted to the owner or the approved user.
-            - The chosen number of the player should be encrypted and stored in the mapping, i.e., players[msg.sender].number = keccak256(abi.encodePacked(_number)).
+        - Write Isolation:
+            · How variables restrict write access for different actors.
+            · Example:
+                _balances: mapping(address => uint256) private _balances;
+                - This mapping ensures that each user's balance is isolated and can only be modified by the user themselves or the owner of the contract.
+                Domain Models should be:
+                _balances: mapping(address => uint256) private _balances;
+                    · Write restricted to the user themselves or the owner of the contract.
+        - Read Isolation:
+            · How variables restrict read access for different actors.
+            · Example:
+                _luckyNumber: uint256 private _luckyNumber;
+                - This variable is private, ensuring that only the contract owner can read the lucky number, preventing other users from accessing it. Additionally, to ensure data integrity, it is stored as a hash (e.g., luckyNumber = keccak256(_luckyNumber)).
+                Domain Models should be:
+                _luckyNumber: uint256 private _luckyNumber;
+                    · Read restricted to the contract owner and stored as a hash for integrity.
     7. Output Format
     Structure your response as: 
     The general User Stories are:  
@@ -90,7 +86,13 @@ def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
 
     The Domain Models are:  
     <Domain Models>  
-    [Bullet points detailing isolation mechanisms of the state variable for users/contracts, with variable visibility and encryption details]  
+    - [State Variable 1]:
+        · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
+        · Write restricted to [Actor/Contract Type] or Write restricted to [None].
+    - [State Variable 2]:
+        · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
+        · Write restricted to [Actor/Contract Type] or Write restricted to [None].
+    ...
     </Domain Models>
     """
 
@@ -139,5 +141,5 @@ if __name__ == "__main__":
                     continue
                 else:
                     break
-            with open(os.path.join(root_path,f"{file}_gpt4omini_withgraph.txt"),'w') as f:
+            with open(os.path.join(root_path,f"{file}_gpt4omini_withgraph_new.txt"),'w') as f:
                 f.write(requirement)

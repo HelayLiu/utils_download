@@ -23,7 +23,7 @@ def truncate_token(text: str, model: str = 'gpt-4.1-mini', max_token=128000) -> 
     len_tokens = len(tokens)
     truncated_code = encoding.decode(tokens)
     return truncated_code, len_tokens
-def summarize_by_LLMs(desc,examples,model="o3-mini"):
+def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     role_content=f"""
     Role: You are a smart contract security architect. Given User Stories and Domain Models, your task is to analyze function signatures and the state variables and derive checks/constraints that enforce state isolation and cryptographic integrity.
     Instructions:
@@ -101,31 +101,27 @@ def summarize_by_LLMs(desc,examples,model="o3-mini"):
 
     The Domain Models are:
     <Domain Models>  
-    - **_balances**: mapping(address => uint256) private;  
-    - This mapping tracks the ERC20 token balances of each user privately, ensuring that no user can access another user's balance, thus enforcing read/write isolation.
-
-    - **_allowances**: mapping(address => mapping(address => uint256)) private;  
-    - This mapping allows users to set allowances for other users to spend their tokens. It is private, preventing unauthorized access to allowance details and ensuring that only the owner or approved users can modify it.
-
-    - **_totalSupply**: uint256 private;  
-    - This variable tracks the total supply of ERC20 tokens. It is private to prevent external contracts from manipulating the total supply directly, ensuring integrity and isolation.
-
-    - **_opened**: bool private;  
-    - This variable indicates whether the minting process is open. It is private to ensure that only the contract owner can modify the minting state, preventing unauthorized access.
-
-    - **_name**: string private;  
-    - This variable stores the name of the ERC20 token. It is private to ensure that the token's name is not exposed unnecessarily.
-
-    - **_symbol**: string private;  
-    - This variable stores the symbol of the ERC20 token. It is private to ensure that the token's symbol is not exposed unnecessarily.
-
-    - **_owner**: address private;  
-    - This variable holds the address of the contract owner. It is private to ensure that ownership information is not publicly accessible.
-
-    - **Visibility Constraints**:  
-    - All state variables related to user balances and allowances are marked as private to enforce data isolation and prevent unauthorized access.  
-    - Functions that modify state variables (e.g., minting, transferring) are restricted to the contract owner or authorized users, ensuring that only permitted actions can be performed.  
-    - Reentrancy guards are implemented in functions that handle token transfers and minting to protect against potential attacks.  
+    - _opened: bool private _opened;  
+        · Read restricted to Owner.  
+        · Write restricted to Owner.  
+    - _balances: mapping(address => uint256) private _balances;  
+        · Read restricted to None.  
+        · Write restricted to the user themselves or the contract (e.g., minting, burning) or the owner.  
+    - _allowances: mapping(address => mapping(address => uint256)) private _allowances;  
+        · Read restricted to None.  
+        · Write restricted to the user themselves or the contract or the owner.  
+    - _totalSupply: uint256 private _totalSupply;  
+        · Read restricted to None.  
+        · Write restricted to the owner or the contract (e.g., minting, burning).  
+    - _name: string private _name;  
+        · Read restricted to None.  
+        · Write restricted to the owner.  
+    - _symbol: string private _symbol;  
+        · Read restricted to None.  
+        · Write restricted to the owner.  
+    - _owner: address private _owner;  
+        · Read restricted to None.  
+        · Write restricted to the contract owner.  
     </Domain Models>
 
     The function signature is:

@@ -61,9 +61,9 @@ def summarize_by_LLMs(desc='',model="gpt-4o-mini"):
     <Potential Checks>
     - [Potential Check 1]:
     {{
-        "involved_variables": ["msg.sender", "from", "_balancesOfOwner", "_holders", "_balances", "_totalSupply", "_opened", "erc721Contract", "ERC721_RATIO"],
-        "potential_checks": "msg.sender == address(erc721Contract) && _opened == true",
-        "descriptions": "Verify that msg.sender is the authorized ERC721 contract to ensure only valid ERC721 tokens trigger minting. Check that _opened is true to enforce that minting is currently allowed by the contract owner. These checks enforce cross-contract encapsulation and control over the minting process."
+        "involved_variables": ["msg.sender", "from", "_balancesOfOwner", "_holders", "_balances", "_totalSupply", "_opened", "erc1155Contract", "ERC721_RATIO"],
+        "potential_checks": "msg.sender == address(erc1155Contract)",
+        "descriptions": "Verify that msg.sender is the authorized ERC1155 contract to ensure only valid ERC721 tokens trigger minting. Check that _opened is true to enforce that minting is currently allowed by the contract owner. These checks enforce cross-contract encapsulation and control over the minting process."
     }}
     </Potential Checks>
 
@@ -72,9 +72,9 @@ def summarize_by_LLMs(desc='',model="gpt-4o-mini"):
     Execution Constraints:
     Constraint 1: (_status == ENTERED) == False
     Constraint 2: (id == tokenID) == True
-    Constraint 3: (967724487163403495630195419068707635844908137742 ==
+    Constraint 3: (msg.sender ==
     erc1155Contract) ==
-    False
+    True
     Constraint 4: Or(addr_from == addr_account,
     addr__mintAddress04 == addr_account,
     addr__mintAddress01 == addr_account,

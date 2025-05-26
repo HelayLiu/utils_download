@@ -6,11 +6,13 @@ from pymongo import MongoClient
 from tqdm import tqdm
 client=MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
 collection_source=client['contracts']['top_contracts']
-docs=collection_source.find({'code':{'$exists':True}},{'code_hash':1,'embedding':1,'code':1})
+docs=collection_source.find({'code':{'$exists':True}},{'code_hash':1,'embedding':1,'code':1,'success':1})
 embeddings=[]
 all_hashs=set()
 texts=[]
 for doc in tqdm(docs):
+    if 'success' not in doc or doc['success'] == False:
+        continue
     code=doc['code']
     code_hash=doc['code_hash']
     embedding=doc['embedding']
@@ -63,7 +65,7 @@ for doc in tqdm(docs):
 embeddings_norm = normalize(embeddings, axis=1, norm='l2')
 
 # 聚类
-n_clusters = 300
+n_clusters = 350
 kmeans =  KMeans(
             n_clusters=n_clusters,
             init='k-means++',
