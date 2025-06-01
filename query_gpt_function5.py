@@ -93,7 +93,7 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     """
 
     usr_content=f"""
-        The general User Stories are:  
+    The general User Stories are:  
     - As a user, I want my ERC20 token balance to be isolated from others, ensuring that my transactions do not affect other users' balances.
     - As a user, I want to mint ERC20 tokens by interacting with ERC721 and ERC1155 tokens, ensuring that my actions are secure and do not interfere with other users' transactions.
     - As a user, I want to unwrap my ERC20 tokens back into ERC1155 tokens, with the assurance that my balance is accurately calculated and that I receive the correct amount of tokens in return.

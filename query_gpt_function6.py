@@ -29,51 +29,57 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
 
         Input Processing Steps:
         1. User Story & Domain Model Analysis
-        - Identify:
-            a) Actor Types (human users, contracts, roles)
-            b) State Variable Isolation Requirements (storage segregation patterns)
-            c) Cryptographic Commitments (variables requiring hashing/encryption)
-            d) Access Control Matrix (write/read permissions per actor)
+            - Identify:
+                a) Actor Types (human users, contracts, roles)
+                b) State Variable Isolation Requirements (storage segregation patterns)
+                c) Cryptographic Commitments (variables requiring hashing/encryption)
+                d) Access Control Matrix (write/read permissions per actor)
 
         2. Function Decomposition
-        For each function:
-        a) Create variable inventory:
-            - Input parameters
-            - Global variables
-            - Accessed state variables (read/write)
-        b) Derive isolation requirements:
-            - Read-path constraints (decryption, hash verification)
-            - Write-path constraints (ownership, role-based access)
-        c) Flag cross-domain state interactions
+            For each function:
+                a) Create variable inventory:
+                    - Input parameters
+                    - Global variables
+                    - Accessed state variables (read/write)
+                b) Derive isolation requirements:
+                    - Read-path constraints (decryption, hash verification)
+                    - Write-path constraints (ownership, role-based access)
+                c) Flag cross-domain state interactions
 
         3. Constraint Generation Rules
-        - Atomic Checks Principle:
-            * Split compound conditions (&&/||) into individual checks
-            * Example: "A && B" becomes two separate checks
-        - Deduplication Protocol:
-            * Merge identical constraints on multiple variables
-            * Example: msg.sender checks on different mappings
-        - Cryptographic Enforcement:
-            * Explicit hash/encryption validation before sensitive operations
-            * Prevention of raw data exposure for committed values
+            - Atomic Checks Principle:
+                * Split compound conditions (&&/||) into individual checks, avoid occurring `&&` conditions.
+                * Example: "A && B" becomes two separate checks
+            - Deduplication Protocol:
+                * Merge identical constraints on multiple variables
+                * Example: msg.sender checks on different mappings
+            - Cryptographic Enforcement:
+                * Explicit hash/encryption validation before sensitive operations
+                * Prevention of raw data exposure for committed values
+            - Coarse Principle:
+                * When multiple checks are required in a single function, just include the maximum one check for each function.
+                * Example: If a function requires both ownership and specific address checks, only include the specific address check if it is more critical for isolation.
 
         Output Requirements:
         - Strict JSON format with NO explanatory text
         - No markdown formatting
         - Each entry must follow schema:
         {{
-            "involved_variables":  ["array_of_contract_variables_in_potential_checks"],,
             "potential_checks": "atomic_expression_using_only_operators_and_functions_in_involved_variables",
-            "descriptions": "technical rationale linking to security properties",
+            "involved_variables":  ["array_of_contract_variables_in_potential_checks"],
+            "descriptions": "explain_the_purpose_of_the_check_in_enforcing_state_isolation",
             "references": ["list_of_the_domain_models"]
         }}
         
         Validation Safeguards:
-        1. Reject any functional logic (=, +=, -=)
+        1. Reject any functional logic (+=, -=) apart from cryptographic checks
         2. Filter out non-isolation related checks
         3. Require cryptographic verification for precommitted values
         4. Enforce principal-of-least-privilege in access checks
-        5. Risk Prioritization Filter:
+        5. Ensure the involved variables are occurred in the function signature or global variables and in the potential_checks.
+        6  Reject any checks are repeated or duplicated.
+        7. Try to reduce the potential_checks to the minimum.
+        7. Risk Prioritization Filter:
             - Exclude basic validity checks that don't impact core security properties:
                 * Numerical lower bounds (e.g., amount > 0)
                 * Non-zero address checks (e.g., recipient != address(0))

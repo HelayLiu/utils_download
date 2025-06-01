@@ -61,24 +61,16 @@ def summarize_by_LLMs(desc='',model="gpt-4.1-mini"):
     <Potential Checks>
     [
     {{
-        "involved_variables": ["msg.sender", "_balances"],
-        "potential_checks": "msg.sender == from",
-        "descriptions": "Verify msg.sender == from to ensure that the balance update in _balances is isolated to the token sender."
-    }},
-    {{
-        "involved_variables": ["_owner", "_opened"],
-        "potential_checks": "_opened == true",
-        "descriptions": "Check that _opened is true to ensure minting is allowed only when the contract owner has opened the minting process."
-    }},
-    {{
-        "involved_variables": ["erc1155Contract", "msg.sender"],
+        "involved_variables": ["from", "_balances", "_balancesOfOwner"],
         "potential_checks": "msg.sender == address(erc1155Contract)",
-        "descriptions": "Ensure that the caller is the authorized ERC1155 contract to prevent unauthorized token receipt."
+        "descriptions": "Ensures that only the authorized ERC1155 contract can trigger the onERC1155Received function, preventing unauthorized state modifications and preserving user-specific balance isolation.",
+        "references": ["_balances", "_balancesOfOwner", "erc1155Contract"]
     }},
     {{
-        "involved_variables": ["tokenID", "receivedTokenID"],
-        "potential_checks": "receivedTokenID == tokenID",
-        "descriptions": "Validate that the received token ID matches the expected tokenID to prevent processing of unexpected tokens."
+        "involved_variables": ["from", "_balances"],
+        "potential_checks": "from != address(0)",
+        "descriptions": "Prevents state changes from the zero address to avoid unintended balance assignments, maintaining integrity of user-specific balances.",
+        "references": ["_balances"]
     }}
     ]
     </Potential Checks>
