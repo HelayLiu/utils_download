@@ -25,71 +25,61 @@ def truncate_token(text: str, model: str = 'gpt-4.1-mini', max_token=128000) -> 
     return truncated_code, len_tokens
 def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     role_content=f"""
-    Role: You are a smart contract security architect. Given User Stories and Domain Models, your task is to analyze function signatures and the state variables and derive checks/constraints that enforce state isolation and cryptographic integrity.
-    Instructions:
-    1. User Stories & Domain Models Learning
-    - Review User Stories to identify:
-        · Actors: User types (e.g., regular users, admins) and contracts.
-        · Corresponding Domain Models with the given state variables.
-        · Isolation Rules: Domain Models defining state variable isolation (e.g., private mapping(address => bytes)).
-        · Encryption Needs: Variables requiring hashing (e.g., keccak256) per Domain Models.
-    2. Function Analysis
-    - Analyze the function signature and read/written state variables to identify their roles and contributions, you should understand what the function is doing.
-    - Identify isolation checks and constraints based on the Domain Models and User Stories:
-        - Read Isolation:
-            · For each read state variable, ensure it should check the related Domain Models (e.g., hashing)
-        - Write Isolation:
-            · For each written state variable, ensure it should check the related Domain Models (e.g., checking ownership, access control).
-    - NOTE THAT DO NOT CONTAIN ANY LOGIC OF THE FUNCTIONALITY, LIKE ASSIGNMENTS OR ADD OR SUBTRACTION, I.E., =, +=, -=, ETC.
-      YOU JUST NEED TO FOCUS ON THE ISOLATION CHECKS AND ENCRYPTION-FOCUSED CHECKS.
-        - For example, [the amount should add to the balance of the user, i.e., _balances[msg.sender] = _balances[msg.sender] + amount.] should not be included in the output.
-    - TRY TO SPLIT THE CHECKS IF THE CHECKS USING AND, YOU CAN SPLIT THEM INTO TWO PARTS.
-        - For example, 
-            [
-                {{
-                    "involved_variables": ["msg.sender", "_patient", "msg.value"],
-                    "potential_checks": "msg.sender == _patient && msg.value > 0",
-                    "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords and msg.value > 0 to ensure a valid transaction."
-                }}
-            ]
-            you should split them into two parts:
-            [
-                {{
-                    "involved_variables": ["msg.sender", "_patient"],
-                    "potential_checks": "msg.sender == _patient",
-                    "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
-                }},
-                {{
-                    "involved_variables": ["msg.value"],
-                    "potential_checks": "msg.value > 0",
-                    "descriptions": "Ensure msg.value > 0 to validate the transaction amount."
-                }}
-            ]            
+        Role: Smart Contract Security Architect specializing in State Isolation and Cryptographic Integrity
+
+        Input Processing Steps:
+        1. User Story & Domain Model Analysis
+        - Identify:
+            a) Actor Types (human users, contracts, roles)
+            b) State Variable Isolation Requirements (storage segregation patterns)
+            c) Cryptographic Commitments (variables requiring hashing/encryption)
+            d) Access Control Matrix (write/read permissions per actor)
+
+        2. Function Decomposition
+        For each function:
+        a) Create variable inventory:
+            - Input parameters
+            - Global variables
+            - Accessed state variables (read/write)
+        b) Derive isolation requirements:
+            - Read-path constraints (decryption, hash verification)
+            - Write-path constraints (ownership, role-based access)
+        c) Flag cross-domain state interactions
+
+        3. Constraint Generation Rules
+        - Atomic Checks Principle:
+            * Split compound conditions (&&/||) into individual checks
+            * Example: "A && B" becomes two separate checks
+        - Deduplication Protocol:
+            * Merge identical constraints on multiple variables
+            * Example: msg.sender checks on different mappings
+        - Cryptographic Enforcement:
+            * Explicit hash/encryption validation before sensitive operations
+            * Prevention of raw data exposure for committed values
+
+        Output Requirements:
+        - Strict JSON format with NO explanatory text
+        - No markdown formatting
+        - Each entry must follow schema:
+        {{
+            "involved_variables":  ["array_of_contract_variables_in_potential_checks"],,
+            "potential_checks": "atomic_expression_using_only_operators_and_functions_in_involved_variables",
+            "descriptions": "technical rationale linking to security properties",
+            "references": ["list_of_the_domain_models"]
+        }}
         
-    3. Union of checks:
-        - If the checks are intended to achieve a similar goal, you should union them together.
-           · For example, if two of the state variables are both need to check the ownership of the user, you can union them together.
-              i.e., _balances[msg.sender] and _allowances[msg.sender][spender] should both check the authorization of the user, i.e., msg.sender == authorizedUser, you can union them together.
-
-    4. Output Format
-    You should ONLY output a JSON object in the following formate without any other text. 
-    In your response, you should include three parts:
-    - Involved variables: A list of all the involved variables of the checks in the function signature and global variables, e.g, msg.sender, _patient, _encryptedData, recordHash, etc. 
-    - Potential checks: The specific constraints of the potential checks should be done in the function, e.g., A == B, C = keccak256(D), etc. 
-    - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
-    Each part should be a dictionary, for example, the output should be like this:
-    [{{
-        "involved_variables": ["msg.sender", "_patient"],
-        "potential_checks": "msg.sender == _patient",
-        "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
-    }},
-    {{
-        "involved_variables": ["_encryptedData", "recordHash"],
-        "potential_checks": "keccak256(_encryptedData) == recordHash",
-        "descriptions": "Ensure keccak256(_encryptedData) == recordHash to validate data integrity."
-    }}]
-
-
+        Validation Safeguards:
+        1. Reject any functional logic (=, +=, -=)
+        2. Filter out non-isolation related checks
+        3. Require cryptographic verification for precommitted values
+        4. Enforce principal-of-least-privilege in access checks
+        5. Risk Prioritization Filter:
+            - Exclude basic validity checks that don't impact core security properties:
+                * Numerical lower bounds (e.g., amount > 0)
+                * Non-zero address checks (e.g., recipient != address(0))
+                * Non-critical range validations
+            - Only include checks that directly enforce state isolation bugs.
+        
     """
 
     usr_content=f"""
@@ -160,8 +150,6 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
                                 {"role": "user", "content": usr_content},
                             ],
                             temperature = 0,
-                            seed=0,
-                            # top_p=0
                         )
     except Exception as e:
         print('Error in response')

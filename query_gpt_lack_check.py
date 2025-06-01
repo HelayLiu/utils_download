@@ -23,7 +23,7 @@ def truncate_token(text: str, model: str = 'gpt-o3-mini', max_token=128000) -> i
     len_tokens = len(tokens)
     truncated_code = encoding.decode(tokens)
     return truncated_code, len_tokens
-def summarize_by_LLMs(desc='',model="gpt-4o-mini"):
+def summarize_by_LLMs(desc='',model="gpt-4.1-mini"):
     role_content="""
     Roles:  You are a smart contract security expert specializing in symbolic execution analysis. Your task is to rigorously evaluate whether critical security checks are implemented in a contract by analyzing provided symbolic execution results and a list of potential checks.
 
@@ -59,12 +59,28 @@ def summarize_by_LLMs(desc='',model="gpt-4o-mini"):
     User_content=f"""
     The potential checks are:
     <Potential Checks>
-    - [Potential Check 1]:
+    [
     {{
-        "involved_variables": ["msg.sender", "from", "_balancesOfOwner", "_holders", "_balances", "_totalSupply", "_opened", "erc1155Contract", "ERC721_RATIO"],
+        "involved_variables": ["msg.sender", "_balances"],
+        "potential_checks": "msg.sender == from",
+        "descriptions": "Verify msg.sender == from to ensure that the balance update in _balances is isolated to the token sender."
+    }},
+    {{
+        "involved_variables": ["_owner", "_opened"],
+        "potential_checks": "_opened == true",
+        "descriptions": "Check that _opened is true to ensure minting is allowed only when the contract owner has opened the minting process."
+    }},
+    {{
+        "involved_variables": ["erc1155Contract", "msg.sender"],
         "potential_checks": "msg.sender == address(erc1155Contract)",
-        "descriptions": "Verify that msg.sender is the authorized ERC1155 contract to ensure only valid ERC721 tokens trigger minting. Check that _opened is true to enforce that minting is currently allowed by the contract owner. These checks enforce cross-contract encapsulation and control over the minting process."
+        "descriptions": "Ensure that the caller is the authorized ERC1155 contract to prevent unauthorized token receipt."
+    }},
+    {{
+        "involved_variables": ["tokenID", "receivedTokenID"],
+        "potential_checks": "receivedTokenID == tokenID",
+        "descriptions": "Validate that the received token ID matches the expected tokenID to prevent processing of unexpected tokens."
     }}
+    ]
     </Potential Checks>
 
     The symbolic execution result is:
@@ -138,7 +154,9 @@ def summarize_by_LLMs(desc='',model="gpt-4o-mini"):
                                 {"role": "system", "content": role_content},
                                 {"role": "user", "content": User_content},
                             ],
-                            # temperature = 0,
+                            temperature = 0,
+                            seed=0,
+                            top_p=0
                         )
     except Exception as e:
         print('Error in response')
