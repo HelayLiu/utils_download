@@ -34,8 +34,10 @@ def summarize_by_LLMs(desc,model="gpt-4o-mini-2024-07-18"):
     - Ignore the incorrect actions in the contract against your knowledge.
     2. User Stories
     - Summarize the contract's purpose and use cases, emphasizing:
-        · How user-specific state isolation is enforced (e.g., per-user balances stored in mapping).
-        · How cross-contract interactions avoid unintended state leakage.
+        · How user-specific state isolation is enforced including:
+        - Write isolation: Ensure that each user's state is isolated from others (i.e., access control).
+        - Read isolation: Ensure that users can only read their own state (i.e., encrypted data).
+
     - Example: "As a user, I want my encrypted voting preferences isolated from others, even though the blockchain is public."
     3. Output Format
     You should only output the User Stories of the contract.
