@@ -25,7 +25,7 @@ def truncate_token(text: str, model: str = 'gpt-4.1-mini', max_token=128000) -> 
     return truncated_code, len_tokens
 def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     role_content=f"""
-        Role: Smart Contract Security Architect specializing in State Isolation
+        Role: You are a Smart Contract Security Architect specializing in State Isolation Bugs
 
         Input Processing Steps:
         1. User Story & Domain Model Analysis
@@ -63,13 +63,16 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
         - Strict JSON format with NO explanatory text
         - No markdown formatting
         - Each entry must follow schema:
+        {{<Function Signature1>:
+        [
         {{
             "potential_checks": "atomic_expression_using_only_operators_and_functions_in_involved_variables",
             "involved_variables":  ["array_of_contract_variables_in_potential_checks"],
             "descriptions": "explain_the_purpose_of_the_check_in_enforcing_state_isolation",
             "references": ["list_of_the_domain_models"]
+        }},...]
+        <Function Signature_2>:[...]
         }}
-        
         Validation Safeguards:
         1. Reject any functional logic (+=, -=) apart from cryptographic checks
         2. Filter out non-isolation related checks
@@ -88,7 +91,7 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     """
 
     usr_content=f"""
-        The general User Stories are:  
+    The general User Stories are:  
     - As a user, I want my ERC20 token balance to be isolated from others, ensuring that my transactions do not affect other users' balances.
     - As a user, I want to mint ERC20 tokens by interacting with ERC721 and ERC1155 tokens, ensuring that my actions are secure and do not interfere with other users' transactions.
     - As a user, I want to unwrap my ERC20 tokens back into ERC1155 tokens, with the assurance that my balance is accurately calculated and that I receive the correct amount of tokens in return.
@@ -122,6 +125,7 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
         · Write restricted to the contract owner.  
     </Domain Models>
 
+    <Function1>
     The function signature is:
     <function_signature>
      function onERC1155Received(
@@ -143,6 +147,31 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     uint256 public immutable tokenID;
     uint256 private constant ERC1155_RATIO = 400_000 * 1e18;
     </read_state_variables>
+    </Function1>
+
+    <Function2>
+    The function signature is:
+    <function_signature>
+     function onERC721Received(
+        address,
+        address from,
+        uint256 id,
+        bytes calldata
+    ) external returns (bytes4)
+    </function_signature>
+    This function has write the following state variables:
+    <written_state_variables>
+    mapping(address owner => uint256) private _balancesOfOwner;
+    uint256 private _holders;
+    mapping(address account => uint256) private _balances;
+    </written_state_variables>
+    This function has read the following state variables:
+    <read_state_variables>
+    IERC721 public immutable erc721Contract;
+    uint256 public immutable tokenID;
+    uint256 private constant ERC721_RATIO = 1_000_000 * 1e18;
+    </read_state_variables>
+    </Function2>
     """
     #     This function doing the following functionality:
     # The function validates the token ID, potentially mints new tokens for the sender based on the received amount and a predefined ratio (ERC1155_RATIO), and always returns its function selector to acknowledge the receipt of ERC-1155 tokens.
