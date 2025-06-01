@@ -81,7 +81,18 @@ def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
         _userPreferences: mapping(address => bytes32) private _userPreferences;
             · Write restricted to the user themselves or the contract owner.
             · Read restricted to the user themselves and stored as a hash for integrity.
-    6. Output Format
+    6. Specific Checks in Functions
+    - For each public function in the contract, extract the specific checks that ensure state isolation:
+    - Example:
+        function mint(address, uint256) returns (bool):[
+        {{
+            "potential_checks": "msg.sender == owner",
+            "involved_variables":  ["msg.sender"],
+            "descriptions": "Verify msg.sender == owner to enforce write access to _balances.",
+            "references": ["_balances"]
+        }}
+        ]
+    7. Output Format
     Structure your response as: 
     The general User Stories are:  
     <User Stories>  
@@ -99,6 +110,13 @@ def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
         · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
     ...
     </Domain Models>
+
+    The specific checks in functions are:
+    <Specific Checks in Functions>
+    <Function Signature 1>:[specific_checks]
+    <Function Signature 2>:[specific_checks]
+    ...
+    </Specific Checks in Functions>
     """
 
 
@@ -146,5 +164,6 @@ if __name__ == "__main__":
                     continue
                 else:
                     break
-            with open(os.path.join(root_path,f"{file}_gpt4omini_withgraph_new.txt"),'w') as f:
+            with open(os.path.join(root_path,f"{file}_gpt4omini_withgraph_new1.txt"),'w') as f:
                 f.write(requirement)
+            break
