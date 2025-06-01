@@ -25,15 +25,14 @@ def truncate_token(text: str, model: str = 'gpt-4.1-mini', max_token=128000) -> 
     return truncated_code, len_tokens
 def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     role_content=f"""
-        Role: Smart Contract Security Architect specializing in State Isolation and Cryptographic Integrity
+        Role: Smart Contract Security Architect specializing in State Isolation
 
         Input Processing Steps:
         1. User Story & Domain Model Analysis
             - Identify:
                 a) Actor Types (human users, contracts, roles)
-                b) State Variable Isolation Requirements (storage segregation patterns)
-                c) Cryptographic Commitments (variables requiring hashing/encryption)
-                d) Access Control Matrix (write/read permissions per actor)
+                b) State Variable Isolation Requirements (storage segregation patterns and variables requiring hashing/encryption)
+                c) Access Control Matrix (write/read permissions per actor)
 
         2. Function Decomposition
             For each function:
