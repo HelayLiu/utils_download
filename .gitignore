@@ -3,3 +3,4 @@ simliar_code/*
 *.sol
 config.py
 __pycache__/
+*.json

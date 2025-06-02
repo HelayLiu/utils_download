@@ -4,20 +4,35 @@ from sklearn.neighbors import NearestNeighbors
 from sklearn.cluster import KMeans
 from pymongo import MongoClient
 from tqdm import tqdm
+import json
 client=MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
 collection_source=client['contracts']['top_contracts']
-docs=collection_source.find({'code':{'$exists':True}},{'code_hash':1,'embedding':1,'code':1,'success':1})
+docs=collection_source.find({'used':True},{'code_hash':1,'embedding':1,'code':1,'success':1,'contract_name':1,'implementation':1,'version':1,'optimization':1,'viaIR':1,'stg':1})
 embeddings=[]
 all_hashs=set()
 texts=[]
+comp_args=[]
 for doc in tqdm(docs):
     if 'success' not in doc or doc['success'] == False:
+        continue
+    if 'implementation' in doc and doc['implementation']!='':
         continue
     code=doc['code']
     code_hash=doc['code_hash']
     embedding=doc['embedding']
+    version=doc['version'].split('+')[0].replace('v','')
+    opt=True if doc['optimization']=='1' else False
+    via_ir=doc.get('viaIR', False)
+    args={
+        'contract_name': doc['contract_name'],
+        'version': version,
+        'opt': opt,
+        'via_ir': via_ir,
+        'stg': doc.get('stg', ''),
+    }
     if code_hash in all_hashs:
         continue
+    comp_args.append(args)
     all_hashs.add(code_hash)
     texts.append(code)
     embeddings.append(embedding)
@@ -85,6 +100,7 @@ sorted_ids = np.argsort(-cluster_counts[valid_clusters])[:150]
 selected_clusters = valid_clusters[sorted_ids]
         
 all_texts=[]
+all_name=[]
 for cid in selected_clusters:
     mask = (labels == cid)
     cluster_indices = np.where(mask)[0]
@@ -97,8 +113,9 @@ for cid in selected_clusters:
     for idx in sorted_indices:
         original_idx = cluster_indices[idx]
         lines= texts[original_idx].split('\n')
-        if len(lines)>200:
+        if len(lines)>200 and comp_args[original_idx] not in all_name:
             all_texts.append(texts[original_idx])
+            all_name.append(comp_args[original_idx])
             break
         else:
             continue
@@ -117,6 +134,9 @@ for i in range(100):
     num_tokens = len(all_texts[i].split('\n'))
     if (num_tokens) < 200:
         continue
-    with open(f"{save_path}/most_unrelated_{cou}.txt", 'w') as f:
+    with open(f"{save_path}/most_unrelated_{i}.sol", 'w') as f:
         f.write(all_texts[i])
-        cou+=1
+        # cou+=1
+    with open(f"{save_path}/most_unrelated_{i}.json", 'w') as f:
+        json.dump(all_name[i], f, indent=4)
+    # cou+=1

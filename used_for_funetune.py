@@ -6,7 +6,9 @@ from tqdm import tqdm
 import httpx
 import os
 import tiktoken
-from config import OPENAI_API_KEY
+from config import *
+import time
+from datetime import datetime
 proxy_1 = "http://127.0.0.1:20171"
 # 配置 HTTP 代理地址
 proxies = {
@@ -25,10 +27,10 @@ def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> i
     return truncated_code, len_tokens
 
 
-def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
+def summarize_by_LLMs(desc,graph,func,model="deepseek-reasoner"):
     role_content=f"""
-    Role: You are a smart contract Architect and Requirements Engineering Expert. You will be given a smart contracts a state variable transition graph of the contract, which is a directed graph where each node represents a situation of all the state variables of the contract, and each edge represents a transition between two situations. The transition is triggered by a function call, and for each different condition of the function call, there is a different transition. 
-    Now your task is to analyze a given smart contract and generate User Stories and Domain Models focused on state isolation across users and contracts.
+    Role: You are a smart contract Architect and Requirements Engineering Expert. You will be given a smart contracts, a state variable transition graph (STG) of the contract, and a set of function signature.  STG is a directed graph where each node represents a situation of all the state variables of the contract, and each edge represents a transition between two situations. The transition is triggered by a function call, and for each different condition of the function call, there is a different transition. 
+    Now your task is to analyze a given smart contract and generate User Stories, Domain Models and checks of each given function focused on state isolation.
 
     Instructions:
     1. Identify Actors
@@ -82,11 +84,20 @@ def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
             · Write restricted to the user themselves or the contract owner.
             · Read restricted to the user themselves and stored as a hash for integrity.
     6. Specific Checks in Functions
-    - For each public function in the contract, extract the specific checks that ensure state isolation:
+    - For each given function in the contract, extract the specific checks that ensure state isolation:
+    - Format:
+        function <function_signature> returns (<return_type>):[
+        {{
+            "specific_checks": "<condition>",
+            "involved_variables":  ["<variable1>", "<variable2>"],
+            "descriptions": "<description of the check>",
+            "references": ["<state_variable1>", "<state_variable2>"]
+        }}
+        ]
     - Example:
         function mint(address, uint256) returns (bool):[
         {{
-            "potential_checks": "msg.sender == owner",
+            "specific_checks": "msg.sender == owner",
             "involved_variables":  ["msg.sender"],
             "descriptions": "Verify msg.sender == owner to enforce write access to _balances.",
             "references": ["_balances"]
@@ -113,57 +124,94 @@ def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
 
     The specific checks in functions are:
     <Specific Checks in Functions>
-    <Function Signature 1>:[specific_checks]
+    <Function Signature 1>:[
+    {{
+            "specific_checks": "<condition>",
+            "involved_variables":  ["<variable1>", "<variable2>"],
+            "descriptions": "<description of the check>",
+            "references": ["<state_variable1>", "<state_variable2>"]
+    }},
+    ...
+    ]
     <Function Signature 2>:[specific_checks]
     ...
     </Specific Checks in Functions>
     """
 
-
+    usr_content=f"""
+    The contract is <Contract>\n {desc} \n</Contract>
+    The transition graph is <Transition Graph>\n {graph} \n</Transition Graph>
+    The function signature is <Function Signature>\n {func} \n\</Function Signature>     
+    """
     try:
-        client= OpenAI(api_key=OPENAI_API_KEY,http_client=httpx.Client(proxy=proxy_1))
+        client= OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
         response = client.chat.completions.create(
                             model=model,
                             messages=[
                                 {"role": "system", "content": role_content},
-                                {"role": "user", "content": f'''The contract is <Contract> {desc} </Contract>\n\n
-                                        The transition graph is <Transition Graph> {graph} </Transition Graph>'''},
+                                {"role": "user", "content": usr_content},
                             ],
-                            temperature = 0,
+                            stream=True,
+                            max_tokens=64000
                         )
+        total_tokens_in = 0
+        total_tokens_out = 0
+        reasoning_content = ""
+        content = ""
+        for chunk in response:
+            if chunk.choices[0].delta.reasoning_content:
+                reasoning_content += chunk.choices[0].delta.reasoning_content
+            if chunk.choices[0].delta.content:
+                content += chunk.choices[0].delta.content
+            if chunk.usage:
+                if chunk.usage.prompt_tokens:
+                    total_tokens_in += chunk.usage.prompt_tokens
+                if chunk.usage.completion_tokens:
+                    total_tokens_out += chunk.usage.completion_tokens
+        res = f"<THINKING_CONTENT>\n{reasoning_content}\n</THINKING_CONTENT>\n<RESPONSE>\n{content}\n</RESPONSE>"
+        client.close()
     except Exception as e:
         print('Error in response')
         print(e)
-        return None
-    return response.choices[0].message.content
-
+        return None, None, None
+    return res, total_tokens_in, total_tokens_out
+def is_in_time_range(start_hour, start_minute, end_hour, end_minute):
+    now = datetime.now()
+    now_minutes = now.hour * 60 + now.minute
+    start_minutes = start_hour * 60 + start_minute
+    end_minutes = end_hour * 60 + end_minute
+    return start_minutes <= now_minutes <= end_minutes
 if __name__ == "__main__":
-    temp_cou=3
-    root_path = f"/home/liuhan/utils_download/similar_code{temp_cou}"
-    os.makedirs(root_path, exist_ok=True)
-    cou=0
+    root_path = f"/home/liuhan/utils_download/most_unrelated"
     for file in tqdm(os.listdir(root_path)):
         if file.endswith('.sol'):
-            cou+=1
+            while True:
+                if is_in_time_range(0, 30, 8, 20):
+                    break
+                print("Waiting for the time range to be valid...")
+                time.sleep(60)
+            output_file = file.replace('.sol', '_deepseek_res.txt')
+            if os.path.exists(os.path.join(root_path, output_file)):
+                continue
             with open(os.path.join(root_path,file),'r') as f:
                 code=f.read()
-            code, len_tokens=truncate_token(code,max_token=100000)
-            file_name = file.split('.')[0]
-            graph_path = os.path.join(root_path, f"{file_name}_graph.txt")
-            with open(graph_path, 'r') as f:
-                graph = f.read()
-            re_try=0
-            while True:
-
-                requirement=summarize_by_LLMs(code,graph)
-                if requirement is None:
-                    re_try+=1
-                    if re_try>10:
-                        print("Error in response")
-                        break
-                    continue
-                else:
+            config_path = os.path.join(root_path, file.replace('.sol', '.json'))
+            with open(config_path, 'r') as f:
+                config = json.load(f)
+            stg= config.get('stg', '')
+            function_path = os.path.join(root_path, file.replace('.sol', '_public_functions.json'))
+            with open(function_path, 'r') as f:
+                func = json.load(f)
+            func = [ f"function {func_sig}" for func_sig in func ]
+            func_str = ' \n '.join(func)
+            # if func_str == '' or stg == '' or code == '':
+            #     print(f"Error in {file}, func_str or stg is empty")
+            #     continue
+            for i in range(5):
+                res,token_in,token_out= summarize_by_LLMs(code,stg,func_str)
+                if res is not None:
+                    print(f"Success in {file}, token_in: {token_in}, token_out: {token_out}")
                     break
-            with open(os.path.join(root_path,f"{file}_gpt4omini_withgraph_new1.txt"),'w') as f:
-                f.write(requirement)
-            break
+            
+            with open(os.path.join(root_path,output_file),'w') as f:
+                f.write(res)
