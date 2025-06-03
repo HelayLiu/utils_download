@@ -37,11 +37,12 @@
 </Domain Models>  
 
 <Specific Checks in Functions>  
+{
 "transfer(address recipient,uint256 amount) returns(bool)":  
 [  
 {  
   "specific_checks": "isDelivers[sender] || !_BList[sender]",  
-  "involved_variables": ["sender","isDelivers","_BList"],  
+  "involved_variables": ["sender"],  
   "descriptions": "Ensure sender is whitelisted or not blacklisted.",  
   "references": ["isDelivers", "_BList"]  
 }
@@ -106,12 +107,47 @@
   "references": ["_BList"]  
 }
 ],
-"setSwapPairList(address,bool) returns()":[
-   {  
+"setSwapPairList(address addr, bool enable) returns()":[
+{  
   "specific_checks": "msg.sender == owner()",  
   "involved_variables": ["msg.sender"],  
   "descriptions": "Verify caller is owner to modify blacklist.",  
-  "references": ["_BList"]  
+  "references": ["_swapPairList"]  
 }
-]
+],
+"claimBalance(uint256 amount) returns()":[
+{  
+  "specific_checks": "msg.sender == saleAddress",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Restrict token claiming to sale address.",  
+  "references": []  
+}  
+],
+"renounceOwnership() returns()":[
+{  
+  "specific_checks": "msg.sender == owner()",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Verify caller is owner to renounce ownership.",  
+  "references": ["_owner"]  
+}
+],
+"transferOwnership(address newOwner) returns()":[
+{  
+  "specific_checks": "msg.sender == owner()",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Verify caller is owner to transfer ownership.",  
+  "references": ["_owner"]  
+}
+],
+"symbol() returns(string)":[],
+"allowance(address owner, address spender) returns(uint256)":[],
+"balanceOf(address) returns(uint256)":[],
+"decreaseAllowance(address spender, uint256 subtractedValue) returns(bool)":[],
+"approve(address spender, uint256 value) returns(bool)":[],
+"owner() returns(address)":[],
+"totalSupply() returns(uint256)":[],
+"increaseAllowance(address spender, uint256 addedValue) returns(bool):[]"
+"name() returns(string)":[],
+"decimals() returns(uint8)":[],
+}
 </Specific Checks in Functions>
