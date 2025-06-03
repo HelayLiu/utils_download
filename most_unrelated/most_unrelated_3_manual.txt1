@@ -1,0 +1,117 @@
+
+
+### User Stories
+<User Stories>  
+- The contract is a token (PANDA) that implements Standard ERC20 functions, trading with fees: a sale fee (1.5%) and a liquidity fee (0.5%), anti-bot measures: blacklist and trading start time with cooldown periods, automatic liquidity addition when a threshold is reached.
+- As a user, I want to transfer tokens securely, knowing blacklisted addresses (`_BList`) are blocked and whitelisted addresses (`isDelivers`) bypass fees.  
+- As the contract owner, I want to control trading activation (`startTime`) and liquidity thresholds (`numTokensSellToSwap`) to prevent bot manipulation.  
+- As the sale address, I want to claim accumulated fees/ETH to fund the project, with access restricted to my address.  
+- As a liquidity provider, I want fees auto-converted to liquidity via `swapAndLiquify`, ensuring pool health without manual intervention.  
+</User Stories>  
+
+<Domain Models>  
+- _balances (mapping(address ⇒ uint256) private):  
+  · Write restricted to the contract during transfers/minting/burning.  
+  · Read restricted to the contract and via `balanceOf` (public getter).  
+- _allowances (mapping(address ⇒ mapping(address ⇒ uint256)) private):  
+  · Write restricted to the contract during approvals/transfers.  
+  · Read restricted to the contract and via `allowance` (public getter).  
+- isDelivers (mapping(address ⇒ bool) public):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (public).  
+- _BList (mapping(address ⇒ bool) public):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (public).  
+- startTime (uint256 public):  
+  · Write restricted to the contract owner (via `startTrade`).  
+  · Read restricted to None (public).  
+- numTokensSellToSwap (uint256 public):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (public).  
+- swapping (bool private):  
+  · Write restricted to the contract (via `lockTheSwap`).  
+  · Read restricted to the contract (private).  
+- saleAddress (address public):  
+  · Write restricted to None (immutable post-construction).  
+  · Read restricted to None (public).  
+</Domain Models>  
+
+<Specific Checks in Functions>  
+"transfer(address recipient,uint256 amount) returns(bool)":  
+[  
+{  
+  "specific_checks": "isDelivers[sender] || !_BList[sender]",  
+  "involved_variables": ["sender","isDelivers","_BList"],  
+  "descriptions": "Ensure sender is whitelisted or not blacklisted.",  
+  "references": ["isDelivers", "_BList"]  
+}
+],  
+
+"transferFrom(address sender,address recipient,uint256 amount) returns(bool)":  
+[  
+{  
+  "specific_checks": "amount <= _allowances[sender][msg.sender]",  
+  "involved_variables": ["sender","msg.sender","amount"],  
+  "descriptions": "Ensure transfer amount ≤ approved allowance.",  
+  "references": ["_allowances"]  
+}  
+],  
+
+"startTrade() returns()":  
+[  
+{  
+  "specific_checks": "msg.sender == owner() && startTime == 0",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Verify caller is owner and trading hasn't started.",  
+  "references": ["startTime"]  
+}  
+],  
+
+"claimToken(address token, uint256 amount) returns()":  
+[  
+{  
+  "specific_checks": "msg.sender == saleAddress",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Restrict token claiming to sale address.",  
+  "references": []  
+}  
+],  
+
+"setNumTokensSellToSwap(uint256 value) returns()":  
+[  
+{  
+  "specific_checks": "msg.sender == owner()",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Verify caller is owner to update swap threshold.",  
+  "references": ["numTokensSellToSwap"]  
+}  
+],  
+
+"batchSetDelivers(address[] memory addr, bool enable) returns()":  
+[  
+{  
+  "specific_checks": "msg.sender == owner()",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Verify caller is owner to modify whitelist.",  
+  "references": ["isDelivers"]  
+}  
+],  
+
+"batchSetBList(address[] memory addr, bool enable) returns()":  
+[  
+{  
+  "specific_checks": "msg.sender == owner()",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Verify caller is owner to modify blacklist.",  
+  "references": ["_BList"]  
+}
+],
+"setSwapPairList(address,bool) returns()":[
+   {  
+  "specific_checks": "msg.sender == owner()",  
+  "involved_variables": ["msg.sender"],  
+  "descriptions": "Verify caller is owner to modify blacklist.",  
+  "references": ["_BList"]  
+}
+]
+</Specific Checks in Functions>

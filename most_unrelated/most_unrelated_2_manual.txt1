@@ -1,0 +1,112 @@
+
+<User Stories>
+- This is a WrappedToken ERC20 contract, which can transfer, mint and burn tokens.
+- As a token holder, I want to securely transfer tokens to others while ensuring my balance cannot be altered by unauthorized parties.
+- As a spender, I want delegated token access that remains isolated from other users' allowances and can only be modified by the allowance owner.
+- As the contract owner, I want exclusive minting/burning privileges to control token supply and prevent unauthorized token creation/destruction.
+- As any user, I want transparent visibility of token metadata (name/symbol/decimals) while ensuring critical state variables remain immutable after deployment.
+- As the contract owner, I want to securely transfer ownership while preventing zero-address assignments that could compromise administrative control.
+</User Stories>
+
+#### Domain Models
+<Domain Models>
+- _balances (mapping(address => uint256) private):
+  · Write restricted to: Owner (via mint/burn) and token holders (via transfers with balance checks).
+  · Read restricted to: None (public via balanceOf).
+
+- _allowances (mapping(address => mapping(address => uint256)) private):
+  · Write restricted to: Allowance owners (via approve/increase/decreaseAllowance) and authorized spenders (via transferFrom).
+  · Read restricted to: None (public via allowance).
+
+- _totalSupply (uint256 private):
+  · Write restricted to: Owner (via mint/burn).
+  · Read restricted to: None (public via totalSupply).
+
+- _name (string private):
+  · Write restricted to: None (immutable after deployment).
+  · Read restricted to: None (public via name).
+
+-  _symbol (string private):
+  · Write restricted to: None (immutable after deployment).
+  · Read restricted to: None (public via symbol).
+
+- _decimals (uint8 private):
+  · Write restricted to: None (immutable after deployment).
+  · Read restricted to: None (public via decimals).
+
+- source (bytes4 public):
+  · Write restricted to: None (immutable after deployment).
+  · Read restricted to: None.
+
+- sourceAddress (bytes32 public):
+  · Write restricted to: None (immutable after deployment).
+  · Read restricted to: None.
+
+- _owner (address private):
+  · Write restricted to: Current owner (via ownership transfers).
+  · Read restricted to: None (public via owner).
+</Domain Models>
+
+
+<Specific Checks in Functions>
+function increaseAllowance(address spender, uint256 addedValue) returns(bool):[]
+
+function transfer(address recipient, uint256 amount) returns(bool):[]
+
+function transferFrom(address sender,address recipient,uint256 amount) returns(bool):[
+{
+    "potential_checks": "_allowances[sender][msg.sender] >= amount",
+    "involved_variables": ["sender","msg.sender]", "amount"],
+    "descriptions": "Validate spender's authorized allowance",
+    "references": ["_allowances"]
+}
+]
+
+function renounceOwnership() returns():[
+{
+    "potential_checks": "msg.sender == owner",
+    "involved_variables": ["msg.sender", "owner"],
+    "descriptions": "Restrict ownership renunciation to current owner",
+    "references": ["_owner"]
+}
+]
+
+function transferOwnership(address newOwner) returns():[
+{
+    "potential_checks": "msg.sender == owner",
+    "involved_variables": ["msg.sender", "owner"],
+    "descriptions": "Ensure only owner initiates ownership transfers",
+    "references": ["_owner"]
+}
+]
+
+function decreaseAllowance(address spender, uint256 subtractedValue) returns(bool):[]
+
+function burn(address from, uint256 amount) returns():[
+{
+    "potential_checks": "msg.sender == owner",
+    "involved_variables": ["msg.sender", "owner"],
+    "descriptions": "Restrict burning to contract owner",
+    "references": ["_owner"]
+}
+]
+
+function mint(address to, uint256 amount) returns():[
+{
+    "potential_checks": "msg.sender == owner",
+    "involved_variables": ["msg.sender", "owner"],
+    "descriptions": "Restrict minting to contract owner",
+    "references": ["_owner"]
+}
+]
+
+function approve(address spender, uint256 amount) returns(bool):[]
+
+function symbol() returns(string):[]
+function balanceOf(address) returns(uint256):[]
+function decimals() returns(uint8):[]
+function name() returns(string):[]
+function allowance(address owner, address spender) returns(uint256):[]
+function owner() returns(address):[]
+function totalSupply() returns(uint256):[]
+</Specific Checks in Functions>
