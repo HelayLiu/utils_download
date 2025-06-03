@@ -1,0 +1,70 @@
+
+<User Stories>  
+- This is a ERC20 Token contract with transfer function.
+- As a user, I want to securely transfer tokens to others, ensuring only I can spend my balance.  
+- As a user, I want to delegate spending limits via allowances, isolated to specific spender addresses.  
+- As a contract owner, I want to mint an initial token supply during deployment, with no post-deployment minting/burning.  
+- As a user, I want public visibility of token metadata (name/symbol/decimals) while keeping core state variables private.  
+- As an external contract, I want to spend tokens on a user’s behalf if granted an allowance.  
+</User Stories>  
+
+
+<Domain Models>  
+- _balances: mapping(address => uint256) private:  
+  · Write restricted to user-owned addresses (transfers) or contract-internal logic (initial mint).  
+  · Read restricted to None (public via balanceOf).  
+
+- _allowances: mapping(address => mapping(address => uint256)) private:  
+  · Write restricted to token owners (approvals) or contract-internal logic (allowance updates during transfers).  
+  · Read restricted to None (public via allowance).  
+
+- _totalSupply: uint256 private:  
+  · Write restricted to contract-internal logic (only during initial mint).  
+  · Read restricted to None (public via totalSupply).  
+
+- _name: string private, _symbol: string private, dec: uint8 public:  
+  · Write restricted to contract constructor (immutable post-deployment).  
+  · Read restricted to None (public via name()).
+
+- _symbol: string private:  
+  · Write restricted to contract constructor (immutable post-deployment).  
+  · Read restricted to None (public via symbol()).  
+
+- dec: uint8 public:  
+  · Write restricted to contract constructor (immutable post-deployment).  
+  · Read restricted to None (public via decimals()).    
+</Domain Models>  
+
+
+
+
+function transfer(address to, uint256 amount) returns (bool):  []  
+
+function transferFrom(address from, address to, uint256 amount) returns (bool):  
+[  
+{  
+  "specific_checks": "currentAllowance >= amount",  
+  "involved_variables": ["currentAllowance", "amount"],  
+  "descriptions": "Verify spender's allowance covers the transfer amount.",  
+  "references": ["_allowances"]  
+},  
+]  
+
+function approve(address spender, uint256 amount) returns (bool):  []  
+
+function increaseAllowance(address spender, uint256 addedValue) returns (bool):  []  
+
+function decreaseAllowance(address spender, uint256 subtractedValue) returns (bool):  []  
+
+function name() returns (string):  []  
+
+function symbol() returns (string):  []  
+
+function decimals() returns (uint8):  []  
+
+function balanceOf(address account) returns (uint256):  []  
+
+function totalSupply() returns (uint256):  []  
+
+function allowance(address owner, address spender) returns (uint256):  []  
+</Specific Checks in Functions>  

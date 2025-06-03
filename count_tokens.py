@@ -171,7 +171,7 @@ if __name__ == "__main__":
         if code_hash in all_hashs:
             continue
         all_hashs.add(code_hash)
-        collection_source.update_one({'_id': id}, {'$set': {'used': True}})
+        # collection_source.update_one({'_id': id}, {'$set': {'used': True}})
         all_contracts.append(code+'\n\n'+stg)
     print(len(all_contracts))
     for code in tqdm(all_contracts):
