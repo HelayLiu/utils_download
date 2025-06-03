@@ -6,7 +6,7 @@ from tqdm import tqdm
 import httpx
 import os
 import tiktoken
-from config import OPENAI_API_KEY
+from config import *
 proxy_1 = "http://127.0.0.1:20171"
 # 配置 HTTP 代理地址
 proxies = {
@@ -175,25 +175,62 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     """
     #     This function doing the following functionality:
     # The function validates the token ID, potentially mints new tokens for the sender based on the received amount and a predefined ratio (ERC1155_RATIO), and always returns its function selector to acknowledge the receipt of ERC-1155 tokens.
+    # try:
+    #     client= OpenAI(api_key=OPENAI_API_KEY,http_client=httpx.Client(proxy=proxy_1))
+    #     response = client.chat.completions.create(
+    #                         model=model,
+    #                         messages=[
+    #                             {"role": "system", "content": role_content},
+    #                             {"role": "user", "content": usr_content},
+    #                         ],
+    #                         temperature = 0,
+    #                     )
+    # except Exception as e:
+    #     print('Error in response')
+    #     print(e)
+    #     return None
+    # print(f"Prompt tokens: {response.usage.prompt_tokens}")
+    # print(f"Completion tokens: {response.usage.completion_tokens}")
+    # return response.choices[0].message.content
     try:
-        client= OpenAI(api_key=OPENAI_API_KEY,http_client=httpx.Client(proxy=proxy_1))
+        client= OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
         response = client.chat.completions.create(
                             model=model,
                             messages=[
                                 {"role": "system", "content": role_content},
                                 {"role": "user", "content": usr_content},
                             ],
-                            temperature = 0,
+                            stream=True,
+                            max_tokens=64000
                         )
+        total_tokens_in = 0
+        total_tokens_out = 0
+        reasoning_content = ""
+        content = ""
+        for chunk in response:
+            if chunk.choices[0].delta.reasoning_content:
+                reasoning_content += chunk.choices[0].delta.reasoning_content
+            if chunk.choices[0].delta.content:
+                content += chunk.choices[0].delta.content
+            if chunk.usage:
+                if chunk.usage.prompt_tokens:
+                    total_tokens_in += chunk.usage.prompt_tokens
+                if chunk.usage.completion_tokens:
+                    total_tokens_out += chunk.usage.completion_tokens
+        res = f"<THINKING_CONTENT>\n{reasoning_content}\n</THINKING_CONTENT>\n<RESPONSE>\n{content}\n</RESPONSE>"
+        client.close()
     except Exception as e:
         print('Error in response')
         print(e)
-        return None
-    print(f"Prompt tokens: {response.usage.prompt_tokens}")
-    print(f"Completion tokens: {response.usage.completion_tokens}")
-    return response.choices[0].message.content
+        return None, None, None
+    return res, total_tokens_in, total_tokens_out
+
 
 if __name__ == "__main__":
-    res=summarize_by_LLMs("test","test")
-    with open('/home/liuhan/utils_download/checks_test_gpt4o3mini_new1.txt','w') as f:
+    import time
+    start_time = time.time()
+    res,_,_=summarize_by_LLMs("test","test",'deepseek-reasoner')
+    end_time = time.time()
+    print(f"Time taken: {end_time - start_time} seconds")
+    with open('/home/liuhan/utils_download/checks_test_deepseek_r1.txt','w') as f:
         f.write(res)

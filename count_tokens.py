@@ -126,65 +126,65 @@ def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> i
     return truncated_code, len_tokens
     
 if __name__ == "__main__":
-    path='/home/liuhan/utils_download/most_unrelated'
-    all_tokens = 0
-    for file in tqdm(os.listdir(path)):
-        if file.endswith('.sol'):
-            file_path = os.path.join(path, file)
-            with open(file_path, 'r') as f:
-                code = f.read()
-            config_path = os.path.join(path, file.replace('.sol', '.json'))
-            with open(config_path, 'r') as f:
-                config = json.load(f)
-            # print(token_number(code))
-            stg= config.get('stg', '')
-            function_path = os.path.join(path, file.replace('.sol', '_public_functions.json'))
-            with open(function_path, 'r') as f:
-                func = json.load(f)
-            func = [ f"function {func_sig}" for func_sig in func ]
-            func_str = ' \n '.join(func)
-            # print(token_number(stg))
-            all= code + '\n\n' + stg + '\n\n'+ prompt + '\n\n' + func_str
-            len_tokens = token_number(all)
-            all_tokens += len_tokens
-            if len_tokens > 63500:
-                print(f"File {file} exceeds token limit: {len_tokens} tokens")
-    print(f"Total tokens across all files: {all_tokens}")
+    # path='/home/liuhan/utils_download/most_unrelated'
+    # all_tokens = 0
+    # for file in tqdm(os.listdir(path)):
+    #     if file.endswith('.sol'):
+    #         file_path = os.path.join(path, file)
+    #         with open(file_path, 'r') as f:
+    #             code = f.read()
+    #         config_path = os.path.join(path, file.replace('.sol', '.json'))
+    #         with open(config_path, 'r') as f:
+    #             config = json.load(f)
+    #         # print(token_number(code))
+    #         stg= config.get('stg', '')
+    #         function_path = os.path.join(path, file.replace('.sol', '_public_functions.json'))
+    #         with open(function_path, 'r') as f:
+    #             func = json.load(f)
+    #         func = [ f"function {func_sig}" for func_sig in func ]
+    #         func_str = ' \n '.join(func)
+    #         # print(token_number(stg))
+    #         all= code + '\n\n' + stg + '\n\n'+ prompt + '\n\n' + func_str
+    #         len_tokens = token_number(all)
+    #         all_tokens += len_tokens
+    #         if len_tokens > 63500:
+    #             print(f"File {file} exceeds token limit: {len_tokens} tokens")
+    # print(f"Total tokens across all files: {all_tokens}")
             # Uncomment the following lines if you want to save the truncated code
             # with open(file_path, 'w') as f:
             #     f.write(code)
-    # client = MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
-    # collection_source=client['contracts']['top_contracts']
-    # # 查询MongoDB集合中的所有文档
-    # documents = collection_source.find({'stg':{'$exists':True}},{'code':1,'stg':1})
-    # all_contracts = []
-    # cou=0
-    # cou2=0
-    # all_hashs=set()
-    # for doc in tqdm(documents):
-    #     code=doc['code']
-    #     stg=doc['stg']
-    #     id=doc['_id']
-    #     if code=='':
-    #         continue
-    #     code_hash=hashlib.sha256(code.encode()).hexdigest()
-    #     if code_hash in all_hashs:
-    #         continue
-    #     all_hashs.add(code_hash)
-    #     collection_source.update_one({'_id': id}, {'$set': {'used': True}})
-    #     all_contracts.append(code+'\n\n'+stg)
-    # print(len(all_contracts))
-    # for code in tqdm(all_contracts):
-    #     _, len_tokens=truncate_token(code)
-    #     cou+=len_tokens
-    # print((cou/1000000)*0.40)
-    # cou2 = 0
-    # path="/home/liuhan/utils_download/most_unrelated"
-    # for file in tqdm(os.listdir(path)):
-    #     file_path = os.path.join(path, file)
-    #     with open(file_path, 'r') as f:
-    #         code = f.read()
-    #     code, len_tokens = truncate_token(code)
-    #     cou2 += len_tokens
-    # print("Total tokens:", cou2)
-    # print("Total cost in USD:", (cou2 / 1000000) * 0.035)
+    client = MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
+    collection_source=client['contracts']['top_contracts']
+    # 查询MongoDB集合中的所有文档
+    documents = collection_source.find({'stg':{'$exists':True}},{'code':1,'stg':1})
+    all_contracts = []
+    cou=0
+    cou2=0
+    all_hashs=set()
+    for doc in tqdm(documents):
+        code=doc['code']
+        stg=doc['stg']
+        id=doc['_id']
+        if code=='':
+            continue
+        code_hash=hashlib.sha256(code.encode()).hexdigest()
+        if code_hash in all_hashs:
+            continue
+        all_hashs.add(code_hash)
+        collection_source.update_one({'_id': id}, {'$set': {'used': True}})
+        all_contracts.append(code+'\n\n'+stg)
+    print(len(all_contracts))
+    for code in tqdm(all_contracts):
+        _, len_tokens=truncate_token(code)
+        cou+=len_tokens
+    print((cou/1000000)*0.40)
+    cou2 = 0
+    path="/home/liuhan/utils_download/most_unrelated"
+    for file in tqdm(os.listdir(path)):
+        file_path = os.path.join(path, file)
+        with open(file_path, 'r') as f:
+            code = f.read()
+        code, len_tokens = truncate_token(code)
+        cou2 += len_tokens
+    print("Total tokens:", cou2)
+    print("Total cost in USD:", (cou2 / 1000000) * 0.035)

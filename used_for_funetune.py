@@ -53,8 +53,9 @@ def summarize_by_LLMs(desc,graph,func,model="deepseek-reasoner"):
         This contract is a voting system where users can cast votes, and their preferences are stored securely.
         · As a user, I want my encrypted voting preferences isolated from others, even though the blockchain is public.
         · As a owner, I want to ensure that only authorized users can access sensitive data.
-        This contract is a token minting system where users can mint tokens, and their balances are stored securely.
+       
     For a token minting system:
+        This contract is a token minting system where users can mint tokens, and their balances are stored securely.
         · As a whitelister, I want to mint tokens for myself or other users I wanted.
         · As a user, I want to ensure that my token balance is isolated from others, preventing unauthorized access.
         · As a contract owner, I want to restrict token minting to authorized users only.
