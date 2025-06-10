@@ -1,0 +1,19 @@
+- _balances (mapping):  
+  · Write restricted to: Contract via `_update` during mint/burn/transfer (enforces sender balance checks).  
+  · Read restricted to: Public via `balanceOf` (no isolation).  
+
+- _allowances (nested mapping):  
+  · Write restricted to: Contract during `approve`/`transferFrom` (validates owner/spender ≠ address(0)).  
+  · Read restricted to: Public via `allowance` (no isolation).  
+
+- _totalSupply (uint256):  
+  · Write restricted to: Contract during mint (constructor) and burn (enforces balance ≥ burn amount).  
+  · Read restricted to: Public via `totalSupply` (no isolation).  
+
+- _name (string):  
+  · Write restricted to: Constructor only (immutable).  
+  · Read restricted to: Public via `name` (no isolation).  
+
+- _symbol (string):  
+  · Write restricted to: Constructor only (immutable).  
+  · Read restricted to: Public via `symbol` (no isolation).  

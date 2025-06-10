@@ -1,0 +1,45 @@
+- currentGameId:
+  · Write restricted to Contract Owner or Write restricted to Contract itself.
+  · Read restricted to Public.
+- gameById:
+  · Write restricted to Contract itself or Write restricted to Contract Owner.
+  · Read restricted to Public.
+- paused:
+  · Write restricted to Contract Owner.
+  · Read restricted to Public.
+- rakeDistributorAddress:
+  · Write restricted to Contract Owner.
+  · Read restricted to Public.
+- referralTrackerAddress:
+  · Write restricted to Contract Owner.
+  · Read restricted to Public.
+- treasuryAddress:
+  · Write restricted to Contract Owner.
+  · Read restricted to Public.
+- minBet:
+  · Write restricted to Contract Owner.
+  · Read restricted to Public.
+- maxBetDivisor:
+  · Write restricted to Contract Owner.
+  · Read restricted to Public.
+- maxConsecutiveRounds:
+  · Write restricted to Contract Owner.
+  · Read restricted to Public.
+- betMultiplePerRound:
+  · Write restricted to Contract Owner.
+  · Read restricted to Public.
+- vrfCoordinators:
+  · Write restricted to Contract Owner.
+  · Read restricted to Contract itself.
+- coordinatorInfoByMethod:
+  · Write restricted to Contract Owner.
+  · Read restricted to Contract itself.
+- gameIdByRequestId:
+  · Write restricted to Contract itself.
+  · Read restricted to Public.
+- minMarksByGameId:
+  · Write restricted to Contract itself.
+  · Read restricted to Public.
+- maxMarksByGameId:
+  · Write restricted to Contract itself.
+  · Read restricted to Public.

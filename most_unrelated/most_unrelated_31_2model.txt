@@ -1,0 +1,31 @@
+- baseURI (string):  
+  · Write restricted to Contract Owner  
+  · Read restricted to Public (via tokenURI)  
+
+- whitelistedAddresses (mapping):  
+  · Write restricted to Contract Owner  
+  · Read restricted to Public  
+
+- acceptedCurrencies (mapping):  
+  · Write restricted to Contract Owner  
+  · Read restricted to Public  
+
+- publicPaused (bool):  
+  · Write restricted to Contract Owner  
+  · Read restricted to Public  
+
+- lpPair (address):  
+  · Write restricted to None (immutable)  
+  · Read restricted to Public  
+
+- maxSupply (uint256):  
+  · Write restricted to None (immutable)  
+  · Read restricted to Public  
+
+- ids (uint16[3333]):  
+  · Write restricted to Internal Functions  
+  · Read restricted to Internal Functions  
+
+- royaltyPercentage (uint256):  
+  · Write restricted to Internal Functions  
+  · Read restricted to Public (via ERC2981)  

@@ -1,0 +1,852 @@
+{
+    "paused() returns (bool)": [],
+    "pendingOwner() returns (address)": [],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "acceptOwnership()": [
+        {
+            "potential_checks": "pendingOwner() == sender == False",
+            "involved_variables": [
+                "sender"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "initialize(address aethirToken_)": [
+        {
+            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "_initializing == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        }
+    ],
+    "getClaimInfo(uint256 orderId) returns (address, uint48, bool, uint256)": [],
+    "claim(uint256 orderId, uint48 cliffSeconds, uint48 expiryTimestamp, uint256 amount, bytes[] signatureArray)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "cliffSeconds >= _minCliffSeconds && cliffSeconds <= _maxCliffSeconds",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp < expiryTimestamp",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "claimRecords[orderId].amount == 0",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "signature.length == signerThreshold",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "i < _signerArray.length == False",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "i < signature.length == False",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "validSignerCount == signerThreshold == False",
+            "involved_variables": [
+                "_maxCliffSeconds",
+                "expiryTimestamp",
+                "hash1",
+                "claimRecords",
+                "signerThreshold",
+                "block.timestamp",
+                "this",
+                "amount",
+                "_ENTERED",
+                "cliffSeconds",
+                "validSignerCount",
+                "_minCliffSeconds",
+                "signature",
+                "_signerArray",
+                "_status",
+                "block.chainid",
+                "i",
+                "orderId",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_maxCliffSeconds",
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_minCliffSeconds",
+                "_signerArray"
+            ]
+        }
+    ],
+    "withdraw(uint256[] orderIdArray, uint48 expiryTimestamp, bytes[] signatureArray)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp < expiryTimestamp",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "signature.length == signerThreshold",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "i < _signerArray.length == False",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "i < signature.length == False",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "i < orderIdArray.length",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "claimInfo.wallet == msg.sender",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "claimInfo.cliffTimestamp <= block.timestamp == False",
+            "involved_variables": [
+                "claimInfo",
+                "expiryTimestamp",
+                "_ENTERED",
+                "msg.sender",
+                "_status",
+                "claimRecords",
+                "orderIdArray",
+                "validSignerCount",
+                "signerThreshold",
+                "i",
+                "signature",
+                "block.timestamp",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "claimRecords",
+                "signerThreshold",
+                "_signerArray"
+            ]
+        }
+    ],
+    "updateCliffTime(uint48 minCliffSeconds_, uint48 maxCliffSeconds_)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "minCliffSeconds_",
+                "maxCliffSeconds_"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "maxCliffSeconds_ >= minCliffSeconds_ == False",
+            "involved_variables": [
+                "minCliffSeconds_",
+                "maxCliffSeconds_"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getCliffTime() returns (uint48, uint48)": [],
+    "updateAdmin(address admin)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "freezeClaimRecord(uint256 orderId)": [
+        {
+            "potential_checks": "msg.sender == adminAddress",
+            "involved_variables": [
+                "msg.sender",
+                "orderId",
+                "claimRecords",
+                "adminAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "claimRecords",
+                "adminAddress"
+            ]
+        },
+        {
+            "potential_checks": "claimRecords[orderId].withdrawFinished == False",
+            "involved_variables": [
+                "msg.sender",
+                "orderId",
+                "claimRecords",
+                "adminAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "claimRecords",
+                "adminAddress"
+            ]
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "msg.sender == adminAddress",
+            "involved_variables": [
+                "msg.sender",
+                "adminAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "adminAddress"
+            ]
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "msg.sender",
+                "adminAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "adminAddress"
+            ]
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "msg.sender == adminAddress",
+            "involved_variables": [
+                "msg.sender",
+                "adminAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "adminAddress"
+            ]
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "msg.sender",
+                "adminAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "adminAddress"
+            ]
+        }
+    ],
+    "withdrawERC20(address tokenAddress, address to, uint256 amount)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getSignerAddress() returns (address[])": [],
+    "updateSigner(address[] newSignerArray_, uint256 signerThreshold_)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "signerThreshold_",
+                "newSignerArray_",
+                "signerThreshold",
+                "i",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "signerThreshold_ > 0",
+            "involved_variables": [
+                "signerThreshold_",
+                "newSignerArray_",
+                "signerThreshold",
+                "i",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "newSignerArray_.length >= signerThreshold",
+            "involved_variables": [
+                "signerThreshold_",
+                "newSignerArray_",
+                "signerThreshold",
+                "i",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "i < _signerArray.length == False",
+            "involved_variables": [
+                "signerThreshold_",
+                "newSignerArray_",
+                "signerThreshold",
+                "i",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "signerThreshold",
+                "_signerArray"
+            ]
+        },
+        {
+            "potential_checks": "i < _signerArray.length == False",
+            "involved_variables": [
+                "signerThreshold_",
+                "newSignerArray_",
+                "signerThreshold",
+                "i",
+                "_signerArray"
+            ],
+            "descriptions": "",
+            "references": [
+                "signerThreshold",
+                "_signerArray"
+            ]
+        }
+    ]
+}

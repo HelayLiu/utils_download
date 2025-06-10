@@ -1,0 +1,6 @@
+- This is a WrappedToken ERC20 contract, which can transfer, mint and burn tokens.
+- As a token holder, I want to securely transfer tokens to others while ensuring my balance cannot be altered by unauthorized parties.
+- As a spender, I want delegated token access that remains isolated from other users' allowances and can only be modified by the allowance owner.
+- As the contract owner, I want exclusive minting/burning privileges to control token supply and prevent unauthorized token creation/destruction.
+- As any user, I want transparent visibility of token metadata (name/symbol/decimals) while ensuring critical state variables remain immutable after deployment.
+- As the contract owner, I want to securely transfer ownership while preventing zero-address assignments that could compromise administrative control.

@@ -1,0 +1,6 @@
+- swapRouter: ISwapRouter02 public  
+    · Write restricted to Contract Owner.  
+    · Read restricted to None.  
+- fastTransferGateway: IFastTransferGateway public  
+    · Write restricted to Contract Owner.  
+    · Read restricted to None.  

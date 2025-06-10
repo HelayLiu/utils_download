@@ -1,0 +1,428 @@
+{
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+        {
+            "potential_checks": "currentAllowance >= subtractedValue",
+            "involved_variables": [
+                "subtractedValue",
+                "spender",
+                "currentAllowance",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "sendFrom(address _from, uint16 _dstChainId, bytes32 _toAddress, uint256 _amount, uint256 _minAmount, ICommonOFT.LzCallParams _callParams)": [],
+    "sendAndCall(address _from, uint16 _dstChainId, bytes32 _toAddress, uint256 _amount, uint256 _minAmount, bytes _payload, uint64 _dstGasForCall, ICommonOFT.LzCallParams _callParams)": [],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "estimateSendFee(uint16 _dstChainId, bytes32 _toAddress, uint256 _amount, bool _useZro, bytes _adapterParams) returns (uint256, uint256)": [],
+    "estimateSendAndCallFee(uint16 _dstChainId, bytes32 _toAddress, uint256 _amount, bytes _payload, uint64 _dstGasForCall, bool _useZro, bytes _adapterParams) returns (uint256, uint256)": [],
+    "circulatingSupply() returns (uint256)": [],
+    "token() returns (address)": [],
+    "setDefaultFeeBp(uint16 _feeBp)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "BP_DENOMINATOR",
+                "_feeBp"
+            ],
+            "descriptions": "",
+            "references": [
+                "BP_DENOMINATOR"
+            ]
+        },
+        {
+            "potential_checks": "_feeBp <= BP_DENOMINATOR == False",
+            "involved_variables": [
+                "BP_DENOMINATOR",
+                "_feeBp"
+            ],
+            "descriptions": "",
+            "references": [
+                "BP_DENOMINATOR"
+            ]
+        }
+    ],
+    "setFeeBp(uint16 _dstChainId, bool _enabled, uint16 _feeBp)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "BP_DENOMINATOR",
+                "_feeBp"
+            ],
+            "descriptions": "",
+            "references": [
+                "BP_DENOMINATOR"
+            ]
+        },
+        {
+            "potential_checks": "_feeBp <= BP_DENOMINATOR == False",
+            "involved_variables": [
+                "BP_DENOMINATOR",
+                "_feeBp"
+            ],
+            "descriptions": "",
+            "references": [
+                "BP_DENOMINATOR"
+            ]
+        }
+    ],
+    "setFeeOwner(address _feeOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "_feeOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_feeOwner != address(0x0) == False",
+            "involved_variables": [
+                "_feeOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "quoteOFTFee(uint16 _dstChainId, uint256 _amount) returns (uint256)": [
+        {
+            "potential_checks": "config.enabled == False",
+            "involved_variables": [
+                "defaultFeeBp",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "defaultFeeBp"
+            ]
+        },
+        {
+            "potential_checks": "defaultFeeBp > 0 == False",
+            "involved_variables": [
+                "defaultFeeBp",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "defaultFeeBp"
+            ]
+        }
+    ],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "callOnOFTReceived(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, bytes32 _from, address _to, uint256 _amount, bytes _payload, uint256 _gasForCall)": [
+        {
+            "potential_checks": "msg.sender == address(this) == False",
+            "involved_variables": [
+                "this"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setUseCustomAdapterParams(bool _useCustomAdapterParams)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "nonblockingLzReceive(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, bytes _payload)": [
+        {
+            "potential_checks": "msg.sender == address(this)",
+            "involved_variables": [
+                "_payload",
+                "this",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "account",
+                "packetType",
+                "BytesLib",
+                "PT_SEND"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "packetType == PT_SEND == False",
+            "involved_variables": [
+                "_payload",
+                "this",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "account",
+                "packetType",
+                "BytesLib",
+                "PT_SEND"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "packetType == PT_SEND_AND_CALL",
+            "involved_variables": [
+                "_payload",
+                "this",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "account",
+                "packetType",
+                "BytesLib",
+                "PT_SEND"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "_payload.toUint8(0) == PT_SEND_AND_CALL",
+            "involved_variables": [
+                "_payload",
+                "this",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "account",
+                "packetType",
+                "BytesLib",
+                "PT_SEND"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "! credited",
+            "involved_variables": [
+                "_payload",
+                "this",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "account",
+                "packetType",
+                "BytesLib",
+                "PT_SEND"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        }
+    ],
+    "retryMessage(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, bytes _payload)": [
+        {
+            "potential_checks": "payloadHash != bytes32(0)",
+            "involved_variables": [
+                "_payload",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "payloadHash",
+                "account",
+                "PT_SEND",
+                "packetType",
+                "BytesLib"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "keccak256(bytes)(_payload) == payloadHash",
+            "involved_variables": [
+                "_payload",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "payloadHash",
+                "account",
+                "PT_SEND",
+                "packetType",
+                "BytesLib"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "packetType == PT_SEND == False",
+            "involved_variables": [
+                "_payload",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "payloadHash",
+                "account",
+                "PT_SEND",
+                "packetType",
+                "BytesLib"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "packetType == PT_SEND_AND_CALL",
+            "involved_variables": [
+                "_payload",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "payloadHash",
+                "account",
+                "PT_SEND",
+                "packetType",
+                "BytesLib"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "_payload.toUint8(0) == PT_SEND_AND_CALL",
+            "involved_variables": [
+                "_payload",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "payloadHash",
+                "account",
+                "PT_SEND",
+                "packetType",
+                "BytesLib"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        },
+        {
+            "potential_checks": "! credited",
+            "involved_variables": [
+                "_payload",
+                "credited",
+                "PT_SEND_AND_CALL",
+                "payloadHash",
+                "account",
+                "PT_SEND",
+                "packetType",
+                "BytesLib"
+            ],
+            "descriptions": "",
+            "references": [
+                "PT_SEND_AND_CALL",
+                "PT_SEND"
+            ]
+        }
+    ],
+    "lzReceive(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, bytes _payload)": [],
+    "getConfig(uint16 _version, uint16 _chainId, address , uint256 _configType) returns (bytes)": [],
+    "setConfig(uint16 _version, uint16 _chainId, uint256 _configType, bytes _config)": [],
+    "setSendVersion(uint16 _version)": [],
+    "setReceiveVersion(uint16 _version)": [],
+    "forceResumeReceive(uint16 _srcChainId, bytes _srcAddress)": [],
+    "setTrustedRemote(uint16 _remoteChainId, bytes _path)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setTrustedRemoteAddress(uint16 _remoteChainId, bytes _remoteAddress)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getTrustedRemoteAddress(uint16 _remoteChainId) returns (bytes)": [
+        {
+            "potential_checks": "path.length != 0 == False",
+            "involved_variables": [
+                "path"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setPrecrime(address _precrime)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setMinDstGas(uint16 _dstChainId, uint16 _packetType, uint256 _minGas)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "_minGas"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_minGas > 0 == False",
+            "involved_variables": [
+                "_minGas"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setPayloadSizeLimit(uint16 _dstChainId, uint256 _size)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "isTrustedRemote(uint16 _srcChainId, bytes _srcAddress) returns (bool)": []
+}

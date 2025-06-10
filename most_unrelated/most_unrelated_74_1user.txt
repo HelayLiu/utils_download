@@ -1,0 +1,5 @@
+- As an admin, I want to pause/unpause trading to prevent unauthorized operations during maintenance, ensuring state isolation by restricting critical functions.  
+- As an operator, I want to fill orders securely, with state isolation enforced through access control and non-reentrancy checks.  
+- As a user, I want to cancel my orders, ensuring only I can modify my order states to prevent unauthorized access.  
+- As a contract, I need to validate order signatures and nonces to enforce write isolation and prevent replay attacks.  
+- As a trader, I want to ensure token IDs are valid and registered, maintaining state integrity across operations.  

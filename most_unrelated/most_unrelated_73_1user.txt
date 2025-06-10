@@ -1,0 +1,5 @@
+- As a contract owner, I want to manage signers and configure token parameters to control the claiming process securely.
+- As a user, I want to claim tokens securely using valid signatures while ensuring my address isn't blacklisted.
+- As a user with large claims, I want to provide multiple signatures to bypass amount thresholds securely.
+- As a signer, I want my signatures to be uniquely tied to specific claims to prevent replay attacks.
+- As the owner, I want to blacklist addresses and invalidate signatures/nonces to enforce security policies.

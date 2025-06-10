@@ -1,0 +1,5 @@
+- As a token holder, I want to securely delegate my voting power to another address so that they can vote on my behalf, ensuring only I can initiate delegation.
+- As a token holder, I want my token balances and allowances to be isolated from unauthorized access, preventing others from transferring my tokens without approval.
+- As a delegate, I want my voting power checkpoint history to be accurately maintained and isolated to my address, ensuring only relevant delegation changes affect my voting weight.
+- As a user, I want to delegate voting power via signed messages (delegateBySig) without exposing my private key, ensuring signature validity and nonce uniqueness to prevent replay attacks.
+- As a contract user, I want to query historical voting power (getPriorVotes) for any address at a past block, ensuring results are derived solely from isolated checkpoint data tied to that address.

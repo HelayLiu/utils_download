@@ -1,0 +1,726 @@
+{
+    "royaltyInfo(uint256 _tokenId, uint256 _salePrice) returns (address, uint256)": [],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "royaltyInfo(uint256 tokenId, uint256 salePrice) returns (address, uint256)": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "tokenOfOwnerByIndex(address owner, uint256 index) returns (uint256)": [],
+    "totalSupply() returns (uint256)": [],
+    "tokenByIndex(uint256 index) returns (uint256)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "ownerOf(uint256 tokenId) returns (address)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "approve(address to, uint256 tokenId)": [
+        {
+            "potential_checks": "to != owner",
+            "involved_variables": [
+                "to",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "msg.sender == owner || isApprovedForAll(owner,msg.sender) == False",
+            "involved_variables": [
+                "to",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getApproved(uint256 tokenId) returns (address)": [
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setApprovalForAll(address operator, bool _approved)": [],
+    "isApprovedForAll(address owner, address operator) returns (bool)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "tokenURI(uint256 tokenId) returns (string)": [
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "TMP_600",
+                "currentBaseURI",
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "bytes(currentBaseURI).length > 0 == False",
+            "involved_variables": [
+                "TMP_600",
+                "currentBaseURI",
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setApprovalForAll(address operator, bool approved)": [
+        {
+            "potential_checks": "owner != operator == False",
+            "involved_variables": [
+                "operator",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes _data)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "addCurrency(address[] acceptedCurrenciesInput, uint256[] prices)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "acceptedCurrenciesInput",
+                "len",
+                "prices",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "acceptedCurrenciesInput.length == prices.length",
+            "involved_variables": [
+                "acceptedCurrenciesInput",
+                "len",
+                "prices",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < len == False",
+            "involved_variables": [
+                "acceptedCurrenciesInput",
+                "len",
+                "prices",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "mint(address token, uint256 amount)": [
+        {
+            "potential_checks": "publicPaused == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "amount <= 0 == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "amount > maxMintAmount == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "acceptedCurrencies[token] <= 0 == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "supply + amount > maxSupply == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "amount == 1 == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "amount > 1",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "whitelistedAddresses[msg.sender] == 1 == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "IERC20(token).transferFrom(msg.sender,address(this),amountToMint * acceptedCurrencies[token])",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "i <= _amount",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "from != to == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        },
+        {
+            "potential_checks": "to != from == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "i",
+                "_amount",
+                "this",
+                "publicPaused",
+                "amount",
+                "token",
+                "acceptedCurrencies",
+                "tokenId",
+                "supply",
+                "to",
+                "maxSupply",
+                "msg.sender",
+                "amountToMint",
+                "from",
+                "_data",
+                "whitelistedAddresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "publicPaused",
+                "acceptedCurrencies",
+                "maxSupply",
+                "whitelistedAddresses"
+            ]
+        }
+    ],
+    "walletOfOwner(address _owner) returns (uint256[])": [
+        {
+            "potential_checks": "i < ownerTokenCount",
+            "involved_variables": [
+                "i",
+                "index",
+                "ownerTokenCount",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "index < ERC721.balanceOf(owner) == False",
+            "involved_variables": [
+                "i",
+                "index",
+                "ownerTokenCount",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setWhitelist(address[] _whitelistArray)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "i",
+                "len"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < len == False",
+            "involved_variables": [
+                "i",
+                "len"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBaseURI(string _newBaseURI)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBaseExtension(string _newBaseExtension)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "pausePublic(bool _state)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdraw(address token)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "amount",
+                "acceptedCurrencies",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "acceptedCurrencies"
+            ]
+        },
+        {
+            "potential_checks": "acceptedCurrencies[token] > 0",
+            "involved_variables": [
+                "amount",
+                "acceptedCurrencies",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "acceptedCurrencies"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0 == False",
+            "involved_variables": [
+                "amount",
+                "acceptedCurrencies",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "acceptedCurrencies"
+            ]
+        }
+    ]
+}

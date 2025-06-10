@@ -1,0 +1,24 @@
+- token (address):  
+  · Write restricted to None (immutable after initialization).  
+  · Read restricted to None (public).  
+- debtToken (address):  
+  · Write restricted to None (immutable).  
+  · Read restricted to None (public).  
+- positions (mapping(uint256 => Position)):  
+  · Write restricted to the position owner or approved workers/strategies.  
+  · Read restricted to None (public, but data isolated per position).  
+- reservePool (uint256):  
+  · Write restricted to the contract (during interest accrual) or owner (withdraw/reduce).  
+  · Read restricted to None (public).  
+- vaultDebtShare (uint256):  
+  · Write restricted to the contract (during borrowing/repayment).  
+  · Read restricted to None (public).  
+- config (IVaultConfig):  
+  · Write restricted to the owner.  
+  · Read restricted to None (public).  
+- fairLaunchPoolId (uint256):  
+  · Write restricted to the owner.  
+  · Read restricted to None (public).  
+- _balances (mapping(address => uint256)):  
+  · Write restricted to the contract (during deposits/withdrawals).  
+  · Read restricted to the user via `balanceOf`.  

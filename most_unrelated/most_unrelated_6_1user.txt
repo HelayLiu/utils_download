@@ -1,0 +1,5 @@
+- As an admin, I want to manage roles, set parameters, and pause the contract to ensure secure operations.
+- As a minter, I want to mint tokens and deposit Tether to the pool to distribute tokens and back them with stablecoin.
+- As a burner, I want to burn tokens and process withdrawals to manage token supply and enable token swaps.
+- As a user, I want to transfer tokens and withdraw them for Tether after the withdrawal period starts, with my balances isolated from others.
+- As a user, I want my token balances and allowances to be accessible only to me or approved spenders.

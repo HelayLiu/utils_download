@@ -1,0 +1,2034 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
+    "totalToken() returns (uint256)": [],
+    "deposit(uint256 amountToken)": [
+        {
+            "potential_checks": "msg.value != 0 == False",
+            "involved_variables": [
+                "SafeMath",
+                "_notEntered",
+                "total",
+                "lastAccrueTime",
+                "now",
+                "msg.value",
+                "account",
+                "share"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "now > lastAccrueTime == False",
+            "involved_variables": [
+                "SafeMath",
+                "_notEntered",
+                "total",
+                "lastAccrueTime",
+                "now",
+                "msg.value",
+                "account",
+                "share"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "_notEntered",
+            "involved_variables": [
+                "SafeMath",
+                "_notEntered",
+                "total",
+                "lastAccrueTime",
+                "now",
+                "msg.value",
+                "account",
+                "share"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "total == 0 == False",
+            "involved_variables": [
+                "SafeMath",
+                "_notEntered",
+                "total",
+                "lastAccrueTime",
+                "now",
+                "msg.value",
+                "account",
+                "share"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "totalSupply() > 10 ** (uint256(decimals()).sub(1)) == False",
+            "involved_variables": [
+                "SafeMath",
+                "_notEntered",
+                "total",
+                "lastAccrueTime",
+                "now",
+                "msg.value",
+                "account",
+                "share"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "_notEntered"
+            ]
+        }
+    ],
+    "withdraw(uint256 share)": [
+        {
+            "potential_checks": "now > lastAccrueTime == False",
+            "involved_variables": [
+                "SafeMath",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "now",
+                "account",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "token",
+                "config",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "_notEntered",
+            "involved_variables": [
+                "SafeMath",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "now",
+                "account",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "token",
+                "config",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "token == config.getWrappedNativeAddr() == False",
+            "involved_variables": [
+                "SafeMath",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "now",
+                "account",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "token",
+                "config",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "totalSupply() > 10 ** (uint256(decimals()).sub(1)) == False",
+            "involved_variables": [
+                "SafeMath",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "now",
+                "account",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime",
+                "token",
+                "config",
+                "_notEntered"
+            ]
+        }
+    ],
+    "requestFunds(address targetedToken, uint256 amount)": [
+        {
+            "potential_checks": "POSITION_ID != _NO_ID",
+            "involved_variables": [
+                "STRATEGY",
+                "_IN_EXEC_LOCK",
+                "_NO_ID",
+                "msg.sender",
+                "POSITION_ID",
+                "_NOT_ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "_IN_EXEC_LOCK",
+                "_NO_ID",
+                "POSITION_ID",
+                "_NOT_ENTERED"
+            ]
+        },
+        {
+            "potential_checks": "STRATEGY == msg.sender",
+            "involved_variables": [
+                "STRATEGY",
+                "_IN_EXEC_LOCK",
+                "_NO_ID",
+                "msg.sender",
+                "POSITION_ID",
+                "_NOT_ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "_IN_EXEC_LOCK",
+                "_NO_ID",
+                "POSITION_ID",
+                "_NOT_ENTERED"
+            ]
+        },
+        {
+            "potential_checks": "_IN_EXEC_LOCK == _NOT_ENTERED == False",
+            "involved_variables": [
+                "STRATEGY",
+                "_IN_EXEC_LOCK",
+                "_NO_ID",
+                "msg.sender",
+                "POSITION_ID",
+                "_NOT_ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "_IN_EXEC_LOCK",
+                "_NO_ID",
+                "POSITION_ID",
+                "_NOT_ENTERED"
+            ]
+        }
+    ],
+    "token() returns (address)": [],
+    "initialize(IVaultConfig _config, address _token, string _name, string _symbol, uint8 _decimals, address _debtToken)": [
+        {
+            "potential_checks": "initializing || isConstructor() || ! initialized == False",
+            "involved_variables": [
+                "initialized",
+                "initializing"
+            ],
+            "descriptions": "",
+            "references": [
+                "initialized",
+                "initializing"
+            ]
+        }
+    ],
+    "pendingInterest(uint256 value) returns (uint256)": [
+        {
+            "potential_checks": "now > lastAccrueTime == False",
+            "involved_variables": [
+                "lastAccrueTime",
+                "now"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastAccrueTime"
+            ]
+        }
+    ],
+    "debtShareToVal(uint256 debtShare) returns (uint256)": [
+        {
+            "potential_checks": "vaultDebtShare == 0 == False",
+            "involved_variables": [
+                "vaultDebtShare"
+            ],
+            "descriptions": "",
+            "references": [
+                "vaultDebtShare"
+            ]
+        }
+    ],
+    "debtValToShare(uint256 debtVal) returns (uint256)": [
+        {
+            "potential_checks": "vaultDebtShare == 0 == False",
+            "involved_variables": [
+                "vaultDebtShare"
+            ],
+            "descriptions": "",
+            "references": [
+                "vaultDebtShare"
+            ]
+        }
+    ],
+    "positionInfo(uint256 id) returns (uint256, uint256)": [
+        {
+            "potential_checks": "vaultDebtShare == 0 == False",
+            "involved_variables": [
+                "vaultDebtShare"
+            ],
+            "descriptions": "",
+            "references": [
+                "vaultDebtShare"
+            ]
+        }
+    ],
+    "addCollateral(uint256 id, uint256 amount, bool goRogue, bytes data)": [
+        {
+            "potential_checks": "! config.whitelistedCallers(msg.sender) == False",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "msg.value != 0 == False",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "now > lastAccrueTime == False",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "_notEntered",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "fairLaunchPoolId != uint256(- 1)",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "id != 0",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "id < nextPositionID",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "pos.owner == msg.sender",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "healthBefore != 0",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "config.approvedAddStrategies(STRATEGY)",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "! goRogue == False",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "config.isWorkerReserveConsistent(worker)",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "vaultDebtShare == 0 == False",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "! goRogue == False",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "config.isWorkerReserveConsistent(worker)",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "back == 0",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "healthAfter > healthBefore",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "debt.mul(10000) <= healthAfter.mul(killFactor.sub(100)) == False",
+            "involved_variables": [
+                "healthBefore",
+                "vaultDebtShare",
+                "killFactor",
+                "id",
+                "msg.value",
+                "SafeMath",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "goRogue",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "healthAfter",
+                "STRATEGY",
+                "positions",
+                "worker",
+                "now",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "STRATEGY",
+                "vaultDebtShare",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        }
+    ],
+    "work(uint256 id, address worker, uint256 principalAmount, uint256 borrowAmount, uint256 maxReturn, bytes data)": [
+        {
+            "potential_checks": "! config.whitelistedCallers(msg.sender) == False",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "msg.value != 0 == False",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "now > lastAccrueTime == False",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "_notEntered",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "fairLaunchPoolId != uint256(- 1)",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "id == 0 == False",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "id < nextPositionID",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "pos.worker == worker",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "pos.owner == msg.sender",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "positions[id].debtShare > 0 == False",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "config.isWorker(worker)",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "borrowAmount == 0 || config.acceptDebt(worker)",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "debtShare > 0 == False",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "sendBEP20 <= SafeToken.myBalance(token)",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "debt > 0 == False",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "back > lessDebt",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "token == config.getWrappedNativeAddr() == False",
+            "involved_variables": [
+                "token",
+                "id",
+                "msg.value",
+                "SafeToken",
+                "pos",
+                "lastAccrueTime",
+                "debt",
+                "back",
+                "nextPositionID",
+                "config",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "sendBEP20",
+                "lessDebt",
+                "borrowAmount",
+                "positions",
+                "worker",
+                "now",
+                "debtShare",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "token",
+                "_notEntered",
+                "lastAccrueTime",
+                "nextPositionID",
+                "config"
+            ]
+        }
+    ],
+    "kill(uint256 id)": [
+        {
+            "potential_checks": "config.whitelistedLiquidators(msg.sender)",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "now > lastAccrueTime == False",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "_notEntered",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "fairLaunchPoolId != uint256(- 1)",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "pos.debtShare > 0",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "positions[id].debtShare > 0 == False",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "debtShare > 0 == False",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "health.mul(killFactor) < debt.mul(10000)",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "liquidatorPrize > 0 == False",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "tresauryFees > 0 == False",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "rest > debt == False",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        },
+        {
+            "potential_checks": "left > 0 == False",
+            "involved_variables": [
+                "SafeMath",
+                "liquidatorPrize",
+                "health",
+                "killFactor",
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "rest",
+                "pos",
+                "lastAccrueTime",
+                "id",
+                "now",
+                "debt",
+                "left",
+                "tresauryFees",
+                "debtShare",
+                "msg.sender",
+                "config"
+            ],
+            "descriptions": "",
+            "references": [
+                "positions",
+                "fairLaunchPoolId",
+                "_notEntered",
+                "lastAccrueTime",
+                "config"
+            ]
+        }
+    ],
+    "updateConfig(IVaultConfig _config)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setFairLaunchPoolId(uint256 _poolId)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "withdrawReserve(address to, uint256 value)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "_notEntered"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "_notEntered == False",
+            "involved_variables": [
+                "_owner",
+                "_notEntered"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner",
+                "_notEntered"
+            ]
+        }
+    ],
+    "reduceReserve(uint256 value)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ]
+}

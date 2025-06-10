@@ -1,0 +1,5 @@
+- As a user, I want to securely claim my allocated rewards using a Merkle proof to ensure only I can access my funds.
+- As a distributor, I want to submit Merkle roots for reward cycles to enable user claims while enforcing rate limiting to prevent spamming.
+- As an admin, I want to pause the contract during emergencies to protect user funds and unpause to resume normal operations.
+- As a meta-transaction sender, I want to claim rewards on behalf of users with their signed authorization to earn a fee while maintaining security.
+- As the contract, I want to enforce role-based access control for critical operations like upgrades and reward distribution to maintain system integrity.

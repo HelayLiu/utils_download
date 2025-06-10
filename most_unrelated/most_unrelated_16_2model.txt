@@ -1,0 +1,39 @@
+- `token` (IERC20Upgradeable public): 
+  · Write restricted to contract functions (submit/claim).
+  · Read restricted to None.
+
+- `claims` (mapping(address => uint256) public): 
+  · Write restricted to contract functions (claim/claimFor).
+  · Read restricted to None.
+
+- `roots` (mapping(uint256 => bytes32) public): 
+  · Write restricted to DISTRIBUTOR_ROLE via submitMerkleRoot.
+  · Read restricted to None.
+
+- `nonces` (mapping(bytes32 => bool) public): 
+  · Write restricted to contract function (claimFor).
+  · Read restricted to None.
+
+- `cycle` (uint256 public): 
+  · Write restricted to contract function (submitMerkleRoot).
+  · Read restricted to None.
+
+- `lastRewardRootTs` (uint256 public): 
+  · Write restricted to initialize (initial set).
+  · Read restricted to None.
+
+- `claimedRewards` (uint256 public): 
+  · Write restricted to contract functions (claim/claimFor).
+  · Read restricted to None.
+
+- `rewardsVault` (IRewardsVault public): 
+  · Write restricted to initialize (initial set).
+  · Read restricted to None.
+
+- `rewardsChangeTreasury` (address public): 
+  · Write restricted to initialize (initial set).
+  · Read restricted to None.
+
+- `firstRewardCycleTs` (uint256 public): 
+  · Write restricted to contract function (submitMerkleRoot if unset).
+  · Read restricted to None.

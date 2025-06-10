@@ -1,0 +1,5 @@
+- As a token holder, I want to securely transfer tokens to others while ensuring only I can deduct from my balance.  
+- As a token holder, I want to delegate spending allowances to third parties without exposing my full balance.  
+- As an approved spender, I want to transfer tokens on behalf of holders within approved limits.  
+- As a user, I want to view token metadata (name/symbol) and total supply without access restrictions.  
+- As a user, I want my token balance and allowances to be isolated from unauthorized read/write access.  

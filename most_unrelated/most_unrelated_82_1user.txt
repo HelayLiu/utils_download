@@ -1,0 +1,5 @@
+- As a user, I want to securely transfer my tokens to others, ensuring only I can deduct from my balance and recipients receive tokens.  
+- As a crowdsale contract, I want to mint tokens exclusively for users, preventing unauthorized minting.  
+- As a user, I want to approve spenders to transfer tokens on my behalf, ensuring only I set allowances.  
+- As a spender, I want to transfer tokens within approved limits, ensuring I cannot exceed the owner's balance or my allowance.  
+- As any user, I want to view all balances and allowances publicly, as no read restrictions exist.  

@@ -1,0 +1,612 @@
+{
+    "isOwner(address account) returns (bool)": [],
+    "changeOwner(address _newOwner)": [
+        {
+            "potential_checks": "isOwner(msg.sender)",
+            "involved_variables": [
+                "msg.sender",
+                "_newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "tokenOfOwnerByIndex(address owner, uint256 index) returns (uint256)": [],
+    "totalSupply() returns (uint256)": [],
+    "tokenByIndex(uint256 index) returns (uint256)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "ownerOf(uint256 tokenId) returns (address)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "approve(address to, uint256 tokenId)": [
+        {
+            "potential_checks": "to != owner",
+            "involved_variables": [
+                "to",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "msg.sender == owner || isApprovedForAll(owner,msg.sender) == False",
+            "involved_variables": [
+                "to",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setApprovalForAll(address operator, bool _approved)": [],
+    "getApproved(uint256 tokenId) returns (address)": [
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "isApprovedForAll(address owner, address operator) returns (bool)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "tokenURI(uint256 tokenId) returns (string)": [
+        {
+            "potential_checks": "_slot > 0 == False",
+            "involved_variables": [
+                "_slot"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setApprovalForAll(address operator, bool approved)": [
+        {
+            "potential_checks": "owner != operator == False",
+            "involved_variables": [
+                "operator",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "initialize()": [
+        {
+            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! Address.isContract(address(this)) && _initialized == 1)",
+            "involved_variables": [
+                "_initialized",
+                "isTopLevelCall",
+                "this",
+                "Address"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initialized",
+                "isTopLevelCall",
+                "this",
+                "Address"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initialized",
+                "isTopLevelCall",
+                "this",
+                "Address"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized"
+            ]
+        }
+    ],
+    "setSvgGenerater(address svgGenerater)": [
+        {
+            "potential_checks": "isOwner(msg.sender) == False",
+            "involved_variables": [
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "mintInfo(uint256 tokenId) returns (uint256, uint256, uint256, uint256, uint256, bool)": [
+        {
+            "potential_checks": "_slot > 0 == False",
+            "involved_variables": [
+                "_slot"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "mintInfoByTokenOwnerIndex(address _owner, uint256 _index) returns (uint256, uint256, uint256)": [
+        {
+            "potential_checks": "index < ERC721.balanceOf(owner)",
+            "involved_variables": [
+                "index",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "batchClaimRankWithGenerateNft(uint256 _num, uint256 _term)": [
+        {
+            "potential_checks": "i < _startIndex + _num == False",
+            "involved_variables": [
+                "reason",
+                "_num",
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "i",
+                "_startIndex",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "reason",
+                "_num",
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "i",
+                "_startIndex",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "from != to == False",
+            "involved_variables": [
+                "reason",
+                "_num",
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "i",
+                "_startIndex",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "to != from == False",
+            "involved_variables": [
+                "reason",
+                "_num",
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "i",
+                "_startIndex",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "to.isContract()",
+            "involved_variables": [
+                "reason",
+                "_num",
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "i",
+                "_startIndex",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "reason.length == 0 == False",
+            "involved_variables": [
+                "reason",
+                "_num",
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "i",
+                "_startIndex",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "rebatchClaimRankByNft(uint256[] _tokenIds, uint256 _term)": [
+        {
+            "potential_checks": "index < _tokenIds.length",
+            "involved_variables": [
+                "succeeded",
+                "index",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "msg.sender",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tokenSlotCount"
+            ]
+        },
+        {
+            "potential_checks": "ownerOf(_tokenIds[index]) == msg.sender",
+            "involved_variables": [
+                "succeeded",
+                "index",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "msg.sender",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tokenSlotCount"
+            ]
+        },
+        {
+            "potential_checks": "i < tokenSlotCount[_tokenIds[index]]",
+            "involved_variables": [
+                "succeeded",
+                "index",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "msg.sender",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tokenSlotCount"
+            ]
+        },
+        {
+            "potential_checks": "call(uint256,uint256,uint256,uint256,uint256,uint256,uint256)(gas()(),ex,0,data + 0x20,mload(uint256)(data),0,0) == False",
+            "involved_variables": [
+                "succeeded",
+                "index",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "msg.sender",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tokenSlotCount"
+            ]
+        }
+    ],
+    "claimByNft(uint256[] _tokenIds, address _to)": [
+        {
+            "potential_checks": "index < _tokenIds.length",
+            "involved_variables": [
+                "msg.sender",
+                "index",
+                "_tokenIds",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ownerOf(_tokenIds[index]) == msg.sender",
+            "involved_variables": [
+                "msg.sender",
+                "index",
+                "_tokenIds",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setTips(uint256 _tips)": [
+        {
+            "potential_checks": "msg.sender == 0xA8344F42814Ab006AcE709b26368a68A416f7777 == False",
+            "involved_variables": [
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "claimAndClaimRankByNft(uint256[] _tokenIds, address _to, uint256 _term)": [
+        {
+            "potential_checks": "msg.value == tips",
+            "involved_variables": [
+                "_currentTokenId",
+                "index",
+                "claimSucceeded",
+                "msg.sender",
+                "msg.value",
+                "claimRankSucceeded",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "tips",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tips",
+                "tokenSlotCount"
+            ]
+        },
+        {
+            "potential_checks": "index < _tokenIds.length",
+            "involved_variables": [
+                "_currentTokenId",
+                "index",
+                "claimSucceeded",
+                "msg.sender",
+                "msg.value",
+                "claimRankSucceeded",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "tips",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tips",
+                "tokenSlotCount"
+            ]
+        },
+        {
+            "potential_checks": "ownerOf(_currentTokenId) == msg.sender",
+            "involved_variables": [
+                "_currentTokenId",
+                "index",
+                "claimSucceeded",
+                "msg.sender",
+                "msg.value",
+                "claimRankSucceeded",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "tips",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tips",
+                "tokenSlotCount"
+            ]
+        },
+        {
+            "potential_checks": "i < tokenSlotCount[_currentTokenId]",
+            "involved_variables": [
+                "_currentTokenId",
+                "index",
+                "claimSucceeded",
+                "msg.sender",
+                "msg.value",
+                "claimRankSucceeded",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "tips",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tips",
+                "tokenSlotCount"
+            ]
+        },
+        {
+            "potential_checks": "call(uint256,uint256,uint256,uint256,uint256,uint256,uint256)(gas()(),ex,0,claimData + 0x20,mload(uint256)(claimData),0,0)",
+            "involved_variables": [
+                "_currentTokenId",
+                "index",
+                "claimSucceeded",
+                "msg.sender",
+                "msg.value",
+                "claimRankSucceeded",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "tips",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tips",
+                "tokenSlotCount"
+            ]
+        },
+        {
+            "potential_checks": "call(uint256,uint256,uint256,uint256,uint256,uint256,uint256)(gas()(),ex,0,claimRankData + 0x20,mload(uint256)(claimRankData),0,0) == False",
+            "involved_variables": [
+                "_currentTokenId",
+                "index",
+                "claimSucceeded",
+                "msg.sender",
+                "msg.value",
+                "claimRankSucceeded",
+                "tokenSlotCount",
+                "owner",
+                "i",
+                "tips",
+                "_tokenIds"
+            ],
+            "descriptions": "",
+            "references": [
+                "tips",
+                "tokenSlotCount"
+            ]
+        }
+    ],
+    "withdraw()": [],
+    "addressFrom(address _origin, uint256 _nonce) returns (address)": [
+        {
+            "potential_checks": "_nonce == 0x00 == False",
+            "involved_variables": [
+                "_nonce"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_nonce <= 0x7f == False",
+            "involved_variables": [
+                "_nonce"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_nonce <= 0xff == False",
+            "involved_variables": [
+                "_nonce"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_nonce <= 0xffff == False",
+            "involved_variables": [
+                "_nonce"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_nonce <= 0xffffff == False",
+            "involved_variables": [
+                "_nonce"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

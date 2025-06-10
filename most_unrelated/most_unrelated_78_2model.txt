@@ -1,0 +1,19 @@
+- `_balances` (mapping):  
+  · Write restricted to token owner or approved spender.  
+  · Read restricted to public via `balanceOf`.  
+
+- `_allowances` (mapping):  
+  · Write restricted to token owner (via `approve`/`permit`).  
+  · Read restricted to public via `allowance`.  
+
+- `_delegates` (mapping):  
+  · Write restricted to token owner (via `delegate`/`delegateBySig`).  
+  · Read restricted to public via `delegates`.  
+
+- `_checkpoints` (mapping):  
+  · Write restricted to contract during token transfers/delegation.  
+  · Read restricted to public via `getVotes`/`getPastVotes`.  
+
+- `_totalSupplyCheckpoints` (array):  
+  · Write restricted to contract during minting/burning.  
+  · Read restricted to public via `getPastTotalSupply`.  

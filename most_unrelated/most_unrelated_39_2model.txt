@@ -1,0 +1,23 @@
+- `_balances` (mapping): 
+  · Write restricted to token holders (for transfers/burns), minters (for minting), or approved spenders.
+  · Read restricted to None (public via `balanceOf`).
+
+- `_allowances` (mapping): 
+  · Write restricted to token holders (for approvals) or approved spenders (for allowance reductions).
+  · Read restricted to None (public via `allowance`).
+
+- `_totalSupply` (uint256): 
+  · Write restricted to minters (for minting) or token holders (for burning).
+  · Read restricted to None (public via `totalSupply`).
+
+- `_nonces` (mapping): 
+  · Write restricted to token holders (when using `permit`).
+  · Read restricted to the token holder (via `nonces`).
+
+- `_roles` (mapping): 
+  · Write restricted to admins (for role grants/revokes) or role holders (for renouncing).
+  · Read restricted to None (public via `hasRole`).
+
+- `_name`/`_symbol`/`decimal` (strings/uint8): 
+  · Write restricted to initialization (constructor).
+  · Read restricted to None (public via getters).

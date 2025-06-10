@@ -1,0 +1,5 @@
+- As the contract owner, I want to restrict `tokenPool` updates to authorized addresses to prevent unauthorized changes to the permit spender whitelist.  
+- As a token holder, I want my balance to be isolated from others, ensuring only I or approved spenders can transfer my tokens.  
+- As a user, I want the `permit` function to exclusively authorize the `tokenPool` as a spender to prevent signature phishing attacks.  
+- As an approved spender, I want allowance checks enforced during `transferFrom` to ensure I don't exceed authorized spending limits.  
+- As any user, I want zero-address transfers blocked to prevent token burns or unintended loss of funds.  

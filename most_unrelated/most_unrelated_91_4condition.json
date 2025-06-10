@@ -1,0 +1,235 @@
+{
+    "approveAndCall(address spender, uint256 value, bytes data) returns (bool)": [],
+    "transferAndCall(address to, uint256 value, bytes data) returns (bool)": [
+        {
+            "potential_checks": "balance >= value == False",
+            "involved_variables": [
+                "balance",
+                "value",
+                "this",
+                "to"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "nonces(address owner) returns (uint256)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "owner() returns (address)": [
+        {
+            "potential_checks": "block.timestamp >= _newOwnerEffectiveTime == False",
+            "involved_variables": [
+                "_newOwnerEffectiveTime",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "_newOwnerEffectiveTime"
+            ]
+        }
+    ],
+    "changeDCRMOwner(address newOwner) returns (bool)": [
+        {
+            "potential_checks": "msg.sender == owner()",
+            "involved_variables": [
+                "_newOwnerEffectiveTime",
+                "msg.sender",
+                "block.timestamp",
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_newOwnerEffectiveTime"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= _newOwnerEffectiveTime == False",
+            "involved_variables": [
+                "_newOwnerEffectiveTime",
+                "msg.sender",
+                "block.timestamp",
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_newOwnerEffectiveTime"
+            ]
+        }
+    ],
+    "Swapin(bytes32 txhash, address account, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "msg.sender == owner()",
+            "involved_variables": [
+                "_newOwnerEffectiveTime",
+                "msg.sender",
+                "block.timestamp",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_newOwnerEffectiveTime"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= _newOwnerEffectiveTime == False",
+            "involved_variables": [
+                "_newOwnerEffectiveTime",
+                "msg.sender",
+                "block.timestamp",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_newOwnerEffectiveTime"
+            ]
+        }
+    ],
+    "Swapout(uint256 amount, address bindaddr) returns (bool)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "permit(address target, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "target",
+                "hashStruct",
+                "deadline",
+                "r",
+                "s",
+                "v",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s) == False",
+            "involved_variables": [
+                "target",
+                "hashStruct",
+                "deadline",
+                "r",
+                "s",
+                "v",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferWithPermit(address target, address to, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) returns (bool)": [
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "balance",
+                "target",
+                "this",
+                "hashStruct",
+                "deadline",
+                "to",
+                "r",
+                "s",
+                "v",
+                "block.timestamp",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s)",
+            "involved_variables": [
+                "balance",
+                "target",
+                "this",
+                "hashStruct",
+                "deadline",
+                "to",
+                "r",
+                "s",
+                "v",
+                "block.timestamp",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "balance >= value == False",
+            "involved_variables": [
+                "balance",
+                "target",
+                "this",
+                "hashStruct",
+                "deadline",
+                "to",
+                "r",
+                "s",
+                "v",
+                "block.timestamp",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transfer(address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "balance >= value == False",
+            "involved_variables": [
+                "balance",
+                "value",
+                "this",
+                "to"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "from != msg.sender",
+            "involved_variables": [
+                "allowed",
+                "this",
+                "to",
+                "msg.sender",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "allowed != type()(uint256).max",
+            "involved_variables": [
+                "allowed",
+                "this",
+                "to",
+                "msg.sender",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "allowed >= value == False",
+            "involved_variables": [
+                "allowed",
+                "this",
+                "to",
+                "msg.sender",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

@@ -1,0 +1,343 @@
+{
+    "setCallFee(uint256 _fee)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "involved_variables": [
+                "keeper",
+                "msg.sender",
+                "MAX_CALL_FEE",
+                "_fee"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper",
+                "MAX_CALL_FEE"
+            ]
+        },
+        {
+            "potential_checks": "_fee <= MAX_CALL_FEE == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender",
+                "MAX_CALL_FEE",
+                "_fee"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper",
+                "MAX_CALL_FEE"
+            ]
+        }
+    ],
+    "setWithdrawalFee(uint256 _fee)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "involved_variables": [
+                "keeper",
+                "msg.sender",
+                "_fee",
+                "WITHDRAWAL_FEE_CAP"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper",
+                "WITHDRAWAL_FEE_CAP"
+            ]
+        },
+        {
+            "potential_checks": "_fee <= WITHDRAWAL_FEE_CAP == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender",
+                "_fee",
+                "WITHDRAWAL_FEE_CAP"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper",
+                "WITHDRAWAL_FEE_CAP"
+            ]
+        }
+    ],
+    "setKeeper(address _keeper)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        }
+    ],
+    "setStrategist(address _strategist)": [
+        {
+            "potential_checks": "msg.sender == strategist == False",
+            "involved_variables": [
+                "msg.sender",
+                "strategist"
+            ],
+            "descriptions": "",
+            "references": [
+                "strategist"
+            ]
+        }
+    ],
+    "setUnirouter(address _unirouter)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setVault(address _vault)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBeefyFeeRecipient(address _beefyFeeRecipient)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "beforeDeposit()": [],
+    "paused() returns (bool)": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "deposit()": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "wantBal"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "wantBal > 0 == False",
+            "involved_variables": [
+                "wantBal"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdraw(uint256 _amount)": [
+        {
+            "potential_checks": "msg.sender == vault",
+            "involved_variables": [
+                "vault",
+                "tx.origin",
+                "_amount",
+                "wantBal",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vault"
+            ]
+        },
+        {
+            "potential_checks": "wantBal < _amount == False",
+            "involved_variables": [
+                "vault",
+                "tx.origin",
+                "_amount",
+                "wantBal",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vault"
+            ]
+        },
+        {
+            "potential_checks": "wantBal > _amount == False",
+            "involved_variables": [
+                "vault",
+                "tx.origin",
+                "_amount",
+                "wantBal",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vault"
+            ]
+        },
+        {
+            "potential_checks": "tx.origin == owner() || paused()",
+            "involved_variables": [
+                "vault",
+                "tx.origin",
+                "_amount",
+                "wantBal",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vault"
+            ]
+        }
+    ],
+    "harvest()": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "msg.sender",
+                "tx.origin"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "msg.sender == tx.origin == False",
+            "involved_variables": [
+                "msg.sender",
+                "tx.origin"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "balanceOf() returns (uint256)": [],
+    "balanceOfWant() returns (uint256)": [],
+    "balanceOfPool() returns (uint256)": [],
+    "retireStrat()": [
+        {
+            "potential_checks": "msg.sender == vault == False",
+            "involved_variables": [
+                "vault",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vault"
+            ]
+        }
+    ],
+    "panic()": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        }
+    ],
+    "changeCompoundingFee(uint256 _newFee)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "involved_variables": [
+                "keeper",
+                "msg.sender",
+                "_newFee"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        },
+        {
+            "potential_checks": "_newFee <= 500 == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender",
+                "_newFee"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        }
+    ]
+}

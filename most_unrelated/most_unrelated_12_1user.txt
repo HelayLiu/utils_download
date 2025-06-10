@@ -1,0 +1,6 @@
+- As an admin, I want to assign/revoke minter roles to enforce minting restrictions.  
+- As a minter, I want to mint tokens securely to specific addresses while ensuring supply integrity.  
+- As a token holder, I want exclusive control over burning my tokens to reduce supply.  
+- As a token holder, I want to delegate spending allowances securely to third parties.  
+- As a delegated spender, I want to transfer tokens on behalf of holders within approved limits.  
+- As a user, I want to view token metadata (name/symbol/supply) without access restrictions.  

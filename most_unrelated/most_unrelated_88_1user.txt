@@ -1,0 +1,5 @@
+- As a token holder, I want to securely claim my tokens using a verifiable Merkle proof within a specified timeframe, ensuring others cannot claim my allocation.
+- As a contract owner, I want to withdraw unclaimed tokens after the deadline to manage treasury resources efficiently.
+- As a user, I want to verify if my claim index has been processed to prevent double-spending or unauthorized access.
+- As a contract owner, I want to transfer/renounce ownership securely to manage administrative control.
+- As any participant, I want to publicly verify Merkle root and token parameters to ensure distribution integrity.

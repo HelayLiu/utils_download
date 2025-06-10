@@ -1,0 +1,610 @@
+{
+    "checkpoints(address account, uint32 pos) returns (ERC20Votes.Checkpoint)": [],
+    "numCheckpoints(address account) returns (uint32)": [],
+    "delegates(address account) returns (address)": [],
+    "getVotes(address account) returns (uint256)": [
+        {
+            "potential_checks": "pos == 0 == False",
+            "involved_variables": [
+                "pos"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getPastVotes(address account, uint256 blockNumber) returns (uint256)": [
+        {
+            "potential_checks": "blockNumber < block.number",
+            "involved_variables": [
+                "low",
+                "high",
+                "blockNumber",
+                "block.number"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "low < high == False",
+            "involved_variables": [
+                "low",
+                "high",
+                "blockNumber",
+                "block.number"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "high == 0 == False",
+            "involved_variables": [
+                "low",
+                "high",
+                "blockNumber",
+                "block.number"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getPastTotalSupply(uint256 blockNumber) returns (uint256)": [
+        {
+            "potential_checks": "blockNumber < block.number",
+            "involved_variables": [
+                "low",
+                "high",
+                "blockNumber",
+                "block.number"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "low < high == False",
+            "involved_variables": [
+                "low",
+                "high",
+                "blockNumber",
+                "block.number"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "high == 0 == False",
+            "involved_variables": [
+                "low",
+                "high",
+                "blockNumber",
+                "block.number"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "delegate(address delegatee)": [
+        {
+            "potential_checks": "src != dst && amount > 0",
+            "involved_variables": [
+                "amount",
+                "src",
+                "dst"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "delegateBySig(address delegatee, uint256 nonce, uint256 expiry, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "potential_checks": "block.timestamp <= expiry",
+            "involved_variables": [
+                "src",
+                "this",
+                "_CACHED_CHAIN_ID",
+                "amount",
+                "block.chainid",
+                "expiry",
+                "_CACHED_THIS",
+                "nonce",
+                "dst",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_CACHED_THIS",
+                "_CACHED_CHAIN_ID"
+            ]
+        },
+        {
+            "potential_checks": "address(this) == _CACHED_THIS && block.chainid == _CACHED_CHAIN_ID == False",
+            "involved_variables": [
+                "src",
+                "this",
+                "_CACHED_CHAIN_ID",
+                "amount",
+                "block.chainid",
+                "expiry",
+                "_CACHED_THIS",
+                "nonce",
+                "dst",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_CACHED_THIS",
+                "_CACHED_CHAIN_ID"
+            ]
+        },
+        {
+            "potential_checks": "nonce == _useNonce(signer)",
+            "involved_variables": [
+                "src",
+                "this",
+                "_CACHED_CHAIN_ID",
+                "amount",
+                "block.chainid",
+                "expiry",
+                "_CACHED_THIS",
+                "nonce",
+                "dst",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_CACHED_THIS",
+                "_CACHED_CHAIN_ID"
+            ]
+        },
+        {
+            "potential_checks": "src != dst && amount > 0",
+            "involved_variables": [
+                "src",
+                "this",
+                "_CACHED_CHAIN_ID",
+                "amount",
+                "block.chainid",
+                "expiry",
+                "_CACHED_THIS",
+                "nonce",
+                "dst",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_CACHED_THIS",
+                "_CACHED_CHAIN_ID"
+            ]
+        }
+    ],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "nonces(address owner) returns (uint256)": [],
+    "DOMAIN_SEPARATOR() returns (bytes32)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+        {
+            "potential_checks": "currentAllowance >= subtractedValue",
+            "involved_variables": [
+                "subtractedValue",
+                "spender",
+                "currentAllowance",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "changeRouterAddress(TerraceRouter newRouter)": [
+        {
+            "potential_checks": "msg.sender == admin == False",
+            "involved_variables": [
+                "admin",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "admin"
+            ]
+        }
+    ],
+    "revoke()": [
+        {
+            "potential_checks": "msg.sender == admin == False",
+            "involved_variables": [
+                "admin",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "admin"
+            ]
+        }
+    ],
+    "rewardBorrowable()": [],
+    "enterBorrowableAllIn() returns (uint256)": [
+        {
+            "potential_checks": "totalShares == 0 || totalToken == 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "src != dst && amount > 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "totalSupply() <= _maxSupply()",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos == 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos > 0 && ckpts[pos - 1].fromBlock == block.number == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "enterBorrowable(uint256 _amount) returns (uint256)": [
+        {
+            "potential_checks": "totalShares == 0 || totalToken == 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "src != dst && amount > 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "totalSupply() <= _maxSupply()",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos == 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos > 0 && ckpts[pos - 1].fromBlock == block.number == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "enter(uint256 _amount) returns (uint256)": [
+        {
+            "potential_checks": "totalShares == 0 || totalToken == 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "src != dst && amount > 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "totalSupply() <= _maxSupply()",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos == 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos > 0 && ckpts[pos - 1].fromBlock == block.number == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "totalToken",
+                "account",
+                "dst",
+                "totalShares",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "leave(uint256 _share)": [
+        {
+            "potential_checks": "accountBalance >= amount",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "account",
+                "dst",
+                "accountBalance",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "src != dst && amount > 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "account",
+                "dst",
+                "accountBalance",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos == 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "account",
+                "dst",
+                "accountBalance",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos > 0 && ckpts[pos - 1].fromBlock == block.number == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "account",
+                "dst",
+                "accountBalance",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "leaveWithBorrowable(uint256 _share)": [
+        {
+            "potential_checks": "accountBalance >= amount",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "account",
+                "dst",
+                "accountBalance",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "src != dst && amount > 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "account",
+                "dst",
+                "accountBalance",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos == 0 == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "account",
+                "dst",
+                "accountBalance",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "pos > 0 && ckpts[pos - 1].fromBlock == block.number == False",
+            "involved_variables": [
+                "src",
+                "block.number",
+                "amount",
+                "pos",
+                "account",
+                "dst",
+                "accountBalance",
+                "ckpts"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "TOKENBalance(address _account) returns (uint256)": [],
+    "xTOKENForTOKEN(uint256 _xTOKENAmount) returns (uint256)": [],
+    "BorrowableBalance(address _account) returns (uint256)": [],
+    "xTOKENForBorrowable(uint256 _xTOKENAmount) returns (uint256)": []
+}

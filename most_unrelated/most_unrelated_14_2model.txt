@@ -1,0 +1,23 @@
+- _balances (mapping(address => uint256):  
+  · Write restricted to token owner (transfers) or approved spenders (transferFrom).  
+  · Read restricted to public visibility (anyone can query balances).  
+
+- _allowances (mapping(address => mapping(address => uint256))):  
+  · Write restricted to token owner (approve) or contract (during transferFrom/burn).  
+  · Read restricted to public visibility (allowance checks).  
+
+- _totalSupply (uint256):  
+  · Write restricted to contract (minting/burning).  
+  · Read restricted to public visibility.  
+
+- _name (string):  
+  · Write restricted to contract constructor (immutable after deployment).  
+  · Read restricted to public visibility.  
+
+- _symbol (string):  
+  · Write restricted to contract constructor (immutable after deployment).  
+  · Read restricted to public visibility.  
+
+- _nonces (mapping(address => uint256)):  
+  · Write restricted to contract (permit executions).  
+  · Read restricted to public visibility (nonce checks).  

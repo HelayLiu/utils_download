@@ -1,0 +1,571 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "initialize(INodeERC721A _nft, IERC20 _rewardToken, uint256 _rewardRate, uint256 _vestingPeriod)": [
+        {
+            "potential_checks": "! initialSetup && ! construction == False",
+            "involved_variables": [
+                "_nft",
+                "initialSetup",
+                "_rewardRate",
+                "_vestingPeriod",
+                "isTopLevelCall",
+                "_rewardToken",
+                "construction"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_nft",
+                "initialSetup",
+                "_rewardRate",
+                "_vestingPeriod",
+                "isTopLevelCall",
+                "_rewardToken",
+                "construction"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_rewardRate > 0",
+            "involved_variables": [
+                "_nft",
+                "initialSetup",
+                "_rewardRate",
+                "_vestingPeriod",
+                "isTopLevelCall",
+                "_rewardToken",
+                "construction"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_vestingPeriod > 0",
+            "involved_variables": [
+                "_nft",
+                "initialSetup",
+                "_rewardRate",
+                "_vestingPeriod",
+                "isTopLevelCall",
+                "_rewardToken",
+                "construction"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "! _isInitializing()",
+            "involved_variables": [
+                "_nft",
+                "initialSetup",
+                "_rewardRate",
+                "_vestingPeriod",
+                "isTopLevelCall",
+                "_rewardToken",
+                "construction"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_nft",
+                "initialSetup",
+                "_rewardRate",
+                "_vestingPeriod",
+                "isTopLevelCall",
+                "_rewardToken",
+                "construction"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "stake(uint256[] tokenIds)": [
+        {
+            "potential_checks": "nft.isAllowedTransfer()",
+            "involved_variables": [
+                "tokenIds",
+                "user",
+                "tokenId",
+                "registered",
+                "nft",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList",
+                "registered",
+                "nft"
+            ]
+        },
+        {
+            "potential_checks": "rewardDistributionStopTime == 0 || rewardDistributionStopTime > block.timestamp",
+            "involved_variables": [
+                "tokenIds",
+                "user",
+                "tokenId",
+                "registered",
+                "nft",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList",
+                "registered",
+                "nft"
+            ]
+        },
+        {
+            "potential_checks": "rewardDistributionStopTime > 0 && rewardDistributionStopTime < block.timestamp == False",
+            "involved_variables": [
+                "tokenIds",
+                "user",
+                "tokenId",
+                "registered",
+                "nft",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList",
+                "registered",
+                "nft"
+            ]
+        },
+        {
+            "potential_checks": "i < tokenIds.length",
+            "involved_variables": [
+                "tokenIds",
+                "user",
+                "tokenId",
+                "registered",
+                "nft",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList",
+                "registered",
+                "nft"
+            ]
+        },
+        {
+            "potential_checks": "blockList[tokenId]",
+            "involved_variables": [
+                "tokenIds",
+                "user",
+                "tokenId",
+                "registered",
+                "nft",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList",
+                "registered",
+                "nft"
+            ]
+        },
+        {
+            "potential_checks": "user == nft.ownerOf(tokenId) == False",
+            "involved_variables": [
+                "tokenIds",
+                "user",
+                "tokenId",
+                "registered",
+                "nft",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList",
+                "registered",
+                "nft"
+            ]
+        }
+    ],
+    "startVesting()": [
+        {
+            "potential_checks": "vestingEnabledTime > 0 && block.timestamp > vestingEnabledTime",
+            "involved_variables": [
+                "vestingEnabledTime",
+                "account",
+                "accounts",
+                "rewardDistributionStopTime",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "vestingEnabledTime",
+                "accounts"
+            ]
+        },
+        {
+            "potential_checks": "account.vestingStartedAt == 0 || block.timestamp > account.vestingFinishTimeAt",
+            "involved_variables": [
+                "vestingEnabledTime",
+                "account",
+                "accounts",
+                "rewardDistributionStopTime",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "vestingEnabledTime",
+                "accounts"
+            ]
+        },
+        {
+            "potential_checks": "rewardDistributionStopTime > 0 && rewardDistributionStopTime < block.timestamp == False",
+            "involved_variables": [
+                "vestingEnabledTime",
+                "account",
+                "accounts",
+                "rewardDistributionStopTime",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "vestingEnabledTime",
+                "accounts"
+            ]
+        },
+        {
+            "potential_checks": "account.rewardsBalance > 0 == False",
+            "involved_variables": [
+                "vestingEnabledTime",
+                "account",
+                "accounts",
+                "rewardDistributionStopTime",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "vestingEnabledTime",
+                "accounts"
+            ]
+        }
+    ],
+    "claimRewards()": [
+        {
+            "potential_checks": "block.timestamp > account.vestingFinishTimeAt == False",
+            "involved_variables": [
+                "block.timestamp",
+                "account",
+                "accounts"
+            ],
+            "descriptions": "",
+            "references": [
+                "accounts"
+            ]
+        },
+        {
+            "potential_checks": "account.claimableBalance > 0 == False",
+            "involved_variables": [
+                "block.timestamp",
+                "account",
+                "accounts"
+            ],
+            "descriptions": "",
+            "references": [
+                "accounts"
+            ]
+        }
+    ],
+    "getAccount(address user) returns (WirexPayStaking.Account)": [],
+    "getCurrentRewardsAmount(address user) returns (uint256)": [
+        {
+            "potential_checks": "rewardDistributionStopTime > 0 && rewardDistributionStopTime < block.timestamp == False",
+            "involved_variables": [
+                "rewardDistributionStopTime",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime"
+            ]
+        }
+    ],
+    "getCurrentVestingAmount(address user) returns (uint256)": [
+        {
+            "potential_checks": "block.timestamp > account.vestingFinishTimeAt == False",
+            "involved_variables": [
+                "block.timestamp",
+                "account",
+                "accounts"
+            ],
+            "descriptions": "",
+            "references": [
+                "accounts"
+            ]
+        }
+    ],
+    "getCurrentClaimableAmount(address user) returns (uint256)": [
+        {
+            "potential_checks": "block.timestamp > account.vestingFinishTimeAt == False",
+            "involved_variables": [
+                "block.timestamp",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "enableVesting(uint256 timestamp)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "timestamp",
+                "vestingEnabledTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "vestingEnabledTime"
+            ]
+        },
+        {
+            "potential_checks": "timestamp != 0",
+            "involved_variables": [
+                "timestamp",
+                "vestingEnabledTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "vestingEnabledTime"
+            ]
+        },
+        {
+            "potential_checks": "vestingEnabledTime == 0 == False",
+            "involved_variables": [
+                "timestamp",
+                "vestingEnabledTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "vestingEnabledTime"
+            ]
+        }
+    ],
+    "setVestingPeriod(uint256 periodSeconds)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "periodSeconds"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "periodSeconds != 0 == False",
+            "involved_variables": [
+                "periodSeconds"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "stopRewardsDistribution(uint256 timestamp)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "timestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "timestamp > block.timestamp == False",
+            "involved_variables": [
+                "timestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "addToStopList(uint256[] tokenIds)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "tokenIds",
+                "tokenId",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList"
+            ]
+        },
+        {
+            "potential_checks": "rewardDistributionStopTime == 0 || rewardDistributionStopTime > block.timestamp",
+            "involved_variables": [
+                "tokenIds",
+                "tokenId",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList"
+            ]
+        },
+        {
+            "potential_checks": "i < tokenIds.length",
+            "involved_variables": [
+                "tokenIds",
+                "tokenId",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList"
+            ]
+        },
+        {
+            "potential_checks": "blockList[tokenId] == False",
+            "involved_variables": [
+                "tokenIds",
+                "tokenId",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList"
+            ]
+        }
+    ],
+    "removeFromStopList(uint256[] tokenIds)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "tokenIds",
+                "tokenId",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList"
+            ]
+        },
+        {
+            "potential_checks": "rewardDistributionStopTime == 0 || rewardDistributionStopTime > block.timestamp",
+            "involved_variables": [
+                "tokenIds",
+                "tokenId",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList"
+            ]
+        },
+        {
+            "potential_checks": "i < tokenIds.length",
+            "involved_variables": [
+                "tokenIds",
+                "tokenId",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList"
+            ]
+        },
+        {
+            "potential_checks": "blockList[tokenId] == False",
+            "involved_variables": [
+                "tokenIds",
+                "tokenId",
+                "rewardDistributionStopTime",
+                "i",
+                "block.timestamp",
+                "blockList"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardDistributionStopTime",
+                "blockList"
+            ]
+        }
+    ]
+}

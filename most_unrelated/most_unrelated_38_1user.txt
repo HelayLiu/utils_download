@@ -1,0 +1,5 @@
+- As a staker, I want to deposit tokens to earn rewards, ensuring my staked amount and rewards are isolated from other users' data.
+- As a staker, I want to withdraw my tokens and accumulated rewards securely, with calculations based solely on my isolated staking position.
+- As a staker, I want to view my pending rewards without interference from other users' activities.
+- As the contract owner, I want to manage reward distribution parameters and emergency withdrawals, with exclusive access to critical reward state variables.
+- As the contract owner, I want to securely transfer ownership using a two-step process to prevent unauthorized access.

@@ -1,0 +1,5 @@
+- As a user, I want to transfer tokens securely, knowing transaction sizes are limited to prevent abuse.
+- As a token holder, I expect my balance and allowances to be isolated and accessible only to me or approved spenders.
+- As a contract owner, I need to configure fees, wallets, and trading parameters to manage tokenomics securely.
+- As a trader, I require trading to be enabled by the owner before executing transactions to ensure fair launch conditions.
+- As a fee receiver, I want fees collected automatically during swaps, with allocations enforced by access controls.

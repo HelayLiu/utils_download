@@ -1,0 +1,5 @@
+- The contract is a token (PANDA) that implements Standard ERC20 functions, trading with fees: a sale fee (1.5%) and a liquidity fee (0.5%), anti-bot measures: blacklist and trading start time with cooldown periods, automatic liquidity addition when a threshold is reached.
+- As a user, I want to transfer tokens securely, knowing blacklisted addresses (`_BList`) are blocked and whitelisted addresses (`isDelivers`) bypass fees.  
+- As the contract owner, I want to control trading activation (`startTime`) and liquidity thresholds (`numTokensSellToSwap`) to prevent bot manipulation.  
+- As the sale address, I want to claim accumulated fees/ETH to fund the project, with access restricted to my address.  
+- As a liquidity provider, I want fees auto-converted to liquidity via `swapAndLiquify`, ensuring pool health without manual intervention.  

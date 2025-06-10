@@ -1,0 +1,24 @@
+- `_balances` (mapping(address ⇒ uint256) private):  
+  · Write restricted to the contract during transfers/minting/burning.  
+  · Read restricted to the contract and via `balanceOf` (public getter).  
+- `_allowances` (mapping(address ⇒ mapping(address ⇒ uint256)) private):  
+  · Write restricted to the contract during approvals/transfers.  
+  · Read restricted to the contract and via `allowance` (public getter).  
+- `isDelivers` (mapping(address ⇒ bool) public):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (public).  
+- `_BList` (mapping(address ⇒ bool) public):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (public).  
+- `startTime` (uint256 public):  
+  · Write restricted to the contract owner (via `startTrade`).  
+  · Read restricted to None (public).  
+- `numTokensSellToSwap` (uint256 public):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (public).  
+- `swapping` (bool private):  
+  · Write restricted to the contract (via `lockTheSwap`).  
+  · Read restricted to the contract (private).  
+- `saleAddress` (address public):  
+  · Write restricted to None (immutable post-construction).  
+  · Read restricted to None (public).  

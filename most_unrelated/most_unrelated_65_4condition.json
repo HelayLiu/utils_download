@@ -1,0 +1,263 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "totalSupply() returns (uint256)": [],
+    "decimals() returns (uint8)": [],
+    "symbol() returns (string)": [],
+    "name() returns (string)": [],
+    "getOwner() returns (address)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "sender == lpacc == False",
+            "involved_variables": [
+                "sender",
+                "amount",
+                "lpacc",
+                "recipient",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "_balances",
+                "lpacc"
+            ]
+        },
+        {
+            "potential_checks": "recipient == lpacc == False",
+            "involved_variables": [
+                "sender",
+                "amount",
+                "lpacc",
+                "recipient",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "_balances",
+                "lpacc"
+            ]
+        },
+        {
+            "potential_checks": "sender != lpacc && amount == _balances[sender] == False",
+            "involved_variables": [
+                "sender",
+                "amount",
+                "lpacc",
+                "recipient",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "_balances",
+                "lpacc"
+            ]
+        }
+    ],
+    "allowance(address _owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "sender == lpacc == False",
+            "involved_variables": [
+                "spender",
+                "sender",
+                "amount",
+                "lpacc",
+                "owner",
+                "recipient",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "_balances",
+                "lpacc"
+            ]
+        },
+        {
+            "potential_checks": "recipient == lpacc == False",
+            "involved_variables": [
+                "spender",
+                "sender",
+                "amount",
+                "lpacc",
+                "owner",
+                "recipient",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "_balances",
+                "lpacc"
+            ]
+        },
+        {
+            "potential_checks": "sender != lpacc && amount == _balances[sender] == False",
+            "involved_variables": [
+                "spender",
+                "sender",
+                "amount",
+                "lpacc",
+                "owner",
+                "recipient",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "_balances",
+                "lpacc"
+            ]
+        }
+    ],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
+    "burn(uint256 amount) returns (bool)": [],
+    "upisstop() returns (bool)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "isstop",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "isstop",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "isstop == 0 == False",
+            "involved_variables": [
+                "isstop",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "isstop",
+                "_owner"
+            ]
+        }
+    ],
+    "upisopenbuy() returns (bool)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "isopenbuy",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "isopenbuy",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "isopenbuy == 0 == False",
+            "involved_variables": [
+                "isopenbuy",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "isopenbuy",
+                "_owner"
+            ]
+        }
+    ],
+    "showisopenbuy() returns (uint256)": [],
+    "showisstop() returns (uint256)": [],
+    "addwhiteaddresss(address[] _acc)": [
+        {
+            "potential_checks": "msg.sender == safeaddress",
+            "involved_variables": [
+                "i",
+                "msg.sender",
+                "safeaddress",
+                "_acc"
+            ],
+            "descriptions": "",
+            "references": [
+                "safeaddress"
+            ]
+        },
+        {
+            "potential_checks": "i < _acc.length == False",
+            "involved_variables": [
+                "i",
+                "msg.sender",
+                "safeaddress",
+                "_acc"
+            ],
+            "descriptions": "",
+            "references": [
+                "safeaddress"
+            ]
+        }
+    ],
+    "removewhiteaddress(address[] _acc)": [
+        {
+            "potential_checks": "msg.sender == safeaddress",
+            "involved_variables": [
+                "i",
+                "msg.sender",
+                "safeaddress",
+                "_acc"
+            ],
+            "descriptions": "",
+            "references": [
+                "safeaddress"
+            ]
+        },
+        {
+            "potential_checks": "i < _acc.length == False",
+            "involved_variables": [
+                "i",
+                "msg.sender",
+                "safeaddress",
+                "_acc"
+            ],
+            "descriptions": "",
+            "references": [
+                "safeaddress"
+            ]
+        }
+    ],
+    "getlpall() returns (uint256)": [],
+    "autoapprovetoken(address token, address to) returns (bool)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ]
+}

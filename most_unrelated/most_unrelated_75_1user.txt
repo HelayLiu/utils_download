@@ -1,0 +1,5 @@
+- As a user, I want to transfer my tokens securely to ensure my balance is updated correctly and isolated from unauthorized access.  
+- As a user, I want to approve specific spenders to manage allowances on my behalf while keeping my allowances isolated from others.  
+- As a user, I want to use off-chain signatures via `permit` for gasless approvals while ensuring only I can authorize changes to my allowances.  
+- As the launcher, I want to initialize token parameters (name, symbol, supply) once to prevent reinitialization and maintain contract integrity.  
+- As a contract, I enforce that token balances and allowances are only modifiable by authorized actors (owners or approved spenders) to ensure state isolation.  

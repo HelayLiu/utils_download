@@ -1,0 +1,350 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
+    "enableTrading()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "removeLimits() returns (bool)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "disableTransferDelay() returns (bool)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setEarlySellTax(bool onoff)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "updateSwapTokensAtAmount(uint256 newAmount) returns (bool)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "newAmount",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newAmount >= (totalSupply() * 1) / 100000",
+            "involved_variables": [
+                "newAmount",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newAmount <= (totalSupply() * 5) / 1000 == False",
+            "involved_variables": [
+                "newAmount",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "updateMaxTxnAmount(uint256 newNum)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "newNum"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newNum >= ((totalSupply() * 5) / 1000) / 1e18 == False",
+            "involved_variables": [
+                "_owner",
+                "newNum"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "updateMaxWalletAmount(uint256 newNum)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "newNum"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newNum >= ((totalSupply() * 15) / 1000) / 1e18 == False",
+            "involved_variables": [
+                "_owner",
+                "newNum"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "excludeFromMaxTransaction(address updAds, bool isEx)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "updateSwapEnabled(bool enabled)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "updateBuyFees(uint256 _marketingFee, uint256 _liquidityFee, uint256 _devFee)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "buyTotalFees",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "buyTotalFees",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "buyTotalFees <= 50 == False",
+            "involved_variables": [
+                "buyTotalFees",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "buyTotalFees",
+                "_owner"
+            ]
+        }
+    ],
+    "updateSellFees(uint256 _marketingFee, uint256 _liquidityFee, uint256 _devFee, uint256 _earlySellLiquidityFee, uint256 _earlySellMarketingFee)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "sellTotalFees",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "sellTotalFees",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "sellTotalFees <= 99 == False",
+            "involved_variables": [
+                "sellTotalFees",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "sellTotalFees",
+                "_owner"
+            ]
+        }
+    ],
+    "excludeFromFees(address account, bool excluded)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "isBlacklisted(address account) returns (bool)": [],
+    "blacklistAccounts(address[] accounts, bool isBlacklisted)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "i",
+                "_owner",
+                "accounts"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "accounts.length > 0",
+            "involved_variables": [
+                "i",
+                "_owner",
+                "accounts"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "i < accounts.length == False",
+            "involved_variables": [
+                "i",
+                "_owner",
+                "accounts"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setAutomatedMarketMakerPair(address pair, bool value)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "uniswapV2Pair",
+                "pair",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "uniswapV2Pair",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "pair != uniswapV2Pair == False",
+            "involved_variables": [
+                "uniswapV2Pair",
+                "pair",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "uniswapV2Pair",
+                "_owner"
+            ]
+        }
+    ],
+    "updateMarketingWallet(address newMarketingWallet)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "updateDevWallet(address newWallet)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "isExcludedFromFees(address account) returns (bool)": []
+}

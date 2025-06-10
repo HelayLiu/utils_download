@@ -1,0 +1,4 @@
+- As a user, I want to swap tokens while ensuring minimum output amounts are met to prevent front-running losses.
+- As a liquidity provider, I want to add/remove liquidity with deadline constraints to control transaction execution timing.
+- As a contract, I need to validate token paths (e.g., WETH as start/end) to ensure swap correctness.
+- As a user, I want to support fee-on-transfer tokens during swaps to handle tax tokens correctly.

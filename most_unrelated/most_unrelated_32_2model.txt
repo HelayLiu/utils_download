@@ -1,0 +1,59 @@
+- `stakingToken` (immutable): 
+  · Write restricted to None (immutable post-construction).
+  · Read restricted to None (public visibility).
+
+- `masterChef` (immutable): 
+  · Write restricted to None.
+  · Read restricted to None.
+
+- `beets` (immutable): 
+  · Write restricted to None.
+  · Read restricted to None.
+
+- `multisig` (immutable): 
+  · Write restricted to None.
+  · Read restricted to None.
+
+- `chefId` (immutable): 
+  · Write restricted to None.
+  · Read restricted to None.
+
+- `unsyncedBeets` (uint256): 
+  · Write restricted to Contract (updated during withdrawals/harvests).
+  · Read restricted to None (public).
+
+- `lastBeetsHarvest` (uint256): 
+  · Write restricted to Contract (updated during harvests).
+  · Read restricted to None.
+
+- `paused` (bool): 
+  · Write restricted to Operators (via `chefEmergencyWithdraw`/`unpause`).
+  · Read restricted to None.
+
+- `rewards` (address[] internal): 
+  · Write restricted to Contract (during reward notifications).
+  · Read restricted to Contract (via `rewardsList`).
+
+- `_rewardData` (mapping): 
+  · Write restricted to Contract (reward rate updates).
+  · Read restricted to Contract (via `rewardData`).
+
+- `userRewardPerTokenStored` (mapping): 
+  · Write restricted to Contract (during reward updates).
+  · Read restricted to None (public).
+
+- `storedRewardsPerUser` (mapping): 
+  · Write restricted to Contract (during claims/deposits/withdrawals).
+  · Read restricted to None (public).
+
+- `isReward` (mapping): 
+  · Write restricted to Contract (when adding tokens).
+  · Read restricted to None (public).
+
+- `_balances` (ERC20): 
+  · Write restricted to User/Contract (via deposits/withdrawals).
+  · Read restricted to None (via `balanceOf`).
+
+- `_allowances` (ERC20): 
+  · Write restricted to User/Contract (via approvals/transfers).
+  · Read restricted to None (via `allowance`).

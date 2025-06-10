@@ -1,0 +1,39 @@
+- `_balances: mapping(address => uint256) private`:
+    · Write restricted to: Token contract during transfers/minting/burning.
+    · Read restricted to: Public via `balanceOf`.
+    
+- `_allowances: mapping(address => mapping(address => uint256)) private`:
+    · Write restricted to: Token owners (via approve) and spenders (via transferFrom).
+    · Read restricted to: Public via `allowance`.
+    
+- `_totalSupply: uint256 private`:
+    · Write restricted to: Token contract during minting/burning.
+    · Read restricted to: Public via `totalSupply`.
+    
+- `chainIdToFeeBps: mapping(uint16 => FeeConfig) public`:
+    · Write restricted to: Contract owner.
+    · Read restricted to: Public.
+    
+- `defaultFeeBp: uint16 public`:
+    · Write restricted to: Contract owner.
+    · Read restricted to: Public.
+    
+- `feeOwner: address public`:
+    · Write restricted to: Contract owner.
+    · Read restricted to: Public.
+    
+- `trustedRemoteLookup: mapping(uint16 => bytes) public`:
+    · Write restricted to: Contract owner.
+    · Read restricted to: Public.
+    
+- `minDstGasLookup: mapping(uint16 => mapping(uint16 => uint)) public`:
+    · Write restricted to: Contract owner.
+    · Read restricted to: Public.
+    
+- `failedMessages: mapping(uint16 => mapping(bytes => mapping(uint64 => bytes32))) public`:
+    · Write restricted to: Contract during message handling.
+    · Read restricted to: Public.
+    
+- `_owner: address private`:
+    · Write restricted to: Contract during ownership transfers.
+    · Read restricted to: Public via `owner()`.

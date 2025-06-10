@@ -1,0 +1,4 @@
+- Contributors can securely participate in fundraising with caps enforced per address, ensuring individual contribution states are isolated.
+- The owner/admin manages whitelisting and caps to enforce participation rules, with modifications restricted to authorized roles.
+- The protocol admin performs emergency operations with exclusive access rights, isolating critical recovery functions.
+- Post-fundraising, the DAO executes arbitrary calls while maintaining state integrity through access controls.

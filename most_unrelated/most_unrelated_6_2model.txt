@@ -1,0 +1,21 @@
+- `tether` (IERC20Upgradeable):  
+   · Write restricted to MINTER_ROLE (via deposit) and BURNER_ROLE (via withdrawal).  
+   · Read restricted to None.  
+- `maxSupply` (uint256):  
+   · Write restricted to DEFAULT_ADMIN_ROLE.  
+   · Read restricted to None.  
+- `isBlacklisted` (mapping):  
+   · Write restricted to DEFAULT_ADMIN_ROLE.  
+   · Read restricted to None.  
+- `_balances` (mapping):  
+   · Write restricted to token owner (transfers), MINTER_ROLE (minting), BURNER_ROLE (burning).  
+   · Read restricted to token owner (via `balanceOf`).  
+- `_allowances` (mapping):  
+   · Write restricted to token owner (approvals) and approved spenders (transfers).  
+   · Read restricted to token owner and approved spenders (via `allowance`).  
+- `_paused` (bool):  
+   · Write restricted to DEFAULT_ADMIN_ROLE.  
+   · Read restricted to None (via `paused()`).  
+- `adjustedTokens` / `stakedTokens` (uint256):  
+   · Write restricted to MINTER_ROLE.  
+   · Read restricted to None.  

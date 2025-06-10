@@ -1,0 +1,55 @@
+- underlyingAssets (address[]):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.
+
+- isUnderlyingAssets (mapping(address => bool)):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.
+
+- redeemRequests (mapping(address => RedeemRequest)):
+  · Write restricted to User themselves.
+  · Read restricted to User themselves.
+
+- roundPricePerShare (mapping(uint256 => uint256)):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.
+
+- withdrawTokenPrice (mapping(uint256 => uint256)):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.
+
+- depositPaused (mapping(address => bool)):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.
+
+- feeRate (mapping(address => uint256)):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.
+
+- latestRoundID (uint256):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.
+
+- cap (uint256):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.
+
+- assetsBorrowed (uint256):
+  · Write restricted to Assets Management Role.
+  · Read restricted to None.
+
+- redeemableAmountInPast (uint256):
+  · Write restricted to Contract internal operations.
+  · Read restricted to None.
+
+- requestingSharesInPast (uint256):
+  · Write restricted to Contract internal operations.
+  · Read restricted to None.
+
+- requestingSharesInRound (uint256):
+  · Write restricted to Contract internal operations.
+  · Read restricted to None.
+
+- feeRecipient (address):
+  · Write restricted to Vault Operator.
+  · Read restricted to None.

@@ -1,0 +1,7 @@
+- As the contract owner, I want to mint tokens up to the maximum supply to control token distribution.
+- As the contract owner, I want to restrict token approvals during the initial phase to prevent unauthorized spending.
+- As the contract owner, I want to finalize the initial phase so users can freely approve spenders.
+- As the contract owner, I want to deposit/withdraw Ether from the contract to manage its funds.
+- As a token holder, I want to burn my tokens to reduce the total supply.
+- As a token holder, I want to transfer tokens securely knowing state changes are isolated to my account.
+- As a user, I want to view token metadata (name/symbol/decimals) and project information (description/website/logo) for transparency.

@@ -1,0 +1,368 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "authorizeAddress(address _addr, bool _status)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "whitelistToken(address token, bool status)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "whitelistTokenbyAuthorized(address token, bool status)": [
+        {
+            "potential_checks": "_authorized[msg.sender] == False",
+            "involved_variables": [
+                "msg.sender",
+                "_authorized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_authorized"
+            ]
+        }
+    ],
+    "enableDeposits()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "disableDeposits()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "depositToken(address token, uint256 amount)": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.value",
+                "_depositEnabled",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_depositEnabled"
+            ]
+        },
+        {
+            "potential_checks": "_whitelistedTokens[token]",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.value",
+                "_depositEnabled",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_depositEnabled"
+            ]
+        },
+        {
+            "potential_checks": "_depositEnabled",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.value",
+                "_depositEnabled",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_depositEnabled"
+            ]
+        },
+        {
+            "potential_checks": "msg.value == 0",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.value",
+                "_depositEnabled",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_depositEnabled"
+            ]
+        },
+        {
+            "potential_checks": "IERC20(token).transferFrom(msg.sender,address(this),amount) == False",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.value",
+                "_depositEnabled",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_depositEnabled"
+            ]
+        }
+    ],
+    "emergencyWithdraw(address token, uint256 amount)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "IERC20(token).balanceOf(address(this)) >= amount",
+            "involved_variables": [
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "IERC20(token).transfer(msg.sender,amount) == False",
+            "involved_variables": [
+                "this",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        }
+    ],
+    "unlockToken(address token, address to, uint256 amount)": [
+        {
+            "potential_checks": "_authorized[msg.sender]",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "_authorized",
+                "contractBalance",
+                "to",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_authorized"
+            ]
+        },
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "_authorized",
+                "contractBalance",
+                "to",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_authorized"
+            ]
+        },
+        {
+            "potential_checks": "_whitelistedTokens[token]",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "_authorized",
+                "contractBalance",
+                "to",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_authorized"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "_authorized",
+                "contractBalance",
+                "to",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_authorized"
+            ]
+        },
+        {
+            "potential_checks": "contractBalance >= amount",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "_authorized",
+                "contractBalance",
+                "to",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_authorized"
+            ]
+        },
+        {
+            "potential_checks": "IERC20(token).transfer(to,amount) == False",
+            "involved_variables": [
+                "_whitelistedTokens",
+                "amount",
+                "_ENTERED",
+                "token",
+                "_status",
+                "_authorized",
+                "contractBalance",
+                "to",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "_whitelistedTokens",
+                "_ENTERED",
+                "_status",
+                "_authorized"
+            ]
+        }
+    ],
+    "getDepositAmount(address token, address depositor) returns (uint256)": []
+}

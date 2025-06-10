@@ -1,0 +1,11 @@
+- signer (address):  
+  · Write restricted to Owner.  
+  · Read restricted to None.  
+
+- ids (mapping(uint256 ⇒ bool)):  
+  · Write restricted to `claimToken()` function (user-driven).  
+  · Read restricted to None.  
+
+- admins (mapping(address ⇒ bool)):  
+  · Write restricted to Owner.  
+  · Read restricted to None.  

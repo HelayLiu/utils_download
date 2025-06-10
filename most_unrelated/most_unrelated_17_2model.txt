@@ -1,0 +1,24 @@
+- `RewardToken` (ERC20 public):  
+  · Write restricted to the operator (via `setNewRewardToken`, `recalcRewardPerSec`) or contract owner (via `moveRewardsToUpdatedContract`).  
+  · Read restricted to None (publicly accessible).  
+- `operator` (address public):  
+  · Write restricted to the contract owner (via `setOperator`).  
+  · Read restricted to None (publicly accessible).  
+- `poolInfo` (PoolInfo[] public):  
+  · Write restricted to the operator (via `add`, `setAllocations`) or during pool updates (any caller).  
+  · Read restricted to None (publicly accessible).  
+- `userInfo` (mapping(uint256 => mapping(address => UserInfo)) public):  
+  · Write restricted to the user (via `deposit`, `withdraw`, `emergencyWithdraw`) or during reward calculations.  
+  · Read restricted to None (publicly accessible).  
+- `totalAllocPoint` (uint256 public):  
+  · Write restricted to the operator (via `add`, `setAllocations`) or during pool initialization.  
+  · Read restricted to None (publicly accessible).  
+- `poolStartTime`/`poolEndTime` (uint256 immutable public):  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to None (publicly accessible).  
+- `protocolFundAddress` (address immutable):  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to the contract (used internally in deposits).  
+- `rewardPerSecond` (uint256 public):  
+  · Write restricted to the operator (via `recalcRewardPerSec`, `setNewRewardToken`).  
+  · Read restricted to None (publicly accessible).  

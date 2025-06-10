@@ -1,0 +1,6 @@
+- As the contract owner, I want to control token trading parameters (fees, limits) to ensure fair market conditions and prevent manipulation.  
+- As a token holder, I want my wallet balance to be protected by minimum balance requirements during transfers to maintain ownership integrity.  
+- As a fee-exempt entity (marketing/development), I want exclusion from transaction fees to facilitate operational efficiency.  
+- As a liquidity provider, I want automated LP token burns to occur periodically to increase token scarcity and value.  
+- As a trader, I want enforced buy/sell limits during initial trading to prevent whale manipulation and ensure market stability.  
+- As the system, I want fee distributions to marketing, development, and burning mechanisms to sustain tokenomics.  

@@ -1,0 +1,27 @@
+- _balances: mapping(address => uint256) private  
+    · Write restricted to the token holder (via transfers/burns) or approved spenders (via transferFrom), only when the contract is not paused.  
+    · Read restricted to None (publicly accessible via balanceOf).  
+
+- _allowances: mapping(address => mapping(address => uint256)) private  
+    · Write restricted to the token holder (via approve/increaseAllowance/decreaseAllowance) or the contract (during allowance reductions in transferFrom/burnFrom).  
+    · Read restricted to None (publicly accessible via allowance).  
+
+- _totalSupply: uint256 private  
+    · Write restricted to the contract (during minting in construction and burns), only when unpaused for burns.  
+    · Read restricted to None (publicly accessible via totalSupply).  
+
+- _name: string private  
+    · Write restricted to None (immutable after construction).  
+    · Read restricted to None (publicly accessible via name).  
+
+- _symbol: string private  
+    · Write restricted to None (immutable after construction).  
+    · Read restricted to None (publicly accessible via symbol).  
+
+- _paused: bool private  
+    · Write restricted to the contract owner (via pause/unpause).  
+    · Read restricted to None (publicly accessible via paused).  
+
+- _owner: address private  
+    · Write restricted to the contract owner (via transferOwnership/renounceOwnership).  
+    · Read restricted to None (publicly accessible via owner).  

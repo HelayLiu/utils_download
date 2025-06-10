@@ -1,0 +1,31 @@
+- owner (address public):  
+  · Write restricted to the current owner.  
+  · Read restricted to None (publicly accessible).  
+
+- paused (bool public):  
+  · Write restricted to the owner (via `pause`/`unpause`).  
+  · Read restricted to None (publicly accessible).  
+
+- balances (mapping(address => uint256) internal):  
+  · Write restricted to token holders (during transfers) or the contract (for fees/minting).  
+  · Read restricted to None (via public `balanceOf`).  
+
+- tokenBlacklist (mapping(address => bool) internal):  
+  · Write restricted to the owner (via `blackListAddress`).  
+  · Read restricted to the contract (used internally for transfers).  
+
+- txFee, burnFee (uint256 public):  
+  · Write restricted to the owner (via `updateFee`).  
+  · Read restricted to None (publicly accessible).  
+
+- FeeAddress (address public):  
+  · Write restricted to the owner (via `updateFee`).  
+  · Read restricted to None (publicly accessible).  
+
+- allowed (mapping(address => mapping(address => uint256)) internal):  
+  · Write restricted to token holders (via approvals) or spenders (via `transferFrom`).  
+  · Read restricted to None (via public `allowance`).  
+
+- totalSupply (uint256 public):  
+  · Write restricted to the contract (during minting/burning).  
+  · Read restricted to None (publicly accessible).  

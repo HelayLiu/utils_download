@@ -1,0 +1,7 @@
+- As an owner, I want to configure tax rates and liquidity pools to enforce tokenomics
+- As a user, I want my token transfers to automatically handle tax calculations when interacting with liquidity pools
+- As a factory, I want to initialize token parameters securely to ensure proper contract setup
+- As a tax recipient, I want accumulated taxes auto-swapped to the pair token for revenue collection
+- As a vault, I want to securely hold project tokens to ensure supply management
+- As a liquidity pool, I want to be recognized by the contract to trigger tax processing
+- As a token holder, I want to burn tokens to manage supply and token value

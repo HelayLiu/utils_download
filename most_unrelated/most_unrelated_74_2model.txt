@@ -1,0 +1,18 @@
+- `nonces[address]`: 
+  · Write restricted to the user themselves (via `incrementNonce`) or internal contract logic.  
+  · Read restricted to None.  
+- `orderStatus[bytes32]`: 
+  · Write restricted to internal contract logic during order filling/cancellation.  
+  · Read restricted to None.  
+- `registry[uint256]`: 
+  · Write restricted to the admin (via `registerToken`).  
+  · Read restricted to None.  
+- `_adapter` (address): 
+  · Write restricted to initialization (immutable post-construction).  
+  · Read restricted to None.  
+- `_collateral` (address): 
+  · Write restricted to initialization (immutable post-construction).  
+  · Read restricted to None.  
+- `DOMAIN_SEPARATOR` (bytes32): 
+  · Write restricted to initialization (immutable).  
+  · Read restricted to None.  

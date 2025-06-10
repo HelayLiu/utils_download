@@ -1,0 +1,1061 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getGeneratedReward(uint256 _fromTime, uint256 _toTime) returns (uint256)": [
+        {
+            "potential_checks": "_fromTime >= _toTime == False",
+            "involved_variables": [
+                "_fromTime",
+                "poolEndTime",
+                "_toTime",
+                "poolStartTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolEndTime",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "_toTime >= poolEndTime == False",
+            "involved_variables": [
+                "_fromTime",
+                "poolEndTime",
+                "_toTime",
+                "poolStartTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolEndTime",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "_toTime <= poolStartTime == False",
+            "involved_variables": [
+                "_fromTime",
+                "poolEndTime",
+                "_toTime",
+                "poolStartTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolEndTime",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "_fromTime <= poolStartTime == False",
+            "involved_variables": [
+                "_fromTime",
+                "poolEndTime",
+                "_toTime",
+                "poolStartTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolEndTime",
+                "poolStartTime"
+            ]
+        }
+    ],
+    "pendingReward(uint256 _pid, address _user) returns (uint256)": [
+        {
+            "potential_checks": "block.timestamp > pool.lastRewardTime && tokenSupply != 0 == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "pool",
+                "tokenSupply",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "RewardToken.decimals() == 18 == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "pool",
+                "tokenSupply",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo"
+            ]
+        }
+    ],
+    "massUpdatePools()": [
+        {
+            "potential_checks": "pid < length == False",
+            "involved_variables": [
+                "length",
+                "pid"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "updatePool(uint256 _pid)": [
+        {
+            "potential_checks": "block.timestamp <= pool.lastRewardTime == False",
+            "involved_variables": [
+                "poolInfo",
+                "pool",
+                "tokenSupply",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "tokenSupply == 0 == False",
+            "involved_variables": [
+                "poolInfo",
+                "pool",
+                "tokenSupply",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "! pool.isStarted == False",
+            "involved_variables": [
+                "poolInfo",
+                "pool",
+                "tokenSupply",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "totalAllocPoint > 0 == False",
+            "involved_variables": [
+                "poolInfo",
+                "pool",
+                "tokenSupply",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "totalAllocPoint"
+            ]
+        }
+    ],
+    "deposit(uint256 _pid, uint256 _amount)": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= pool.lastRewardTime == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "tokenSupply == 0 == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "! pool.isStarted == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "totalAllocPoint > 0 == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "user.amount > 0",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "RewardToken.decimals() == 18 == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "_pending > 0",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "RewardToken.balanceOf(address(this)) >= _amount == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_amount",
+                "user",
+                "_ENTERED",
+                "this",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        }
+    ],
+    "withdraw(uint256 _pid, uint256 _amount)": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "user.amount >= _amount",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= pool.lastRewardTime == False",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "tokenSupply == 0 == False",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "! pool.isStarted == False",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "totalAllocPoint > 0 == False",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "RewardToken.decimals() == 18 == False",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "_pending > 0 == False",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        },
+        {
+            "potential_checks": "_amount > 0 == False",
+            "involved_variables": [
+                "RewardToken",
+                "_amount",
+                "userInfo",
+                "poolInfo",
+                "user",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "tokenSupply",
+                "_pending",
+                "block.timestamp",
+                "totalAllocPoint"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken",
+                "poolInfo",
+                "userInfo",
+                "_ENTERED",
+                "_status",
+                "totalAllocPoint"
+            ]
+        }
+    ],
+    "emergencyWithdraw(uint256 _pid)": [],
+    "add(IERC20 _token, uint256 _depFee, uint256 _allocPoint, uint256 _lastRewardTime, bool _withUpdate)": [
+        {
+            "potential_checks": "operator == msg.sender",
+            "involved_variables": [
+                "_isStarted",
+                "poolStartTime",
+                "operator",
+                "_lastRewardTime",
+                "_withUpdate",
+                "_depFee",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "_depFee < 10000",
+            "involved_variables": [
+                "_isStarted",
+                "poolStartTime",
+                "operator",
+                "_lastRewardTime",
+                "_withUpdate",
+                "_depFee",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "_withUpdate == False",
+            "involved_variables": [
+                "_isStarted",
+                "poolStartTime",
+                "operator",
+                "_lastRewardTime",
+                "_withUpdate",
+                "_depFee",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp < poolStartTime == False",
+            "involved_variables": [
+                "_isStarted",
+                "poolStartTime",
+                "operator",
+                "_lastRewardTime",
+                "_withUpdate",
+                "_depFee",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "_lastRewardTime == 0 || _lastRewardTime < block.timestamp == False",
+            "involved_variables": [
+                "_isStarted",
+                "poolStartTime",
+                "operator",
+                "_lastRewardTime",
+                "_withUpdate",
+                "_depFee",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "_isStarted == False",
+            "involved_variables": [
+                "_isStarted",
+                "poolStartTime",
+                "operator",
+                "_lastRewardTime",
+                "_withUpdate",
+                "_depFee",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolStartTime"
+            ]
+        }
+    ],
+    "setAllocations(uint256 _pid, uint256 _allocPoint)": [
+        {
+            "potential_checks": "operator == msg.sender",
+            "involved_variables": [
+                "poolInfo",
+                "pool",
+                "operator",
+                "pid",
+                "msg.sender",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "pid < length == False",
+            "involved_variables": [
+                "poolInfo",
+                "pool",
+                "operator",
+                "pid",
+                "msg.sender",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "pool.isStarted == False",
+            "involved_variables": [
+                "poolInfo",
+                "pool",
+                "operator",
+                "pid",
+                "msg.sender",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "poolInfo"
+            ]
+        }
+    ],
+    "setOperator(address _operator)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "recalcRewardPerSec()": [
+        {
+            "potential_checks": "operator == msg.sender",
+            "involved_variables": [
+                "RewardToken",
+                "poolStartTime",
+                "operator",
+                "poolTime",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "poolTime < poolStartTime == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolStartTime",
+                "operator",
+                "poolTime",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken",
+                "poolStartTime"
+            ]
+        },
+        {
+            "potential_checks": "RewardToken.decimals() == 18 == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolStartTime",
+                "operator",
+                "poolTime",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken",
+                "poolStartTime"
+            ]
+        }
+    ],
+    "setNewRewardToken(address _newToken)": [
+        {
+            "potential_checks": "operator == msg.sender",
+            "involved_variables": [
+                "operator",
+                "msg.sender",
+                "RewardToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken"
+            ]
+        },
+        {
+            "potential_checks": "RewardToken.decimals() == 6 || RewardToken.decimals() == 18",
+            "involved_variables": [
+                "operator",
+                "msg.sender",
+                "RewardToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken"
+            ]
+        },
+        {
+            "potential_checks": "RewardToken.decimals() == 18 == False",
+            "involved_variables": [
+                "operator",
+                "msg.sender",
+                "RewardToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken"
+            ]
+        }
+    ],
+    "moveRewardsToUpdatedContract(IERC20 _token, uint256 _amount, address _to)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "RewardToken",
+                "_token"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken"
+            ]
+        },
+        {
+            "potential_checks": "address(_token) == address(RewardToken) == False",
+            "involved_variables": [
+                "RewardToken",
+                "_token"
+            ],
+            "descriptions": "",
+            "references": [
+                "RewardToken"
+            ]
+        }
+    ],
+    "governanceRecoverUnsupported(IERC20 _token, uint256 _amount, address _to)": [
+        {
+            "potential_checks": "operator == msg.sender",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "pool",
+                "operator",
+                "poolEndTime",
+                "pid",
+                "_token",
+                "msg.sender",
+                "block.timestamp",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken",
+                "poolEndTime",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp < poolEndTime + 2592000",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "pool",
+                "operator",
+                "poolEndTime",
+                "pid",
+                "_token",
+                "msg.sender",
+                "block.timestamp",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken",
+                "poolEndTime",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "_token != RewardToken",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "pool",
+                "operator",
+                "poolEndTime",
+                "pid",
+                "_token",
+                "msg.sender",
+                "block.timestamp",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken",
+                "poolEndTime",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "pid < length",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "pool",
+                "operator",
+                "poolEndTime",
+                "pid",
+                "_token",
+                "msg.sender",
+                "block.timestamp",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken",
+                "poolEndTime",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "_token != pool.token == False",
+            "involved_variables": [
+                "RewardToken",
+                "poolInfo",
+                "pool",
+                "operator",
+                "poolEndTime",
+                "pid",
+                "_token",
+                "msg.sender",
+                "block.timestamp",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "operator",
+                "RewardToken",
+                "poolEndTime",
+                "poolInfo"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,2320 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "initialize(IERC20Upgradeable _rewardToken, uint256 _rewardPerBlock, uint256 _startBlock)": [
+        {
+            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "_rewardToken",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "_rewardToken",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "_initializing",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "_rewardToken",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "_rewardToken",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        }
+    ],
+    "setMunicipalityAddress(address _municipalityAddress)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setMinerNFTAddress(address _minerNFTAddress)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setWhiteListedAddresses(address _address, bool _whiteList)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setRewardTokenAddress(IERC20Upgradeable _rewardToken)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setNetGymStreetAddress(address _address)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setCompanyWallet(address _address)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBibackAddress(address _address)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setUSDTAddress(address _usdtAddress)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setTokenAddresses(address[6] _addresses)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setPoolInfo(uint256 lastRewardBlock, uint256 accRewardPerShare)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        }
+    ],
+    "updateStartBlock(uint256 _startBlock)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setIsPoolActive(bool _isPoolActive)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setMinerPublicBuildingAddress(address _minerPublicBuilding)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setRewardPerBlock(uint256 _rewardPerBlock)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        }
+    ],
+    "setStartBlock(uint256 _startBlock)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getUserMinersIdsByIndex(address _user) returns (uint256[])": [
+        {
+            "potential_checks": "i < userMiners.length() == False",
+            "involved_variables": [
+                "i",
+                "userMiners",
+                "userToMiners",
+                "EnumerableSetUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "userToMiners"
+            ]
+        }
+    ],
+    "deposit(address _user, uint256 _hashrate, bool _isWeb2)": [
+        {
+            "potential_checks": "whiteListed[msg.sender]",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        }
+    ],
+    "withdraw(address _user, uint256 _hashRate)": [
+        {
+            "potential_checks": "whiteListed[msg.sender]",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_ENTERED",
+                "_status",
+                "pool",
+                "multiplier",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "poolInfo",
+                "whiteListed"
+            ]
+        }
+    ],
+    "claim()": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "block.number > pool.lastRewardBlock && sharesTotal != 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "! (IMunicipality(municipalityAddress).minerInf(_user).totalHash != IMunicipality(municipalityAddress).minerInf(_user).freeHash || IMunicipality(municipalityAddressKB).minerInf(_user).totalHash != IMunicipality(municipalityAddressKB).minerInf(_user).freeHash) == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "pending > 0",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "_isWeb2 && (pending > amt)",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "(sent,None) = _user.call{value: 600000000000000}() == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        }
+    ],
+    "claimAll()": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "block.number > pool.lastRewardBlock && sharesTotal != 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "! (IMunicipality(municipalityAddress).minerInf(_user).totalHash != IMunicipality(municipalityAddress).minerInf(_user).freeHash || IMunicipality(municipalityAddressKB).minerInf(_user).totalHash != IMunicipality(municipalityAddressKB).minerInf(_user).freeHash) == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "pending > 0",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "_isWeb2 && (pending > amt)",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        },
+        {
+            "potential_checks": "(sent,None) = _user.call{value: 600000000000000}() == False",
+            "involved_variables": [
+                "sharesTotal",
+                "pending",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "_ENTERED",
+                "TMP_621",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "_isWeb2",
+                "pool",
+                "amt",
+                "TMP_623",
+                "TMP_618",
+                "sent",
+                "multiplier",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo",
+                "_ENTERED",
+                "_status",
+                "municipalityAddress",
+                "municipalityAddressKB"
+            ]
+        }
+    ],
+    "claimRewardsBE(address _user)": [
+        {
+            "potential_checks": "msg.sender == web2BackendAddress || msg.sender == bibackAddress",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "block.number > pool.lastRewardBlock && sharesTotal != 0 == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "! (IMunicipality(municipalityAddress).minerInf(_user).totalHash != IMunicipality(municipalityAddress).minerInf(_user).freeHash || IMunicipality(municipalityAddressKB).minerInf(_user).totalHash != IMunicipality(municipalityAddressKB).minerInf(_user).freeHash) == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "pending > 0",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "_isWeb2 && (pending > amt)",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "(sent,None) = _user.call{value: 600000000000000}() == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "web2BackendAddress",
+                "bibackAddress",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "poolInfo",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "web2BackendAddress"
+            ]
+        }
+    ],
+    "pendingReward(address _user) returns (uint256)": [
+        {
+            "potential_checks": "block.number > pool.lastRewardBlock && sharesTotal != 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "pool",
+                "TMP_623",
+                "TMP_618",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "! (IMunicipality(municipalityAddress).minerInf(_user).totalHash != IMunicipality(municipalityAddress).minerInf(_user).freeHash || IMunicipality(municipalityAddressKB).minerInf(_user).totalHash != IMunicipality(municipalityAddressKB).minerInf(_user).freeHash) == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "pool",
+                "TMP_623",
+                "TMP_618",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo"
+            ]
+        }
+    ],
+    "getMinersCount(address _user) returns (uint256)": [],
+    "getUtilityPendRew(address _user) returns (uint256)": [
+        {
+            "potential_checks": "block.number > pool.lastRewardBlock && sharesTotal != 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "pool",
+                "TMP_623",
+                "TMP_618",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "! (IMunicipality(municipalityAddress).minerInf(_user).totalHash != IMunicipality(municipalityAddress).minerInf(_user).freeHash || IMunicipality(municipalityAddressKB).minerInf(_user).totalHash != IMunicipality(municipalityAddressKB).minerInf(_user).freeHash) == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "pool",
+                "TMP_623",
+                "TMP_618",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo"
+            ]
+        }
+    ],
+    "updatePool()": [
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "pool",
+                "multiplier"
+            ],
+            "descriptions": "",
+            "references": [
+                "poolInfo"
+            ]
+        }
+    ],
+    "getPendingRewardsFromAllMiners(address _user) returns (uint256)": [
+        {
+            "potential_checks": "block.number > pool.lastRewardBlock && sharesTotal != 0 == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "pool",
+                "TMP_623",
+                "TMP_618",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo"
+            ]
+        },
+        {
+            "potential_checks": "! (IMunicipality(municipalityAddress).minerInf(_user).totalHash != IMunicipality(municipalityAddress).minerInf(_user).freeHash || IMunicipality(municipalityAddressKB).minerInf(_user).totalHash != IMunicipality(municipalityAddressKB).minerInf(_user).freeHash) == False",
+            "involved_variables": [
+                "sharesTotal",
+                "poolInfo",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "pool",
+                "TMP_623",
+                "TMP_618",
+                "TMP_616"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo"
+            ]
+        }
+    ],
+    "getUserActiveMiners(address _user) returns (uint256)": [],
+    "setTotalClaims(address _user, uint256 value)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setRewardDept(address _user, uint256 value)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getUserActiveMinersByRange(address _user, uint256 _upLimit, uint256 _lowLimit) returns (uint256[], uint256)": [
+        {
+            "potential_checks": "i < userMiners.length() == False",
+            "involved_variables": [
+                "userToMiners",
+                "i_scope_0",
+                "userMiners",
+                "EnumerableSetUpgradeable",
+                "i",
+                "j"
+            ],
+            "descriptions": "",
+            "references": [
+                "userToMiners"
+            ]
+        },
+        {
+            "potential_checks": "i_scope_0 < j == False",
+            "involved_variables": [
+                "userToMiners",
+                "i_scope_0",
+                "userMiners",
+                "EnumerableSetUpgradeable",
+                "i",
+                "j"
+            ],
+            "descriptions": "",
+            "references": [
+                "userToMiners"
+            ]
+        }
+    ],
+    "convert()": [
+        {
+            "potential_checks": "whiteListed[msg.sender] == False",
+            "involved_variables": [
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "whiteListed"
+            ]
+        }
+    ],
+    "claimVBTC(address[] _user)": [
+        {
+            "potential_checks": "whiteListed[msg.sender]",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "i < _user.length",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "block.number <= pool.lastRewardBlock == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "sharesTotal == 0 == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "multiplier <= 0 == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "block.number > pool.lastRewardBlock && sharesTotal != 0 == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "! (IMunicipality(municipalityAddress).minerInf(_user).totalHash != IMunicipality(municipalityAddress).minerInf(_user).freeHash || IMunicipality(municipalityAddressKB).minerInf(_user).totalHash != IMunicipality(municipalityAddressKB).minerInf(_user).freeHash) == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "pending > 0",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "_isWeb2 && (pending > amt)",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "(sent,None) = _user.call{value: 600000000000000}() == False",
+            "involved_variables": [
+                "poolInfo",
+                "municipalityAddress",
+                "amt",
+                "TMP_616",
+                "municipalityAddressKB",
+                "sent",
+                "sharesTotal",
+                "pending",
+                "block.number",
+                "_user",
+                "TMP_621",
+                "TMP_618",
+                "multiplier",
+                "i",
+                "_isWeb2",
+                "pool",
+                "TMP_623",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddress",
+                "municipalityAddressKB",
+                "poolInfo",
+                "whiteListed"
+            ]
+        }
+    ],
+    "utilUpdt(address _user, uint256 _referrerId, uint256 _amount)": [
+        {
+            "potential_checks": "msg.sender == municipalityAddress || msg.sender == municipalityAddressKB",
+            "involved_variables": [
+                "_amount",
+                "_user",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "utilInfo",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "utilInfo"
+            ]
+        },
+        {
+            "potential_checks": "utilInfo[_user].available >= _amount == False",
+            "involved_variables": [
+                "_amount",
+                "_user",
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "utilInfo",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "municipalityAddressKB",
+                "municipalityAddress",
+                "utilInfo"
+            ]
+        }
+    ],
+    "paymentForMystery(address _user, uint256 _amount)": [
+        {
+            "potential_checks": "whiteListed[msg.sender]",
+            "involved_variables": [
+                "_amount",
+                "_user",
+                "utilInfo",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "utilInfo",
+                "whiteListed"
+            ]
+        },
+        {
+            "potential_checks": "utilInfo[_user].available > _amount == False",
+            "involved_variables": [
+                "_amount",
+                "_user",
+                "utilInfo",
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "utilInfo",
+                "whiteListed"
+            ]
+        }
+    ],
+    "internalTopUp(address _user, uint256 _amount)": [
+        {
+            "potential_checks": "msg.sender == netGymStreetAddr == False",
+            "involved_variables": [
+                "msg.sender",
+                "netGymStreetAddr"
+            ],
+            "descriptions": "",
+            "references": [
+                "netGymStreetAddr"
+            ]
+        }
+    ],
+    "topUp(address _user, uint256 _amount, bool _isGasBack)": [
+        {
+            "potential_checks": "_isGasBack == False",
+            "involved_variables": [
+                "_isGasBack"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "topUpGrant(address _user, uint256 _amount)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "binaryDistributionSplit(address[] _users, uint256[] _amountToSplit)": [
+        {
+            "potential_checks": "msg.sender == web2BackendAddress || msg.sender == bibackAddress",
+            "involved_variables": [
+                "bibackAddress",
+                "_users",
+                "i",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "i < _users.length == False",
+            "involved_variables": [
+                "bibackAddress",
+                "_users",
+                "i",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        }
+    ],
+    "binaryCommissionDistribution(address[] _users, uint256[] _gymnetAmount, uint256[] _utilityAmount, uint256 _totalBusd)": [
+        {
+            "potential_checks": "msg.sender == web2BackendAddress || msg.sender == bibackAddress",
+            "involved_variables": [
+                "bibackAddress",
+                "_users",
+                "_totalBusd",
+                "i",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "i < _users.length == False",
+            "involved_variables": [
+                "bibackAddress",
+                "_users",
+                "_totalBusd",
+                "i",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "_totalBusd != 0 == False",
+            "involved_variables": [
+                "bibackAddress",
+                "_users",
+                "_totalBusd",
+                "i",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        }
+    ],
+    "addingUtilityBalance(address _referrer, uint256 _gymAmount, uint256 _utilityAmount, uint256 _busdAmount)": [
+        {
+            "potential_checks": "msg.sender == web2BackendAddress || msg.sender == bibackAddress",
+            "involved_variables": [
+                "bibackAddress",
+                "_gymAmount",
+                "msg.sender",
+                "web2BackendAddress",
+                "_busdAmount"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "_gymAmount != 0 == False",
+            "involved_variables": [
+                "bibackAddress",
+                "_gymAmount",
+                "msg.sender",
+                "web2BackendAddress",
+                "_busdAmount"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "_busdAmount != 0 == False",
+            "involved_variables": [
+                "bibackAddress",
+                "_gymAmount",
+                "msg.sender",
+                "web2BackendAddress",
+                "_busdAmount"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        }
+    ],
+    "claimAllRewards(address _user, uint256 _busdAmount)": [
+        {
+            "potential_checks": "msg.sender == web2BackendAddress || msg.sender == bibackAddress == False",
+            "involved_variables": [
+                "bibackAddress",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        }
+    ],
+    "updateUs(address _oldAddress, address _newAddress)": [
+        {
+            "potential_checks": "whiteListed[msg.sender] == False",
+            "involved_variables": [
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "whiteListed"
+            ]
+        }
+    ],
+    "updateUsKB(address _oldAddress, address _newAddress)": [
+        {
+            "potential_checks": "whiteListed[msg.sender] == False",
+            "involved_variables": [
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "whiteListed"
+            ]
+        }
+    ],
+    "incentiveSplitter(address _user, uint256 _USDTAmount, uint256 _gymAmount, uint256 _utilAmount, uint256 eventtype)": [
+        {
+            "potential_checks": "msg.sender == web2BackendAddress || msg.sender == bibackAddress",
+            "involved_variables": [
+                "bibackAddress",
+                "msg.sender",
+                "_USDTAmount",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "_USDTAmount <= 20000 * 1e18 == False",
+            "involved_variables": [
+                "bibackAddress",
+                "msg.sender",
+                "_USDTAmount",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        }
+    ],
+    "incentiveSplitterBulk(address[] _users, uint256[] _USDTAmount, uint256[] _gymAmount, uint256[] _utilAmount, uint256 eventtype)": [
+        {
+            "potential_checks": "msg.sender == web2BackendAddress || msg.sender == bibackAddress",
+            "involved_variables": [
+                "bibackAddress",
+                "_users",
+                "_USDTAmount",
+                "i",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "i < _users.length",
+            "involved_variables": [
+                "bibackAddress",
+                "_users",
+                "_USDTAmount",
+                "i",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        },
+        {
+            "potential_checks": "_USDTAmount[i] <= 20000 * 1e18 == False",
+            "involved_variables": [
+                "bibackAddress",
+                "_users",
+                "_USDTAmount",
+                "i",
+                "msg.sender",
+                "web2BackendAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "bibackAddress",
+                "web2BackendAddress"
+            ]
+        }
+    ],
+    "buyBack() returns (uint256)": [
+        {
+            "potential_checks": "msg.sender == netGymStreetAddr == False",
+            "involved_variables": [
+                "msg.sender",
+                "netGymStreetAddr"
+            ],
+            "descriptions": "",
+            "references": [
+                "netGymStreetAddr"
+            ]
+        }
+    ],
+    "syncBalance(address _token, uint256 _amt, address _wallet)": [
+        {
+            "potential_checks": "whiteListed[msg.sender] == False",
+            "involved_variables": [
+                "msg.sender",
+                "whiteListed"
+            ],
+            "descriptions": "",
+            "references": [
+                "whiteListed"
+            ]
+        }
+    ]
+}

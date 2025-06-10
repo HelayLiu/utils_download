@@ -1,0 +1,35 @@
+- token (address public):
+    · Write restricted to the contract owner.
+    · Read restricted to None.
+
+- thresholds (uint64 public):
+    · Write restricted to the contract owner.
+    · Read restricted to None.
+
+- decimals (uint8 public):
+    · Write restricted to the contract owner.
+    · Read restricted to None.
+
+- signumber (uint8 public):
+    · Write restricted to the contract owner.
+    · Read restricted to None.
+
+- checkthresholds (bool private):
+    · Write restricted to the contract owner.
+    · Read restricted to the contract itself.
+
+- nonces (mapping(address => uint64) public):
+    · Write restricted to users (during claims) and the contract owner (via invalidation).
+    · Read restricted to None.
+
+- signers (mapping(address => bool) private):
+    · Write restricted to the contract owner.
+    · Read restricted to the contract itself.
+
+- usedsignatures (mapping(bytes => bool) private):
+    · Write restricted to the contract (during claims) and the contract owner (via invalidation).
+    · Read restricted to the contract itself.
+
+- isBlackListed (mapping(address => bool) public):
+    · Write restricted to the contract owner.
+    · Read restricted to None.

@@ -1,0 +1,12 @@
+- addressList (address[] public):  
+    · Write restricted to the contract owner.  
+    · Read restricted to None.  
+- swapMultiFee (uint256 public):  
+    · Write restricted to the contract owner.  
+    · Read restricted to None.  
+- referralLookup (mapping(uint32 → referralInfo) public):  
+    · Write restricted to anyone (for new codes) but cannot overwrite existing registrations.  
+    · Read restricted to None.  
+- \_owner (address private from Ownable):  
+    · Write restricted to the contract itself (via ownership transfer functions).  
+    · Read restricted to the contract and public via `owner()`.  

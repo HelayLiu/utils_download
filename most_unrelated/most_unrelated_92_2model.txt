@@ -1,0 +1,31 @@
+- _balances:  
+  · Write restricted to Token Contract during transfers/minting/burning.  
+  · Read restricted to Public via balanceOf().  
+
+- _allowances:  
+  · Write restricted to Token Owner or Approved Spender.  
+  · Read restricted to Public via allowance().  
+
+- tradingEnable:  
+  · Write restricted to Contract Owner.  
+  · Read restricted to Public.  
+
+- excludeFeeList:  
+  · Write restricted to Contract Owner.  
+  · Read restricted to Public via isExcludeFee().  
+
+- feeBurn/feeMarketing/feeBuild/feePowers:  
+  · Write restricted to Token Contract (time-based adjustments).  
+  · Read restricted to Public.  
+
+- maxPancakeBuy/maxPancakeSell:  
+  · Write restricted to Token Contract (time-based adjustments).  
+  · Read restricted to Public.  
+
+- addLiquidityFlag:  
+  · Write restricted to Contract Owner (one-time operation).  
+  · Read restricted to Contract.  
+
+- lastLpBurnTime:  
+  · Write restricted to Token Contract (during LP burns).  
+  · Read restricted to Contract.  

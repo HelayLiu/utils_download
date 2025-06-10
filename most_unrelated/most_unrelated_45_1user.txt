@@ -1,0 +1,6 @@
+- As a contract admin, I want to pause/unpause the marketplace to control trading activity during emergencies or maintenance.  
+- As a seller, I want to list my NFTs for sale with specific payment tokens and durations, ensuring only I can modify or cancel my listings.  
+- As a buyer, I want to purchase listed NFTs securely, with fees distributed correctly to creators and operators.  
+- As a creator, I want to receive royalties on secondary sales, with fee percentages set by the admin.  
+- As an operator, I want to collect commissions from sales, with the withdrawal address configurable by the admin.  
+- As the admin, I want to restrict payment tokens to verified ERC20 contracts to ensure secure transactions.  

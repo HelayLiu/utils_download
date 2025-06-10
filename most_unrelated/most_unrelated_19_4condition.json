@@ -1,0 +1,677 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "tokenOfOwnerByIndex(address owner, uint256 index) returns (uint256)": [],
+    "totalSupply() returns (uint256)": [],
+    "tokenByIndex(uint256 index) returns (uint256)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "ownerOf(uint256 tokenId) returns (address)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "approve(address to, uint256 tokenId)": [
+        {
+            "potential_checks": "to != owner",
+            "involved_variables": [
+                "to",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "msg.sender == owner || isApprovedForAll(owner,msg.sender) == False",
+            "involved_variables": [
+                "to",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getApproved(uint256 tokenId) returns (address)": [
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setApprovalForAll(address operator, bool _approved)": [],
+    "isApprovedForAll(address owner, address operator) returns (bool)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "tokenURI(uint256 tokenId) returns (string)": [],
+    "setApprovalForAll(address operator, bool approved)": [
+        {
+            "potential_checks": "owner != operator == False",
+            "involved_variables": [
+                "owner",
+                "operator"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes _data)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "mint()": [
+        {
+            "potential_checks": "mintOpen > 0",
+            "involved_variables": [
+                "tokenId",
+                "msg.value",
+                "MAX_SUPPLY",
+                "from",
+                "fairSaleTokenID",
+                "to",
+                "owner",
+                "mintOpen",
+                "MINT_PRICE"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY",
+                "mintOpen",
+                "fairSaleTokenID",
+                "MINT_PRICE"
+            ]
+        },
+        {
+            "potential_checks": "msg.value >= MINT_PRICE",
+            "involved_variables": [
+                "tokenId",
+                "msg.value",
+                "MAX_SUPPLY",
+                "from",
+                "fairSaleTokenID",
+                "to",
+                "owner",
+                "mintOpen",
+                "MINT_PRICE"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY",
+                "mintOpen",
+                "fairSaleTokenID",
+                "MINT_PRICE"
+            ]
+        },
+        {
+            "potential_checks": "fairSaleTokenID <= MAX_SUPPLY",
+            "involved_variables": [
+                "tokenId",
+                "msg.value",
+                "MAX_SUPPLY",
+                "from",
+                "fairSaleTokenID",
+                "to",
+                "owner",
+                "mintOpen",
+                "MINT_PRICE"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY",
+                "mintOpen",
+                "fairSaleTokenID",
+                "MINT_PRICE"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "msg.value",
+                "MAX_SUPPLY",
+                "from",
+                "fairSaleTokenID",
+                "to",
+                "owner",
+                "mintOpen",
+                "MINT_PRICE"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY",
+                "mintOpen",
+                "fairSaleTokenID",
+                "MINT_PRICE"
+            ]
+        },
+        {
+            "potential_checks": "from != to == False",
+            "involved_variables": [
+                "tokenId",
+                "msg.value",
+                "MAX_SUPPLY",
+                "from",
+                "fairSaleTokenID",
+                "to",
+                "owner",
+                "mintOpen",
+                "MINT_PRICE"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY",
+                "mintOpen",
+                "fairSaleTokenID",
+                "MINT_PRICE"
+            ]
+        },
+        {
+            "potential_checks": "to != from",
+            "involved_variables": [
+                "tokenId",
+                "msg.value",
+                "MAX_SUPPLY",
+                "from",
+                "fairSaleTokenID",
+                "to",
+                "owner",
+                "mintOpen",
+                "MINT_PRICE"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY",
+                "mintOpen",
+                "fairSaleTokenID",
+                "MINT_PRICE"
+            ]
+        }
+    ],
+    "claim()": [
+        {
+            "potential_checks": "claimOpen > 0",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        },
+        {
+            "potential_checks": "j < bondOwned == False",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        },
+        {
+            "potential_checks": "j_scope_0 < booOwned == False",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        },
+        {
+            "potential_checks": "j_scope_1 < babyOwned == False",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        },
+        {
+            "potential_checks": "j_scope_2 < bandOwned",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        },
+        {
+            "potential_checks": "! hasClaimedRebase[_hash]",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        },
+        {
+            "potential_checks": "from != to == False",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        },
+        {
+            "potential_checks": "to != from",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "_hash",
+                "babyOwned",
+                "j",
+                "booOwned",
+                "claimOpen",
+                "j_scope_0",
+                "j_scope_2",
+                "hasClaimedRebase",
+                "owner",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": [
+                "hasClaimedRebase",
+                "claimOpen"
+            ]
+        }
+    ],
+    "eligibleForClaim(address user) returns (uint256)": [
+        {
+            "potential_checks": "j < bondOwned == False",
+            "involved_variables": [
+                "babyOwned",
+                "j",
+                "booOwned",
+                "j_scope_2",
+                "j_scope_0",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "j_scope_0 < booOwned == False",
+            "involved_variables": [
+                "babyOwned",
+                "j",
+                "booOwned",
+                "j_scope_2",
+                "j_scope_0",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "j_scope_1 < babyOwned == False",
+            "involved_variables": [
+                "babyOwned",
+                "j",
+                "booOwned",
+                "j_scope_2",
+                "j_scope_0",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "j_scope_2 < bandOwned == False",
+            "involved_variables": [
+                "babyOwned",
+                "j",
+                "booOwned",
+                "j_scope_2",
+                "j_scope_0",
+                "j_scope_1",
+                "bondOwned",
+                "bandOwned"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBaseURI(string newBaseURI)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "airdrop(address[] addrs)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "owner",
+                "length",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < length",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "owner",
+                "length",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "owner",
+                "length",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "from != to == False",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "owner",
+                "length",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "to != from",
+            "involved_variables": [
+                "tokenId",
+                "from",
+                "to",
+                "owner",
+                "length",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdrawAll()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setClaim(uint256 value)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setMint(uint256 value)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

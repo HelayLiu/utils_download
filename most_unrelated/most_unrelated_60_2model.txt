@@ -1,0 +1,7 @@
+- _IMPLEMENTATION_SLOT (bytes32 internal):  
+  · Write restricted to Admin.  
+  · Read restricted to Admin (via `implementation()`) and public (via `lib()`).  
+
+- _ADMIN_SLOT (bytes32 internal):  
+  · Write restricted to Admin.  
+  · Read restricted to Admin (via `admin()`).  

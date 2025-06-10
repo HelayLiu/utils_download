@@ -1,0 +1,686 @@
+{
+    "approveAndCall(address spender, uint256 value, bytes data) returns (bool)": [],
+    "transferAndCall(address to, uint256 value, bytes data) returns (bool)": [
+        {
+            "potential_checks": "balance >= value == False",
+            "involved_variables": [
+                "balance",
+                "value",
+                "this",
+                "to"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "nonces(address owner) returns (uint256)": [],
+    "totalSupply() returns (uint256)": [],
+    "decimals() returns (uint8)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "permit(address target, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "target",
+                "hashStruct",
+                "deadline",
+                "r",
+                "s",
+                "v",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s) == False",
+            "involved_variables": [
+                "target",
+                "hashStruct",
+                "deadline",
+                "r",
+                "s",
+                "v",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferWithPermit(address target, address to, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) returns (bool)": [
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "balance",
+                "target",
+                "this",
+                "hashStruct",
+                "deadline",
+                "to",
+                "r",
+                "s",
+                "v",
+                "block.timestamp",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s)",
+            "involved_variables": [
+                "balance",
+                "target",
+                "this",
+                "hashStruct",
+                "deadline",
+                "to",
+                "r",
+                "s",
+                "v",
+                "block.timestamp",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "balance >= value == False",
+            "involved_variables": [
+                "balance",
+                "target",
+                "this",
+                "hashStruct",
+                "deadline",
+                "to",
+                "r",
+                "s",
+                "v",
+                "block.timestamp",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "owner() returns (address)": [
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "mpc() returns (address)": [
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "setVaultOnly(bool enabled)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "initVault(address _vault)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "_init"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "_init"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "_init"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "_init"
+            ]
+        },
+        {
+            "potential_checks": "_init == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "_init"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "_init"
+            ]
+        }
+    ],
+    "setMinter(address _auth)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "setVault(address _vault)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "applyVault()": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "applyMinter()": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "delayMinter"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "delayMinter"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "delayMinter"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "delayMinter"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayMinter == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "delayMinter"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "delayMinter"
+            ]
+        }
+    ],
+    "revokeMinter(address _auth)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "getAllMinters() returns (address[])": [],
+    "changeVault(address newVault) returns (bool)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "newVault"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "newVault"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "changeMPCOwner(address newVault) returns (bool)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "newVault"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "newVault"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "mint(address to, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "isMinter[msg.sender]",
+            "involved_variables": [
+                "msg.sender",
+                "account",
+                "isMinter"
+            ],
+            "descriptions": "",
+            "references": [
+                "isMinter"
+            ]
+        }
+    ],
+    "burn(address from, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "isMinter[msg.sender]",
+            "involved_variables": [
+                "account",
+                "msg.sender",
+                "from",
+                "isMinter"
+            ],
+            "descriptions": "",
+            "references": [
+                "isMinter"
+            ]
+        }
+    ],
+    "Swapin(bytes32 txhash, address account, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "isMinter[msg.sender]",
+            "involved_variables": [
+                "msg.sender",
+                "account",
+                "isMinter"
+            ],
+            "descriptions": "",
+            "references": [
+                "isMinter"
+            ]
+        }
+    ],
+    "Swapout(uint256 amount, address bindaddr) returns (bool)": [
+        {
+            "potential_checks": "_vaultOnly",
+            "involved_variables": [
+                "bindaddr",
+                "account",
+                "_vaultOnly"
+            ],
+            "descriptions": "",
+            "references": [
+                "_vaultOnly"
+            ]
+        }
+    ],
+    "depositWithPermit(address target, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s, address to) returns (uint256)": [
+        {
+            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
+            "involved_variables": [
+                "underlying",
+                "account",
+                "this"
+            ],
+            "descriptions": "",
+            "references": [
+                "underlying"
+            ]
+        }
+    ],
+    "depositWithTransferPermit(address target, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s, address to) returns (uint256)": [
+        {
+            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
+            "involved_variables": [
+                "underlying",
+                "account",
+                "this"
+            ],
+            "descriptions": "",
+            "references": [
+                "underlying"
+            ]
+        }
+    ],
+    "deposit() returns (uint256)": [
+        {
+            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
+            "involved_variables": [
+                "underlying",
+                "account",
+                "this"
+            ],
+            "descriptions": "",
+            "references": [
+                "underlying"
+            ]
+        }
+    ],
+    "deposit(uint256 amount) returns (uint256)": [
+        {
+            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
+            "involved_variables": [
+                "underlying",
+                "account",
+                "this"
+            ],
+            "descriptions": "",
+            "references": [
+                "underlying"
+            ]
+        }
+    ],
+    "deposit(uint256 amount, address to) returns (uint256)": [
+        {
+            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
+            "involved_variables": [
+                "underlying",
+                "account",
+                "this"
+            ],
+            "descriptions": "",
+            "references": [
+                "underlying"
+            ]
+        }
+    ],
+    "depositVault(uint256 amount, address to) returns (uint256)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "this",
+                "delayVault",
+                "underlying",
+                "account",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "underlying"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "this",
+                "delayVault",
+                "underlying",
+                "account",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "underlying"
+            ]
+        },
+        {
+            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
+            "involved_variables": [
+                "this",
+                "delayVault",
+                "underlying",
+                "account",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault",
+                "underlying"
+            ]
+        }
+    ],
+    "withdraw() returns (uint256)": [],
+    "withdraw(uint256 amount) returns (uint256)": [],
+    "withdraw(uint256 amount, address to) returns (uint256)": [],
+    "withdrawVault(address from, uint256 amount, address to) returns (uint256)": [
+        {
+            "potential_checks": "msg.sender == mpc()",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= delayVault == False",
+            "involved_variables": [
+                "delayVault",
+                "msg.sender",
+                "block.timestamp",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "delayVault"
+            ]
+        }
+    ],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "transfer(address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "balance >= value == False",
+            "involved_variables": [
+                "balance",
+                "value",
+                "this",
+                "to"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "from != msg.sender",
+            "involved_variables": [
+                "allowed",
+                "this",
+                "to",
+                "msg.sender",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "allowed != type()(uint256).max",
+            "involved_variables": [
+                "allowed",
+                "this",
+                "to",
+                "msg.sender",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "allowed >= value == False",
+            "involved_variables": [
+                "allowed",
+                "this",
+                "to",
+                "msg.sender",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

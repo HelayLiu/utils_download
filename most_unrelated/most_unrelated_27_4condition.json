@@ -1,0 +1,838 @@
+{
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "uri(uint256 ) returns (string)": [],
+    "balanceOf(address account, uint256 id) returns (uint256)": [],
+    "balanceOfBatch(address[] accounts, uint256[] ids) returns (uint256[])": [],
+    "setApprovalForAll(address operator, bool approved)": [],
+    "isApprovedForAll(address account, address operator) returns (bool)": [],
+    "safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes data)": [],
+    "safeBatchTransferFrom(address from, address to, uint256[] ids, uint256[] amounts, bytes data)": [],
+    "uri(uint256 id) returns (string)": [],
+    "multicall(bytes[] data) returns (bytes[])": [],
+    "isTrustedForwarder(address forwarder) returns (bool)": [],
+    "claim(address _receiver, uint256 _tokenId, uint256 _quantity, address _currency, uint256 _pricePerToken, IDrop1155.AllowlistProof _allowlistProof, bytes _data)": [
+        {
+            "potential_checks": "i > conditionList.currentStartId == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "currentClaimPhase.merkleRoot != bytes32(0) == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "isOverride == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "_currency != claimCurrency || _pricePerToken != claimPrice == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "_quantity == 0 || (_quantity + supplyClaimedByWallet > claimLimit) == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "currentClaimPhase.supplyClaimed + _quantity > currentClaimPhase.maxClaimableSupply == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "currentClaimPhase.startTimestamp > block.timestamp == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "isTrustedForwarder(msg.sender)",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "_pricePerToken == 0 == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "_currency == CurrencyTransferLib.NATIVE_TOKEN == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "msg.value == 0 == False",
+            "involved_variables": [
+                "maxTotalSupply",
+                "validMsgValue",
+                "totalSupply",
+                "block.timestamp",
+                "claimLimit",
+                "_primarySaleRecipient",
+                "CurrencyTransferLib",
+                "conditionList",
+                "supplyClaimedByWallet",
+                "claimCondition",
+                "activeConditionId",
+                "isOverride",
+                "_quantity",
+                "i",
+                "_pricePerToken",
+                "_allowlistProof",
+                "_currency",
+                "_tokenId",
+                "_saleRecipient",
+                "currentClaimPhase",
+                "msg.sender",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxTotalSupply",
+                "totalSupply",
+                "claimCondition"
+            ]
+        }
+    ],
+    "setClaimConditions(uint256 _tokenId, IClaimCondition.ClaimCondition[] _conditions, bool _resetClaimEligibility)": [
+        {
+            "potential_checks": "! _canSetClaimConditions()",
+            "involved_variables": [
+                "i",
+                "_resetClaimEligibility",
+                "_conditions",
+                "lastConditionStartTimestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_resetClaimEligibility == False",
+            "involved_variables": [
+                "i",
+                "_resetClaimEligibility",
+                "_conditions",
+                "lastConditionStartTimestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < _conditions.length",
+            "involved_variables": [
+                "i",
+                "_resetClaimEligibility",
+                "_conditions",
+                "lastConditionStartTimestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i == 0 || lastConditionStartTimestamp < _conditions[i].startTimestamp == False",
+            "involved_variables": [
+                "i",
+                "_resetClaimEligibility",
+                "_conditions",
+                "lastConditionStartTimestamp"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "verifyClaim(uint256 _conditionId, address _claimer, uint256 _tokenId, uint256 _quantity, address _currency, uint256 _pricePerToken, IDrop1155.AllowlistProof _allowlistProof) returns (bool)": [
+        {
+            "potential_checks": "currentClaimPhase.merkleRoot != bytes32(0) == False",
+            "involved_variables": [
+                "claimLimit",
+                "supplyClaimedByWallet",
+                "_currency",
+                "isOverride",
+                "_pricePerToken",
+                "currentClaimPhase",
+                "_quantity",
+                "block.timestamp",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "isOverride == False",
+            "involved_variables": [
+                "claimLimit",
+                "supplyClaimedByWallet",
+                "_currency",
+                "isOverride",
+                "_pricePerToken",
+                "currentClaimPhase",
+                "_quantity",
+                "block.timestamp",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_currency != claimCurrency || _pricePerToken != claimPrice == False",
+            "involved_variables": [
+                "claimLimit",
+                "supplyClaimedByWallet",
+                "_currency",
+                "isOverride",
+                "_pricePerToken",
+                "currentClaimPhase",
+                "_quantity",
+                "block.timestamp",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_quantity == 0 || (_quantity + supplyClaimedByWallet > claimLimit) == False",
+            "involved_variables": [
+                "claimLimit",
+                "supplyClaimedByWallet",
+                "_currency",
+                "isOverride",
+                "_pricePerToken",
+                "currentClaimPhase",
+                "_quantity",
+                "block.timestamp",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "currentClaimPhase.supplyClaimed + _quantity > currentClaimPhase.maxClaimableSupply == False",
+            "involved_variables": [
+                "claimLimit",
+                "supplyClaimedByWallet",
+                "_currency",
+                "isOverride",
+                "_pricePerToken",
+                "currentClaimPhase",
+                "_quantity",
+                "block.timestamp",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "currentClaimPhase.startTimestamp > block.timestamp == False",
+            "involved_variables": [
+                "claimLimit",
+                "supplyClaimedByWallet",
+                "_currency",
+                "isOverride",
+                "_pricePerToken",
+                "currentClaimPhase",
+                "_quantity",
+                "block.timestamp",
+                "claimCurrency",
+                "claimPrice"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getActiveClaimConditionId(uint256 _tokenId) returns (uint256)": [
+        {
+            "potential_checks": "i > conditionList.currentStartId",
+            "involved_variables": [
+                "i",
+                "block.timestamp",
+                "claimCondition",
+                "conditionList"
+            ],
+            "descriptions": "",
+            "references": [
+                "claimCondition"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= conditionList.conditions[i - 1].startTimestamp",
+            "involved_variables": [
+                "i",
+                "block.timestamp",
+                "claimCondition",
+                "conditionList"
+            ],
+            "descriptions": "",
+            "references": [
+                "claimCondition"
+            ]
+        }
+    ],
+    "getClaimConditionById(uint256 _tokenId, uint256 _conditionId) returns (IClaimCondition.ClaimCondition)": [],
+    "getSupplyClaimedByWallet(uint256 _tokenId, uint256 _conditionId, address _claimer) returns (uint256)": [],
+    "claim(address receiver, uint256 tokenId, uint256 quantity, address currency, uint256 pricePerToken, IDrop1155.AllowlistProof allowlistProof, bytes data)": [],
+    "setClaimConditions(uint256 tokenId, IClaimCondition.ClaimCondition[] phases, bool resetClaimEligibility)": [],
+    "getRoleMember(bytes32 role, uint256 index) returns (address)": [],
+    "getRoleMemberCount(bytes32 role) returns (uint256)": [],
+    "hasRole(bytes32 role, address account) returns (bool)": [],
+    "hasRoleWithSwitch(bytes32 role, address account) returns (bool)": [],
+    "getRoleAdmin(bytes32 role) returns (bytes32)": [],
+    "grantRole(bytes32 role, address account)": [],
+    "revokeRole(bytes32 role, address account)": [],
+    "renounceRole(bytes32 role, address account)": [],
+    "lazyMint(uint256 _amount, string _baseURIForTokens, bytes _data) returns (uint256)": [],
+    "getBaseURICount() returns (uint256)": [],
+    "getBatchIdAtIndex(uint256 _index) returns (uint256)": [],
+    "lazyMint(uint256 amount, string baseURIForTokens, bytes extraData) returns (uint256)": [],
+    "owner() returns (address)": [],
+    "setOwner(address _newOwner)": [],
+    "primarySaleRecipient() returns (address)": [],
+    "setPrimarySaleRecipient(address _saleRecipient)": [],
+    "royaltyInfo(uint256 tokenId, uint256 salePrice) returns (address, uint256)": [],
+    "getRoyaltyInfoForToken(uint256 _tokenId) returns (address, uint16)": [],
+    "getDefaultRoyaltyInfo() returns (address, uint16)": [],
+    "setDefaultRoyaltyInfo(address _royaltyRecipient, uint256 _royaltyBps)": [],
+    "setRoyaltyInfoForToken(uint256 _tokenId, address _recipient, uint256 _bps)": [],
+    "setRoyaltyInfoForToken(uint256 tokenId, address recipient, uint256 bps)": [],
+    "getRoyaltyInfoForToken(uint256 tokenId) returns (address, uint16)": [],
+    "getPlatformFeeInfo() returns (address, uint16)": [],
+    "getFlatPlatformFeeInfo() returns (address, uint256)": [],
+    "getPlatformFeeType() returns (IPlatformFee.PlatformFeeType)": [],
+    "setPlatformFeeInfo(address _platformFeeRecipient, uint256 _platformFeeBps)": [],
+    "setFlatPlatformFeeInfo(address _platformFeeRecipient, uint256 _flatFee)": [],
+    "setPlatformFeeType(IPlatformFee.PlatformFeeType _feeType)": [],
+    "setContractURI(string _uri)": [],
+    "contractURI() returns (string)": [],
+    "initialize(address _defaultAdmin, string _name, string _symbol, string _contractURI, address[] _trustedForwarders, address _saleRecipient, address _royaltyRecipient, uint128 _royaltyBps, uint128 _platformFeeBps, address _platformFeeRecipient)": [
+        {
+            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "_initializing == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        }
+    ],
+    "uri(uint256 _tokenId) returns (string)": [
+        {
+            "potential_checks": "i < numOfTokenBatches",
+            "involved_variables": [
+                "i",
+                "indices",
+                "numOfTokenBatches",
+                "_tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_tokenId < indices[i]",
+            "involved_variables": [
+                "i",
+                "indices",
+                "numOfTokenBatches",
+                "_tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "contractType() returns (bytes32)": [],
+    "contractVersion() returns (uint8)": [],
+    "setMaxTotalSupply(uint256 _tokenId, uint256 _maxTotalSupply)": [
+        {
+            "potential_checks": "! _hasRole[role][account] == False",
+            "involved_variables": [
+                "role",
+                "_hasRole",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_hasRole"
+            ]
+        }
+    ],
+    "setSaleRecipientForToken(uint256 _tokenId, address _saleRecipient)": [
+        {
+            "potential_checks": "! _hasRole[role][account] == False",
+            "involved_variables": [
+                "role",
+                "_hasRole",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_hasRole"
+            ]
+        }
+    ],
+    "updateBatchBaseURI(uint256 _index, string _uri)": [
+        {
+            "potential_checks": "! _hasRole[role][account]",
+            "involved_variables": [
+                "role",
+                "_hasRole",
+                "batchFrozen",
+                "account",
+                "_batchId"
+            ],
+            "descriptions": "",
+            "references": [
+                "_hasRole",
+                "batchFrozen"
+            ]
+        },
+        {
+            "potential_checks": "batchFrozen[_batchId] == False",
+            "involved_variables": [
+                "role",
+                "_hasRole",
+                "batchFrozen",
+                "account",
+                "_batchId"
+            ],
+            "descriptions": "",
+            "references": [
+                "_hasRole",
+                "batchFrozen"
+            ]
+        }
+    ],
+    "freezeBatchBaseURI(uint256 _index)": [
+        {
+            "potential_checks": "! _hasRole[role][account]",
+            "involved_variables": [
+                "baseURI",
+                "role",
+                "_hasRole",
+                "baseURIForBatch",
+                "account",
+                "TMP_1358",
+                "_batchId"
+            ],
+            "descriptions": "",
+            "references": [
+                "_hasRole",
+                "baseURI"
+            ]
+        },
+        {
+            "potential_checks": "bytes(baseURIForBatch).length == 0 == False",
+            "involved_variables": [
+                "baseURI",
+                "role",
+                "_hasRole",
+                "baseURIForBatch",
+                "account",
+                "TMP_1358",
+                "_batchId"
+            ],
+            "descriptions": "",
+            "references": [
+                "_hasRole",
+                "baseURI"
+            ]
+        }
+    ],
+    "nextTokenIdToMint() returns (uint256)": [],
+    "burnBatch(address account, uint256[] ids, uint256[] values)": [
+        {
+            "potential_checks": "account == msg.sender || isApprovedForAll(account,msg.sender)",
+            "involved_variables": [
+                "amounts",
+                "transferRole",
+                "ids",
+                "account",
+                "to",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferRole"
+            ]
+        },
+        {
+            "potential_checks": "ids.length == amounts.length",
+            "involved_variables": [
+                "amounts",
+                "transferRole",
+                "ids",
+                "account",
+                "to",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferRole"
+            ]
+        },
+        {
+            "potential_checks": "isTrustedForwarder(msg.sender)",
+            "involved_variables": [
+                "amounts",
+                "transferRole",
+                "ids",
+                "account",
+                "to",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferRole"
+            ]
+        },
+        {
+            "potential_checks": "hasRole(transferRole,from) || hasRole(transferRole,to) == False",
+            "involved_variables": [
+                "amounts",
+                "transferRole",
+                "ids",
+                "account",
+                "to",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferRole"
+            ]
+        }
+    ]
+}

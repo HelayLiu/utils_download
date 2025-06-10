@@ -1,0 +1,7 @@
+- As a bridge contract, I want to mint tokens within my rate limits so I can provide tokens to users on another chain.  
+- As a bridge contract, I want to burn tokens within my rate limits so I can release tokens on another chain.  
+- As the factory owner, I want to set the lockbox address so the lockbox can mint/burn tokens without rate limits.  
+- As the contract owner, I want to configure bridge limits so I can control token minting/burning throughput.  
+- As a token holder, I want to transfer tokens securely so I can make payments and interact with dApps.  
+- As a user, I want to use permit approvals so I can save gas on token approvals.  
+- As any user, I want to view bridge limits so I can understand token movement constraints.  

@@ -1,0 +1,18 @@
+- `_balances: mapping(address => uint256) private`:  
+  · Write restricted to transfer functions (users/contract during fees).  
+  · Read restricted to public `balanceOf` (no integrity hash).  
+- `_allowances: mapping(address => mapping(address => uint256)) private`:  
+  · Write restricted to `approve`/`transferFrom` (users only).  
+  · Read restricted to public `allowance`.  
+- `bots: mapping(address => bool) private`:  
+  · Write restricted to owner (via `addBots`/`delBots`).  
+  · Read restricted to public `isBot`.  
+- `_maxTxAmount`/`_maxWalletSize: uint256 public`:  
+  · Write restricted to owner (via `removeLimits`).  
+  · Read restricted to public (no access control).  
+- `_finalBuyTax`/`_finalSellTax: uint256 private`:  
+  · Write restricted to tax wallet (via `reduceFee`).  
+  · Read restricted to contract logic.  
+- `uniswapV2Pair: address private`:  
+  · Write restricted to owner (during `openTrading`).  
+  · Read restricted to contract logic.  

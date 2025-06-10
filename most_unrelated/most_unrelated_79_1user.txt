@@ -1,0 +1,5 @@
+- As a user, I want to check-in without token transfers to record my participation in the system.  
+- As a user, I want to create/interface with agents by transferring tokens to recipients while ensuring my activity status is updated securely.  
+- As a contract owner, I want to manage ownership (transfer/renounce) to control administrative privileges exclusively.  
+- As a token holder, I want my STP token transfers validated to prevent state corruption during agent interactions.  
+- As any participant, I want to query user activity statuses publicly while ensuring write access remains user-restricted.  

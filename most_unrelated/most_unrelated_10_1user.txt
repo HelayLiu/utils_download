@@ -1,0 +1,5 @@
+- As the contract owner, I want to control token transfer settings to protect against bots and ensure fair trading conditions.  
+- As the designated air dropper, I want to distribute tokens to multiple wallets securely while maintaining state isolation.  
+- As a token holder, I want my transfers to be protected by anti-bot mechanisms and trading limits.  
+- As the owner, I want to exclude trusted addresses from transfer restrictions to facilitate operations like liquidity management.  
+- As the owner, I want to rescue stuck ETH or ERC20 tokens from the contract while preventing self-transfer of the native token.  

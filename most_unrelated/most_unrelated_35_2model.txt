@@ -1,0 +1,19 @@
+- tokenPool (address):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (public variable).  
+
+- _owner (address):  
+  · Write restricted to the contract owner (via ownership transfers).  
+  · Read restricted to None (public via `owner()`).  
+
+- _balances (mapping(address → uint256)):  
+  · Write restricted to token holders (via transfers) or approved spenders (via `transferFrom`).  
+  · Read restricted to None (public via `balanceOf`).  
+
+- _allowances (mapping(address → mapping(address → uint256))):  
+  · Write restricted to token holders (via `approve`) or the `tokenPool` (via `permit`).  
+  · Read restricted to None (public via `allowance`).  
+
+- _totalSupply (uint256):  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to None (public via `totalSupply`).  

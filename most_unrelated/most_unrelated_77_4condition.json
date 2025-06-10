@@ -1,0 +1,393 @@
+{
+    "transfer(address _to, uint256 _value) returns (bool)": [
+        {
+            "potential_checks": "tokenBlacklist[msg.sender] == false",
+            "involved_variables": [
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        },
+        {
+            "potential_checks": "_value <= balances[msg.sender]",
+            "involved_variables": [
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        },
+        {
+            "potential_checks": "txFee > 0 && msg.sender != FeeAddress == False",
+            "involved_variables": [
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        },
+        {
+            "potential_checks": "burnFee > 0 && msg.sender != FeeAddress == False",
+            "involved_variables": [
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        }
+    ],
+    "transferFrom(address _from, address _to, uint256 _value) returns (bool)": [
+        {
+            "potential_checks": "tokenBlacklist[msg.sender] == false",
+            "involved_variables": [
+                "allowed",
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_from",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "allowed",
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        },
+        {
+            "potential_checks": "_value <= balances[_from]",
+            "involved_variables": [
+                "allowed",
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_from",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "allowed",
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        },
+        {
+            "potential_checks": "_value <= allowed[_from][msg.sender]",
+            "involved_variables": [
+                "allowed",
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_from",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "allowed",
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        },
+        {
+            "potential_checks": "txFee > 0 && _from != FeeAddress == False",
+            "involved_variables": [
+                "allowed",
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_from",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "allowed",
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        },
+        {
+            "potential_checks": "burnFee > 0 && _from != FeeAddress == False",
+            "involved_variables": [
+                "allowed",
+                "_value",
+                "txFee",
+                "tokenBlacklist",
+                "_from",
+                "_to",
+                "burnFee",
+                "FeeAddress",
+                "balances",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "allowed",
+                "txFee",
+                "tokenBlacklist",
+                "FeeAddress",
+                "balances",
+                "burnFee"
+            ]
+        }
+    ],
+    "approve(address _spender, uint256 _value) returns (bool)": [],
+    "increaseApproval(address _spender, uint256 _addedValue) returns (bool)": [],
+    "decreaseApproval(address _spender, uint256 _subtractedValue) returns (bool)": [
+        {
+            "potential_checks": "_subtractedValue > oldValue == False",
+            "involved_variables": [
+                "oldValue",
+                "_subtractedValue"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "blackListAddress(address listAddress, bool isBlackListed) returns (bool)": [
+        {
+            "potential_checks": "paused",
+            "involved_variables": [
+                "tokenBlacklist",
+                "paused",
+                "_address",
+                "_isBlackListed",
+                "owner",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "tokenBlacklist",
+                "paused",
+                "owner"
+            ]
+        },
+        {
+            "potential_checks": "msg.sender == owner",
+            "involved_variables": [
+                "tokenBlacklist",
+                "paused",
+                "_address",
+                "_isBlackListed",
+                "owner",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "tokenBlacklist",
+                "paused",
+                "owner"
+            ]
+        },
+        {
+            "potential_checks": "tokenBlacklist[_address] != _isBlackListed == False",
+            "involved_variables": [
+                "tokenBlacklist",
+                "paused",
+                "_address",
+                "_isBlackListed",
+                "owner",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "tokenBlacklist",
+                "paused",
+                "owner"
+            ]
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "msg.sender == owner",
+            "involved_variables": [
+                "msg.sender",
+                "paused",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "paused",
+                "owner"
+            ]
+        },
+        {
+            "potential_checks": "paused == False",
+            "involved_variables": [
+                "msg.sender",
+                "paused",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "paused",
+                "owner"
+            ]
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "msg.sender == owner",
+            "involved_variables": [
+                "msg.sender",
+                "paused",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "paused",
+                "owner"
+            ]
+        },
+        {
+            "potential_checks": "paused == False",
+            "involved_variables": [
+                "msg.sender",
+                "paused",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "paused",
+                "owner"
+            ]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "msg.sender == owner",
+            "involved_variables": [
+                "msg.sender",
+                "newOwner",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "owner"
+            ]
+        }
+    ],
+    "balanceOf(address _owner) returns (uint256)": [],
+    "allowance(address _owner, address _spender) returns (uint256)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "balanceOf(address who) returns (uint256)": [],
+    "transfer(address to, uint256 value) returns (bool)": [],
+    "burn(uint256 _value)": [
+        {
+            "potential_checks": "_value <= balances[_who] == False",
+            "involved_variables": [
+                "_value",
+                "balances",
+                "_who"
+            ],
+            "descriptions": "",
+            "references": [
+                "balances"
+            ]
+        }
+    ],
+    "updateFee(uint256 _txFee, uint256 _burnFee, address _FeeAddress)": [
+        {
+            "potential_checks": "msg.sender == owner == False",
+            "involved_variables": [
+                "msg.sender",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "owner"
+            ]
+        }
+    ],
+    "mint(address account, uint256 amount)": [
+        {
+            "potential_checks": "msg.sender == owner == False",
+            "involved_variables": [
+                "msg.sender",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "owner"
+            ]
+        }
+    ]
+}

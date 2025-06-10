@@ -1,0 +1,5 @@
+- As a token holder, I want to securely transfer my tokens to other addresses while ensuring only I can initiate transfers from my account to prevent unauthorized transactions.  
+- As a spender, I want to be approved to spend tokens on behalf of holders, with adjustable allowances that only the token owner can modify.  
+- As any user, I want to view token metadata (name/symbol/decimals) and global supply without restrictions.  
+- As a token holder, I want my balance and allowance data to be isolated such that only I (or approved spenders) can authorize deductions.  
+- As a contract user, I expect all state changes to enforce zero-address checks to prevent token lockups or burns.  

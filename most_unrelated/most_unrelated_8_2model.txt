@@ -1,0 +1,27 @@
+- `tokenInfo` (private):
+  · Write restricted to contract deployment (constructor).
+  · Read restricted to None (public via `getTokenInfo`).
+  
+- `isExcludeFromFee` (public mapping):
+  · Write restricted to Contract Owner.
+  · Read restricted to None (public mapping).
+  
+- `tradingEnabled` (public):
+  · Write restricted to Contract Owner.
+  · Read restricted to None.
+  
+- `_balances` (private inherited):
+  · Write restricted to contract internal functions (`_transfer`, `_mint`).
+  · Read restricted to None (public via `balanceOf`).
+  
+- `_allowances` (private inherited):
+  · Write restricted to contract internal functions (`_approve`, `_spendAllowance`).
+  · Read restricted to None (public via `allowance`).
+  
+- `_owner` (private inherited):
+  · Write restricted to Ownable functions (onlyOwner).
+  · Read restricted to None (public via `owner`).
+  
+- `swapPair` (public):
+  · Write restricted to contract deployment (constructor).
+  · Read restricted to None.

@@ -1,0 +1,462 @@
+{
+    "proxiableUUID() returns (bytes32)": [],
+    "upgradeTo(address newImplementation)": [
+        {
+            "potential_checks": "address(this) != __self",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "_getImplementation() == __self",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "data.length > 0 || forceCall == False",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        }
+    ],
+    "upgradeToAndCall(address newImplementation, bytes data)": [
+        {
+            "potential_checks": "address(this) != __self",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "_getImplementation() == __self",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "data.length > 0 || forceCall == False",
+            "involved_variables": [
+                "role",
+                "_ROLLBACK_SLOT",
+                "forceCall",
+                "__self",
+                "this",
+                "newImplementation",
+                "AddressUpgradeable",
+                "data",
+                "StorageSlotUpgradeable",
+                "account",
+                "TMP_957"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "hasRole(bytes32 role, address account) returns (bool)": [],
+    "getRoleAdmin(bytes32 role) returns (bytes32)": [],
+    "grantRole(bytes32 role, address account)": [],
+    "revokeRole(bytes32 role, address account)": [],
+    "renounceRole(bytes32 role, address account)": [],
+    "paused() returns (bool)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+        {
+            "potential_checks": "currentAllowance >= subtractedValue",
+            "involved_variables": [
+                "subtractedValue",
+                "currentAllowance",
+                "spender",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "cap() returns (uint256)": [],
+    "initialize(string tokenName, string tokenSymbol, uint256 maxSupply, address owner, address distributor)": [
+        {
+            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
+            "involved_variables": [
+                "_initializing",
+                "_initialized",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initializing",
+                "_initialized",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "_initializing == False",
+            "involved_variables": [
+                "_initializing",
+                "_initialized",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        }
+    ],
+    "mint(address to, uint256 amount)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "amount",
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC20Upgradeable.totalSupply() + amount <= cap()",
+            "involved_variables": [
+                "amount",
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "amount",
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "burn(uint256 amount)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "accountBalance",
+                "amount",
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "accountBalance",
+                "amount",
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "accountBalance >= amount == False",
+            "involved_variables": [
+                "accountBalance",
+                "amount",
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "! paused()",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

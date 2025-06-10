@@ -1,0 +1,5 @@
+- As a player, I want to securely place bets on slide ranges so my winnings are calculated fairly using verifiable randomness.
+- As the contract owner, I want to configure VRF settings and game parameters to ensure operational integrity and treasury sustainability.
+- As the treasury, I want to isolate payout operations so only verified game outcomes trigger fund disbursements.
+- As the rake distributor, I want to receive fees from games to distribute rewards to referrers and the platform.
+- As a player, I want my game state isolated until VRF fulfillment completes to prevent tampering with active games.

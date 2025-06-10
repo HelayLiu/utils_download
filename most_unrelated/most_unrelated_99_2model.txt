@@ -1,0 +1,15 @@
+- `token` (address): 
+  · Write restricted to None (immutable).
+  · Read restricted to None.
+- `signer` (address):
+  · Write restricted to the contract owner.
+  · Read restricted to None.
+- `claimRoot` (bytes32):
+  · Write restricted to the contract owner.
+  · Read restricted to None.
+- `staking` (address):
+  · Write restricted to None (immutable).
+  · Read restricted to None.
+- `claimed` (mapping):
+  · Write restricted to the beneficiary (via proof/signature validation).
+  · Read restricted to None.

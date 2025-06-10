@@ -1,0 +1,31 @@
+- `claimRecords`: mapping(uint256 => ClaimInfo) private
+    · Write restricted to the user (during claim creation), admin (freezing), and contract (withdrawal completion).
+    · Read restricted to None (public via `getClaimInfo`).
+
+- `adminAddress`: address public
+    · Write restricted to the contract owner.
+    · Read restricted to None.
+
+- `_signerArray`: address[] private
+    · Write restricted to the contract owner.
+    · Read restricted to None (public via `getSignerAddress`).
+
+- `_signerMap`: mapping(address => bool) private
+    · Write restricted to the contract owner.
+    · Read restricted to None.
+
+- `signerThreshold`: uint256 public
+    · Write restricted to the contract owner.
+    · Read restricted to None.
+
+- `aethirTokenAdress`: address public
+    · Write restricted to None (immutable after initialization).
+    · Read restricted to None.
+
+- `_minCliffSeconds`: uint48 private
+    · Write restricted to the contract owner.
+    · Read restricted to None (public via `getCliffTime`).
+
+- `_maxCliffSeconds`: uint48 private
+    · Write restricted to the contract owner.
+    · Read restricted to None (public via `getCliffTime`).

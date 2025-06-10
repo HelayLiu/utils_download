@@ -1,0 +1,559 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "lastTimeRewardApplicable() returns (uint256)": [],
+    "rewardPerToken() returns (uint256)": [
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "_totalSupply"
+            ],
+            "descriptions": "",
+            "references": [
+                "_totalSupply"
+            ]
+        }
+    ],
+    "earned(address account) returns (uint256)": [
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "_totalSupply"
+            ],
+            "descriptions": "",
+            "references": [
+                "_totalSupply"
+            ]
+        }
+    ],
+    "pendingRewards(address user) returns (uint256, uint256)": [
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "_totalSupply"
+            ],
+            "descriptions": "",
+            "references": [
+                "_totalSupply"
+            ]
+        }
+    ],
+    "getRewardForDuration() returns (uint256)": [],
+    "stake(uint256 amount)": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0 == False",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        }
+    ],
+    "stakeWithPermit(uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0 == False",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        }
+    ],
+    "withdraw(uint256 amount)": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0 == False",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        }
+    ],
+    "getReward()": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account",
+                "reward"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account",
+                "reward"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "reward > 0 == False",
+            "involved_variables": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account",
+                "reward"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        }
+    ],
+    "compoundReward()": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "_ENTERED",
+                "rewardsToken",
+                "_status",
+                "_totalSupply",
+                "stakingToken",
+                "account",
+                "reward"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "rewardsToken",
+                "_status",
+                "_totalSupply",
+                "stakingToken"
+            ]
+        },
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "_ENTERED",
+                "rewardsToken",
+                "_status",
+                "_totalSupply",
+                "stakingToken",
+                "account",
+                "reward"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "rewardsToken",
+                "_status",
+                "_totalSupply",
+                "stakingToken"
+            ]
+        },
+        {
+            "potential_checks": "stakingToken == rewardsToken",
+            "involved_variables": [
+                "_ENTERED",
+                "rewardsToken",
+                "_status",
+                "_totalSupply",
+                "stakingToken",
+                "account",
+                "reward"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "rewardsToken",
+                "_status",
+                "_totalSupply",
+                "stakingToken"
+            ]
+        },
+        {
+            "potential_checks": "reward > 0 == False",
+            "involved_variables": [
+                "_ENTERED",
+                "rewardsToken",
+                "_status",
+                "_totalSupply",
+                "stakingToken",
+                "account",
+                "reward"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "rewardsToken",
+                "_status",
+                "_totalSupply",
+                "stakingToken"
+            ]
+        }
+    ],
+    "exit()": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0 == False",
+            "involved_variables": [
+                "amount",
+                "_ENTERED",
+                "_status",
+                "_totalSupply",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status",
+                "_totalSupply"
+            ]
+        }
+    ],
+    "notifyRewardAmount(uint256 reward)": [
+        {
+            "potential_checks": "_totalSupply == 0 == False",
+            "involved_variables": [
+                "rewardsDuration",
+                "SafeMath",
+                "balance",
+                "liqPoolManager",
+                "periodFinish",
+                "_totalSupply",
+                "account",
+                "msg.sender",
+                "block.timestamp",
+                "rewardRate"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardsDuration",
+                "liqPoolManager",
+                "periodFinish",
+                "_totalSupply",
+                "rewardRate"
+            ]
+        },
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == liqPoolManager",
+            "involved_variables": [
+                "rewardsDuration",
+                "SafeMath",
+                "balance",
+                "liqPoolManager",
+                "periodFinish",
+                "_totalSupply",
+                "account",
+                "msg.sender",
+                "block.timestamp",
+                "rewardRate"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardsDuration",
+                "liqPoolManager",
+                "periodFinish",
+                "_totalSupply",
+                "rewardRate"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= periodFinish == False",
+            "involved_variables": [
+                "rewardsDuration",
+                "SafeMath",
+                "balance",
+                "liqPoolManager",
+                "periodFinish",
+                "_totalSupply",
+                "account",
+                "msg.sender",
+                "block.timestamp",
+                "rewardRate"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardsDuration",
+                "liqPoolManager",
+                "periodFinish",
+                "_totalSupply",
+                "rewardRate"
+            ]
+        },
+        {
+            "potential_checks": "rewardRate <= balance.div(rewardsDuration) == False",
+            "involved_variables": [
+                "rewardsDuration",
+                "SafeMath",
+                "balance",
+                "liqPoolManager",
+                "periodFinish",
+                "_totalSupply",
+                "account",
+                "msg.sender",
+                "block.timestamp",
+                "rewardRate"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardsDuration",
+                "liqPoolManager",
+                "periodFinish",
+                "_totalSupply",
+                "rewardRate"
+            ]
+        }
+    ],
+    "recoverERC20(address tokenAddress, uint256 tokenAmount)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "stakingToken",
+                "tokenAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "stakingToken"
+            ]
+        },
+        {
+            "potential_checks": "tokenAddress != address(stakingToken) == False",
+            "involved_variables": [
+                "stakingToken",
+                "tokenAddress"
+            ],
+            "descriptions": "",
+            "references": [
+                "stakingToken"
+            ]
+        }
+    ],
+    "setRewardsDuration(uint256 _rewardsDuration)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "block.timestamp",
+                "periodFinish"
+            ],
+            "descriptions": "",
+            "references": [
+                "periodFinish"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > periodFinish == False",
+            "involved_variables": [
+                "block.timestamp",
+                "periodFinish"
+            ],
+            "descriptions": "",
+            "references": [
+                "periodFinish"
+            ]
+        }
+    ],
+    "setLiqPoolManager(address _liqPoolManager)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "block.timestamp",
+                "periodFinish"
+            ],
+            "descriptions": "",
+            "references": [
+                "periodFinish"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > periodFinish == False",
+            "involved_variables": [
+                "block.timestamp",
+                "periodFinish"
+            ],
+            "descriptions": "",
+            "references": [
+                "periodFinish"
+            ]
+        }
+    ]
+}

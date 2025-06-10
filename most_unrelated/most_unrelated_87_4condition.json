@@ -1,0 +1,1161 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "swapCompact() returns (uint256)": [],
+    "swap(OdosRouterV2.swapTokenInfo tokenInfo, bytes pathDefinition, address executor, uint32 referralCode) returns (uint256)": [
+        {
+            "potential_checks": "tokenInfo.inputToken == _ETH == False",
+            "involved_variables": [
+                "_ETH",
+                "tokenInfo"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "tokenInfo.inputAmount == 0 == False",
+            "involved_variables": [
+                "_ETH",
+                "tokenInfo"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "tokenInfo.outputMin <= tokenInfo.outputQuote",
+            "involved_variables": [
+                "_ETH",
+                "tokenInfo"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "tokenInfo.outputMin > 0",
+            "involved_variables": [
+                "_ETH",
+                "tokenInfo"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "tokenInfo.inputToken != tokenInfo.outputToken == False",
+            "involved_variables": [
+                "_ETH",
+                "tokenInfo"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        }
+    ],
+    "swapPermit2(OdosRouterV2.permit2Info permit2, OdosRouterV2.swapTokenInfo tokenInfo, bytes pathDefinition, address executor, uint32 referralCode) returns (uint256)": [
+        {
+            "potential_checks": "tokenInfo.outputMin <= tokenInfo.outputQuote",
+            "involved_variables": [
+                "tokenInfo"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "tokenInfo.outputMin > 0",
+            "involved_variables": [
+                "tokenInfo"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "tokenInfo.inputToken != tokenInfo.outputToken == False",
+            "involved_variables": [
+                "tokenInfo"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "swapMultiCompact() returns (uint256[])": [
+        {
+            "potential_checks": "switch_expr_38836_695_0_swapMultiCompact_asm_1_getAddress == 0x0000 == False",
+            "involved_variables": [
+                "switch_expr_38836_695_0_swapMultiCompact_asm_1_getAddress",
+                "numInputs",
+                "numOutputs",
+                "element_swapMultiCompact_asm_1"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "switch_expr_38836_695_0_swapMultiCompact_asm_1_getAddress == 0x0001 == False",
+            "involved_variables": [
+                "switch_expr_38836_695_0_swapMultiCompact_asm_1_getAddress",
+                "numInputs",
+                "numOutputs",
+                "element_swapMultiCompact_asm_1"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "element_swapMultiCompact_asm_1 < numInputs",
+            "involved_variables": [
+                "switch_expr_38836_695_0_swapMultiCompact_asm_1_getAddress",
+                "numInputs",
+                "numOutputs",
+                "element_swapMultiCompact_asm_1"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "element_swapMultiCompact_asm_1 < numOutputs",
+            "involved_variables": [
+                "switch_expr_38836_695_0_swapMultiCompact_asm_1_getAddress",
+                "numInputs",
+                "numOutputs",
+                "element_swapMultiCompact_asm_1"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "swapMulti(OdosRouterV2.inputTokenInfo[] inputs, OdosRouterV2.outputTokenInfo[] outputs, uint256 valueOutMin, bytes pathDefinition, address executor, uint32 referralCode) returns (uint256[])": [
+        {
+            "potential_checks": "i < inputs.length == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "msg.value == expected_msg_value",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "valueOutMin > 0",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i < inputs.length == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i_scope_1 < outputs.length == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "referralCode > REFERRAL_WITH_FEE_THRESHOLD == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i_scope_3 < outputs.length",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "token == _ETH == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "referralCode > REFERRAL_WITH_FEE_THRESHOLD == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "token == _ETH",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(to).call{value: amount}() == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        }
+    ],
+    "swapMultiPermit2(OdosRouterV2.permit2Info permit2, OdosRouterV2.inputTokenInfo[] inputs, OdosRouterV2.outputTokenInfo[] outputs, uint256 valueOutMin, bytes pathDefinition, address executor, uint32 referralCode) returns (uint256[])": [
+        {
+            "potential_checks": "msg.value > 0 == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i < inputs.length == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "msg.value == expected_msg_value",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "valueOutMin > 0",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i < inputs.length == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i_scope_1 < outputs.length == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "referralCode > REFERRAL_WITH_FEE_THRESHOLD == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i_scope_3 < outputs.length",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "token == _ETH == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "referralCode > REFERRAL_WITH_FEE_THRESHOLD == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "token == _ETH",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(to).call{value: amount}() == False",
+            "involved_variables": [
+                "msg.value",
+                "outputs",
+                "i_scope_1",
+                "permit_length",
+                "referralCode",
+                "i_scope_3",
+                "_ETH",
+                "valueOutMin",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "_swapMultiFee",
+                "FEE_DENOM",
+                "success",
+                "amountsOut",
+                "expected_msg_value",
+                "inputs",
+                "swapMultiFee",
+                "token",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "swapMultiFee",
+                "FEE_DENOM",
+                "_ETH"
+            ]
+        }
+    ],
+    "registerReferralCode(uint32 _referralCode, uint64 _referralFee, address _beneficiary)": [
+        {
+            "potential_checks": "referralLookup[_referralCode].registered",
+            "involved_variables": [
+                "FEE_DENOM",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "referralLookup",
+                "_beneficiary",
+                "_referralFee",
+                "_referralCode"
+            ],
+            "descriptions": "",
+            "references": [
+                "FEE_DENOM",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "referralLookup"
+            ]
+        },
+        {
+            "potential_checks": "_referralFee <= FEE_DENOM / 50",
+            "involved_variables": [
+                "FEE_DENOM",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "referralLookup",
+                "_beneficiary",
+                "_referralFee",
+                "_referralCode"
+            ],
+            "descriptions": "",
+            "references": [
+                "FEE_DENOM",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "referralLookup"
+            ]
+        },
+        {
+            "potential_checks": "_referralCode <= REFERRAL_WITH_FEE_THRESHOLD == False",
+            "involved_variables": [
+                "FEE_DENOM",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "referralLookup",
+                "_beneficiary",
+                "_referralFee",
+                "_referralCode"
+            ],
+            "descriptions": "",
+            "references": [
+                "FEE_DENOM",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "referralLookup"
+            ]
+        },
+        {
+            "potential_checks": "_referralFee > 0",
+            "involved_variables": [
+                "FEE_DENOM",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "referralLookup",
+                "_beneficiary",
+                "_referralFee",
+                "_referralCode"
+            ],
+            "descriptions": "",
+            "references": [
+                "FEE_DENOM",
+                "REFERRAL_WITH_FEE_THRESHOLD",
+                "referralLookup"
+            ]
+        }
+    ],
+    "setSwapMultiFee(uint256 _swapMultiFee)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "_swapMultiFee",
+                "FEE_DENOM"
+            ],
+            "descriptions": "",
+            "references": [
+                "FEE_DENOM"
+            ]
+        },
+        {
+            "potential_checks": "_swapMultiFee <= FEE_DENOM / 200 == False",
+            "involved_variables": [
+                "_swapMultiFee",
+                "FEE_DENOM"
+            ],
+            "descriptions": "",
+            "references": [
+                "FEE_DENOM"
+            ]
+        }
+    ],
+    "writeAddressList(address[] addresses)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "addresses",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < addresses.length == False",
+            "involved_variables": [
+                "addresses",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferRouterFunds(address[] tokens, uint256[] amounts, address dest)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "tokens",
+                "_ETH",
+                "success",
+                "token",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "tokens.length == amounts.length",
+            "involved_variables": [
+                "tokens",
+                "_ETH",
+                "success",
+                "token",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i < tokens.length",
+            "involved_variables": [
+                "tokens",
+                "_ETH",
+                "success",
+                "token",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "amounts[i] == 0 == False",
+            "involved_variables": [
+                "tokens",
+                "_ETH",
+                "success",
+                "token",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "token == _ETH",
+            "involved_variables": [
+                "tokens",
+                "_ETH",
+                "success",
+                "token",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(to).call{value: amount}() == False",
+            "involved_variables": [
+                "tokens",
+                "_ETH",
+                "success",
+                "token",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        }
+    ],
+    "swapRouterFunds(OdosRouterV2.inputTokenInfo[] inputs, OdosRouterV2.outputTokenInfo[] outputs, uint256 valueOutMin, bytes pathDefinition, address executor) returns (uint256[])": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "outputs",
+                "i",
+                "_ETH",
+                "success",
+                "i_scope_0",
+                "inputs",
+                "token",
+                "i_scope_1"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i < inputs.length == False",
+            "involved_variables": [
+                "outputs",
+                "i",
+                "_ETH",
+                "success",
+                "i_scope_0",
+                "inputs",
+                "token",
+                "i_scope_1"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i_scope_0 < outputs.length == False",
+            "involved_variables": [
+                "outputs",
+                "i",
+                "_ETH",
+                "success",
+                "i_scope_0",
+                "inputs",
+                "token",
+                "i_scope_1"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "i_scope_1 < outputs.length",
+            "involved_variables": [
+                "outputs",
+                "i",
+                "_ETH",
+                "success",
+                "i_scope_0",
+                "inputs",
+                "token",
+                "i_scope_1"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "token == _ETH == False",
+            "involved_variables": [
+                "outputs",
+                "i",
+                "_ETH",
+                "success",
+                "i_scope_0",
+                "inputs",
+                "token",
+                "i_scope_1"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "token == _ETH",
+            "involved_variables": [
+                "outputs",
+                "i",
+                "_ETH",
+                "success",
+                "i_scope_0",
+                "inputs",
+                "token",
+                "i_scope_1"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(to).call{value: amount}() == False",
+            "involved_variables": [
+                "outputs",
+                "i",
+                "_ETH",
+                "success",
+                "i_scope_0",
+                "inputs",
+                "token",
+                "i_scope_1"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ETH"
+            ]
+        }
+    ]
+}

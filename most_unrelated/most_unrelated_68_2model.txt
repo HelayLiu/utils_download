@@ -1,0 +1,27 @@
+- `_balances`: mapping(address => uint256) private  
+  · Write restricted to: Token holders (via transfers/burns) and owner (via minting)  
+  · Read restricted to: None (publicly accessible via `balanceOf`)
+
+- `_allowances`: mapping(address => mapping(address => uint256)) private  
+  · Write restricted to: Token owners (via approvals)  
+  · Read restricted to: None (publicly accessible via `allowance`)
+
+- `_totalSupply`: uint256 private  
+  · Write restricted to: Owner (minting) and token holders (burning)  
+  · Read restricted to: None (publicly accessible)
+
+- `_owner`: address private  
+  · Write restricted to: Current owner (via ownership transfers)  
+  · Read restricted to: None (publicly accessible)
+
+- `_blacklist`: mapping(address => bool) private  
+  · Write restricted to: Contract owner  
+  · Read restricted to: None (publicly accessible via `isBlacklisted`)
+
+- `lastClaimTime`: uint256 public  
+  · Write restricted to: Contract owner (updated during claims)  
+  · Read restricted to: None
+
+- `cyclicBarrier`: uint256 public  
+  · Write restricted to: Contract owner (updated during emergency claims)  
+  · Read restricted to: None

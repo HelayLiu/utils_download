@@ -1,0 +1,7 @@
+- As the contract owner, I want to mint new NFTs for recipients to expand the collection securely.
+- As a token holder, I want to transfer my NFTs to other users while maintaining ownership integrity.
+- As a token holder, I want to set approvals for specific operators to manage my tokens securely.
+- As a user, I want to view NFT metadata (tokenURI) only for existing tokens to ensure data validity.
+- As an operator, I want to be approved for all tokens of an owner to manage them efficiently.
+- As any user, I want to query token balances, ownership, and approvals with proper access controls.
+- As the contract owner, I want to transfer ownership securely to a non-zero address to maintain contract control.

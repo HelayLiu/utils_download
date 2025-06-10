@@ -1,0 +1,6 @@
+- As a user, I want to securely deposit underlying tokens to mint wrapped tokens for cross-chain interoperability.
+- As a user, I want to withdraw my underlying tokens by burning wrapped tokens while maintaining custody of my assets.
+- As a vault operator, I want to control token minting/burning authorizations to enforce cross-chain security policies.
+- As a minter, I want to perform cross-chain swaps (Swapin/Swapout) while ensuring only authorized entities can modify supply.
+- As a contract administrator, I want timelock-protected vault transfers to prevent unauthorized control changes.
+- As a token holder, I want to use gasless approvals (permit) without compromising private key security.

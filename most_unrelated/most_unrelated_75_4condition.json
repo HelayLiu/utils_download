@@ -1,0 +1,41 @@
+{
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "transfer(address to, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "allowance[from][msg.sender] != type()(uint128).max == False",
+            "involved_variables": [
+                "msg.sender",
+                "from",
+                "allowance"
+            ],
+            "descriptions": "",
+            "references": [
+                "allowance"
+            ]
+        }
+    ],
+    "DOMAIN_SEPARATOR() returns (bytes32)": [],
+    "PERMIT_TYPEHASH() returns (bytes32)": [],
+    "nonces(address owner) returns (uint256)": [],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "potential_checks": "deadline >= block.timestamp",
+            "involved_variables": [
+                "deadline",
+                "block.timestamp",
+                "recoveredAddress",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "initialize(string tokenName, string tokenSymbol, uint256 tokenTotalSupply, address launcher)": []
+}

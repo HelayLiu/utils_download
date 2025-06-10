@@ -1,0 +1,88 @@
+{
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "senderBalance >= amount == False",
+            "involved_variables": [
+                "sender",
+                "recipient",
+                "amount",
+                "senderBalance"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "currentAllowance != type()(uint256).max == False",
+            "involved_variables": [
+                "sender",
+                "amount",
+                "currentAllowance",
+                "senderBalance",
+                "recipient"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "senderBalance >= amount == False",
+            "involved_variables": [
+                "sender",
+                "amount",
+                "currentAllowance",
+                "senderBalance",
+                "recipient"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+        {
+            "potential_checks": "currentAllowance >= subtractedValue",
+            "involved_variables": [
+                "subtractedValue",
+                "spender",
+                "currentAllowance",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

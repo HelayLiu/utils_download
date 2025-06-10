@@ -1,0 +1,33 @@
+- `_ownerships` (mapping):  
+  · Write restricted to Contract internal functions (mint/transfer/burn) and Revoke Role.  
+  · Read restricted to None.  
+- `_addressData` (mapping):  
+  · Write restricted to Contract internal functions (mint/transfer/burn).  
+  · Read restricted to None.  
+- `_tokenApprovals` (mapping):  
+  · Write restricted to Token owners or approved operators.  
+  · Read restricted to None.  
+- `_tokenURI` (mapping):  
+  · Write restricted to Metadata Role (until frozen) or during minting.  
+  · Read restricted to None.  
+- `uriFrozen`:  
+  · Write restricted to Metadata Role.  
+  · Read restricted to None.  
+- `_hasRole` (mapping):  
+  · Write restricted to Role admins.  
+  · Read restricted to None.  
+- `contractURI`:  
+  · Write restricted to Default Admin Role.  
+  · Read restricted to None.  
+- `platformFeeRecipient`, `platformFeeBps`, `flatPlatformFee`:  
+  · Write restricted to Default Admin Role.  
+  · Read restricted to None.  
+- `royaltyRecipient`, `royaltyBps`, `royaltyInfoForToken`:  
+  · Write restricted to Default Admin Role.  
+  · Read restricted to None.  
+- `recipient` (primary sale):  
+  · Write restricted to Default Admin Role.  
+  · Read restricted to None.  
+- `_owner`:  
+  · Write restricted to Default Admin Role.  
+  · Read restricted to None.  

@@ -1,0 +1,21 @@
+- baseURI (string):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None.  
+- hasClaimedRebase (mapping(bytes32 ⇒ bool)):  
+  · Write restricted to the contract during claim execution.  
+  · Read restricted to None (public mapping).  
+- claimOpen (uint256):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (private, but state impacts claim availability).  
+- mintOpen (uint256):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None (private, but state impacts mint availability).  
+- fairSaleTokenID (uint256):  
+  · Write restricted to the contract during minting.  
+  · Read restricted to None (private).  
+- airdropTokenIDs (uint256):  
+  · Write restricted to the contract owner (via airdrop).  
+  · Read restricted to None (private).  
+- MINT_PRICE/MAX_SUPPLY (immutable uint256):  
+  · Write restricted to None (immutable).  
+  · Read restricted to None.  

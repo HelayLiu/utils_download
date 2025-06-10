@@ -1,0 +1,18 @@
+{
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 value) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "specific_checks": "_allowances[from][msg.sender] >= value",
+            "involved_variables": ["_allowances", "msg.sender", "from", "value"],
+            "descriptions": "Ensure spender has sufficient allowance before token transfer.",
+            "references": ["_allowances"]
+        }
+    ]
+}

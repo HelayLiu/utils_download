@@ -1,0 +1,6 @@
+- As an owner, I want to control token parameters (fees, limits, trading status) to manage the contract's behavior securely.
+- As a user, I want my token transfers to be processed without being blacklisted, ensuring access to my funds.
+- As a user, I want my token balances and allowances isolated from unauthorized access or modifications.
+- As an owner, I want to blacklist malicious actors to protect the token ecosystem from abuse.
+- As a fee recipient (marketing/dev), I want accumulated fees securely swapped and distributed to designated wallets.
+- As a trader, I want transaction limits enforced to prevent market manipulation during initial trading phases.

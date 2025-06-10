@@ -1,0 +1,35 @@
+- _balances (mapping): 
+    · Write restricted to token holders (via transfers) and contract (via fee processing).
+    · Read restricted to None (public via balanceOf).
+
+- _allowances (mapping): 
+    · Write restricted to token holders (via approve/transferFrom).
+    · Read restricted to None (public via allowance).
+
+- _blacklist (mapping): 
+    · Write restricted to contract owner.
+    · Read restricted to None (public via isBlacklisted).
+
+- _isExcludedFromFees (mapping): 
+    · Write restricted to contract owner.
+    · Read restricted to None (public via isExcludedFromFees).
+
+- _isExcludedMaxTransactionAmount (mapping): 
+    · Write restricted to contract owner.
+    · Read restricted to None.
+
+- maxTransactionAmount/maxWallet/swapTokensAtAmount (uint256): 
+    · Write restricted to contract owner.
+    · Read restricted to None.
+
+- buyTotalFees/sellTotalFees (uint256): 
+    · Write restricted to contract owner.
+    · Read restricted to None.
+
+- tokensForMarketing/tokensForLiquidity/tokensForDev (uint256): 
+    · Write restricted to contract (during fee processing).
+    · Read restricted to None.
+
+- tradingActive/swapEnabled (bool): 
+    · Write restricted to contract owner.
+    · Read restricted to None.

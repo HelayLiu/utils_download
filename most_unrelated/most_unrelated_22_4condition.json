@@ -1,0 +1,148 @@
+{
+    "isMinter(address account) returns (bool)": [],
+    "addMinter(address account)": [
+        {
+            "potential_checks": "msg.sender == owner == False",
+            "involved_variables": [
+                "msg.sender",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "owner"
+            ]
+        }
+    ],
+    "renounceMinter()": [],
+    "burn(uint256 amount)": [
+        {
+            "potential_checks": "totalMinted().add(amount) <= cap() == False",
+            "involved_variables": [
+                "amount",
+                "SafeMath",
+                "account",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "burnFrom(address account, uint256 amount)": [
+        {
+            "potential_checks": "totalMinted().add(amount) <= cap() == False",
+            "involved_variables": [
+                "spender",
+                "SafeMath",
+                "amount",
+                "account",
+                "owner",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
+    "cap() returns (uint256)": [],
+    "totalMinted() returns (uint256)": [],
+    "mintBulk(address[] accounts, uint256[] amounts) returns (bool)": [
+        {
+            "potential_checks": "isMinter(msg.sender)",
+            "involved_variables": [
+                "SafeMath",
+                "amounts",
+                "amount",
+                "account",
+                "accounts",
+                "i",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "accounts.length == amounts.length",
+            "involved_variables": [
+                "SafeMath",
+                "amounts",
+                "amount",
+                "account",
+                "accounts",
+                "i",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < accounts.length",
+            "involved_variables": [
+                "SafeMath",
+                "amounts",
+                "amount",
+                "account",
+                "accounts",
+                "i",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "amounts[i] > 0",
+            "involved_variables": [
+                "SafeMath",
+                "amounts",
+                "amount",
+                "account",
+                "accounts",
+                "i",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "totalMinted().add(amount) <= cap() == False",
+            "involved_variables": [
+                "SafeMath",
+                "amounts",
+                "amount",
+                "account",
+                "accounts",
+                "i",
+                "msg.sender",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "removeMinter(address account)": [
+        {
+            "potential_checks": "msg.sender == owner == False",
+            "involved_variables": [
+                "msg.sender",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "owner"
+            ]
+        }
+    ]
+}

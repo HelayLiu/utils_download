@@ -1,0 +1,21 @@
+- _balances: 
+  · Write restricted to the token holder or approved spender.
+  · Read restricted to public via `balanceOf`.
+- _allowances: 
+  · Write restricted to the token owner (approve/transferFrom).
+  · Read restricted to public via `allowance`.
+- _totalSupply: 
+  · Write restricted to contract initialization (minting).
+  · Read restricted to public via `totalSupply`.
+- _delegatee: 
+  · Write restricted to the token holder (delegate/delegateBySig).
+  · Read restricted to public via `delegates`.
+- _delegateCheckpoints: 
+  · Write restricted during token transfers/delegation.
+  · Read restricted via `getVotes`/`getPastVotes`.
+- _totalCheckpoints: 
+  · Write restricted during token transfers.
+  · Read restricted via `getPastTotalSupply`.
+- _nonces: 
+  · Write restricted to the user during `permit`/`delegateBySig`.
+  · Read restricted to public via `nonces`.

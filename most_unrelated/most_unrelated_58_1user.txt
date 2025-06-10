@@ -1,0 +1,5 @@
+- As a token holder, I want to transfer tokens securely while ensuring only I or approved spenders can modify my balance.
+- As a token holder, I want to delegate my voting power to a trusted address, ensuring only I can change my delegate.
+- As a delegate, I want to exercise delegated voting power in governance, isolated from other users' voting rights.
+- As a user, I want to approve token spending via signatures (permit) without exposing my private key.
+- As a governance system, I need historical voting data to resolve past decisions securely.

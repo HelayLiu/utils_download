@@ -1,0 +1,27 @@
+- `_name` (string private):  
+    · Write restricted to the contract during initialization.  
+    · Read restricted to public via `name()` function.  
+- `_symbol` (string private):  
+    · Write restricted to the contract during initialization.  
+    · Read restricted to public via `symbol()` function.  
+- `_decimals` (uint8 private):  
+    · Write restricted to the contract (fixed at deployment).  
+    · Read restricted to public via `decimals()` function.  
+- `_totalSupply` (uint256 private):  
+    · Write restricted to the contract during initialization (via `_mint`).  
+    · Read restricted to public via `totalSupply()` function.  
+- `_launcher` (address public):  
+    · Write restricted to the contract during initialization.  
+    · Read restricted to public.  
+- `balanceOf` (mapping(address => uint256) public):  
+    · Write restricted to token owners (during `transfer`/`transferFrom`) or the contract (during `_mint`).  
+    · Read restricted to public.  
+- `allowance` (mapping(address => mapping(address => uint256)) public):  
+    · Write restricted to token owners (via `approve`/`permit`) or approved spenders (via `transferFrom`).  
+    · Read restricted to public.  
+- `DOMAIN_SEPARATOR` (bytes32 public):  
+    · Write restricted to the contract during initialization.  
+    · Read restricted to public.  
+- `nonces` (mapping(address => uint256) public):  
+    · Write restricted to token owners (incremented during `permit`).  
+    · Read restricted to public.  

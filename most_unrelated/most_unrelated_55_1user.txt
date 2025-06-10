@@ -1,0 +1,5 @@
+- As a token holder, I want to securely burn my tokens to reduce total supply, ensuring only I can initiate burns of my own balance.  
+- As a spender, I want delegated authority to burn/transfer others' tokens within approved limits, with checks preventing over-spending.  
+- As a token holder, I want my token balance to be isolated from unauthorized writes, protected by balance/allowance validations during transfers.  
+- As any user, I need to query public token metadata (name/symbol/supply) without access restrictions.  
+- As a token holder, I expect transfers to enforce valid recipient addresses and sufficient balances to prevent state corruption.  

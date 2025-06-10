@@ -1,0 +1,15 @@
+- balances (mapping(address => uint256)):  
+  · Write restricted to the token owner (for transfers) and the crowdsale contract (for minting).  
+  · Read restricted to None (publicly accessible).  
+
+- totalSupply_ (uint256):  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to None (publicly accessible).  
+
+- allowed (mapping(address => mapping(address => uint256))):  
+  · Write restricted to the token owner (for approvals) and approved spenders (for deducting allowances).  
+  · Read restricted to None (publicly accessible).  
+
+- crowdsale (address):  
+  · Write restricted to the contract constructor (immutable after deployment).  
+  · Read restricted to None (publicly accessible).  

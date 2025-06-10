@@ -1,0 +1,6 @@
+- As the contract owner, I want to securely transfer ownership to a new address with a time delay, ensuring only authorized changes and preventing immediate takeovers.
+- As a user, I want to mint tokens via cross-chain swaps (Swapin) initiated by the owner, ensuring my balance is updated securely and isolated from unauthorized access.
+- As a user, I want to burn tokens (Swapout) to withdraw underlying assets, with guarantees that the target address is valid and my balance is accurately deducted.
+- As a token holder, I want to transfer tokens securely, with checks ensuring sufficient balance and preventing transfers to invalid addresses.
+- As a token holder, I want to set allowances via signed permits (permit/transferWithPermit), ensuring only I can authorize spending limits without direct transactions.
+- As an external contract, I want to handle token approvals/transfers via callbacks (approveAndCall/transferAndCall), ensuring interactions comply with ERC677 standards.

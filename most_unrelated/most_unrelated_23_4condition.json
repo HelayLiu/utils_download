@@ -1,0 +1,426 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "proxiableUUID() returns (bytes32)": [],
+    "upgradeTo(address newImplementation)": [
+        {
+            "potential_checks": "address(this) != __self",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "_getImplementation() == __self",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "data.length > 0 || forceCall == False",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        }
+    ],
+    "upgradeToAndCall(address newImplementation, bytes data)": [
+        {
+            "potential_checks": "address(this) != __self",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "_getImplementation() == __self",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "data.length > 0 || forceCall == False",
+            "involved_variables": [
+                "TMP_426",
+                "_ROLLBACK_SLOT",
+                "newImplementation",
+                "this",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        }
+    ],
+    "initialize(address _swapRouter, address _fastTransferGateway)": [
+        {
+            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "fastTransferGateway",
+                "AddressUpgradeable",
+                "_fastTransferGateway",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "fastTransferGateway",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "fastTransferGateway",
+                "AddressUpgradeable",
+                "_fastTransferGateway",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "fastTransferGateway",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "_initializing",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "fastTransferGateway",
+                "AddressUpgradeable",
+                "_fastTransferGateway",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "fastTransferGateway",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "fastTransferGateway",
+                "AddressUpgradeable",
+                "_fastTransferGateway",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "fastTransferGateway",
+                "_initializing"
+            ]
+        }
+    ],
+    "setSwapRouter(address _swapRouter)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setFastTransferGateway(address _fastTransferGateway)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "swapAndSubmitOrder(address tokenIn, uint256 swapAmountIn, bytes swapCalldata, uint256 executionFeeAmount, uint256 solverFeeBPS, bytes32 sender, bytes32 recipient, uint32 destinationDomain, uint64 timeoutTimestamp, bytes destinationCalldata) returns (bytes32)": [
+        {
+            "potential_checks": "solverFeeBPS != 0",
+            "involved_variables": [
+                "solverFeeBPS",
+                "transferTokens",
+                "token",
+                "success",
+                "totalFee",
+                "tokenIn",
+                "swapAmountOut"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "! success == False",
+            "involved_variables": [
+                "solverFeeBPS",
+                "transferTokens",
+                "token",
+                "success",
+                "totalFee",
+                "tokenIn",
+                "swapAmountOut"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "swapAmountOut != 0",
+            "involved_variables": [
+                "solverFeeBPS",
+                "transferTokens",
+                "token",
+                "success",
+                "totalFee",
+                "tokenIn",
+                "swapAmountOut"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "swapAmountOut >= totalFee",
+            "involved_variables": [
+                "solverFeeBPS",
+                "transferTokens",
+                "token",
+                "success",
+                "totalFee",
+                "tokenIn",
+                "swapAmountOut"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "transferTokens == False",
+            "involved_variables": [
+                "solverFeeBPS",
+                "transferTokens",
+                "token",
+                "success",
+                "totalFee",
+                "tokenIn",
+                "swapAmountOut"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "submitOrder(bytes32 sender, bytes32 recipient, uint256 amountIn, uint256 amountOut, uint32 destinationDomain, uint64 timeoutTimestamp, bytes data) returns (bytes32)": [
+        {
+            "potential_checks": "transferTokens == False",
+            "involved_variables": [
+                "transferTokens"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

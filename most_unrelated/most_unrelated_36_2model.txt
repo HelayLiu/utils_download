@@ -1,0 +1,27 @@
+- `_balances` (ERC20): mapping(address => uint256) private  
+    · Write restricted to token holders (via transfers) and contract (via mint/burn).  
+    · Read restricted to any address via `balanceOf()`.  
+
+- `_allowances` (ERC20): mapping(address => mapping(address => uint256)) private  
+    · Write restricted to token holders (via approve/transferFrom).  
+    · Read restricted to any address via `allowance()`.  
+
+- `keeper`: address public  
+    · Write restricted to owner or current keeper.  
+    · Read restricted to any address.  
+
+- `rewardPool`: address public  
+    · Write restricted to contract owner.  
+    · Read restricted to any address.  
+
+- `validatorShare`/`validatorMax`: uint256 public  
+    · Write restricted to none (immutable post-construction).  
+    · Read restricted to any address.  
+
+- `wrID`/`withdrawalTime`: uint256 public  
+    · Write restricted to contract (during unlock operations).  
+    · Read restricted to any address.  
+
+- `withdrawEnabled`: bool public  
+    · Write restricted to contract (state machine control).  
+    · Read restricted to any address.  

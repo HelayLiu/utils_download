@@ -1,0 +1,35 @@
+- _balances: mapping(address => uint256)
+  · Write restricted to the contract during transfers/fee processing and users during allowances.
+  · Read restricted to None (public via `balanceOf`).
+
+- _allowances: mapping(address => mapping(address => uint256))
+  · Write restricted to token owners (via `approve`/`approveMax`) and spenders (via `transferFrom`).
+  · Read restricted to None (public via `allowance`).
+
+- _owner: address
+  · Write restricted to the current owner (via `transferOwnership`/`renounceOwnership`).
+  · Read restricted to None (public via `owner`/`getOwner`).
+
+- _maxTxAmount: uint256
+  · Write restricted to the owner (via `removeLimits`).
+  · Read restricted to None (public).
+
+- _maxWalletToken: uint256
+  · Write restricted to the owner (via `maxWalletRule`/`removeLimits`).
+  · Read restricted to None (public).
+
+- TradingOpen: bool
+  · Write restricted to the owner (via `startTrading`).
+  · Read restricted to None (public).
+
+- swapEnabled: bool
+  · Write restricted to the owner (via `setSwapBackSettings`).
+  · Read restricted to None (public).
+
+- liquidityFee, marketingFee, devFee, buybackFee, burnFee: uint256
+  · Write restricted to the owner (via `setParameters`).
+  · Read restricted to the contract and owner (no public getters).
+
+- autoLiquidityReceiver, marketingFeeReceiver, devFeeReceiver, buybackFeeReceiver: address
+  · Write restricted to the owner (via `setWallets`).
+  · Read restricted to the contract and owner (no public getters).

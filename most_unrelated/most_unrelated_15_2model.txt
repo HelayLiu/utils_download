@@ -1,0 +1,23 @@
+- `_name: string private`  
+  · Write restricted to the contract constructor.  
+  · Read restricted to None (publicly accessible via `name()`).  
+
+- `_symbol: string private`  
+  · Write restricted to the contract constructor.  
+  · Read restricted to None (publicly accessible via `symbol()`).  
+
+- `_decimals: uint8 private`  
+  · Write restricted to the contract constructor.  
+  · Read restricted to None (publicly accessible via `decimals()`).  
+
+- `_totalSupply: uint256 private`  
+  · Write restricted to the contract (only mutable during minting/burning).  
+  · Read restricted to None (publicly accessible via `totalSupply()`).  
+
+- `_balances: mapping(address => uint256) private`  
+  · Write restricted to the token owner (during transfers) or contract (during mint/burn).  
+  · Read restricted to the account owner (via `balanceOf()`) or approved spenders.  
+
+- `_allowances: mapping(address => mapping(address => uint256)) private`  
+  · Write restricted to the allowance owner (via `approve()`/`increaseAllowance()`/`decreaseAllowance()`).  
+  · Read restricted to the allowance owner or approved spender (via `allowance()`).  

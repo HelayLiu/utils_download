@@ -1,0 +1,6 @@
+- As the owner, I want to whitelist assets with matching decimals to ensure cross-chain compatibility and prevent invalid swaps.  
+- As the owner, I want to pause/unpause asset swaps to mitigate risks during vulnerabilities or upgrades.  
+- As the owner, I want to set asset holding limits to cap exposure per token and manage liquidity risks.  
+- As a user, I want to swap in whitelisted assets to mint bridge tokens only when the asset is active and within limits.  
+- As a user, I want to swap out assets by burning bridge tokens only for active whitelisted assets.  
+- As a user, I want my token balances and allowances isolated to my address to prevent unauthorized access.  

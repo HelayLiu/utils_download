@@ -1,0 +1,3 @@
+- As a user, I want to claim my tokens securely using a valid signature and Merkle proof, ensuring my claim is processed only once and vesting is enforced.  
+- As the owner, I want to control the signer address to authorize claims and withdraw tokens after the claim period, maintaining control over the contract.  
+- As the contract, I ensure tokens are vested according to schedule, preventing premature access and enforcing claim deadlines.  

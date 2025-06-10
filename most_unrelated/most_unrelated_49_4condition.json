@@ -1,0 +1,1022 @@
+{
+    "proxiableUUID() returns (bytes32)": [],
+    "upgradeTo(address newImplementation)": [
+        {
+            "potential_checks": "address(this) != __self",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "_getImplementation() == __self",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "data.length > 0 || forceCall == False",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        }
+    ],
+    "upgradeToAndCall(address newImplementation, bytes data)": [
+        {
+            "potential_checks": "address(this) != __self",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "_getImplementation() == __self",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        },
+        {
+            "potential_checks": "data.length > 0 || forceCall == False",
+            "involved_variables": [
+                "TMP_736",
+                "newImplementation",
+                "_ROLLBACK_SLOT",
+                "this",
+                "role",
+                "__self",
+                "StorageSlotUpgradeable",
+                "data",
+                "forceCall",
+                "account",
+                "AddressUpgradeable"
+            ],
+            "descriptions": "",
+            "references": [
+                "__self",
+                "_ROLLBACK_SLOT"
+            ]
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "hasRole(bytes32 role, address account) returns (bool)": [],
+    "getRoleAdmin(bytes32 role) returns (bytes32)": [],
+    "grantRole(bytes32 role, address account)": [],
+    "revokeRole(bytes32 role, address account)": [],
+    "renounceRole(bytes32 role, address account)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "ownerOf(uint256 tokenId) returns (address)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "tokenURI(uint256 tokenId) returns (string)": [],
+    "approve(address to, uint256 tokenId)": [],
+    "getApproved(uint256 tokenId) returns (address)": [],
+    "setApprovalForAll(address operator, bool approved)": [],
+    "isApprovedForAll(address owner, address operator) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721Upgradeable.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721Upgradeable.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721Upgradeable.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "initialize()": [
+        {
+            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        },
+        {
+            "potential_checks": "_initializing == False",
+            "involved_variables": [
+                "_initializing",
+                "this",
+                "isTopLevelCall",
+                "AddressUpgradeable",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initialized",
+                "_initializing"
+            ]
+        }
+    ],
+    "setURI(string uri)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account",
+                "TMP_955",
+                "uri"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "bytes(uri).length > 0 == False",
+            "involved_variables": [
+                "role",
+                "account",
+                "TMP_955",
+                "uri"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "safeMint(address to, uint256 tokenId)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "reason",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "AddressUpgradeable",
+                "to",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "role",
+                "reason",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "AddressUpgradeable",
+                "to",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "paused",
+            "involved_variables": [
+                "role",
+                "reason",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "AddressUpgradeable",
+                "to",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "blockTokenLists[tokenId]",
+            "involved_variables": [
+                "role",
+                "reason",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "AddressUpgradeable",
+                "to",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "! blockWalletLists[from] && ! blockWalletLists[to]",
+            "involved_variables": [
+                "role",
+                "reason",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "AddressUpgradeable",
+                "to",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "role",
+                "reason",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "AddressUpgradeable",
+                "to",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "to.isContract()",
+            "involved_variables": [
+                "role",
+                "reason",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "AddressUpgradeable",
+                "to",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "reason.length == 0 == False",
+            "involved_variables": [
+                "role",
+                "reason",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "AddressUpgradeable",
+                "to",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        }
+    ],
+    "safeMintBatch(address to, uint256[] tokenIds)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "to",
+                "i",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "i < tokenIds.length",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "to",
+                "i",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "to",
+                "i",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "paused",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "to",
+                "i",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "blockTokenLists[tokenId]",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "to",
+                "i",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "! blockWalletLists[from] && ! blockWalletLists[to]",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "to",
+                "i",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "paused",
+                "tokenId",
+                "data",
+                "account",
+                "to",
+                "i",
+                "blockWalletLists",
+                "blockTokenLists",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "blockWalletLists",
+                "blockTokenLists",
+                "paused"
+            ]
+        }
+    ],
+    "safeTransferFromBatch(address from, address to, uint256[] tokenIds)": [
+        {
+            "potential_checks": "tokenIds.length <= transferMaxLimit",
+            "involved_variables": [
+                "tokenIds",
+                "transferMaxLimit",
+                "tokenId",
+                "owner",
+                "i",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferMaxLimit"
+            ]
+        },
+        {
+            "potential_checks": "i < tokenIds.length",
+            "involved_variables": [
+                "tokenIds",
+                "transferMaxLimit",
+                "tokenId",
+                "owner",
+                "i",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferMaxLimit"
+            ]
+        },
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "tokenIds",
+                "transferMaxLimit",
+                "tokenId",
+                "owner",
+                "i",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferMaxLimit"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "tokenIds",
+                "transferMaxLimit",
+                "tokenId",
+                "owner",
+                "i",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferMaxLimit"
+            ]
+        },
+        {
+            "potential_checks": "ERC721Upgradeable.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "tokenIds",
+                "transferMaxLimit",
+                "tokenId",
+                "owner",
+                "i",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "transferMaxLimit"
+            ]
+        }
+    ],
+    "burn(uint256 tokenId)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "role",
+                "account",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "role",
+                "account",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "burnBatch(uint256[] tokenIds)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "tokenId",
+                "account",
+                "owner",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < tokenIds.length",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "tokenId",
+                "account",
+                "owner",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "tokenId",
+                "account",
+                "owner",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "tokenIds",
+                "role",
+                "tokenId",
+                "account",
+                "owner",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBlockWalletList(address[] addresses, bool[] isBlocks)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "i",
+                "addresses",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < addresses.length == False",
+            "involved_variables": [
+                "role",
+                "i",
+                "addresses",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBlockTokenList(uint256[] tokenIds, bool[] isBlocks)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "i",
+                "tokenIds",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < tokenIds.length == False",
+            "involved_variables": [
+                "role",
+                "i",
+                "tokenIds",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setTransferMaxLimit(uint256 maxLimit)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setPasuedState(bool paused_)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "ownerOfBatch(uint256[] tokenIds) returns (address[])": [
+        {
+            "potential_checks": "i < tokenIds.length == False",
+            "involved_variables": [
+                "i",
+                "tokenIds"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

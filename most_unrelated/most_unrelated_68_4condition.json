@@ -1,0 +1,355 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+        {
+            "potential_checks": "currentAllowance >= subtractedValue",
+            "involved_variables": [
+                "subtractedValue",
+                "spender",
+                "currentAllowance",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "claim(uint256 amount)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "actualAmount",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "CLAIM_PERIOD",
+                "account",
+                "to",
+                "block.timestamp",
+                "from",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist",
+                "CLAIM_PERIOD",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= lastClaimTime + CLAIM_PERIOD",
+            "involved_variables": [
+                "actualAmount",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "CLAIM_PERIOD",
+                "account",
+                "to",
+                "block.timestamp",
+                "from",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist",
+                "CLAIM_PERIOD",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0",
+            "involved_variables": [
+                "actualAmount",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "CLAIM_PERIOD",
+                "account",
+                "to",
+                "block.timestamp",
+                "from",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist",
+                "CLAIM_PERIOD",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ]
+        },
+        {
+            "potential_checks": "totalSupply().add(actualAmount) <= MAX_SUPPLY",
+            "involved_variables": [
+                "actualAmount",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "CLAIM_PERIOD",
+                "account",
+                "to",
+                "block.timestamp",
+                "from",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist",
+                "CLAIM_PERIOD",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ]
+        },
+        {
+            "potential_checks": "! _blacklist[from] && ! _blacklist[to] == False",
+            "involved_variables": [
+                "actualAmount",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "CLAIM_PERIOD",
+                "account",
+                "to",
+                "block.timestamp",
+                "from",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist",
+                "CLAIM_PERIOD",
+                "MAX_SUPPLY",
+                "lastClaimTime"
+            ]
+        }
+    ],
+    "claims(uint256 amount)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "cyclicBarrier",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "account",
+                "to",
+                "actualAmount",
+                "from",
+                "MAX_SUPPLY"
+            ],
+            "descriptions": "",
+            "references": [
+                "cyclicBarrier",
+                "_blacklist",
+                "MAX_SUPPLY"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0",
+            "involved_variables": [
+                "cyclicBarrier",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "account",
+                "to",
+                "actualAmount",
+                "from",
+                "MAX_SUPPLY"
+            ],
+            "descriptions": "",
+            "references": [
+                "cyclicBarrier",
+                "_blacklist",
+                "MAX_SUPPLY"
+            ]
+        },
+        {
+            "potential_checks": "cyclicBarrier < 2",
+            "involved_variables": [
+                "cyclicBarrier",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "account",
+                "to",
+                "actualAmount",
+                "from",
+                "MAX_SUPPLY"
+            ],
+            "descriptions": "",
+            "references": [
+                "cyclicBarrier",
+                "_blacklist",
+                "MAX_SUPPLY"
+            ]
+        },
+        {
+            "potential_checks": "totalSupply().add(actualAmount) <= MAX_SUPPLY",
+            "involved_variables": [
+                "cyclicBarrier",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "account",
+                "to",
+                "actualAmount",
+                "from",
+                "MAX_SUPPLY"
+            ],
+            "descriptions": "",
+            "references": [
+                "cyclicBarrier",
+                "_blacklist",
+                "MAX_SUPPLY"
+            ]
+        },
+        {
+            "potential_checks": "! _blacklist[from] && ! _blacklist[to] == False",
+            "involved_variables": [
+                "cyclicBarrier",
+                "SafeMath",
+                "_blacklist",
+                "amount",
+                "account",
+                "to",
+                "actualAmount",
+                "from",
+                "MAX_SUPPLY"
+            ],
+            "descriptions": "",
+            "references": [
+                "cyclicBarrier",
+                "_blacklist",
+                "MAX_SUPPLY"
+            ]
+        }
+    ],
+    "addToBlacklist(address account)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "_blacklist",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist"
+            ]
+        },
+        {
+            "potential_checks": "account != owner()",
+            "involved_variables": [
+                "_blacklist",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist"
+            ]
+        },
+        {
+            "potential_checks": "_blacklist[account] == False",
+            "involved_variables": [
+                "_blacklist",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist"
+            ]
+        }
+    ],
+    "removeFromBlacklist(address account)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "_blacklist",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist"
+            ]
+        },
+        {
+            "potential_checks": "_blacklist[account] == False",
+            "involved_variables": [
+                "_blacklist",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist"
+            ]
+        }
+    ],
+    "isBlacklisted(address account) returns (bool)": [],
+    "burn(uint256 amout)": [
+        {
+            "potential_checks": "! _blacklist[from] && ! _blacklist[to]",
+            "involved_variables": [
+                "_blacklist",
+                "amount",
+                "account",
+                "to",
+                "accountBalance",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist"
+            ]
+        },
+        {
+            "potential_checks": "accountBalance >= amount == False",
+            "involved_variables": [
+                "_blacklist",
+                "amount",
+                "account",
+                "to",
+                "accountBalance",
+                "from"
+            ],
+            "descriptions": "",
+            "references": [
+                "_blacklist"
+            ]
+        }
+    ]
+}

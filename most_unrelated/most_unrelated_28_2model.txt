@@ -1,0 +1,39 @@
+- stakeToken (address):  
+  · Write restricted to Owner (via `setStakeToken`).  
+  · Read restricted to None (public).  
+
+- rewardToken (address):  
+  · Write restricted to Owner (via `setRewardToken`).  
+  · Read restricted to None (public).  
+
+- rewardInterval (uint256):  
+  · Write restricted to Owner (via `setRewardInterval`).  
+  · Read restricted to None (public).  
+
+- rewardsRatioNumerator (uint256):  
+  · Write restricted to Owner (via `setRewardsRatioNumerator`).  
+  · Read restricted to None (public).  
+
+- rewardsRatioDenominator (uint256):  
+  · Write restricted to Owner (via `setRewardsRatioDenominator`).  
+  · Read restricted to None (public).  
+
+- minStakingPeriod (uint256):  
+  · Write restricted to Owner (via `setMinStakingPeriod`).  
+  · Read restricted to None (public).  
+
+- maxStakingPeriod (uint256):  
+  · Write restricted to Owner (via `setMaxStakingPeriod`).  
+  · Read restricted to None (public).  
+
+- stakeInfos (mapping):  
+  · Write restricted to Staker (via `stake`, `claim`, `unStake`).  
+  · Read restricted to None (public, but user-specific).  
+
+- stakedCount (mapping):  
+  · Write restricted to Staker (incremented during `stake`).  
+  · Read restricted to None (public).  
+
+- allStakers (address[]):  
+  · Write restricted to Contract (appends new stakers).  
+  · Read restricted to None (public).  

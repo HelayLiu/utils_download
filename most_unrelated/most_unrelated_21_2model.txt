@@ -1,0 +1,15 @@
+- _owner (inherited from Ownable):
+    · Write restricted to the current owner (via `transferOwnership`/`renounceOwnership`).
+    · Read restricted to public (via `owner()` function).
+
+- _balances (private mapping):
+    · Write restricted to token holders (via `transfer`) or approved spenders (via `transferFrom`).
+    · Read restricted to public via `balanceOf(address)`.
+
+- _allowances (private nested mapping):
+    · Write restricted to token holders (via `approve`/`increaseAllowance`/`decreaseAllowance`) or spenders during transfers.
+    · Read restricted to public via `allowance(address,address)`.
+
+- _name, _symbol, _decimals, _totalSupply (private):
+    · Write restricted to constructor (immutable post-deployment).
+    · Read restricted to public via getter functions (`name()`/`symbol()`/`decimals()`/`totalSupply()`).

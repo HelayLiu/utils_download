@@ -1,0 +1,21 @@
+- _owner (address):  
+    · Write restricted to the contract owner (via ownership transfer/renunciation).  
+    · Read restricted to any actor via `owner()` function.  
+- _balances (mapping):  
+    · Write restricted to internal functions (transfers/minting/burning).  
+    · Read restricted to the respective user or public via `balanceOf()`.  
+- _allowances (mapping):  
+    · Write restricted to token holders (for approvals) or internal functions (transfers).  
+    · Read restricted to involved parties via `allowance()`.  
+- _totalSupply (uint256):  
+    · Write restricted to internal functions (minting/burning).  
+    · Read restricted to public via `totalSupply()`.  
+- _name (string):  
+    · Write restricted to the owner via `setName()`.  
+    · Read restricted to public via `name()`.  
+- _symbol (string):  
+    · Write restricted to the owner via `setSymbol()`.  
+    · Read restricted to public via `symbol()`.  
+- _able (mapping):  
+    · Write restricted to the owner (whitelisting/pausing/limits).  
+    · Read restricted to public (struct fields).  

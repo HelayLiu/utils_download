@@ -1,0 +1,6 @@
+- As the contract owner, I want to securely transfer ownership using a two-step push/pull mechanism to prevent accidental transfers.
+- As the staking contract, I want to exclusively perform rebase operations to adjust token supply based on profits.
+- As a token holder, I want to transfer tokens securely with allowances managed via signed permits (EIP-2612) for gasless approvals.
+- As any user, I want to query token balances/supply without access restrictions.
+- As the initializer, I want to lock the staking contract address during initialization to prevent unauthorized changes.
+- As a user, I want my token balances and allowances isolated via gons-based accounting to ensure proportional rebase adjustments.

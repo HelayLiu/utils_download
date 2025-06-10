@@ -1,0 +1,7 @@
+- As a user, I want to mint NFTs representing batches of XEN token claims to manage multiple claims efficiently.
+- As a user, I want to rebatch claims to extend terms for underlying proxies associated with my NFTs.
+- As a user, I want to claim XEN token rewards from NFT slots and send them to a specified address.
+- As a user, I want to claim rewards and immediately re-claim ranks in one transaction to optimize gas costs.
+- As a contract owner, I want to set SVG generator addresses to customize token metadata visualization.
+- As a specified address, I want to adjust tip amounts for combined claim/re-claim operations to manage fees.
+- As a user, I want my NFT slot data and mint information isolated to prevent unauthorized access or modifications.

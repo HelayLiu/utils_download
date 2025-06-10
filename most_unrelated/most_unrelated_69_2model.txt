@@ -1,0 +1,18 @@
+- `want` (LP token):  
+  · Write restricted to Vault (user withdrawals) and MasterChef (deposits).  
+  · Read restricted to None.  
+- `lpToken0`/`lpToken1`:  
+  · Write restricted to UniswapRouter (liquidity operations).  
+  · Read restricted to None.  
+- `output` (JETS rewards):  
+  · Write restricted to MasterChef (reward accrual) and UniswapRouter (swaps).  
+  · Read restricted to None.  
+- `compoundingFee`:  
+  · Write restricted to Owner/Keeper.  
+  · Read restricted to None.  
+- `keeper`/`strategist`/`unirouter`/`vault`:  
+  · Write restricted to Owner/Manager roles.  
+  · Read restricted to None.  
+- `withdrawalFee`/`callFee`:  
+  · Write restricted to Owner/Keeper.  
+  · Read restricted to None.  

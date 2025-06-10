@@ -1,0 +1,186 @@
+{
+    "paused() returns (bool)": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "hasRole(bytes32 role, address account) returns (bool)": [],
+    "getRoleAdmin(bytes32 role) returns (bytes32)": [],
+    "grantRole(bytes32 role, address account)": [],
+    "revokeRole(bytes32 role, address account)": [],
+    "renounceRole(bytes32 role, address account)": [],
+    "initialize()": [
+        {
+            "potential_checks": "_initializing || ! _initialized == False",
+            "involved_variables": [
+                "_initializing",
+                "_initialized"
+            ],
+            "descriptions": "",
+            "references": [
+                "_initializing",
+                "_initialized"
+            ]
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setWithdrawAddress(address _address)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getWithdrawAddress() returns (address)": [],
+    "setCreatorRoyalty(address _address, address _creator, uint256 _fee)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getCreatorRoyalty(address _address) returns (NftMarket.RoyaltyFee)": [],
+    "setPayableToken(address _address, bool allowed)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "ERC20Checker",
+                "account",
+                "_address"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "! ERC20Checker.supportsInterface(_address) == False",
+            "involved_variables": [
+                "role",
+                "ERC20Checker",
+                "account",
+                "_address"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "putOnSale(address tokenAddress, uint256 tokenId, address payToken, uint256 price, uint256 salePeriod)": [
+        {
+            "potential_checks": "! $.payableTokens[_payToken] == False",
+            "involved_variables": [
+                "_payToken",
+                "$"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "_payToken",
+                "$"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "updateOnSale(address tokenAddress, uint256 tokenId, address payToken, uint256 price, uint256 salePeriod)": [
+        {
+            "potential_checks": "! $.payableTokens[_payToken] == False",
+            "involved_variables": [
+                "_payToken",
+                "$"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "_payToken",
+                "$"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "removeFromSale(address tokenAddress, uint256 tokenId)": [
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "purchase(address tokenAddress, uint256 tokenId)": [
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+- As a token holder, I want to securely manage my token balances and allowances, ensuring only I or approved spenders can transfer or burn my tokens.
+- As a token holder, I want to adjust allowances for spenders, ensuring proper checks to prevent invalid allowance changes.
+- As the contract owner, I want to manage contract ownership securely, restricting transfer/renounce actions to authorized addresses.
+- As any user, I want to query token metadata (name, symbol, supply) publicly without access restrictions.
+- As a spender, I want to transfer tokens on behalf of holders only within approved limits, with zero-address and balance safeguards.

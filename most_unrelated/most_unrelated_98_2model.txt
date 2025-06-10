@@ -1,0 +1,19 @@
+- `tokenSlotCount` (mapping(uint256 ⇒ uint256)):
+  · Write restricted to the contract during NFT minting/batching.
+  · Read restricted to None (publicly accessible).
+  
+- `nftInfo` (mapping(uint256 ⇒ uint256)):
+  · Write restricted to the contract during claim/rank operations.
+  · Read restricted to None (publicly accessible via `mintInfo`).
+  
+- `tips` (uint256):
+  · Write restricted to the specified address (`0xA8344...`).
+  · Read restricted to None (publicly accessible).
+  
+- `SvgGenerate` (address):
+  · Write restricted to the contract owner.
+  · Read restricted to None (publicly accessible).
+  
+- `_startTokenId` (uint256):
+  · Write restricted to the contract during NFT minting.
+  · Read restricted to None (publicly accessible).

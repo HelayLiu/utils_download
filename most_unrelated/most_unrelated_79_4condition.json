@@ -1,0 +1,45 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "checkIn(address recipient) returns (bool)": [],
+    "createAgent(address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "IERC20(STP_TOKEN).transferFrom(msg.sender,recipient,amount) == False",
+            "involved_variables": [
+                "success"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "agentInterfacing(address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "IERC20(STP_TOKEN).transferFrom(msg.sender,recipient,amount) == False",
+            "involved_variables": [
+                "success"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "hasUserCheckedIn(address user) returns (bool)": [],
+    "hasUserCreatedAgent(address user) returns (bool)": [],
+    "hasUserInterfacedAgent(address user) returns (bool)": []
+}

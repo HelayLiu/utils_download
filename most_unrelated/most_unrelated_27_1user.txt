@@ -1,0 +1,8 @@
+- Contract Purpose: This contract is an ERC-1155 token with advanced features including lazy minting, configurable royalty distribution, primary sales management, and claim-based distribution mechanics. It facilitates secure token minting, transfers, and royalty distribution while enforcing strict access controls.
+  
+- State Isolation Use Cases:
+  - As a contract admin, I want to restrict minting permissions to authorized minters to prevent unauthorized token creation.
+  - As a token holder, I want my token balances isolated from others to ensure only I or approved operators can transfer my tokens.
+  - As a royalty recipient, I want royalty settings isolated per token ID so that royalties are enforced consistently on secondary sales.
+  - As a metadata manager, I want base URI updates restricted to authorized roles to prevent unauthorized metadata changes.
+  - As a claim administrator, I want claim conditions enforced per token ID to ensure tokens are distributed under predefined rules (e.g., supply limits, allowlists).

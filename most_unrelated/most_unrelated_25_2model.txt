@@ -1,0 +1,36 @@
+- wrappedNativeToken: 
+    · Write restricted to None (immutable).
+    · Read restricted to None.
+- routerMiddlewareBase: 
+    · Write restricted to RESOURCE_SETTER role.
+    · Read restricted to None.
+- gatewayContract: 
+    · Write restricted to RESOURCE_SETTER role.
+    · Read restricted to None.
+- usdc: 
+    · Write restricted to None (set at deployment).
+    · Read restricted to None.
+- tokenMessenger: 
+    · Write restricted to RESOURCE_SETTER role.
+    · Read restricted to None.
+- depositNonce: 
+    · Write restricted to Deposit/Relay functions (user-initiated).
+    · Read restricted to None.
+- destDetails: 
+    · Write restricted to RESOURCE_SETTER role.
+    · Read restricted to None.
+- executeRecord: 
+    · Write restricted to Relay functions (prevents replay).
+    · Read restricted to Contract internal.
+- MIN_GAS_THRESHHOLD: 
+    · Write restricted to None (set at deployment).
+    · Read restricted to None.
+- pauseStakeAmountMin/Max: 
+    · Write restricted to RESOURCE_SETTER role.
+    · Read restricted to None.
+- totalStakedAmount: 
+    · Write restricted to Community Pause/Withdraw functions.
+    · Read restricted to None.
+- isCommunityPauseEnabled: 
+    · Write restricted to DEFAULT_ADMIN_ROLE.
+    · Read restricted to None.

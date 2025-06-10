@@ -1,0 +1,27 @@
+- _balances (private mapping):  
+  · Write restricted to token owners (transfers) and minters (minting)  
+  · Read restricted to None (public balanceOf)
+
+- _allowances (private nested mapping):  
+  · Write restricted to token owners (approvals) and spenders (transfers)  
+  · Read restricted to None (public allowance)
+
+- _totalSupply (private):  
+  · Write restricted to contract (minting/burning)  
+  · Read restricted to None (public totalSupply)
+
+- _cap (private):  
+  · Write restricted to None (immutable)  
+  · Read restricted to None (public cap)
+
+- _totalMinted (private):  
+  · Write restricted to contract (minting)  
+  · Read restricted to None (public totalMinted)
+
+- _minters (private Role):  
+  · Write restricted to owner (add/remove) and self (renounce)  
+  · Read restricted to None (public isMinter)
+
+- owner (public):  
+  · Write restricted to None (immutable)  
+  · Read restricted to None

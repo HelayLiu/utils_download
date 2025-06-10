@@ -4,3 +4,6 @@ simliar_code/*
 config.py
 __pycache__/
 *.json
+!**/*_4condition.json
+!**/*_1user.txt
+!**/*_2model.txt

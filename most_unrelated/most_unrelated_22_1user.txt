@@ -1,0 +1,6 @@
+- As the owner, I want to control minter authorization to enforce token minting policies
+- As a minter, I want to bulk-mint tokens for valid addresses while respecting supply cap
+- As a token holder, I want exclusive burn authority over my tokens
+- As a user, I want to verify token metadata (symbol/decimals) without access restrictions
+- As a spender, I want allowance-based token transfers approved by token owners
+- As any user, I want to check public state (totalSupply/cap) without access restrictions

@@ -1,0 +1,5 @@
+- As a token holder, I want my token balances and allowances to be isolated from unauthorized modifications, ensuring only I or approved spenders can alter them.  
+- As the contract owner, I want exclusive control over fee parameters, exclusions, and swap features to enforce economic policies securely.  
+- As a user, I want transactions to validate senders/recipients and amounts to prevent invalid state changes.  
+- As the contract, I want to restrict liquidity operations to designated addresses and threshold conditions to protect funds.  
+- As an excluded user, I want fee exemptions applied consistently during transfers to optimize my transactions.  

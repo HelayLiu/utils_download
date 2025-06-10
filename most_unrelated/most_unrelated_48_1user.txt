@@ -1,0 +1,7 @@
+- As the owner, I want to set a minter address so that only authorized accounts can mint new tokens, ensuring token supply control.  
+- As the minter, I want to mint tokens to specific accounts so that token distribution is controlled and secure.  
+- As a user, I want to securely transfer tokens to others so that my assets are managed safely with access control.  
+- As a user, I want to burn my tokens so that token supply can be reduced securely without interference from others.  
+- As a user, I want to approve spenders via signatures (permit) so that gas fees are reduced for allowance management.  
+- As a spender, I want to transfer or burn tokens on behalf of owners so that delegated actions are executed with proper allowances.  
+- As the owner, I want to transfer ownership securely so that contract administration is isolated to authorized parties.  

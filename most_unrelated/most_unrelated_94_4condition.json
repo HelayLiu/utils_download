@@ -1,0 +1,4678 @@
+{
+    "paused() returns (bool)": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "pancakeV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes data)": [],
+    "uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes data)": [],
+    "initialize(address _factoryV3, address _pancakeFactoryV3, address _WETH, address _feeCollector, uint256 _feeRate)": [],
+    "buyMemeToken(address tokenManager, address token, address recipient, uint256 funds, uint256 minAmount) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "_status",
+                "WETH",
+                "funds",
+                "tokenIn",
+                "feeExcludeList",
+                "amountOut",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "_status",
+                "WETH",
+                "funds",
+                "tokenIn",
+                "feeExcludeList",
+                "amountOut",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "funds > 0",
+            "involved_variables": [
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "_status",
+                "WETH",
+                "funds",
+                "tokenIn",
+                "feeExcludeList",
+                "amountOut",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "_status",
+                "WETH",
+                "funds",
+                "tokenIn",
+                "feeExcludeList",
+                "amountOut",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenManager == address(0xEC4549caDcE5DA21Df6E6422d448034B5233bFbC) == False",
+            "involved_variables": [
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "_status",
+                "WETH",
+                "funds",
+                "tokenIn",
+                "feeExcludeList",
+                "amountOut",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenManager == address(0x5c952063c7fc8610FFDB798152D69F0B9550762b) == False",
+            "involved_variables": [
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "_status",
+                "WETH",
+                "funds",
+                "tokenIn",
+                "feeExcludeList",
+                "amountOut",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountOut > 0 == False",
+            "involved_variables": [
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "_status",
+                "WETH",
+                "funds",
+                "tokenIn",
+                "feeExcludeList",
+                "amountOut",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "sellMemeToken(address tokenManager, address token, address recipient, uint256 tokenAmount) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenAmount > 0",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenManager == address(0x79c7909097A2a5CeDb8DA900e3192cEe671521a6) == False",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenManager == address(0x5c952063c7fc8610FFDB798152D69F0B9550762b) == False",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountOut > 0",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountOut > 0",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(recipient).call{value: amountOut}() == False",
+            "involved_variables": [
+                "tokenAmount",
+                "tokenManager",
+                "ENTERED",
+                "token",
+                "success",
+                "_status",
+                "WETH",
+                "amountOut",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "swapV2ExactIn(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMin, address poolAddress) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountIn > 0",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeIn == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "token == WETH && address(this).balance >= value == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "payer == address(this) == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenIn == token0 == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenIn == token0 == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender]",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "(success_scope_1,None) = address(msg.sender).call{value: amountOut - fee_scope_0}() == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "success_scope_1",
+                "amountIn",
+                "balanceBefore",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "swapV2ExactOut(address tokenIn, address tokenOut, uint256 amountInMax, uint256 amountOut, address poolAddress) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountInMax > 0",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenIn == token0 == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountIn <= amountInMax",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "! nativeOut == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeIn == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "token == WETH && address(this).balance >= value == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "payer == address(this) == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenIn == token0 == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance > fee == False",
+            "involved_variables": [
+                "poolAddress",
+                "token",
+                "token0",
+                "payer",
+                "nativeIn",
+                "to",
+                "feeExcludeList",
+                "this",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "amountIn",
+                "fee",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "swapV2MultiHopExactIn(address tokenIn, uint256 amountIn, uint256 amountOutMin, address[] path, address recipient, uint256 deadline, address factory) returns (uint256[])": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountIn > 0",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenOut == WETH == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "! nativeOut == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeIn == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "token == WETH && address(this).balance >= value == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "payer == address(this) == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenIn == path[0]",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "i < path.length - 1 == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountOut >= amountOutMin",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance > fee",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(feeCollector).call{value: fee}() == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "amountOut",
+                "nativeOut",
+                "tokenOut",
+                "amountOutMin",
+                "_status",
+                "amountIn",
+                "fee",
+                "balanceBefore",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "swapV2MultiHopExactOut(address tokenIn, uint256 amountInMax, uint256 amountOut, address[] path, address recipient, uint256 deadline, address factory) returns (uint256[])": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountInMax > 0",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenOut == WETH == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "! nativeOut == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeIn == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "token == WETH && address(this).balance >= value == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "payer == address(this) == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "i < path.length - 1 == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance > fee",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(feeCollector).call{value: fee}() == False",
+            "involved_variables": [
+                "token",
+                "payer",
+                "nativeIn",
+                "feeExcludeList",
+                "block.timestamp",
+                "this",
+                "success",
+                "deadline",
+                "tokenIn",
+                "nativeOut",
+                "tokenOut",
+                "_status",
+                "fee",
+                "i",
+                "path",
+                "ENTERED",
+                "WETH",
+                "msg.sender",
+                "value",
+                "amountInMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes _data)": [
+        {
+            "potential_checks": "amount0Delta > 0 || amount1Delta > 0",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "factoryV3",
+                "CallbackValidation",
+                "data",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "factoryV3"
+            ]
+        },
+        {
+            "potential_checks": "amount0Delta > 0 == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "factoryV3",
+                "CallbackValidation",
+                "data",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "factoryV3"
+            ]
+        },
+        {
+            "potential_checks": "isExactInput == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "factoryV3",
+                "CallbackValidation",
+                "data",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "factoryV3"
+            ]
+        },
+        {
+            "potential_checks": "data.path.hasMultiplePools()",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "factoryV3",
+                "CallbackValidation",
+                "data",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "factoryV3"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0 == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "factoryV3",
+                "CallbackValidation",
+                "data",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "factoryV3"
+            ]
+        },
+        {
+            "potential_checks": "zeroForOne == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "factoryV3",
+                "CallbackValidation",
+                "data",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "factoryV3"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "factoryV3",
+                "CallbackValidation",
+                "data",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "factoryV3"
+            ]
+        },
+        {
+            "potential_checks": "amountOutReceived == amountOut == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "factoryV3",
+                "CallbackValidation",
+                "data",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "factoryV3"
+            ]
+        }
+    ],
+    "pancakeV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes _data)": [
+        {
+            "potential_checks": "amount0Delta > 0 || amount1Delta > 0",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "CallbackValidation",
+                "data",
+                "pancakeFactoryV3",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "pancakeFactoryV3"
+            ]
+        },
+        {
+            "potential_checks": "amount0Delta > 0 == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "CallbackValidation",
+                "data",
+                "pancakeFactoryV3",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "pancakeFactoryV3"
+            ]
+        },
+        {
+            "potential_checks": "isExactInput == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "CallbackValidation",
+                "data",
+                "pancakeFactoryV3",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "pancakeFactoryV3"
+            ]
+        },
+        {
+            "potential_checks": "data.path.hasMultiplePools()",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "CallbackValidation",
+                "data",
+                "pancakeFactoryV3",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "pancakeFactoryV3"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0 == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "CallbackValidation",
+                "data",
+                "pancakeFactoryV3",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "pancakeFactoryV3"
+            ]
+        },
+        {
+            "potential_checks": "zeroForOne == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "CallbackValidation",
+                "data",
+                "pancakeFactoryV3",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "pancakeFactoryV3"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "CallbackValidation",
+                "data",
+                "pancakeFactoryV3",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "pancakeFactoryV3"
+            ]
+        },
+        {
+            "potential_checks": "amountOutReceived == amountOut == False",
+            "involved_variables": [
+                "tokenOut",
+                "isExactInput",
+                "Path",
+                "CallbackValidation",
+                "data",
+                "pancakeFactoryV3",
+                "fee",
+                "amount1Delta",
+                "tokenIn",
+                "sqrtPriceLimitX96",
+                "recipient",
+                "amount0Delta",
+                "amountOutReceived",
+                "amountOut",
+                "zeroForOne"
+            ],
+            "descriptions": "",
+            "references": [
+                "pancakeFactoryV3"
+            ]
+        }
+    ],
+    "swapV3ExactIn(SwapX.ExactInputSingleParams params) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "params.amountIn > 0",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "params.tokenOut == WETH == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "! nativeOut == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0 == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "zeroForOne == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountOut >= params.amountOutMinimum",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance > fee",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(feeCollector).call{value: fee}() == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "sqrtPriceLimitX96",
+                "amountOut",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "swapV3ExactOut(SwapX.ExactOutputSingleParams params) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "params.amountInMaximum > 0",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "! nativeOut == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0 == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "zeroForOne == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0 == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeIn == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance > fee",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(feeCollector).call{value: fee}() == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "nativeIn",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "swapV3MultiHopExactIn(SwapX.ExactInputParams params) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "params.amountIn > 0",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "msg.value > 0 == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "true == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amountOut >= params.amountOutMinimum",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance > fee",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(feeCollector).call{value: fee}() == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "amountOut",
+                "msg.sender",
+                "block.timestamp",
+                "feeExcludeList",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "swapV3MultiHopExactOut(SwapX.ExactOutputParams params) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "params.amountInMaximum > 0",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "msg.value > 0 == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "tokenOut == WETH == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "! nativeOut == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0 == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "zeroForOne == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "sqrtPriceLimitX96 == 0 == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "nativeOut",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance > fee == False",
+            "involved_variables": [
+                "tokenOut",
+                "params",
+                "ENTERED",
+                "this",
+                "_status",
+                "WETH",
+                "deadline",
+                "zeroForOne",
+                "fee",
+                "msg.value",
+                "sqrtPriceLimitX96",
+                "feeExcludeList",
+                "tokenIn",
+                "recipient",
+                "msg.sender",
+                "block.timestamp",
+                "nativeOut"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "swapMixedMultiHopExactIn(SwapX.ExactInputMixedParams params) returns (uint256)": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp <= deadline",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "params.routes.length == 2",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "params.amountIn > 0",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "msg.value >= params.amountIn",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "amount > 0 == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "feeExcludeList[msg.sender] == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance > fee",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = address(feeCollector).call{value: fee}() == False",
+            "involved_variables": [
+                "params",
+                "ENTERED",
+                "this",
+                "amount",
+                "success",
+                "_status",
+                "WETH",
+                "deadline",
+                "fee",
+                "msg.value",
+                "tokenIn",
+                "feeExcludeList",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "WETH",
+                "_status",
+                "ENTERED",
+                "feeExcludeList"
+            ]
+        }
+    ],
+    "getPool(address tokenA, address tokenB, uint24 fee) returns (IUniswapV3Pool)": [],
+    "pause()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == false == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == true == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setWETH(address addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "addr"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setFeeRate(uint256 rate)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "rate"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "rate < 10000 == False",
+            "involved_variables": [
+                "rate"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setFeeCollector(address addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "addr"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "rescueERC20Token(address token, address recipient)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "recipient"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdrawETH(address recipient)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "success",
+                "recipient",
+                "balance"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "balance > 0",
+            "involved_variables": [
+                "success",
+                "recipient",
+                "balance"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "(success,None) = recipient.call{value: balance}() == False",
+            "involved_variables": [
+                "success",
+                "recipient",
+                "balance"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

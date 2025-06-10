@@ -1,0 +1,5 @@
+- As a token holder, I want to securely transfer tokens to others while ensuring only valid addresses can receive tokens, preventing accidental loss.
+- As a spender, I want explicit allowance control to manage delegated token transfers without risking unauthorized access to my funds.
+- As the contract owner, I want exclusive rights to transfer/renounce ownership to maintain administrative control over the token.
+- As any user, I want transparent access to token metadata (name/symbol/supply) while keeping individual balances and allowances private to their respective owners.
+- As a token holder, I want to dynamically adjust allowances for spenders without exposing risk of over-authorization through incremental changes.

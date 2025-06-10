@@ -1,0 +1,5 @@
+- As a contract owner, I want to airdrop initial tokens to specific addresses while ensuring only I can perform this action.  
+- As a legacy token holder, I want to claim my BitBears tokens securely, with each claim verified against my NFT ownership to prevent double-claiming.  
+- As a buyer, I want to mint new tokens when minting is open, with supply limits enforced to prevent overselling.  
+- As a user, I want to verify my claim eligibility without modifying state, ensuring read access to my unclaimed NFTs.  
+- As the owner, I want to withdraw collected ETH securely, restricting access to prevent unauthorized fund transfers.  

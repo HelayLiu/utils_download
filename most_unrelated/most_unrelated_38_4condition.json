@@ -1,0 +1,395 @@
+{
+    "pendingOwner() returns (address)": [],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "acceptOwnership()": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "pendingReward(address _user) returns (uint256)": [
+        {
+            "potential_checks": "block.timestamp > lastRewardTimestamp && supply != 0 == False",
+            "involved_variables": [
+                "block.timestamp",
+                "lastRewardTimestamp",
+                "supply"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastRewardTimestamp"
+            ]
+        }
+    ],
+    "updatePool()": [
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > lastDistributionRoundEndTime == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "currentTimestamp < lastRewardTimestamp == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        }
+    ],
+    "deposit(uint256 _amount)": [
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "pending",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "pending",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > lastDistributionRoundEndTime == False",
+            "involved_variables": [
+                "pending",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "currentTimestamp < lastRewardTimestamp == False",
+            "involved_variables": [
+                "pending",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "pending > 0 == False",
+            "involved_variables": [
+                "pending",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        }
+    ],
+    "withdraw(uint256 _amount)": [
+        {
+            "potential_checks": "user.amount >= _amount",
+            "involved_variables": [
+                "_amount",
+                "userInfo",
+                "user",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp",
+                "userInfo"
+            ]
+        },
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "_amount",
+                "userInfo",
+                "user",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp",
+                "userInfo"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > lastDistributionRoundEndTime == False",
+            "involved_variables": [
+                "_amount",
+                "userInfo",
+                "user",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp",
+                "userInfo"
+            ]
+        },
+        {
+            "potential_checks": "currentTimestamp < lastRewardTimestamp == False",
+            "involved_variables": [
+                "_amount",
+                "userInfo",
+                "user",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp",
+                "userInfo"
+            ]
+        },
+        {
+            "potential_checks": "_amount > 0 == False",
+            "involved_variables": [
+                "_amount",
+                "userInfo",
+                "user",
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp",
+                "userInfo"
+            ]
+        }
+    ],
+    "emergencyWithdraw()": [
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > lastDistributionRoundEndTime == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "currentTimestamp < lastRewardTimestamp == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        }
+    ],
+    "depositReward(uint256 period)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > lastDistributionRoundEndTime == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "currentTimestamp < lastRewardTimestamp == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        },
+        {
+            "potential_checks": "lastDistributionRoundEndTime > block.timestamp == False",
+            "involved_variables": [
+                "lastDistributionRoundEndTime",
+                "supply",
+                "lastRewardTimestamp",
+                "currentTimestamp",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "lastDistributionRoundEndTime",
+                "lastRewardTimestamp"
+            ]
+        }
+    ],
+    "emergencyWithdrawRewards()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

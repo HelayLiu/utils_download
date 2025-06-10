@@ -1,0 +1,31 @@
+- token (IERC20):
+  · Write restricted to users (via deposit/withdraw) and contract (via transfers).
+  · Read restricted to None (publicly queryable).
+
+- rewardToken (IERC20):
+  · Write restricted to owner (depositReward/emergencyWithdrawRewards) and contract (user reward distribution).
+  · Read restricted to None.
+
+- lastRewardTimestamp (uint256):
+  · Write restricted to contract (during pool updates/reward deposits).
+  · Read restricted to None.
+
+- accRewardPerShare (uint256):
+  · Write restricted to contract (during pool updates).
+  · Read restricted to None.
+
+- lastTotalRewardTokenAmount (uint256):
+  · Write restricted to owner (reward deposit/emergency withdrawal).
+  · Read restricted to contract (reward calculations).
+
+- lastDistributionRoundEndTime (uint256):
+  · Write restricted to owner (reward deposit/emergency withdrawal).
+  · Read restricted to contract (time-bound reward logic).
+
+- rewardPerSec (uint256):
+  · Write restricted to owner (reward deposit/emergency withdrawal).
+  · Read restricted to None (public variable).
+
+- userInfo (mapping):
+  · Write restricted to user (own position updates via deposit/withdraw).
+  · Read restricted to None (public mapping).

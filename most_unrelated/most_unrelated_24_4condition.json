@@ -1,0 +1,771 @@
+{
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "hasRole(bytes32 role, address account) returns (bool)": [],
+    "getRoleAdmin(bytes32 role) returns (bytes32)": [],
+    "grantRole(bytes32 role, address account)": [],
+    "revokeRole(bytes32 role, address account)": [],
+    "renounceRole(bytes32 role, address callerConfirmation)": [],
+    "deposit(address _asset, uint256 _amount, address _receiver) returns (uint256)": [],
+    "mint(address _asset, uint256 _shares, address _receiver) returns (uint256)": [
+        {
+            "potential_checks": "depositPaused[_asset] == False",
+            "involved_variables": [
+                "rate",
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "fee",
+                "cap",
+                "_shares",
+                "depositPaused",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets",
+                "cap",
+                "depositPaused",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "_shares == 0 == False",
+            "involved_variables": [
+                "rate",
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "fee",
+                "cap",
+                "_shares",
+                "depositPaused",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets",
+                "cap",
+                "depositPaused",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "lpToken.totalSupply() + _shares > cap == False",
+            "involved_variables": [
+                "rate",
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "fee",
+                "cap",
+                "_shares",
+                "depositPaused",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets",
+                "cap",
+                "depositPaused",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "! isUnderlyingAssets[_asset] == False",
+            "involved_variables": [
+                "rate",
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "fee",
+                "cap",
+                "_shares",
+                "depositPaused",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets",
+                "cap",
+                "depositPaused",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "rate",
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "fee",
+                "cap",
+                "_shares",
+                "depositPaused",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets",
+                "cap",
+                "depositPaused",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "rate != 0 == False",
+            "involved_variables": [
+                "rate",
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "fee",
+                "cap",
+                "_shares",
+                "depositPaused",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets",
+                "cap",
+                "depositPaused",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "fee == 0 == False",
+            "involved_variables": [
+                "rate",
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "fee",
+                "cap",
+                "_shares",
+                "depositPaused",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets",
+                "cap",
+                "depositPaused",
+                "lpToken"
+            ]
+        }
+    ],
+    "requestRedeem(uint256 _shares)": [
+        {
+            "potential_checks": "_shares == 0 == False",
+            "involved_variables": [
+                "latestRoundID",
+                "redeemRequest",
+                "redeemRequests",
+                "msg.sender",
+                "_shares",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "latestRoundID",
+                "redeemRequests",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "_shares > lpToken.balanceOf(msg.sender) == False",
+            "involved_variables": [
+                "latestRoundID",
+                "redeemRequest",
+                "redeemRequests",
+                "msg.sender",
+                "_shares",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "latestRoundID",
+                "redeemRequests",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "redeemRequest.requestShares > 0 && redeemRequest.requestRound < latestRoundID == False",
+            "involved_variables": [
+                "latestRoundID",
+                "redeemRequest",
+                "redeemRequests",
+                "msg.sender",
+                "_shares",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "latestRoundID",
+                "redeemRequests",
+                "lpToken"
+            ]
+        },
+        {
+            "potential_checks": "redeemRequest.requestRound == latestRoundID == False",
+            "involved_variables": [
+                "latestRoundID",
+                "redeemRequest",
+                "redeemRequests",
+                "msg.sender",
+                "_shares",
+                "lpToken"
+            ],
+            "descriptions": "",
+            "references": [
+                "latestRoundID",
+                "redeemRequests",
+                "lpToken"
+            ]
+        }
+    ],
+    "cancelRequest()": [],
+    "claimRedeemRequest()": [
+        {
+            "potential_checks": "round < latestRoundID && redeemRequest.requestShares != 0 == False",
+            "involved_variables": [
+                "latestRoundID",
+                "redeemRequest",
+                "claimable",
+                "redeemRequests",
+                "round"
+            ],
+            "descriptions": "",
+            "references": [
+                "latestRoundID",
+                "redeemRequests"
+            ]
+        },
+        {
+            "potential_checks": "claimable > 0 == False",
+            "involved_variables": [
+                "latestRoundID",
+                "redeemRequest",
+                "claimable",
+                "redeemRequests",
+                "round"
+            ],
+            "descriptions": "",
+            "references": [
+                "latestRoundID",
+                "redeemRequests"
+            ]
+        }
+    ],
+    "pendingRedeemRequest() returns (uint256)": [
+        {
+            "potential_checks": "redeemRequest.requestRound == latestRoundID == False",
+            "involved_variables": [
+                "latestRoundID",
+                "redeemRequest"
+            ],
+            "descriptions": "",
+            "references": [
+                "latestRoundID"
+            ]
+        }
+    ],
+    "claimableRedeemRequest() returns (uint256)": [
+        {
+            "potential_checks": "round < latestRoundID && redeemRequest.requestShares != 0 == False",
+            "involved_variables": [
+                "latestRoundID",
+                "redeemRequest",
+                "round"
+            ],
+            "descriptions": "",
+            "references": [
+                "latestRoundID"
+            ]
+        }
+    ],
+    "totalAssets() returns (uint256)": [
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "activeAssets() returns (uint256)": [
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "activeShares() returns (uint256)": [],
+    "convertToShares(uint256 _assets) returns (uint256)": [
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "i",
+                "length",
+                "supply"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "i",
+                "length",
+                "supply"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "convertToAssets(uint256 _shares) returns (uint256)": [
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "i",
+                "length",
+                "supply"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "i",
+                "length",
+                "supply"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "previewDeposit(address _asset, uint256 _amount) returns (uint256)": [
+        {
+            "potential_checks": "! isUnderlyingAssets[_asset] == False",
+            "involved_variables": [
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        }
+    ],
+    "previewMint(address _asset, uint256 _shares) returns (uint256)": [
+        {
+            "potential_checks": "! isUnderlyingAssets[_asset] == False",
+            "involved_variables": [
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "supply == 0 == False",
+            "involved_variables": [
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "_asset",
+                "isUnderlyingAssets",
+                "supply",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        }
+    ],
+    "getRate() returns (uint256)": [
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getUnderlyings() returns (address[])": [],
+    "rollToNextRound()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "withdrawToken",
+                "this",
+                "role",
+                "account",
+                "withdrawTokenAmount",
+                "redeemableAmountInPast"
+            ],
+            "descriptions": "",
+            "references": [
+                "withdrawToken",
+                "redeemableAmountInPast"
+            ]
+        },
+        {
+            "potential_checks": "withdrawToken.balanceOf(address(this)) < redeemableAmountInPast + withdrawTokenAmount == False",
+            "involved_variables": [
+                "withdrawToken",
+                "this",
+                "role",
+                "account",
+                "withdrawTokenAmount",
+                "redeemableAmountInPast"
+            ],
+            "descriptions": "",
+            "references": [
+                "withdrawToken",
+                "redeemableAmountInPast"
+            ]
+        }
+    ],
+    "withdrawAssets(address _asset, uint256 _amount)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "balance",
+                "withdrawToken",
+                "_amount",
+                "_asset",
+                "role",
+                "isUnderlyingAssets",
+                "account",
+                "redeemableAmountInPast"
+            ],
+            "descriptions": "",
+            "references": [
+                "redeemableAmountInPast",
+                "withdrawToken",
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "! isUnderlyingAssets[_asset] == False",
+            "involved_variables": [
+                "balance",
+                "withdrawToken",
+                "_amount",
+                "_asset",
+                "role",
+                "isUnderlyingAssets",
+                "account",
+                "redeemableAmountInPast"
+            ],
+            "descriptions": "",
+            "references": [
+                "redeemableAmountInPast",
+                "withdrawToken",
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "balance < _amount == False",
+            "involved_variables": [
+                "balance",
+                "withdrawToken",
+                "_amount",
+                "_asset",
+                "role",
+                "isUnderlyingAssets",
+                "account",
+                "redeemableAmountInPast"
+            ],
+            "descriptions": "",
+            "references": [
+                "redeemableAmountInPast",
+                "withdrawToken",
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "_asset == address(withdrawToken) && balance < redeemableAmountInPast + _amount == False",
+            "involved_variables": [
+                "balance",
+                "withdrawToken",
+                "_amount",
+                "_asset",
+                "role",
+                "isUnderlyingAssets",
+                "account",
+                "redeemableAmountInPast"
+            ],
+            "descriptions": "",
+            "references": [
+                "redeemableAmountInPast",
+                "withdrawToken",
+                "isUnderlyingAssets"
+            ]
+        }
+    ],
+    "repayAssets(address _asset, uint256 _amount)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "_asset",
+                "role",
+                "assetsBorrowed",
+                "isUnderlyingAssets",
+                "account",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "assetsBorrowed",
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "! isUnderlyingAssets[_asset] == False",
+            "involved_variables": [
+                "_asset",
+                "role",
+                "assetsBorrowed",
+                "isUnderlyingAssets",
+                "account",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "assetsBorrowed",
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "value > assetsBorrowed == False",
+            "involved_variables": [
+                "_asset",
+                "role",
+                "assetsBorrowed",
+                "isUnderlyingAssets",
+                "account",
+                "value"
+            ],
+            "descriptions": "",
+            "references": [
+                "assetsBorrowed",
+                "isUnderlyingAssets"
+            ]
+        }
+    ],
+    "setCap(uint256 _cap)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "addUnderlyingAsset(address _asset)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "_asset",
+                "role",
+                "isUnderlyingAssets",
+                "account",
+                "oracleConfigurator"
+            ],
+            "descriptions": "",
+            "references": [
+                "oracleConfigurator",
+                "isUnderlyingAssets"
+            ]
+        }
+    ],
+    "removeUnderlyingAsset(address _asset)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "_asset",
+                "role",
+                "isUnderlyingAssets",
+                "account",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "! isUnderlyingAssets[_asset] == False",
+            "involved_variables": [
+                "_asset",
+                "role",
+                "isUnderlyingAssets",
+                "account",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "_asset",
+                "role",
+                "isUnderlyingAssets",
+                "account",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isUnderlyingAssets"
+            ]
+        }
+    ],
+    "setDepositPause(address _token, bool _pause)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setFeeRate(address _token, uint256 _feeRate)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "_feeRate",
+                "role",
+                "feeRecipient",
+                "isUnderlyingAssets",
+                "account",
+                "D6",
+                "_token"
+            ],
+            "descriptions": "",
+            "references": [
+                "feeRecipient",
+                "D6",
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "! isUnderlyingAssets[_token] == False",
+            "involved_variables": [
+                "_feeRate",
+                "role",
+                "feeRecipient",
+                "isUnderlyingAssets",
+                "account",
+                "D6",
+                "_token"
+            ],
+            "descriptions": "",
+            "references": [
+                "feeRecipient",
+                "D6",
+                "isUnderlyingAssets"
+            ]
+        },
+        {
+            "potential_checks": "_feeRate > D6 == False",
+            "involved_variables": [
+                "_feeRate",
+                "role",
+                "feeRecipient",
+                "isUnderlyingAssets",
+                "account",
+                "D6",
+                "_token"
+            ],
+            "descriptions": "",
+            "references": [
+                "feeRecipient",
+                "D6",
+                "isUnderlyingAssets"
+            ]
+        }
+    ],
+    "setFeeRecipient(address _feeRecipient)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account",
+                "_feeRecipient"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

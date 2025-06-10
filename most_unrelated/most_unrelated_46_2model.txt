@@ -1,0 +1,30 @@
+- FACTORY (address):  
+    · Write restricted to initialization (only during contract setup).  
+    · Read restricted to None (public visibility).  
+- lockbox (address):  
+    · Write restricted to Factory contract.  
+    · Read restricted to None (public visibility).  
+- bridges (mapping):  
+    · Write restricted to Contract Owner.  
+    · Read restricted to None (public visibility).  
+- _balances (mapping):  
+    · Write restricted to token holder (transfers), approved spenders, or authorized bridges.  
+    · Read restricted to None (public via balanceOf).  
+- _allowances (mapping):  
+    · Write restricted to token owner (approvals) and approved spenders (transfers).  
+    · Read restricted to None (public via allowance).  
+- _totalSupply (uint256):  
+    · Write restricted to authorized bridges and lockbox.  
+    · Read restricted to None (public via totalSupply).  
+- _name (string):  
+    · Write restricted to initialization (immutable after setup).  
+    · Read restricted to None (public via name).  
+- _symbol (string):  
+    · Write restricted to initialization (immutable after setup).  
+    · Read restricted to None (public via symbol).  
+- _owner (address):  
+    · Write restricted to current owner (ownership transfers).  
+    · Read restricted to None (public via owner).  
+- _nonces (mapping):  
+    · Write restricted to nonce owner (during permit signing).  
+    · Read restricted to nonce owner (via nonces).  

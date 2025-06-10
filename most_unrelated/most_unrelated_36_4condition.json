@@ -1,0 +1,540 @@
+{
+    "setKeeper(address _keeper)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        }
+    ],
+    "setRewardPool(address _rewardPool)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "paused() returns (bool)": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+        {
+            "potential_checks": "currentAllowance >= subtractedValue",
+            "involved_variables": [
+                "spender",
+                "currentAllowance",
+                "subtractedValue",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "depositAll()": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "_amount > 0",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "(sent,None) = validator.call{value: valAmt}()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "validatorLockDuration() > currentLockDuration()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "balanceOfLocked() > 0",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        }
+    ],
+    "deposit(uint256 _amount)": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "_amount > 0",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "(sent,None) = validator.call{value: valAmt}()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "validatorLockDuration() > currentLockDuration()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "balanceOfLocked() > 0",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        }
+    ],
+    "depositNative()": [
+        {
+            "potential_checks": "_status != _ENTERED",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "_amount > 0",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "(sent,None) = validator.call{value: valAmt}()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "validatorLockDuration() > currentLockDuration()",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        },
+        {
+            "potential_checks": "balanceOfLocked() > 0",
+            "involved_variables": [
+                "_amount",
+                "_ENTERED",
+                "_status",
+                "account",
+                "sent"
+            ],
+            "descriptions": "",
+            "references": [
+                "_ENTERED",
+                "_status"
+            ]
+        }
+    ],
+    "withdraw(uint256 _shares)": [
+        {
+            "potential_checks": "withdrawEnabled",
+            "involved_variables": [
+                "withdrawEnabled",
+                "amount",
+                "sent",
+                "account",
+                "accountBalance"
+            ],
+            "descriptions": "",
+            "references": [
+                "withdrawEnabled"
+            ]
+        },
+        {
+            "potential_checks": "accountBalance >= amount",
+            "involved_variables": [
+                "withdrawEnabled",
+                "amount",
+                "sent",
+                "account",
+                "accountBalance"
+            ],
+            "descriptions": "",
+            "references": [
+                "withdrawEnabled"
+            ]
+        },
+        {
+            "potential_checks": "(sent,None) = msg.sender.call{value: r}() == False",
+            "involved_variables": [
+                "withdrawEnabled",
+                "amount",
+                "sent",
+                "account",
+                "accountBalance"
+            ],
+            "descriptions": "",
+            "references": [
+                "withdrawEnabled"
+            ]
+        }
+    ],
+    "currentUnlockTime() returns (uint256)": [],
+    "currentLockDuration() returns (uint256)": [],
+    "validatorUnlockTime() returns (uint256)": [],
+    "validatorLockDuration() returns (uint256)": [],
+    "balanceOfWant() returns (uint256)": [],
+    "balanceOfLocked() returns (uint256)": [],
+    "balanceOfUnlocked() returns (uint256)": [],
+    "pendingWithdrawalRequest() returns (uint256, uint256)": [],
+    "pendingStakingRewards() returns (uint256)": [],
+    "enableWithdraw()": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdrawFromStaking()": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "block.timestamp",
+                "withdrawalTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "withdrawalTime"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp >= withdrawalTime == False",
+            "involved_variables": [
+                "block.timestamp",
+                "withdrawalTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "withdrawalTime"
+            ]
+        }
+    ],
+    "lockFunds()": [
+        {
+            "potential_checks": "validatorLockDuration() > currentLockDuration() == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "relockFunds()": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "keeper",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "keeper"
+            ]
+        }
+    ],
+    "claimStakingReward()": [
+        {
+            "potential_checks": "msg.sender == rewardPool == False",
+            "involved_variables": [
+                "msg.sender",
+                "rewardPool"
+            ],
+            "descriptions": "",
+            "references": [
+                "rewardPool"
+            ]
+        }
+    ],
+    "inCaseTokensGetStuck(address _token)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "_token",
+                "want"
+            ],
+            "descriptions": "",
+            "references": [
+                "want"
+            ]
+        },
+        {
+            "potential_checks": "_token != address(want) == False",
+            "involved_variables": [
+                "_token",
+                "want"
+            ],
+            "descriptions": "",
+            "references": [
+                "want"
+            ]
+        }
+    ]
+}

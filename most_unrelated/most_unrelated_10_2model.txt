@@ -1,0 +1,39 @@
+- `_airDropper` (address):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None.  
+- `_balances` (mapping(address => uint256)):  
+  · Write restricted to the contract during transfers/airdrops.  
+  · Read restricted to None.  
+- `_totalSupply` (uint256):  
+  · Write restricted to the contract during airdrops.  
+  · Read restricted to None.  
+- `bots` (mapping(address => bool)):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None.  
+- `swapEnabled` (bool):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None.  
+- `limitsInEffect` (bool):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None.  
+- `_holderLastTransferTimestamp` (mapping(address => uint256)):  
+  · Write restricted to the contract during transfers.  
+  · Read restricted to the contract during transfers.  
+- `transferDelayEnabled` (bool):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None.  
+- `_limitExclusions` (mapping(address => bool)):  
+  · Write restricted to the contract owner.  
+  · Read restricted to the contract during transfers.  
+- `_tradingEnabledBlock` (uint256):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None.  
+- `_uniswapRouters` (mapping(address => bool)):  
+  · Write restricted to the contract owner.  
+  · Read restricted to the contract during transfers.  
+- `_owner` (address):  
+  · Write restricted to the contract owner.  
+  · Read restricted to None.  
+- `_allowances` (mapping(address => mapping(address => uint256))):  
+  · Write restricted to token holders or approved spenders.  
+  · Read restricted to None.  

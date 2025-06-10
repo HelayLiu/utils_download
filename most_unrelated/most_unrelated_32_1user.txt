@@ -1,0 +1,6 @@
+- As a user, I want to deposit staking tokens to earn rewards, ensuring my deposited balance is isolated and only modifiable by me or the contract during valid operations.
+- As a user, I want to withdraw my staked tokens and rewards securely, with state transitions protected against reentrancy and unauthorized access.
+- As a reward recipient, I want my accrued rewards to be isolated per token and user, with claims executable only by the account owner.
+- As an operator, I want emergency withdrawal capabilities to pause deposits and protect funds, with access restricted to authorized roles.
+- As an admin, I want to add new reward tokens and fund rewards, ensuring only authorized roles can modify reward structures.
+- As a protocol, I want automated BEETS harvesting with timelock protection to prevent excessive frequency and maintain reward distribution integrity.

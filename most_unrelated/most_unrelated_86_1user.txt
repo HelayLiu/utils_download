@@ -1,0 +1,5 @@
+- As a user, I want to mint NFTs by providing valid signatures and paying the required fee, ensuring my signature can only be used once to prevent fraud.
+- As a contract owner, I want to control minting parameters (price/supply) and withdraw funds securely to an updatable receiver address.
+- As a payment receiver, I want to receive ETH/tokens from mints/withdrawals without unauthorized access to contract funds.
+- As an NFT owner, I want exclusive transfer rights for my tokens, preventing others from moving them without approval.
+- As a whitelisted user, I want signature-based access enforcement to ensure only authorized parties can mint.

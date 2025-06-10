@@ -1,0 +1,81 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Verify caller is owner to authorize ownership renounce.",
+            "references": ["_owner"]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Verify caller is owner to authorize ownership transfer.",
+            "references": ["_owner"]
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "allowance[from][msg.sender] >= amount",
+            "involved_variables": ["from", "msg.sender", "amount","_allowances"],
+            "descriptions": "Ensure spender has enough allowance to transfer tokens.",
+            "references": ["_allowance"]
+        }
+
+    ],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+    ],
+    "getTokenInfo() returns (Google.TokenInfo)": [],
+    "totalBuyTaxFees() returns (uint256)": [],
+    "totalSellTaxFees() returns (uint256)": [],
+    "totalTaxFees() returns (uint256)": [],
+    "getMarketingBuyTax() returns (uint256)": [],
+    "getMarketingSellTax() returns (uint256)": [],
+    "getLpBuyTax() returns (uint256)": [],
+    "getLpSellTax() returns (uint256)": [],
+    "setExclusionFromFee(address[] account, bool value)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Verify caller is owner to modify fee exemptions.",
+            "references": ["isExcludeFromFee"]
+        }
+    ],
+    "enableTrading()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Verify caller is owner to enable trading.",
+            "references": [
+                "tradingEnabled"
+            ]
+        },
+        {
+            "potential_checks": "tradingEnabled == False",
+            "involved_variables": [
+                "tradingEnabled"
+            ],
+            "descriptions": "Prevent re-enabling already active trading.",
+            "references": [
+                "tradingEnabled"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+- _balances (mapping):  
+  · Write restricted to the contract during transfers (user-triggered or fee logic).  
+  · Read restricted to the contract and via public `balanceOf`.  
+- _allowances (mapping):  
+  · Write restricted to token owners (via approvals) and the contract (during transfers).  
+  · Read restricted to the contract and via public `allowance`.  
+- _whiteaddress (mapping):  
+  · Write restricted to the safe address.  
+  · Read restricted to the contract during transfers when stopped.  
+- isopenbuy (uint):  
+  · Write restricted to the contract owner.  
+  · Read restricted to anyone (public).  
+- isstop (uint):  
+  · Write restricted to the contract owner.  
+  · Read restricted to anyone (public).  
+- _owner (address):  
+  · Write restricted to the contract owner (via ownership transfers).  
+  · Read restricted to anyone (public).  

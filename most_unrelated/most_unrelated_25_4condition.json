@@ -1,0 +1,513 @@
+{
+    "multicall(bytes[] data) returns (bytes[])": [
+        {
+            "potential_checks": "i < data.length == False",
+            "involved_variables": [
+                "data",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "iDepositUSDC(uint256 partnerId, bytes32 destChainIdBytes, bytes32 recipient, uint256 amount)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "msg.value",
+                "_notEntered",
+                "MAX_TRANSFER_SIZE",
+                "destChainIdBytes",
+                "usdc",
+                "amount",
+                "destDetails"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_TRANSFER_SIZE",
+                "destDetails",
+                "usdc",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "msg.value != destDetails[destChainIdBytes].fee == False",
+            "involved_variables": [
+                "msg.value",
+                "_notEntered",
+                "MAX_TRANSFER_SIZE",
+                "destChainIdBytes",
+                "usdc",
+                "amount",
+                "destDetails"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_TRANSFER_SIZE",
+                "destDetails",
+                "usdc",
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "amount > MAX_TRANSFER_SIZE == False",
+            "involved_variables": [
+                "msg.value",
+                "_notEntered",
+                "MAX_TRANSFER_SIZE",
+                "destChainIdBytes",
+                "usdc",
+                "amount",
+                "destDetails"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_TRANSFER_SIZE",
+                "destDetails",
+                "usdc",
+                "_notEntered"
+            ]
+        }
+    ],
+    "iDeposit(IAssetForwarder.DepositData depositData, bytes destToken, bytes recipient)": [
+        {
+            "potential_checks": "_notEntered == False",
+            "involved_variables": [
+                "_notEntered"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        }
+    ],
+    "iDepositInfoUpdate(address srcToken, uint256 feeAmount, uint256 depositId, bool initiatewithdrawal)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "msg.value",
+                "_notEntered",
+                "initiatewithdrawal"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "initiatewithdrawal",
+            "involved_variables": [
+                "msg.value",
+                "_notEntered",
+                "initiatewithdrawal"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "msg.value == 0 == False",
+            "involved_variables": [
+                "msg.value",
+                "_notEntered",
+                "initiatewithdrawal"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        }
+    ],
+    "iDepositMessage(IAssetForwarder.DepositData depositData, bytes destToken, bytes recipient, bytes message)": [
+        {
+            "potential_checks": "_notEntered == False",
+            "involved_variables": [
+                "_notEntered"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        }
+    ],
+    "iRelay(IAssetForwarder.RelayData relayData)": [
+        {
+            "potential_checks": "_notEntered == False",
+            "involved_variables": [
+                "_notEntered"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        }
+    ],
+    "iRelayMessage(IAssetForwarder.RelayDataMessage relayData)": [
+        {
+            "potential_checks": "_notEntered == False",
+            "involved_variables": [
+                "_notEntered"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        }
+    ],
+    "paused() returns (bool)": [],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "hasRole(bytes32 role, address account) returns (bool)": [],
+    "getRoleAdmin(bytes32 role) returns (bytes32)": [],
+    "grantRole(bytes32 role, address account)": [],
+    "revokeRole(bytes32 role, address account)": [],
+    "renounceRole(bytes32 role, address account)": [],
+    "update(uint256 index, address _gatewayContract, bytes _routerMiddlewareBase, uint256 minPauseStakeAmount, uint256 maxPauseStakeAmount)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "minPauseStakeAmount",
+                "account",
+                "role",
+                "maxPauseStakeAmount",
+                "index"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "index == 1 == False",
+            "involved_variables": [
+                "minPauseStakeAmount",
+                "account",
+                "role",
+                "maxPauseStakeAmount",
+                "index"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "index == 2 == False",
+            "involved_variables": [
+                "minPauseStakeAmount",
+                "account",
+                "role",
+                "maxPauseStakeAmount",
+                "index"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "index == 3",
+            "involved_variables": [
+                "minPauseStakeAmount",
+                "account",
+                "role",
+                "maxPauseStakeAmount",
+                "index"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "minPauseStakeAmount <= maxPauseStakeAmount == False",
+            "involved_variables": [
+                "minPauseStakeAmount",
+                "account",
+                "role",
+                "maxPauseStakeAmount",
+                "index"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "updateTokenMessenger(address _tokenMessenger)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setDestDetails(bytes32[] _destChainIdBytes, IAssetForwarder.DestDetails[] _destDetails)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "_destDetails",
+                "_destChainIdBytes",
+                "account",
+                "idx"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_destChainIdBytes.length == _destDetails.length",
+            "involved_variables": [
+                "role",
+                "_destDetails",
+                "_destChainIdBytes",
+                "account",
+                "idx"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "idx < _destDetails.length == False",
+            "involved_variables": [
+                "role",
+                "_destDetails",
+                "_destChainIdBytes",
+                "account",
+                "idx"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "iReceive(string requestSender, bytes packet, string ) returns (bytes)": [
+        {
+            "potential_checks": "msg.sender != address(gatewayContract) == False",
+            "involved_variables": [
+                "gatewayContract",
+                "count",
+                "requestSender",
+                "msg.sender",
+                "routerMiddlewareBase",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "gatewayContract",
+                "routerMiddlewareBase"
+            ]
+        },
+        {
+            "potential_checks": "routerMiddlewareBase != keccak256(bytes)(bytes(requestSender)) == False",
+            "involved_variables": [
+                "gatewayContract",
+                "count",
+                "requestSender",
+                "msg.sender",
+                "routerMiddlewareBase",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "gatewayContract",
+                "routerMiddlewareBase"
+            ]
+        },
+        {
+            "potential_checks": "count != amounts.length == False",
+            "involved_variables": [
+                "gatewayContract",
+                "count",
+                "requestSender",
+                "msg.sender",
+                "routerMiddlewareBase",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "gatewayContract",
+                "routerMiddlewareBase"
+            ]
+        },
+        {
+            "potential_checks": "i < count == False",
+            "involved_variables": [
+                "gatewayContract",
+                "count",
+                "requestSender",
+                "msg.sender",
+                "routerMiddlewareBase",
+                "amounts",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "gatewayContract",
+                "routerMiddlewareBase"
+            ]
+        }
+    ],
+    "rescue(address token)": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "_notEntered",
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        },
+        {
+            "potential_checks": "_notEntered == False",
+            "involved_variables": [
+                "_notEntered",
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_notEntered"
+            ]
+        }
+    ],
+    "toggleCommunityPause()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "role",
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "communityPause()": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "pauseStakeAmountMin",
+                "isCommunityPauseEnabled",
+                "msg.value",
+                "pauseStakeAmountMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "pauseStakeAmountMin",
+                "isCommunityPauseEnabled",
+                "pauseStakeAmountMax"
+            ]
+        },
+        {
+            "potential_checks": "isCommunityPauseEnabled",
+            "involved_variables": [
+                "pauseStakeAmountMin",
+                "isCommunityPauseEnabled",
+                "msg.value",
+                "pauseStakeAmountMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "pauseStakeAmountMin",
+                "isCommunityPauseEnabled",
+                "pauseStakeAmountMax"
+            ]
+        },
+        {
+            "potential_checks": "pauseStakeAmountMin != 0 && pauseStakeAmountMax != 0",
+            "involved_variables": [
+                "pauseStakeAmountMin",
+                "isCommunityPauseEnabled",
+                "msg.value",
+                "pauseStakeAmountMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "pauseStakeAmountMin",
+                "isCommunityPauseEnabled",
+                "pauseStakeAmountMax"
+            ]
+        },
+        {
+            "potential_checks": "msg.value >= pauseStakeAmountMin && msg.value <= pauseStakeAmountMax == False",
+            "involved_variables": [
+                "pauseStakeAmountMin",
+                "isCommunityPauseEnabled",
+                "msg.value",
+                "pauseStakeAmountMax"
+            ],
+            "descriptions": "",
+            "references": [
+                "pauseStakeAmountMin",
+                "isCommunityPauseEnabled",
+                "pauseStakeAmountMax"
+            ]
+        }
+    ],
+    "withdrawStakeAmount()": [
+        {
+            "potential_checks": "! hasRole(role,account)",
+            "involved_variables": [
+                "totalStakedAmount",
+                "role",
+                "this",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "totalStakedAmount"
+            ]
+        },
+        {
+            "potential_checks": "address(this).balance >= totalStakedAmount == False",
+            "involved_variables": [
+                "totalStakedAmount",
+                "role",
+                "this",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "totalStakedAmount"
+            ]
+        }
+    ]
+}

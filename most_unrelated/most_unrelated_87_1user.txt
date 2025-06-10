@@ -1,0 +1,5 @@
+- As a user, I want to securely swap tokens using Permit2 authorization to avoid separate approval transactions, ensuring my token allowances are isolated and only used for intended swaps.  
+- As a referrer, I want to register my referral code to earn fees on swaps, ensuring my fee structure and beneficiary address are immutable once set.  
+- As the contract owner, I want to manage swap fees and recover funds from the router, ensuring only authorized changes to contract parameters.  
+- As the contract owner, I want to execute swaps using the router's internal funds without transferring tokens externally, maintaining custody isolation.  
+- As any user, I want slippage protection on swaps to guarantee minimum output amounts, preventing front-running or price manipulation.  

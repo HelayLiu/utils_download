@@ -1,0 +1,6 @@
+- As an admin, I want to manage minter roles to control token minting securely.  
+- As a minter, I want to mint tokens without exceeding the maximum supply, ensuring supply integrity.  
+- As a token holder, I want to transfer tokens securely, with isolated balance checks.  
+- As a token holder, I want to burn tokens with enforced balance checks to prevent invalid reductions.  
+- As a token holder, I want to approve spenders with isolated allowance management.  
+- As a user, I want to use gasless approvals via signed permits, with nonce and signature validation.  

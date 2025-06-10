@@ -1,0 +1,31 @@
+- _balances (mapping(address => uint256)): 
+  · Write restricted to token contract during transfers/minting/burning.
+  · Read restricted to public via balanceOf().
+
+- _allowances (mapping(address => mapping(address => uint256)): 
+  · Write restricted to token owner during approve/transferFrom.
+  · Read restricted to public via allowance().
+
+- msgInspector (address): 
+  · Write restricted to contract owner.
+  · Read restricted to public.
+
+- preCrime (address): 
+  · Write restricted to contract owner.
+  · Read restricted to public.
+
+- peers (mapping(uint32 => bytes32)): 
+  · Write restricted to contract owner.
+  · Read restricted to public.
+
+- decimalConversionRate (uint256): 
+  · Write restricted to none (immutable).
+  · Read restricted to public.
+
+- endpoint (ILayerZeroEndpointV2): 
+  · Write restricted to none (immutable).
+  · Read restricted to public.
+
+- enforcedOptions (mapping(uint32 => mapping(uint16 => bytes))): 
+  · Write restricted to contract owner.
+  · Read restricted to public.

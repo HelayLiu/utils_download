@@ -1,0 +1,61 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "isClaimed(uint256 index) returns (bool)": [],
+    "claim(uint256 index, address account, uint256 amount, bytes32[] merkleProof)": [
+        {
+            "potential_checks": "block.timestamp > endTime == False",
+            "involved_variables": [
+                "block.timestamp",
+                "endTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "endTime"
+            ]
+        }
+    ],
+    "token() returns (address)": [],
+    "merkleRoot() returns (bytes32)": [],
+    "withdraw()": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "block.timestamp",
+                "endTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "endTime"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp < endTime == False",
+            "involved_variables": [
+                "block.timestamp",
+                "endTime"
+            ],
+            "descriptions": "",
+            "references": [
+                "endTime"
+            ]
+        }
+    ]
+}

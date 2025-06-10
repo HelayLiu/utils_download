@@ -1,0 +1,709 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "contribute()": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        },
+        {
+            "potential_checks": "goalReached",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp < fundraisingDeadline",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        },
+        {
+            "potential_checks": "msg.value > 0",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        },
+        {
+            "potential_checks": "maxWhitelistAmount > 0 == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        },
+        {
+            "potential_checks": "maxPublicContributionAmount > 0 == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        },
+        {
+            "potential_checks": "totalRaised + msg.value > fundraisingGoal == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        },
+        {
+            "potential_checks": "contributions[msg.sender] == 0 == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        },
+        {
+            "potential_checks": "totalRaised == fundraisingGoal == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "msg.sender",
+                "_status",
+                "maxWhitelistAmount",
+                "msg.value",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "fundraisingGoal",
+                "_status",
+                "maxWhitelistAmount",
+                "totalRaised",
+                "goalReached",
+                "contributions",
+                "maxPublicContributionAmount"
+            ]
+        }
+    ],
+    "addToWhitelist(address[] addresses)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == protocolAdmin",
+            "involved_variables": [
+                "i",
+                "protocolAdmin",
+                "msg.sender",
+                "addresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "protocolAdmin"
+            ]
+        },
+        {
+            "potential_checks": "i < addresses.length == False",
+            "involved_variables": [
+                "i",
+                "protocolAdmin",
+                "msg.sender",
+                "addresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "protocolAdmin"
+            ]
+        }
+    ],
+    "getWhitelistLength() returns (uint256)": [],
+    "removeFromWhitelist(address removedAddress)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == protocolAdmin",
+            "involved_variables": [
+                "whitelistArray",
+                "i",
+                "protocolAdmin",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "whitelistArray",
+                "protocolAdmin"
+            ]
+        },
+        {
+            "potential_checks": "i < whitelistArray.length == False",
+            "involved_variables": [
+                "whitelistArray",
+                "i",
+                "protocolAdmin",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "whitelistArray",
+                "protocolAdmin"
+            ]
+        }
+    ],
+    "setMaxWhitelistAmount(uint256 _maxWhitelistAmount)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == protocolAdmin == False",
+            "involved_variables": [
+                "protocolAdmin",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "protocolAdmin"
+            ]
+        }
+    ],
+    "setMaxPublicContributionAmount(uint256 _maxPublicContributionAmount)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == protocolAdmin == False",
+            "involved_variables": [
+                "protocolAdmin",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "protocolAdmin"
+            ]
+        }
+    ],
+    "finalizeFundraising(int24 initialTick, int24 upperTick, bytes32 salt) returns (uint256)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "goalReached",
+                "token",
+                "WETH",
+                "fundraisingFinalized"
+            ],
+            "descriptions": "",
+            "references": [
+                "goalReached",
+                "WETH",
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "goalReached",
+            "involved_variables": [
+                "goalReached",
+                "token",
+                "WETH",
+                "fundraisingFinalized"
+            ],
+            "descriptions": "",
+            "references": [
+                "goalReached",
+                "WETH",
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "fundraisingFinalized",
+            "involved_variables": [
+                "goalReached",
+                "token",
+                "WETH",
+                "fundraisingFinalized"
+            ],
+            "descriptions": "",
+            "references": [
+                "goalReached",
+                "WETH",
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "address(token) < WETH == False",
+            "involved_variables": [
+                "goalReached",
+                "token",
+                "WETH",
+                "fundraisingFinalized"
+            ],
+            "descriptions": "",
+            "references": [
+                "goalReached",
+                "WETH",
+                "fundraisingFinalized"
+            ]
+        }
+    ],
+    "refund()": [
+        {
+            "potential_checks": "_status == ENTERED == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "_status",
+                "goalReached",
+                "contributions",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "_status",
+                "goalReached",
+                "contributions"
+            ]
+        },
+        {
+            "potential_checks": "goalReached",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "_status",
+                "goalReached",
+                "contributions",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "_status",
+                "goalReached",
+                "contributions"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > fundraisingDeadline",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "_status",
+                "goalReached",
+                "contributions",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "_status",
+                "goalReached",
+                "contributions"
+            ]
+        },
+        {
+            "potential_checks": "contributions[msg.sender] > 0 == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "_status",
+                "goalReached",
+                "contributions",
+                "msg.sender",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingDeadline",
+                "ENTERED",
+                "_status",
+                "goalReached",
+                "contributions"
+            ]
+        }
+    ],
+    "execute(address[] contracts, bytes[] data, uint256[] msgValues)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "success",
+                "contracts",
+                "data",
+                "fundraisingFinalized",
+                "msgValues",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "fundraisingFinalized",
+            "involved_variables": [
+                "success",
+                "contracts",
+                "data",
+                "fundraisingFinalized",
+                "msgValues",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "contracts.length == data.length && data.length == msgValues.length",
+            "involved_variables": [
+                "success",
+                "contracts",
+                "data",
+                "fundraisingFinalized",
+                "msgValues",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "i < contracts.length",
+            "involved_variables": [
+                "success",
+                "contracts",
+                "data",
+                "fundraisingFinalized",
+                "msgValues",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = contracts[i].call{value: msgValues[i]}(data[i]) == False",
+            "involved_variables": [
+                "success",
+                "contracts",
+                "data",
+                "fundraisingFinalized",
+                "msgValues",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundraisingFinalized"
+            ]
+        }
+    ],
+    "extendFundExpiry(uint256 newFundExpiry)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newFundExpiry",
+                "fundExpiry"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundExpiry"
+            ]
+        },
+        {
+            "potential_checks": "newFundExpiry > fundExpiry == False",
+            "involved_variables": [
+                "newFundExpiry",
+                "fundExpiry"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundExpiry"
+            ]
+        }
+    ],
+    "extendFundraisingDeadline(uint256 newFundraisingDeadline)": [
+        {
+            "potential_checks": "msg.sender == owner() || msg.sender == protocolAdmin",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "newFundraisingDeadline",
+                "protocolAdmin",
+                "goalReached",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "goalReached",
+                "protocolAdmin",
+                "fundraisingDeadline"
+            ]
+        },
+        {
+            "potential_checks": "goalReached",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "newFundraisingDeadline",
+                "protocolAdmin",
+                "goalReached",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "goalReached",
+                "protocolAdmin",
+                "fundraisingDeadline"
+            ]
+        },
+        {
+            "potential_checks": "newFundraisingDeadline > fundraisingDeadline == False",
+            "involved_variables": [
+                "fundraisingDeadline",
+                "newFundraisingDeadline",
+                "protocolAdmin",
+                "goalReached",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "goalReached",
+                "protocolAdmin",
+                "fundraisingDeadline"
+            ]
+        }
+    ],
+    "emergencyEscape()": [
+        {
+            "potential_checks": "msg.sender == protocolAdmin",
+            "involved_variables": [
+                "success",
+                "protocolAdmin",
+                "msg.sender",
+                "fundraisingFinalized"
+            ],
+            "descriptions": "",
+            "references": [
+                "protocolAdmin",
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "fundraisingFinalized",
+            "involved_variables": [
+                "success",
+                "protocolAdmin",
+                "msg.sender",
+                "fundraisingFinalized"
+            ],
+            "descriptions": "",
+            "references": [
+                "protocolAdmin",
+                "fundraisingFinalized"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = protocolAdmin.call{value: address(this).balance}() == False",
+            "involved_variables": [
+                "success",
+                "protocolAdmin",
+                "msg.sender",
+                "fundraisingFinalized"
+            ],
+            "descriptions": "",
+            "references": [
+                "protocolAdmin",
+                "fundraisingFinalized"
+            ]
+        }
+    ],
+    "onERC721Received(address , address , uint256 , bytes ) returns (bytes4)": []
+}

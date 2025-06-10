@@ -1,0 +1,23 @@
+- _balances: mapping(address => uint256) private  
+  · Write restricted to token owners (during transfers) or approved spenders  
+  · Read restricted to individual token owners via balanceOf()  
+
+- _allowances: mapping(address => mapping(address => uint256)) private  
+  · Write restricted to token owners (during approve/increaseAllowance) or spenders (during transferFrom deductions)  
+  · Read restricted to allowance() queries by specified owner-spender pairs  
+
+- _totalSupply: uint256 private  
+  · Write restricted to contract initialization (immutable after deployment)  
+  · Read restricted to public totalSupply() view  
+
+- _name, _symbol: string private  
+  · Write restricted to contract initialization (immutable)  
+  · Read restricted to public name()/symbol() views  
+
+- _owner: address private (inherited from Ownable)  
+  · Write restricted to current owner (during ownership transfers)  
+  · Read restricted to public owner() view  
+
+- _minters: EnumerableSet.AddressSet private  
+  · Write restricted to no active implementation in contract  
+  · Read restricted to no public exposure  

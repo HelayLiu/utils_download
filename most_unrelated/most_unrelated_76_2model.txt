@@ -1,0 +1,30 @@
+- `_rOwned: mapping(address => uint256) private`:  
+  · Write restricted to the contract during transfers/fee processing.  
+  · Read restricted to the contract and via `balanceOf()`.  
+- `_tOwned: mapping(address => uint256) private`:  
+  · Write restricted to the contract during exclusions/transfers.  
+  · Read restricted to the contract and `balanceOf()` for excluded accounts.  
+- `_allowances: mapping(address => mapping(address => uint256)) private`:  
+  · Write restricted to token owners (via `approve()`) and spenders (via `transferFrom()`).  
+  · Read restricted to the contract and public `allowance()` view.  
+- `_isExcludedFromFee: mapping(address => bool) private`:  
+  · Write restricted to the owner (via `excludeFromFee()`/`includeInFee()`).  
+  · Read restricted to the contract and public `isExcludedFromFee()`.  
+- `_isExcluded: mapping(address => bool) private`:  
+  · Write restricted to the owner (via `excludeFromReward()`/`includeInReward()`).  
+  · Read restricted to the contract and public `isExcludedFromReward()`.  
+- `_tTotal: uint256 private`:  
+  · Write restricted to the contract (immutable post-construction).  
+  · Read restricted to the contract and public `totalSupply()`.  
+- `_taxFee: uint256 public`:  
+  · Write restricted to the owner (via `setTaxFeePercent()`).  
+  · Read restricted to public.  
+- `_liquidityFee: uint256 public`:  
+  · Write restricted to the owner (via `setLiquidityFeePercent()`).  
+  · Read restricted to public.  
+- `_maxTxAmount: uint256 public`:  
+  · Write restricted to the owner (via `setMaxTxPercent()`).  
+  · Read restricted to public.  
+- `swapAndLiquifyEnabled: bool public`:  
+  · Write restricted to the owner (via `setSwapAndLiquifyEnabled()`).  
+  · Read restricted to public.  

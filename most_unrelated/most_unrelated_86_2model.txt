@@ -1,0 +1,31 @@
+- paymentReceiver (address):
+  · Write restricted to Contract Owner (via access-controlled setter)
+  · Read restricted to None (public visibility)
+
+- nextTokenId (uint256) (private):
+  · Write restricted to Contract State (only updated during minting)
+  · Read restricted to Contract State (internal counter)
+
+- mintPrice (uint256):
+  · Write restricted to Contract Owner (via setMintConfig)
+  · Read restricted to None (public visibility)
+
+- baseUri (string):
+  · Write restricted to Contract Owner (via setBaseURI)
+  · Read restricted to None (used in public tokenURI)
+
+- signer (address):
+  · Write restricted to None (immutable after initialization)
+  · Read restricted to None (public visibility)
+
+- maxSupply (uint256):
+  · Write restricted to Contract Owner (via setMintConfig)
+  · Read restricted to None (public visibility)
+
+- usedSignatures (mapping):
+  · Write restricted to Contract State (updated during minting)
+  · Read restricted to None (public mapping)
+
+- isMintingActive (bool):
+  · Write restricted to Contract Owner (via setMintingActive)
+  · Read restricted to None (public visibility)

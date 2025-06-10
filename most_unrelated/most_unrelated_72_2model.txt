@@ -1,0 +1,24 @@
+- MERKLE_ROOT (bytes32):  
+  · Write restricted to None (immutable).  
+  · Read restricted to None.  
+- TOKEN (IERC20):  
+  · Write restricted to None (immutable).  
+  · Read restricted to None.  
+- CLAIM_END (uint256):  
+  · Write restricted to None (immutable).  
+  · Read restricted to None.  
+- VESTING_START (uint256):  
+  · Write restricted to None (immutable).  
+  · Read restricted to None.  
+- VESTING_TIME (uint256):  
+  · Write restricted to None (immutable).  
+  · Read restricted to None.  
+- STAKE_MANAGER (StakeManager):  
+  · Write restricted to None (immutable).  
+  · Read restricted to None.  
+- signer (address):  
+  · Write restricted to Owner.  
+  · Read restricted to None.  
+- hasClaimed (mapping):  
+  · Write restricted to Contract (during claim execution).  
+  · Read restricted to None.  

@@ -1,0 +1,31 @@
+- `balanceOf` (mapping):  
+  · Write restricted to token owners (transfers), minters (mint/burn), and vault (deposit/withdraw).  
+  · Read restricted to None (public).  
+
+- `allowance` (mapping):  
+  · Write restricted to token owners (approve) and permitted spenders (transferFrom).  
+  · Read restricted to None (public).  
+
+- `isMinter` (mapping):  
+  · Write restricted to the vault operator (setMinter/revokeMinter).  
+  · Read restricted to None (public).  
+
+- `vault` (address):  
+  · Write restricted to the current vault (initVault/applyVault) with timelock enforcement.  
+  · Read restricted to None (public).  
+
+- `_vaultOnly` (bool):  
+  · Write restricted to the vault operator (setVaultOnly).  
+  · Read restricted to contract internals (private).  
+
+- `pendingVault` (address):  
+  · Write restricted to the vault operator (changeVault).  
+  · Read restricted to None (public).  
+
+- `nonces` (mapping):  
+  · Write restricted to signature-based functions (permit/transferWithPermit).  
+  · Read restricted to None (public).  
+
+- `_totalSupply` (uint256):  
+  · Write restricted to mint/burn operations.  
+  · Read restricted via totalSupply() (public).  

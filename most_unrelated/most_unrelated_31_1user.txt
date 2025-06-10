@@ -1,0 +1,6 @@
+- As a user, I want to mint NFTs using approved tokens while ensuring my minting eligibility is isolated from other users via whitelist status and supply checks
+- As the owner, I want to enforce write isolation on critical parameters (baseURI, accepted currencies) to prevent unauthorized modifications
+- As a user, I expect my NFT ownership data to be read-isolated so only approved parties can view my token metadata
+- As the owner, I need to restrict royalty settings to authorized addresses to ensure revenue isolation
+- As a user, I want payment verification isolated per currency type to prevent cross-token interference
+- As the owner, I require withdrawal functions to enforce fund distribution isolation to predefined team wallets

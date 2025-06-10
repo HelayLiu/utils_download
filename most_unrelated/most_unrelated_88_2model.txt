@@ -1,0 +1,19 @@
+- `token` (address public immutable):
+  · Write restricted to None (immutable at deployment).
+  · Read restricted to None (publicly accessible).
+
+- `merkleRoot` (bytes32 public immutable):
+  · Write restricted to None (immutable at deployment).
+  · Read restricted to None (publicly accessible).
+
+- `endTime` (uint256 public immutable):
+  · Write restricted to None (immutable at deployment).
+  · Read restricted to None (publicly accessible).
+
+- `claimedBitMap` (mapping(uint256 => uint256) private):
+  · Write restricted to Contract Logic (modified exclusively during claim validation).
+  · Read restricted to Contract Logic (exposed via `isClaimed` function).
+
+- `_owner` (address private from Ownable):
+  · Write restricted to Owner (through ownership transfer/renouncement functions).
+  · Read restricted to Public (via `owner()` getter).

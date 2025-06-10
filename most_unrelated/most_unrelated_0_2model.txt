@@ -1,0 +1,21 @@
+- `_balances`: mapping(address => uint256) private  
+  · Write restricted to the token owner (for their own balance) or the contract owner (for minting).  
+  · Read restricted to the public via `balanceOf` function.  
+- `_allowances`: mapping(address => mapping(address => uint256)) private  
+  · Write restricted to the token owner (for setting allowances) or approved spenders (when transferring).  
+  · Read restricted to the public via `allowance` function.  
+- `_totalSupply`: uint256 private  
+  · Write restricted to the contract owner (via minting).  
+  · Read restricted to the public via `totalSupply` function.  
+- `_decimals`: uint8 private  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to the public via `decimals` function.  
+- `_symbol`: string private  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to the public via `symbol` function.  
+- `_name`: string private  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to the public via `name` function.  
+- `_owner`: address private  
+  · Write restricted to the current owner (via ownership transfer/renunciation).  
+  · Read restricted to the public via `owner` or `getOwner` functions.  

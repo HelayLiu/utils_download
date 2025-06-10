@@ -1,0 +1,169 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "burn(uint256 value)": [
+        {
+            "potential_checks": "fromBalance < value == False",
+            "involved_variables": [
+                "fromBalance",
+                "account",
+                "to",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "burnFrom(address account, uint256 value)": [
+        {
+            "potential_checks": "currentAllowance != type()(uint256).max == False",
+            "involved_variables": [
+                "fromBalance",
+                "account",
+                "currentAllowance",
+                "to",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "fromBalance < value == False",
+            "involved_variables": [
+                "fromBalance",
+                "account",
+                "currentAllowance",
+                "to",
+                "from",
+                "value"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 value) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "finished || spender == owner()",
+            "involved_variables": [
+                "spender",
+                "finished",
+                "emitEvent",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "finished"
+            ]
+        },
+        {
+            "potential_checks": "emitEvent == False",
+            "involved_variables": [
+                "spender",
+                "finished",
+                "emitEvent",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "finished"
+            ]
+        }
+    ],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "finish()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "depositEth()": [],
+    "withtrawEth(address to, uint256 amount)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "mint(address to, uint256 amount)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "amount",
+                "fromBalance",
+                "value",
+                "account",
+                "to",
+                "from",
+                "MAX_SUPPLY"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY"
+            ]
+        },
+        {
+            "potential_checks": "totalSupply() + amount <= MAX_SUPPLY",
+            "involved_variables": [
+                "amount",
+                "fromBalance",
+                "value",
+                "account",
+                "to",
+                "from",
+                "MAX_SUPPLY"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY"
+            ]
+        },
+        {
+            "potential_checks": "fromBalance < value == False",
+            "involved_variables": [
+                "amount",
+                "fromBalance",
+                "value",
+                "account",
+                "to",
+                "from",
+                "MAX_SUPPLY"
+            ],
+            "descriptions": "",
+            "references": [
+                "MAX_SUPPLY"
+            ]
+        }
+    ],
+    "description() returns (string)": [],
+    "website() returns (string)": [],
+    "logoURL() returns (string)": []
+}

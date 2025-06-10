@@ -1,0 +1,5 @@
+- As an admin, I want to upgrade the implementation contract securely to fix bugs or add features.  
+- As an admin, I want to transfer admin privileges to another address without risking unauthorized access.  
+- As a user, I want my calls to the proxy to be forwarded to the correct implementation contract transparently.  
+- As a developer, I want the admin to initialize new implementations safely post-upgrade via atomic calls.  
+- As an auditor, I want read access to the implementation address publicly via `lib()` for verification.  

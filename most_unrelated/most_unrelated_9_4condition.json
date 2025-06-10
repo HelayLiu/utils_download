@@ -1,0 +1,120 @@
+{
+    "token() returns (address)": [],
+    "approvalRequired() returns (bool)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 value) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "specific_checks": "_allowances[from][msg.sender] < value",
+            "involved_variables": ["_allowances","from","msg.sender","value"],
+            "descriptions": "Verify spender allowance",
+            "references": ["_allowances"]
+        }
+    ],
+    "oftVersion() returns (bytes4, uint64)": [],
+    "sharedDecimals() returns (uint8)": [],
+    "setMsgInspector(address _msgInspector)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Restrict to contract owner",
+            "references": ["msgInspector"]
+        }
+    ],
+    "quoteOFT(SendParam _sendParam) returns (OFTLimit, OFTFeeDetail[], OFTReceipt)": [],
+    "quoteSend(SendParam _sendParam, bool _payInLzToken) returns (MessagingFee)": [],
+    "send(SendParam _sendParam, MessagingFee _fee, address _refundAddress) returns (MessagingReceipt, OFTReceipt)": [],
+    "isPeer(uint32 _eid, bytes32 _peer) returns (bool)": [],
+    "setEnforcedOptions(EnforcedOptionParam[] _enforcedOptions)": [
+        {
+        "specific_checks": "msg.sender == _owner",
+        "involved_variables": ["_owner", "msg.sender"],
+        "descriptions": "Restrict to contract owner",
+        "references": ["enforcedOptions"]
+        }
+    ],
+    "combineOptions(uint32 _eid, uint16 _msgType, bytes _extraOptions) returns (bytes)": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Restrict to contract owner",
+            "references": ["_owner"]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Restrict to contract owner",
+            "references": ["_owner"]
+        }
+    ],
+    "oApp() returns (address)": [],
+    "setPreCrime(address _preCrime)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Restrict to contract owner",
+            "references": ["preCrime"]
+        }
+    ],
+    "lzReceiveAndRevert(InboundPacket[] _packets)": [],
+    "lzReceiveSimulate(Origin _origin, bytes32 _guid, bytes _message, address _executor, bytes _extraData)": [
+        {
+            "potential_checks": "msg.sender == address(this)",
+            "involved_variables": [
+                "this",
+                "msg.sender"
+            ],
+            "descriptions": "Only the contract itself can call",
+            "references": ["endpoint"]
+        }
+    ],
+    "preCrime() returns (address)": [],
+    "oAppVersion() returns (uint64, uint64)": [],
+    "composeMsgSender() returns (address)": [],
+    "allowInitializePath(Origin origin) returns (bool)": [],
+    "nextNonce(uint32 , bytes32 ) returns (uint64)": [],
+    "lzReceive(Origin _origin, bytes32 _guid, bytes _message, address _executor, bytes _extraData)": [
+        {
+        "specific_checks": "msg.sender == address(endpoint)",
+        "involved_variables": ["msg.sender"],
+        "descriptions": "Restrict receive to LayerZero endpoint",
+        "references": ["endpoint"]
+        },
+        {
+        "specific_checks": "peers[_origin.srcEid] == _origin.sender",
+        "involved_variables": ["peers", "_origin"],
+        "descriptions": "Validate origin sender is trusted peer",
+        "references": ["endpoint"]
+        }
+    ],
+    "setPeer(uint32 _eid, bytes32 _peer)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Restrict to contract owner",
+            "references": ["peers"]
+        }
+    ],
+    "setDelegate(address _delegate)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Restrict to contract owner",
+            "references": ["endpoint"]
+        }
+    ],
+    "endpoint() returns (ILayerZeroEndpointV2)": [],
+    "peers(uint32 _eid) returns (bytes32)": [],
+    "allowInitializePath(Origin _origin) returns (bool)": [],
+    "nextNonce(uint32 _eid, bytes32 _sender) returns (uint64)": []
+}

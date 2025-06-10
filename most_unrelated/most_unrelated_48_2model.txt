@@ -1,0 +1,24 @@
+- _balances (mapping(address => uint256) internal:  
+    · Write restricted to Token owner (transfers/burns), Approved spenders (transfers/burns), and Minter (minting).  
+    · Read restricted to None (publicly accessible via balanceOf).  
+- _allowances (mapping(address => mapping(address => uint256)) internal:  
+    · Write restricted to Token owner (approve/increase/decrease) and Permit signers (off-chain approvals).  
+    · Read restricted to None (publicly accessible via allowance).  
+- _totalSupply (uint256 internal):  
+    · Write restricted to Minter (minting) and Token owner (burning).  
+    · Read restricted to None (publicly accessible via totalSupply).  
+- _nonces (mapping(address => Counters.Counter) private):  
+    · Write restricted to Token owner (permit execution).  
+    · Read restricted to None (publicly accessible via nonces).  
+- _owner (address internal):  
+    · Write restricted to Current owner (renounce/push) and New owner (pull).  
+    · Read restricted to None (publicly accessible via owner).  
+- _newOwner (address internal):  
+    · Write restricted to Current owner (push).  
+    · Read restricted to Contract (no direct public getter).  
+- _minter (address internal):  
+    · Write restricted to Owner (setMinter).  
+    · Read restricted to None (publicly accessible via minter).  
+- _name, _symbol, _decimals (string/uint8 internal):  
+    · Write restricted to None (immutable after deployment).  
+    · Read restricted to None (publicly accessible via name/symbol/decimals).  

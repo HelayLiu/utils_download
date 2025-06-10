@@ -1,0 +1,200 @@
+{
+    "paused() returns (bool)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
+    "burn(uint256 amount)": [
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "account"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "burnFrom(address account, uint256 amount)": [
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "spender",
+                "account",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "hasRole(bytes32 role, address account) returns (bool)": [],
+    "getRoleMemberCount(bytes32 role) returns (uint256)": [],
+    "getRoleMember(bytes32 role, uint256 index) returns (address)": [],
+    "getRoleAdmin(bytes32 role) returns (bytes32)": [],
+    "grantRole(bytes32 role, address account)": [
+        {
+            "potential_checks": "hasRole(_roles[role].adminRole,msg.sender)",
+            "involved_variables": [
+                "role",
+                "EnumerableSet",
+                "_roles",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_roles"
+            ]
+        },
+        {
+            "potential_checks": "_roles[role].members.add(account) == False",
+            "involved_variables": [
+                "role",
+                "EnumerableSet",
+                "_roles",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
+    "revokeRole(bytes32 role, address account)": [
+        {
+            "potential_checks": "hasRole(_roles[role].adminRole,msg.sender)",
+            "involved_variables": [
+                "role",
+                "EnumerableSet",
+                "_roles",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_roles"
+            ]
+        },
+        {
+            "potential_checks": "_roles[role].members.remove(account) == False",
+            "involved_variables": [
+                "role",
+                "EnumerableSet",
+                "_roles",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
+    "renounceRole(bytes32 role, address account)": [
+        {
+            "potential_checks": "account == msg.sender",
+            "involved_variables": [
+                "role",
+                "EnumerableSet",
+                "_roles",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_roles"
+            ]
+        },
+        {
+            "potential_checks": "_roles[role].members.remove(account) == False",
+            "involved_variables": [
+                "role",
+                "EnumerableSet",
+                "_roles",
+                "account"
+            ],
+            "descriptions": "",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
+    "mint(address to, uint256 amount)": [
+        {
+            "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
+            "involved_variables": [
+                "account",
+                "MINTER_ROLE"
+            ],
+            "descriptions": "",
+            "references": [
+                "MINTER_ROLE"
+            ]
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [
+                "account",
+                "MINTER_ROLE"
+            ],
+            "descriptions": "",
+            "references": [
+                "MINTER_ROLE"
+            ]
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "hasRole(PAUSER_ROLE,msg.sender)",
+            "involved_variables": [
+                "PAUSER_ROLE",
+                "_paused"
+            ],
+            "descriptions": "",
+            "references": [
+                "PAUSER_ROLE",
+                "_paused"
+            ]
+        },
+        {
+            "potential_checks": "_paused == False",
+            "involved_variables": [
+                "PAUSER_ROLE",
+                "_paused"
+            ],
+            "descriptions": "",
+            "references": [
+                "PAUSER_ROLE",
+                "_paused"
+            ]
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "hasRole(PAUSER_ROLE,msg.sender)",
+            "involved_variables": [
+                "PAUSER_ROLE",
+                "_paused"
+            ],
+            "descriptions": "",
+            "references": [
+                "PAUSER_ROLE",
+                "_paused"
+            ]
+        },
+        {
+            "potential_checks": "_paused == False",
+            "involved_variables": [
+                "PAUSER_ROLE",
+                "_paused"
+            ],
+            "descriptions": "",
+            "references": [
+                "PAUSER_ROLE",
+                "_paused"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+- `_balances: mapping(address => uint256) private`:  
+  · Write restricted to user-owned addresses (transfers) or contract-internal logic (initial mint).  
+  · Read restricted to None (public via `balanceOf`).  
+
+- `_allowances: mapping(address => mapping(address => uint256)) private`:  
+  · Write restricted to token owners (approvals) or contract-internal logic (allowance updates during transfers).  
+  · Read restricted to None (public via `allowance`).  
+
+- `_totalSupply: uint256 private`:  
+  · Write restricted to contract-internal logic (only during initial mint).  
+  · Read restricted to None (public via `totalSupply`).  
+
+- `_name: string private`, `_symbol: string private`, `dec: uint8 public`:  
+  · Write restricted to contract constructor (immutable post-deployment).  
+  · Read restricted to None (public via `name()`, `symbol()`, `decimals()`).  

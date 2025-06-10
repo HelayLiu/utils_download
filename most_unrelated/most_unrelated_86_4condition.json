@@ -1,0 +1,506 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "tokenOfOwnerByIndex(address owner, uint256 index) returns (uint256)": [],
+    "totalSupply() returns (uint256)": [],
+    "tokenByIndex(uint256 index) returns (uint256)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "ownerOf(uint256 tokenId) returns (address)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
+        {
+            "potential_checks": "previousOwner != from == False",
+            "involved_variables": [
+                "previousOwner",
+                "from",
+                "to"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "previousOwner != from == False",
+            "involved_variables": [
+                "previousOwner",
+                "from",
+                "to"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "previousOwner != from == False",
+            "involved_variables": [
+                "previousOwner",
+                "from",
+                "to"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "approve(address to, uint256 tokenId)": [],
+    "setApprovalForAll(address operator, bool approved)": [],
+    "getApproved(uint256 tokenId) returns (address)": [],
+    "isApprovedForAll(address owner, address operator) returns (bool)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "tokenURI(uint256 tokenId) returns (string)": [
+        {
+            "potential_checks": "bytes(baseURI).length > 0 == False",
+            "involved_variables": [
+                "baseURI",
+                "TMP_1593",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "initialize(string _name, string _symbol, string _baseUri, uint256 _mintPrice, address _signer, uint256 _maxSupply, address _paymentReceiver)": [
+        {
+            "potential_checks": "! initialSetup && ! construction == False",
+            "involved_variables": [
+                "initialSetup",
+                "isTopLevelCall",
+                "_signer",
+                "_mintPrice",
+                "_paymentReceiver",
+                "construction",
+                "_maxSupply"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "isTopLevelCall == False",
+            "involved_variables": [
+                "initialSetup",
+                "isTopLevelCall",
+                "_signer",
+                "_mintPrice",
+                "_paymentReceiver",
+                "construction",
+                "_maxSupply"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_mintPrice > 0",
+            "involved_variables": [
+                "initialSetup",
+                "isTopLevelCall",
+                "_signer",
+                "_mintPrice",
+                "_paymentReceiver",
+                "construction",
+                "_maxSupply"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_maxSupply > 0",
+            "involved_variables": [
+                "initialSetup",
+                "isTopLevelCall",
+                "_signer",
+                "_mintPrice",
+                "_paymentReceiver",
+                "construction",
+                "_maxSupply"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setPaymentReceiver(address newReceiver)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "paymentReceiver",
+                "newReceiver"
+            ],
+            "descriptions": "",
+            "references": [
+                "paymentReceiver"
+            ]
+        },
+        {
+            "potential_checks": "newReceiver != paymentReceiver == False",
+            "involved_variables": [
+                "paymentReceiver",
+                "newReceiver"
+            ],
+            "descriptions": "",
+            "references": [
+                "paymentReceiver"
+            ]
+        }
+    ],
+    "mint(string nonce, bytes signature)": [
+        {
+            "potential_checks": "$._status == ENTERED == False",
+            "involved_variables": [
+                "signature",
+                "ENTERED",
+                "mintPrice",
+                "success",
+                "isMintingActive",
+                "$",
+                "msg.value",
+                "nonce",
+                "maxSupply",
+                "msg.sender",
+                "nextTokenId",
+                "usedSignatures"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED",
+                "mintPrice",
+                "isMintingActive",
+                "maxSupply",
+                "nextTokenId",
+                "usedSignatures"
+            ]
+        },
+        {
+            "potential_checks": "isMintingActive",
+            "involved_variables": [
+                "signature",
+                "ENTERED",
+                "mintPrice",
+                "success",
+                "isMintingActive",
+                "$",
+                "msg.value",
+                "nonce",
+                "maxSupply",
+                "msg.sender",
+                "nextTokenId",
+                "usedSignatures"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED",
+                "mintPrice",
+                "isMintingActive",
+                "maxSupply",
+                "nextTokenId",
+                "usedSignatures"
+            ]
+        },
+        {
+            "potential_checks": "_isValidSignature(msg.sender,nonce,signature)",
+            "involved_variables": [
+                "signature",
+                "ENTERED",
+                "mintPrice",
+                "success",
+                "isMintingActive",
+                "$",
+                "msg.value",
+                "nonce",
+                "maxSupply",
+                "msg.sender",
+                "nextTokenId",
+                "usedSignatures"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED",
+                "mintPrice",
+                "isMintingActive",
+                "maxSupply",
+                "nextTokenId",
+                "usedSignatures"
+            ]
+        },
+        {
+            "potential_checks": "msg.value == mintPrice",
+            "involved_variables": [
+                "signature",
+                "ENTERED",
+                "mintPrice",
+                "success",
+                "isMintingActive",
+                "$",
+                "msg.value",
+                "nonce",
+                "maxSupply",
+                "msg.sender",
+                "nextTokenId",
+                "usedSignatures"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED",
+                "mintPrice",
+                "isMintingActive",
+                "maxSupply",
+                "nextTokenId",
+                "usedSignatures"
+            ]
+        },
+        {
+            "potential_checks": "usedSignatures[signature]",
+            "involved_variables": [
+                "signature",
+                "ENTERED",
+                "mintPrice",
+                "success",
+                "isMintingActive",
+                "$",
+                "msg.value",
+                "nonce",
+                "maxSupply",
+                "msg.sender",
+                "nextTokenId",
+                "usedSignatures"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED",
+                "mintPrice",
+                "isMintingActive",
+                "maxSupply",
+                "nextTokenId",
+                "usedSignatures"
+            ]
+        },
+        {
+            "potential_checks": "nextTokenId <= maxSupply",
+            "involved_variables": [
+                "signature",
+                "ENTERED",
+                "mintPrice",
+                "success",
+                "isMintingActive",
+                "$",
+                "msg.value",
+                "nonce",
+                "maxSupply",
+                "msg.sender",
+                "nextTokenId",
+                "usedSignatures"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED",
+                "mintPrice",
+                "isMintingActive",
+                "maxSupply",
+                "nextTokenId",
+                "usedSignatures"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = paymentReceiver.call{value: msg.value}() == False",
+            "involved_variables": [
+                "signature",
+                "ENTERED",
+                "mintPrice",
+                "success",
+                "isMintingActive",
+                "$",
+                "msg.value",
+                "nonce",
+                "maxSupply",
+                "msg.sender",
+                "nextTokenId",
+                "usedSignatures"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED",
+                "mintPrice",
+                "isMintingActive",
+                "maxSupply",
+                "nextTokenId",
+                "usedSignatures"
+            ]
+        }
+    ],
+    "setMintConfig(uint256 newPrice, uint256 newMaxSupply)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newPrice",
+                "nextTokenId",
+                "newMaxSupply"
+            ],
+            "descriptions": "",
+            "references": [
+                "nextTokenId"
+            ]
+        },
+        {
+            "potential_checks": "newPrice > 0",
+            "involved_variables": [
+                "newPrice",
+                "nextTokenId",
+                "newMaxSupply"
+            ],
+            "descriptions": "",
+            "references": [
+                "nextTokenId"
+            ]
+        },
+        {
+            "potential_checks": "newMaxSupply >= nextTokenId - 1 == False",
+            "involved_variables": [
+                "newPrice",
+                "nextTokenId",
+                "newMaxSupply"
+            ],
+            "descriptions": "",
+            "references": [
+                "nextTokenId"
+            ]
+        }
+    ],
+    "setMintingActive(bool active)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBaseURI(string _baseUri)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdrawStrandedETH()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "success",
+                "balance",
+                "$",
+                "ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED"
+            ]
+        },
+        {
+            "potential_checks": "$._status == ENTERED == False",
+            "involved_variables": [
+                "success",
+                "balance",
+                "$",
+                "ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED"
+            ]
+        },
+        {
+            "potential_checks": "balance > 0",
+            "involved_variables": [
+                "success",
+                "balance",
+                "$",
+                "ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED"
+            ]
+        },
+        {
+            "potential_checks": "(success,None) = receiver.call{value: balance}() == False",
+            "involved_variables": [
+                "success",
+                "balance",
+                "$",
+                "ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED"
+            ]
+        }
+    ],
+    "withdrawTokens(address tokenAddress)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "balance",
+                "$",
+                "ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED"
+            ]
+        },
+        {
+            "potential_checks": "$._status == ENTERED == False",
+            "involved_variables": [
+                "balance",
+                "$",
+                "ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED"
+            ]
+        },
+        {
+            "potential_checks": "balance > 0 == False",
+            "involved_variables": [
+                "balance",
+                "$",
+                "ENTERED"
+            ],
+            "descriptions": "",
+            "references": [
+                "ENTERED"
+            ]
+        }
+    ],
+    "transfer(address to, uint256 tokenId)": [
+        {
+            "potential_checks": "ownerOf(tokenId) == msg.sender",
+            "involved_variables": [
+                "msg.sender",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

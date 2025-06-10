@@ -1,0 +1,2478 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "newOwner",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "decimals() returns (uint256)": [],
+    "symbol() returns (string)": [],
+    "name() returns (string)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [
+        {
+            "potential_checks": "account == _mainPair && msg.sender == _mainPair && antiSYNC",
+            "involved_variables": [
+                "_mainPair",
+                "antiSYNC",
+                "msg.sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "antiSYNC",
+                "_mainPair",
+                "_balances"
+            ]
+        },
+        {
+            "potential_checks": "_balances[_mainPair] > 0 == False",
+            "involved_variables": [
+                "_mainPair",
+                "antiSYNC",
+                "msg.sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "antiSYNC",
+                "_mainPair",
+                "_balances"
+            ]
+        }
+    ],
+    "transfer(address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "balance >= amount",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "isReward(from) > 0",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "_rewardList[account] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "to == _mainPair && _swapRouters[msg.sender] && tx.origin == from == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "from == _mainPair == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "! _feeWhiteList[from] && ! _feeWhiteList[to] && airdropEnable && airdropNumbs > 0 && (_swapPairList[from] || _swapPairList[to]) == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "startTradeBlock == 0 && enableOffTrade == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "_swapPairList[from] || _swapPairList[to] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "! _swapPairList[from] && ! _swapPairList[to] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "takeFee == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "isTransfer && ! _feeWhiteList[sender] && ! _feeWhiteList[recipient] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "isAdd && ! _feeWhiteList[sender] && ! _feeWhiteList[recipient] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "isRemove && ! _feeWhiteList[sender] && ! _feeWhiteList[recipient] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "! isMaxEatExempt[recipient] && enableWalletLimit",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "(_balances[recipient] + tAmount - feeAmount) <= maxWalletAmount == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        }
+    ],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "balance >= amount",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "isReward(from) > 0",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "_rewardList[account] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "to == _mainPair && _swapRouters[msg.sender] && tx.origin == from == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "from == _mainPair == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "! _feeWhiteList[from] && ! _feeWhiteList[to] && airdropEnable && airdropNumbs > 0 && (_swapPairList[from] || _swapPairList[to]) == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "startTradeBlock == 0 && enableOffTrade == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "_swapPairList[from] || _swapPairList[to] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "! _swapPairList[from] && ! _swapPairList[to] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "takeFee == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "isTransfer && ! _feeWhiteList[sender] && ! _feeWhiteList[recipient] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "isAdd && ! _feeWhiteList[sender] && ! _feeWhiteList[recipient] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "isRemove && ! _feeWhiteList[sender] && ! _feeWhiteList[recipient] == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "! isMaxEatExempt[recipient] && enableWalletLimit",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        },
+        {
+            "potential_checks": "(_balances[recipient] + tAmount - feeAmount) <= maxWalletAmount == False",
+            "involved_variables": [
+                "feeAmount",
+                "_rewardList",
+                "_mainPair",
+                "maxWalletAmount",
+                "isAdd",
+                "airdropEnable",
+                "_swapPairList",
+                "_feeWhiteList",
+                "isMaxEatExempt",
+                "tAmount",
+                "_swapRouters",
+                "tx.origin",
+                "balance",
+                "to",
+                "startTradeBlock",
+                "enableOffTrade",
+                "msg.sender",
+                "takeFee",
+                "isTransfer",
+                "from",
+                "airdropNumbs",
+                "enableWalletLimit",
+                "amount",
+                "recipient",
+                "isRemove",
+                "sender",
+                "account",
+                "_balances"
+            ],
+            "descriptions": "",
+            "references": [
+                "airdropNumbs",
+                "isMaxEatExempt",
+                "_rewardList",
+                "startTradeBlock",
+                "_mainPair",
+                "enableWalletLimit",
+                "maxWalletAmount",
+                "_swapRouters",
+                "enableOffTrade",
+                "airdropEnable",
+                "_balances",
+                "_swapPairList",
+                "_feeWhiteList"
+            ]
+        }
+    ],
+    "setSwapRouter(address addr, bool enable)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setRewardPath(address[] newPath)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "ETH",
+                "_owner",
+                "currency",
+                "msg.sender",
+                "length",
+                "rewardPath",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "ETH",
+                "rewardPath",
+                "currency",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "ETH",
+                "_owner",
+                "currency",
+                "msg.sender",
+                "length",
+                "rewardPath",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "ETH",
+                "rewardPath",
+                "currency",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "rewardPath[0] == currency",
+            "involved_variables": [
+                "ETH",
+                "_owner",
+                "currency",
+                "msg.sender",
+                "length",
+                "rewardPath",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "ETH",
+                "rewardPath",
+                "currency",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "rewardPath[length - 1] == ETH == False",
+            "involved_variables": [
+                "ETH",
+                "_owner",
+                "currency",
+                "msg.sender",
+                "length",
+                "rewardPath",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "ETH",
+                "rewardPath",
+                "currency",
+                "_owner"
+            ]
+        }
+    ],
+    "setAntiSYNCEnable(bool s)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setisMaxEatExempt(address holder, bool exempt)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setkb(uint256 a)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "isReward(address account) returns (uint256)": [
+        {
+            "potential_checks": "_rewardList[account] == False",
+            "involved_variables": [
+                "account",
+                "_rewardList"
+            ],
+            "descriptions": "",
+            "references": [
+                "_rewardList"
+            ]
+        }
+    ],
+    "setAirDropEnable(bool status)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setAirdropNumbs(uint256 newValue)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newValue <= 3 == False",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setEnableTransferFee(bool status)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "msg.sender",
+                "status",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "status == False",
+            "involved_variables": [
+                "msg.sender",
+                "status",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "_getReserves() returns (uint256, uint256, uint256)": [
+        {
+            "potential_checks": "tokenOther < address(this) == False",
+            "involved_variables": [
+                "tokenOther",
+                "this"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setNumTokensSellRate(uint256 newValue)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newValue != 0 == False",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setSwapAtAmount(uint256 newValue)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setStrictCheck(bool enable)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setLpRewardGas(uint256 newValue)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newValue >= 200000 && newValue <= 2000000 == False",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setTransferFee(uint256 newValue)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newValue <= 2500 == False",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setAddLiquidityFee(uint256 newValue)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "newValue <= 2500 == False",
+            "involved_variables": [
+                "newValue",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setRemoveLiquidityFee(uint256 newValue)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setGenerateLpReceiverAddr(address newAddr)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setFundAddress(address addr)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "msg.sender",
+                "_owner",
+                "addr"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "isContract(addr) == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner",
+                "addr"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "startLP()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "startLPBlock",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "startLPBlock",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "0 == startLPBlock == False",
+            "involved_variables": [
+                "startLPBlock",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "startLPBlock",
+                "_owner"
+            ]
+        }
+    ],
+    "stopLP()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "launch()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "startTradeBlock",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "startTradeBlock",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "0 == startTradeBlock == False",
+            "involved_variables": [
+                "startTradeBlock",
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "startTradeBlock",
+                "_owner"
+            ]
+        }
+    ],
+    "setFeeWhiteList(address[] addr, bool enable)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "i",
+                "msg.sender",
+                "_owner",
+                "addr"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "i < addr.length == False",
+            "involved_variables": [
+                "i",
+                "msg.sender",
+                "_owner",
+                "addr"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "completeCustoms(uint256[] customs)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_sellLPFee",
+                "_buyRewardFee",
+                "_owner",
+                "buy_burnFee",
+                "_sellRewardFee",
+                "_buyFundFee",
+                "sell_burnFee",
+                "msg.sender",
+                "enableChangeTax",
+                "_sellFundFee",
+                "_buyLPFee"
+            ],
+            "descriptions": "",
+            "references": [
+                "_sellLPFee",
+                "_owner",
+                "buy_burnFee",
+                "_buyRewardFee",
+                "_sellRewardFee",
+                "_buyFundFee",
+                "sell_burnFee",
+                "enableChangeTax",
+                "_sellFundFee",
+                "_buyLPFee"
+            ]
+        },
+        {
+            "potential_checks": "enableChangeTax",
+            "involved_variables": [
+                "_sellLPFee",
+                "_buyRewardFee",
+                "_owner",
+                "buy_burnFee",
+                "_sellRewardFee",
+                "_buyFundFee",
+                "sell_burnFee",
+                "msg.sender",
+                "enableChangeTax",
+                "_sellFundFee",
+                "_buyLPFee"
+            ],
+            "descriptions": "",
+            "references": [
+                "_sellLPFee",
+                "_owner",
+                "buy_burnFee",
+                "_buyRewardFee",
+                "_sellRewardFee",
+                "_buyFundFee",
+                "sell_burnFee",
+                "enableChangeTax",
+                "_sellFundFee",
+                "_buyLPFee"
+            ]
+        },
+        {
+            "potential_checks": "_buyRewardFee + _buyLPFee + _buyFundFee + buy_burnFee < 2500",
+            "involved_variables": [
+                "_sellLPFee",
+                "_buyRewardFee",
+                "_owner",
+                "buy_burnFee",
+                "_sellRewardFee",
+                "_buyFundFee",
+                "sell_burnFee",
+                "msg.sender",
+                "enableChangeTax",
+                "_sellFundFee",
+                "_buyLPFee"
+            ],
+            "descriptions": "",
+            "references": [
+                "_sellLPFee",
+                "_owner",
+                "buy_burnFee",
+                "_buyRewardFee",
+                "_sellRewardFee",
+                "_buyFundFee",
+                "sell_burnFee",
+                "enableChangeTax",
+                "_sellFundFee",
+                "_buyLPFee"
+            ]
+        },
+        {
+            "potential_checks": "_sellRewardFee + _sellLPFee + _sellFundFee + sell_burnFee < 2500 == False",
+            "involved_variables": [
+                "_sellLPFee",
+                "_buyRewardFee",
+                "_owner",
+                "buy_burnFee",
+                "_sellRewardFee",
+                "_buyFundFee",
+                "sell_burnFee",
+                "msg.sender",
+                "enableChangeTax",
+                "_sellFundFee",
+                "_buyLPFee"
+            ],
+            "descriptions": "",
+            "references": [
+                "_sellLPFee",
+                "_owner",
+                "buy_burnFee",
+                "_buyRewardFee",
+                "_sellRewardFee",
+                "_buyFundFee",
+                "sell_burnFee",
+                "enableChangeTax",
+                "_sellFundFee",
+                "_buyLPFee"
+            ]
+        }
+    ],
+    "multi_bclist(address[] addresses, bool value)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "enableRewardList",
+                "msg.sender",
+                "addresses",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "enableRewardList",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "enableRewardList",
+            "involved_variables": [
+                "_owner",
+                "enableRewardList",
+                "msg.sender",
+                "addresses",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "enableRewardList",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "i < addresses.length == False",
+            "involved_variables": [
+                "_owner",
+                "enableRewardList",
+                "msg.sender",
+                "addresses",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "enableRewardList",
+                "_owner"
+            ]
+        }
+    ],
+    "disableKillBatchBot()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "disableSwapLimit()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "disableWalletLimit()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "disableChangeTax()": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setSwapPairList(address addr, bool enable)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "changeSwapLimit(uint256 _maxBuyAmount)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "changeWalletLimit(uint256 _amount)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "claimToken(address token, uint256 amount, address to)": [
+        {
+            "potential_checks": "fundAddress == msg.sender || _owner == msg.sender == False",
+            "involved_variables": [
+                "fundAddress",
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "fundAddress",
+                "_owner"
+            ]
+        }
+    ],
+    "multiAddHolder(address[] accounts)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "msg.sender",
+                "accounts",
+                "_owner",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "i < accounts.length == False",
+            "involved_variables": [
+                "msg.sender",
+                "accounts",
+                "_owner",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setProcessRewardWaitBlock(uint256 newValue)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setHolderRewardCondition(uint256 amount)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "setExcludeHolder(address addr, bool enable)": [
+        {
+            "potential_checks": "_owner == msg.sender == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ]
+}

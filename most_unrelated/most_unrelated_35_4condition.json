@@ -1,0 +1,155 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "potential_checks": "spender != tokenPool == False",
+            "involved_variables": [
+                "spender",
+                "this",
+                "emitEvent",
+                "_cachedChainId",
+                "tokenPool",
+                "block.chainid",
+                "deadline",
+                "_cachedThis",
+                "owner",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_cachedThis",
+                "_cachedChainId",
+                "tokenPool"
+            ]
+        },
+        {
+            "potential_checks": "block.timestamp > deadline == False",
+            "involved_variables": [
+                "spender",
+                "this",
+                "emitEvent",
+                "_cachedChainId",
+                "tokenPool",
+                "block.chainid",
+                "deadline",
+                "_cachedThis",
+                "owner",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_cachedThis",
+                "_cachedChainId",
+                "tokenPool"
+            ]
+        },
+        {
+            "potential_checks": "address(this) == _cachedThis && block.chainid == _cachedChainId == False",
+            "involved_variables": [
+                "spender",
+                "this",
+                "emitEvent",
+                "_cachedChainId",
+                "tokenPool",
+                "block.chainid",
+                "deadline",
+                "_cachedThis",
+                "owner",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_cachedThis",
+                "_cachedChainId",
+                "tokenPool"
+            ]
+        },
+        {
+            "potential_checks": "signer != owner == False",
+            "involved_variables": [
+                "spender",
+                "this",
+                "emitEvent",
+                "_cachedChainId",
+                "tokenPool",
+                "block.chainid",
+                "deadline",
+                "_cachedThis",
+                "owner",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_cachedThis",
+                "_cachedChainId",
+                "tokenPool"
+            ]
+        },
+        {
+            "potential_checks": "emitEvent == False",
+            "involved_variables": [
+                "spender",
+                "this",
+                "emitEvent",
+                "_cachedChainId",
+                "tokenPool",
+                "block.chainid",
+                "deadline",
+                "_cachedThis",
+                "owner",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "_cachedThis",
+                "_cachedChainId",
+                "tokenPool"
+            ]
+        }
+    ],
+    "nonces(address owner) returns (uint256)": [],
+    "DOMAIN_SEPARATOR() returns (bytes32)": [],
+    "eip712Domain() returns (bytes1, string, string, uint256, address, bytes32, uint256[])": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 value) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "setTokenPool(address _tokenPool)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "_tokenPool"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

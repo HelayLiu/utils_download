@@ -1,0 +1,21 @@
+- `contributions`:
+  · Write restricted to Contributor or Contract.
+  · Read restricted to None.
+- `whitelist`:
+  · Write restricted to Owner or Protocol Admin.
+  · Read restricted to None.
+- `fundraisingFinalized`:
+  · Write restricted to Contract.
+  · Read restricted to None.
+- `fundraisingDeadline`:
+  · Write restricted to Owner or Protocol Admin.
+  · Read restricted to None.
+- `goalReached`:
+  · Write restricted to Contract.
+  · Read restricted to None.
+- `liquidityLocker`:
+  · Write restricted to Contract.
+  · Read restricted to None.
+- `_status` (ReentrancyGuard):
+  · Write restricted to Contract.
+  · Read restricted to Contract (internal).

@@ -1,0 +1,22 @@
+- `contractURI`: string  
+    · Write restricted to DEFAULT_ADMIN_ROLE.  
+    · Read restricted to None (public).  
+- `platformFeeBps`: uint128 private  
+    · Write restricted to DEFAULT_ADMIN_ROLE (via `setPlatformFeeInfo`).  
+    · Read restricted to None (via public `getPlatformFeeInfo`).  
+- `platformFeeRecipient`: address internal  
+    · Write restricted to DEFAULT_ADMIN_ROLE (via `setPlatformFeeInfo`).  
+    · Read restricted to None (via public `getPlatformFeeInfo`).  
+- `primarySaleRecipient`: address public  
+    · Write restricted to DEFAULT_ADMIN_ROLE.  
+    · Read restricted to None (public).  
+- `minted`: mapping(bytes32 => bool) private  
+    · Write restricted to contract during `mintWithSignature` (MINTER_ROLE enforced).  
+    · Read restricted to None (via public `verify`).  
+- Token balances/allowances (inherited ERC20 state):  
+    · Write restricted to:  
+        - MINTER_ROLE (minting), token owner/approved (burning), TRANSFER_ROLE holders (transfers when enabled).  
+    · Read restricted to None (public ERC20 methods).  
+- Role permissions (DEFAULT_ADMIN_ROLE, MINTER_ROLE, TRANSFER_ROLE):  
+    · Write restricted to DEFAULT_ADMIN_ROLE (grant/revoke).  
+    · Read restricted to None (public role getters).  

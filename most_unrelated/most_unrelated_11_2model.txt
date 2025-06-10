@@ -1,0 +1,27 @@
+- _balances (mapping): 
+  · Write restricted to Owner (via mint/adminBurn) and Token Holders (via transfers).
+  · Read restricted to None (publicly accessible via balanceOf).
+
+- _allowances (mapping):
+  · Write restricted to Token Holders (via approve/transferFrom).
+  · Read restricted to None (publicly accessible via allowance).
+
+- _totalSupply (uint256):
+  · Write restricted to Owner (via mint/adminBurn).
+  · Read restricted to None (publicly accessible via totalSupply).
+
+- _name (string):
+  · Write restricted to None (immutable after deployment).
+  · Read restricted to None (publicly accessible via name).
+
+- _symbol (string):
+  · Write restricted to None (immutable after deployment).
+  · Read restricted to None (publicly accessible via symbol).
+
+- _owner (address):
+  · Write restricted to Owner (via transferOwnership) and Pending Owner (via acceptOwnership).
+  · Read restricted to None (publicly accessible via owner).
+
+- _pendingOwner (address):
+  · Write restricted to Owner (via transferOwnership).
+  · Read restricted to None (publicly accessible via pendingOwner).

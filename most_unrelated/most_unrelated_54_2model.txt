@@ -1,0 +1,24 @@
+- `finished`: bool public  
+  · Write restricted to the contract owner (via `finish`).  
+  · Read restricted to None (public).  
+- `_description`: string private  
+  · Write restricted to None (set once at deployment).  
+  · Read restricted to None (via public `description()`).  
+- `_website`: string private  
+  · Write restricted to None (set once at deployment).  
+  · Read restricted to None (via public `website()`).  
+- `_logoURL`: string private  
+  · Write restricted to None (set once at deployment).  
+  · Read restricted to None (via public `logoURL()`).  
+- `_balances`: mapping(address => uint256) private (inherited)  
+  · Write restricted to token owners (via transfers/burns) or contract owner (via `mint`).  
+  · Read restricted to account owners (via `balanceOf`).  
+- `_allowances`: mapping(address => mapping(address => uint256)) private (inherited)  
+  · Write restricted to token owners (via `approve`) when `finished=true` or spender=owner.  
+  · Read restricted to allowance granters/spenders (via `allowance`).  
+- `_totalSupply`: uint256 private (inherited)  
+  · Write restricted to contract owner (via `mint`/`burn`).  
+  · Read restricted to None (via `totalSupply()`).  
+- `_owner`: address private (inherited)  
+  · Write restricted to current owner (via ownership transfers).  
+  · Read restricted to None (via `owner()`).  

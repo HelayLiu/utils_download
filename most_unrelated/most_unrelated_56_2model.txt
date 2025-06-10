@@ -1,0 +1,67 @@
+- `uniswapV2Pair`: 
+  · Write restricted to initialization only
+  · Read restricted to public view
+
+- `botProtectionDurationInSeconds`: 
+  · Write restricted to initialization only
+  · Read restricted to public view
+
+- `_tokenHasTax`: 
+  · Write restricted to initialization only
+  · Read restricted to internal contract
+
+- `_uniswapRouter`: 
+  · Write restricted to initialization only
+  · Read restricted to internal contract
+
+- `fundedDate`: 
+  · Write restricted to owner/factory (initial liquidity)
+  · Read restricted to public view
+
+- `projectBuyTaxBasisPoints`: 
+  · Write restricted to owner/factory
+  · Read restricted to public view
+
+- `projectSellTaxBasisPoints`: 
+  · Write restricted to owner/factory
+  · Read restricted to public view
+
+- `swapThresholdBasisPoints`: 
+  · Write restricted to owner/factory
+  · Read restricted to public view
+
+- `pairToken`: 
+  · Write restricted to initialization only
+  · Read restricted to public view
+
+- `projectTaxRecipient`: 
+  · Write restricted to owner/factory
+  · Read restricted to public view
+
+- `projectTaxPendingSwap`: 
+  · Write restricted to tax processing logic
+  · Read restricted to public view
+
+- `vault`: 
+  · Write restricted to initialization only
+  · Read restricted to public view
+
+- `_validCallerCodeHashes`: 
+  · Write restricted to owner/factory
+  · Read restricted to public view
+
+- `_liquidityPools`: 
+  · Write restricted to owner/factory
+  · Read restricted to public view
+
+- `_factory`: 
+  · Write restricted to initialization only
+  · Read restricted to internal contract
+
+- `_balances`: 
+  · Write restricted to token transfer logic
+  · Read restricted to balanceOf queries
+
+- `_allowances`: 
+  · Write restricted to approval logic
+  · Read restricted to allowance queries

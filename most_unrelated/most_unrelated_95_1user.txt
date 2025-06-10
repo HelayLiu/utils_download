@@ -1,0 +1,5 @@
+- As a user, I want to securely transfer tokens within and across chains, ensuring my balance and allowances are isolated from unauthorized access during transfers.
+- As a fee owner, I want to collect fees on cross-chain transfers, with fee parameters controlled exclusively by the contract owner.
+- As the contract owner, I want to configure trusted cross-chain endpoints and fee structures, ensuring only authorized addresses can modify critical parameters.
+- As a relayer, I want to handle cross-chain messages securely, with payload integrity and access control enforced by the contract.
+- As a receiver, I want to process incoming cross-chain tokens with guaranteed state isolation, ensuring only valid messages update my balance.

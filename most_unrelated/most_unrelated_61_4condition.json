@@ -1,0 +1,500 @@
+{
+    "updateHook(address hook_, bool approve_)": [
+        {
+            "potential_checks": "msg.sender != _owner == False",
+            "involved_variables": [
+                "token",
+                "msg.sender",
+                "_owner",
+                "ETH_ADDRESS"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "token != ETH_ADDRESS == False",
+            "involved_variables": [
+                "token",
+                "msg.sender",
+                "_owner",
+                "ETH_ADDRESS"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "_owner"
+            ]
+        }
+    ],
+    "updateConnectorStatus(address[] connectors, bool[] statuses)": [
+        {
+            "potential_checks": "msg.sender != _owner == False",
+            "involved_variables": [
+                "length",
+                "msg.sender",
+                "_owner",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        },
+        {
+            "potential_checks": "i < length == False",
+            "involved_variables": [
+                "length",
+                "msg.sender",
+                "_owner",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "getMinFees(address connector_, uint256 msgGasLimit_, uint256 payloadSize_) returns (uint256)": [],
+    "rescueFunds(address token_, address rescueTo_, uint256 amount_)": [
+        {
+            "potential_checks": "! _permits[role][msg.sender] == False",
+            "involved_variables": [
+                "_permits",
+                "msg.sender",
+                "role"
+            ],
+            "descriptions": "",
+            "references": [
+                "_permits"
+            ]
+        }
+    ],
+    "grantRole(bytes32 role_, address grantee_)": [
+        {
+            "potential_checks": "msg.sender != _owner == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "revokeRole(bytes32 role_, address revokee_)": [
+        {
+            "potential_checks": "msg.sender != _owner == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "hasRole(bytes32 role_, address address_) returns (bool)": [],
+    "owner() returns (address)": [],
+    "nominee() returns (address)": [],
+    "nominateOwner(address nominee_)": [
+        {
+            "potential_checks": "msg.sender != _owner == False",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "claimOwner()": [
+        {
+            "potential_checks": "msg.sender != _nominee == False",
+            "involved_variables": [
+                "msg.sender",
+                "_nominee"
+            ],
+            "descriptions": "",
+            "references": [
+                "_nominee"
+            ]
+        }
+    ],
+    "bridge(address receiver_, uint256 amount_, uint256 msgGasLimit_, address connector_, bytes extraData_, bytes options_)": [
+        {
+            "potential_checks": "locked == 1",
+            "involved_variables": [
+                "msg.value",
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "connector_",
+                "fees",
+                "token",
+                "messageId",
+                "returnedMessageId"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "! validConnectors[connector_] == False",
+            "involved_variables": [
+                "msg.value",
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "connector_",
+                "fees",
+                "token",
+                "messageId",
+                "returnedMessageId"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "token == ETH_ADDRESS && msg.value < transferInfo_.amount == False",
+            "involved_variables": [
+                "msg.value",
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "connector_",
+                "fees",
+                "token",
+                "messageId",
+                "returnedMessageId"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "amount_ == 0 || address(token) == ETH_ADDRESS == False",
+            "involved_variables": [
+                "msg.value",
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "connector_",
+                "fees",
+                "token",
+                "messageId",
+                "returnedMessageId"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "token == ETH_ADDRESS == False",
+            "involved_variables": [
+                "msg.value",
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "connector_",
+                "fees",
+                "token",
+                "messageId",
+                "returnedMessageId"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "returnedMessageId != messageId == False",
+            "involved_variables": [
+                "msg.value",
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "connector_",
+                "fees",
+                "token",
+                "messageId",
+                "returnedMessageId"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        }
+    ],
+    "receiveInbound(uint32 siblingChainSlug_, bytes payload_)": [
+        {
+            "potential_checks": "locked == 1",
+            "involved_variables": [
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "this",
+                "msg.sender",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "! validConnectors[msg.sender] == False",
+            "involved_variables": [
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "this",
+                "msg.sender",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "transferInfo_.receiver == address(this) || transferInfo_.receiver == token == False",
+            "involved_variables": [
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "this",
+                "msg.sender",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "amount_ == 0 == False",
+            "involved_variables": [
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "this",
+                "msg.sender",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        },
+        {
+            "potential_checks": "address(token) == ETH_ADDRESS == False",
+            "involved_variables": [
+                "amount_",
+                "transferInfo_",
+                "ETH_ADDRESS",
+                "locked",
+                "hook__",
+                "validConnectors",
+                "this",
+                "msg.sender",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "token",
+                "hook__",
+                "validConnectors"
+            ]
+        }
+    ],
+    "retry(address connector_, bytes32 messageId_)": [
+        {
+            "potential_checks": "locked == 1",
+            "involved_variables": [
+                "amount_",
+                "messageId_",
+                "ETH_ADDRESS",
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connector_",
+                "connectorCache",
+                "cacheData",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connectorCache",
+                "token"
+            ]
+        },
+        {
+            "potential_checks": "! validConnectors[connector_] == False",
+            "involved_variables": [
+                "amount_",
+                "messageId_",
+                "ETH_ADDRESS",
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connector_",
+                "connectorCache",
+                "cacheData",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connectorCache",
+                "token"
+            ]
+        },
+        {
+            "potential_checks": "cacheData.identifierCache.length == 0 == False",
+            "involved_variables": [
+                "amount_",
+                "messageId_",
+                "ETH_ADDRESS",
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connector_",
+                "connectorCache",
+                "cacheData",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connectorCache",
+                "token"
+            ]
+        },
+        {
+            "potential_checks": "amount_ == 0 == False",
+            "involved_variables": [
+                "amount_",
+                "messageId_",
+                "ETH_ADDRESS",
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connector_",
+                "connectorCache",
+                "cacheData",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connectorCache",
+                "token"
+            ]
+        },
+        {
+            "potential_checks": "address(token) == ETH_ADDRESS == False",
+            "involved_variables": [
+                "amount_",
+                "messageId_",
+                "ETH_ADDRESS",
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connector_",
+                "connectorCache",
+                "cacheData",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "locked",
+                "identifierCache",
+                "validConnectors",
+                "connectorCache",
+                "token"
+            ]
+        }
+    ]
+}

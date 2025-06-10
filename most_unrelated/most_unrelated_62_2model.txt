@@ -1,0 +1,35 @@
+- _name (string private):
+    · Write restricted to None (immutable after deployment).
+    · Read restricted to None.
+
+- _symbol (string private):
+    · Write restricted to None (immutable after deployment).
+    · Read restricted to None.
+
+- _owners (mapping(uint256 => address) private):
+    · Write restricted to the contract itself (during minting/transfers).
+    · Read restricted to the contract itself (via ownerOf).
+
+- _balances (mapping(address => uint256) private):
+    · Write restricted to the contract itself (during minting/transfers).
+    · Read restricted to the contract itself (via balanceOf).
+
+- _tokenApprovals (mapping(uint256 => address) private):
+    · Write restricted to the contract itself (during approvals).
+    · Read restricted to the contract itself (via getApproved).
+
+- _operatorApprovals (mapping(address => mapping(address => bool)) private):
+    · Write restricted to token owners (via setApprovalForAll).
+    · Read restricted to the contract itself (via isApprovedForAll).
+
+- _tokenURIs (mapping(uint256 => string) private):
+    · Write restricted to the contract owner (during minting).
+    · Read restricted to the contract itself (via tokenURI).
+
+- _owner (address private):
+    · Write restricted to the current owner (via ownership transfers).
+    · Read restricted to None.
+
+- _tokenIds (uint256 private):
+    · Write restricted to the contract owner (during minting).
+    · Read restricted to None.

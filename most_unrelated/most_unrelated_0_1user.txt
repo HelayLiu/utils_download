@@ -1,0 +1,6 @@
+- This is a BEP20Token contracts, which can mint and transfer tokens.
+- As a token holder, I want to securely transfer my tokens to others, ensuring only authorized parties can access my balance.
+- As a token holder, I want to delegate spending allowances to specific addresses while maintaining control over my funds.
+- As a contract owner, I want exclusive rights to mint new tokens and manage ownership to control token supply and administration.
+- As any user, I want to transparently view token balances and allowances to verify account states without modification rights.
+- As a spender, I want to utilize delegated allowances for transfers while respecting the token holder's access controls.  

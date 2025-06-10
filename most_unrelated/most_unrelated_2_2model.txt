@@ -1,0 +1,27 @@
+- `_balances` (mapping(address => uint256) private):
+  · Write restricted to: Owner (via mint/burn) and token holders (via transfers with balance checks).
+  · Read restricted to: None (public via balanceOf).
+
+- `_allowances` (mapping(address => mapping(address => uint256)) private):
+  · Write restricted to: Allowance owners (via approve/increase/decreaseAllowance) and authorized spenders (via transferFrom).
+  · Read restricted to: None (public via allowance).
+
+- `_totalSupply` (uint256 private):
+  · Write restricted to: Owner (via mint/burn).
+  · Read restricted to: None (public via totalSupply).
+
+- `_name` (string private), `_symbol` (string private):
+  · Write restricted to: None (immutable after deployment).
+  · Read restricted to: None (public via name/symbol).
+
+- `_decimals` (uint8 private):
+  · Write restricted to: None (immutable after deployment).
+  · Read restricted to: None (public via decimals).
+
+- `source` (bytes4 public), `sourceAddress` (bytes32 public):
+  · Write restricted to: None (immutable after deployment).
+  · Read restricted to: None.
+
+- `_owner` (address private):
+  · Write restricted to: Current owner (via ownership transfers).
+  · Read restricted to: None (public via owner).

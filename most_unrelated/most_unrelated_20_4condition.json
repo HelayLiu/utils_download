@@ -1,0 +1,475 @@
+{
+    "paused() returns (bool)": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "ownerOf(uint256 tokenId) returns (address)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "tokenURI(uint256 tokenId) returns (string)": [],
+    "approve(address to, uint256 tokenId)": [],
+    "getApproved(uint256 tokenId) returns (address)": [],
+    "setApprovalForAll(address operator, bool approved)": [],
+    "isApprovedForAll(address owner, address operator) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 tokenId)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [],
+    "addOperator(address _op)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "isOperator",
+                "_op"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "isOperator[_op] == False",
+            "involved_variables": [
+                "isOperator",
+                "_op"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        }
+    ],
+    "getAllOperators() returns (address[])": [],
+    "pause()": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused() == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setUri(string _uri)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setSuffix(string _suffix)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "removeOperator(address _op)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "_op",
+                "isOperator",
+                "operators",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator",
+                "operators"
+            ]
+        },
+        {
+            "potential_checks": "isOperator[_op]",
+            "involved_variables": [
+                "_op",
+                "isOperator",
+                "operators",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator",
+                "operators"
+            ]
+        },
+        {
+            "potential_checks": "i < length",
+            "involved_variables": [
+                "_op",
+                "isOperator",
+                "operators",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator",
+                "operators"
+            ]
+        },
+        {
+            "potential_checks": "operators[i] == _op",
+            "involved_variables": [
+                "_op",
+                "isOperator",
+                "operators",
+                "i",
+                "length"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator",
+                "operators"
+            ]
+        }
+    ],
+    "mint(address to)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "owner",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "owner",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "balanceOf(to) == 0",
+            "involved_variables": [
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "owner",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "owner",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "owner",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "to.isContract() == False",
+            "involved_variables": [
+                "data",
+                "tokenId",
+                "Address",
+                "to",
+                "owner",
+                "from"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getMessageHash(address _to, uint256 _timestamp, bytes32 _uuid) returns (bytes32)": [],
+    "verify(bytes32 _signingHash, uint256 _timestamp, bytes _signature)": [
+        {
+            "potential_checks": "_timestamp > block.timestamp",
+            "involved_variables": [
+                "isOperator",
+                "_timestamp",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "isOperator[signer] || signer == owner() == False",
+            "involved_variables": [
+                "isOperator",
+                "_timestamp",
+                "block.timestamp",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        }
+    ],
+    "mintWithSignature(bytes32 _uuid, uint256 _timestamp, bytes _signature)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "_signature",
+                "from",
+                "reason",
+                "data",
+                "tokenId",
+                "Address",
+                "isOperator",
+                "_timestamp",
+                "to",
+                "owner",
+                "msg.sender",
+                "block.timestamp",
+                "signingHash",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "balanceOf(msg.sender) == 0",
+            "involved_variables": [
+                "_signature",
+                "from",
+                "reason",
+                "data",
+                "tokenId",
+                "Address",
+                "isOperator",
+                "_timestamp",
+                "to",
+                "owner",
+                "msg.sender",
+                "block.timestamp",
+                "signingHash",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "_timestamp > block.timestamp",
+            "involved_variables": [
+                "_signature",
+                "from",
+                "reason",
+                "data",
+                "tokenId",
+                "Address",
+                "isOperator",
+                "_timestamp",
+                "to",
+                "owner",
+                "msg.sender",
+                "block.timestamp",
+                "signingHash",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "isOperator[signer] || signer == owner()",
+            "involved_variables": [
+                "_signature",
+                "from",
+                "reason",
+                "data",
+                "tokenId",
+                "Address",
+                "isOperator",
+                "_timestamp",
+                "to",
+                "owner",
+                "msg.sender",
+                "block.timestamp",
+                "signingHash",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "_signature",
+                "from",
+                "reason",
+                "data",
+                "tokenId",
+                "Address",
+                "isOperator",
+                "_timestamp",
+                "to",
+                "owner",
+                "msg.sender",
+                "block.timestamp",
+                "signingHash",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "_signature",
+                "from",
+                "reason",
+                "data",
+                "tokenId",
+                "Address",
+                "isOperator",
+                "_timestamp",
+                "to",
+                "owner",
+                "msg.sender",
+                "block.timestamp",
+                "signingHash",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "to.isContract()",
+            "involved_variables": [
+                "_signature",
+                "from",
+                "reason",
+                "data",
+                "tokenId",
+                "Address",
+                "isOperator",
+                "_timestamp",
+                "to",
+                "owner",
+                "msg.sender",
+                "block.timestamp",
+                "signingHash",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        },
+        {
+            "potential_checks": "reason.length == 0 == False",
+            "involved_variables": [
+                "_signature",
+                "from",
+                "reason",
+                "data",
+                "tokenId",
+                "Address",
+                "isOperator",
+                "_timestamp",
+                "to",
+                "owner",
+                "msg.sender",
+                "block.timestamp",
+                "signingHash",
+                "signer"
+            ],
+            "descriptions": "",
+            "references": [
+                "isOperator"
+            ]
+        }
+    ],
+    "approve(address , uint256 )": [],
+    "setApprovalForAll(address , bool )": [],
+    "tokenURI(uint256 _id) returns (string)": [
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "_id",
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "totalSupply() returns (uint256)": []
+}

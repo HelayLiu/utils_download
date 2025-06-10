@@ -1,0 +1,7 @@
+- As a contract admin, I want to upgrade the contract logic securely so that I can fix bugs or add features, with upgrades restricted to the admin role.
+- As a minter, I want to mint tokens to specific addresses so that I can expand token supply, with minting restricted to authorized accounts.
+- As a token holder, I want to burn my tokens so that I can reduce supply, with burning restricted to my own address or approved spenders.
+- As a token holder, I want to manage token allowances securely so that delegated spending is isolated to approved spenders.
+- As a user, I want to execute gasless approvals via EIP-712 permits so that I can save transaction costs, with signatures restricted to my address.
+- As a user, I want to view my token balance and allowances so that I can track my holdings, with read access publicly available.
+- As an admin, I want to manage roles so that permissions are enforced, with role changes restricted to admins.

@@ -1,0 +1,6 @@
+- As the contract owner, I want to mint tokens periodically (every 180 days) or during emergencies (up to 2 times) to control token supply distribution.
+- As the contract owner, I want to blacklist/whitelist addresses to prevent malicious actors from transferring tokens.
+- As a token holder, I want to transfer tokens securely, knowing blacklisted addresses cannot participate in transactions.
+- As a token holder, I want to burn my tokens to reduce supply, provided I'm not blacklisted.
+- As an external contract, I want to check token metadata (name/symbol/supply) for integration purposes.
+- As any user, I want to verify blacklist status before interacting with addresses to avoid failed transactions.

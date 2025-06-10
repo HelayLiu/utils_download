@@ -1,0 +1,331 @@
+{
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "hasRole(bytes32 role, address account) returns (bool)": [],
+    "getRoleAdmin(bytes32 role) returns (bytes32)": [],
+    "grantRole(bytes32 role, address account)": [],
+    "revokeRole(bytes32 role, address account)": [],
+    "renounceRole(bytes32 role, address account)": [],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "nonces(address owner) returns (uint256)": [],
+    "DOMAIN_SEPARATOR() returns (bytes32)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 amount) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
+    "mint(address _account, uint256 _amount)": [
+        {  
+            "specific_checks": "hasRole(MINTER_ROLE, msg.sender)",  
+            "involved_variables": ["_roles", "msg.sender"],  
+            "descriptions": "Verify MINTER_ROLE to mint tokens.",  
+            "references": ["_balances", "_totalSupply"]  
+        }
+    ],
+    "burn(uint256 _amount)": [
+        {
+            "specific_checks": "!paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is not paused (implicit in _beforeTokenTransfer).",
+            "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "specific_checks": "!isBlacklisted[msg.sender]",
+            "involved_variables": ["isBlacklisted", "msg.sender"],
+            "descriptions": "Ensure the caller is not blacklisted (implicit in _beforeTokenTransfer).",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ],
+    "burnFrom(address _account, uint256 _amount)": [
+        {
+        "specific_checks": "hasRole(BURNER_ROLE, msg.sender)",
+        "involved_variables": ["_roles", "msg.sender"],
+        "descriptions": "Ensure caller has BURNER_ROLE.",
+        "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "specific_checks": "!paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is not paused (implicit in _burn).",
+            "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "specific_checks": "!isBlacklisted[_account]",
+            "involved_variables": ["isBlacklisted", "_account"],
+            "descriptions": "Ensure the account is not blacklisted (implicit in _burn).",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ],
+    "withdrawal(uint256 _amount)": [],
+    "airdrop(address[] addresses, uint256[] amounts)": [
+        {
+            "specific_checks": "hasRole(MINTER_ROLE, msg.sender)",
+            "involved_variables": ["_roles", "msg.sender"],
+            "descriptions": "Ensure caller has MINTER_ROLE.",
+            "references": ["_balances","_totalSupply"]
+        }
+    ],
+    "airdropWithDepositPool(address[] operators, uint256[] operatorAmounts, address[] addresses, uint256[] amounts)": [
+        {
+            "specific_checks": "hasRole(MINTER_ROLE, msg.sender))",
+            "involved_variables": ["_roles", "msg.sender"],
+            "descriptions": "Ensure caller has MINTER_ROLE.",
+            "references": ["_balances","_totalSupply"]
+        }
+    ],
+    "depositPool(address[] operators, uint256[] operatorAmounts)": [{
+            "specific_checks": "hasRole(MINTER_ROLE, msg.sender)",
+            "involved_variables": ["_roles"],
+            "descriptions": "Ensure caller has MINTER_ROLE.",
+            "references": ["_balances","_totalSupply"]
+        }
+    ],
+    "poolRate() returns (uint256)": [
+    ],
+    "calculateWithdrawal(uint256 amount) returns (uint256)": [
+    ],
+    "blacklist(address addr, bool blacklisted)": [
+        {  
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",  
+            "involved_variables": ["_roles","msg.sender"],  
+            "descriptions": "Restrict blacklisting to admin.",  
+            "references": ["isBlacklisted"]  
+        }  
+    ],
+    "jackpot() returns (address)": [],
+    "paused() returns (bool)": [],
+    "initialize(IERC20Upgradeable tetherAddress, uint256 withdrawDelay)": [
+        {
+            "specific_checks": "!initialized",
+            "involved_variables": ["_initialized"],
+            "descriptions": "Ensure the contract is not initialized.",
+            "references": ["_initialized"]
+        }
+    ],
+    "mint(address account, uint256 amount)": [
+                {
+            "specific_checks": "!paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is not paused.",
+            "references": ["_paused"]
+        },
+        {  
+            "specific_checks": "hasRole(MINTER_ROLE, msg.sender)",  
+            "involved_variables": ["_roles","msg.sender"],  
+            "descriptions": "Verify MINTER_ROLE to mint tokens.",  
+            "references": ["_balances", "_totalSupply"]  
+        },  
+        {
+            "potential_checks": "isBlacklisted[account] == False",
+            "involved_variables": [
+                "isBlacklisted",
+                "account"
+            ],
+            "descriptions": "Ensure the account is not blacklisted (implicit in _beforeTokentransfer).",
+            "references": [
+                "_balances", "_totalSupply"
+            ]
+        }
+    ],
+    "burn(uint256 amount)": [
+        {
+            "potential_checks": "isBlacklisted[msg.sender]== False",
+            "involved_variables": [
+                "isBlacklisted",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure the account is not blacklisted (implicit in _beforeTokentransfer).",
+            "references": [
+                "_balances", "_totalSupply"
+            ]
+        },
+                {
+            "specific_checks": "!paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is not paused.",
+            "references": ["_paused"]
+        }
+    ],
+    "burnFrom(address account, uint256 amount)": [
+        {
+            "specific_checks": "hasRole(BURNER_ROLE, msg.sender)",
+            "involved_variables": ["_roles", "msg.sender"],
+            "descriptions": "Ensure caller has BURNER_ROLE.",
+            "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "specific_checks": "!paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is not paused.",
+            "references": ["_paused"]
+        },
+        {
+            "specific_checks": "!isBlacklisted[account]",
+            "involved_variables": ["isBlacklisted"],
+            "descriptions": "Ensure the account is not blacklisted.",
+            "references": ["isBlacklisted"]
+        }
+    ],
+    "withdrawal(uint256 amount)": [        
+        {
+            "specific_checks": "block.timestamp > withdrawalStart",
+            "involved_variables": ["block.timestamp", "withdrawalStart"],
+            "descriptions": "Ensure withdrawal period has started.",
+            "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "specific_checks": "!paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is not paused (implicit in _burn via _beforeTokenTransfer).",
+            "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "specific_checks": "!isBlacklisted[msg.sender]",
+            "involved_variables": ["isBlacklisted","msg.sender"],
+            "descriptions": "Ensure caller is not blacklisted (implicit in _burn).",
+            "references": ["_balances", "_totalSupply"]
+        }],
+    "withdrawalFrom(address account, uint256 amount)": [
+        {
+            "specific_checks": "hasRole(BURNER_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller has BURNER_ROLE.",
+            "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "specific_checks": "!paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is not paused.",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ],
+    "airdropWithDepositPoolAndUpdateAdjustmentTokens(address[] operators, uint256[] operatorAmounts, address[] addresses, uint256[] amounts, uint256 toAdjustedTokens, uint256 toStakedTokens)": [
+        {
+            "specific_checks": "hasRole(MINTER_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller has MINTER_ROLE.",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ],
+    "updateAdjustedTokens(uint256 toAdjustedTokens, uint256 toStakedTokens)": [
+        {
+            "specific_checks": "hasRole(MINTER_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller has MINTER_ROLE.",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ],
+    "poolRateV2() returns (uint256)": [
+    ],
+    "setConstraintPoolAmount(uint256 amount)": [
+        {
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, _msgSender())",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller is admin.",
+            "references": ["constraintPoolAmount"]
+        }
+    ],
+    "setConstraintMintAmount(uint256 amount)": [
+        {
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, _msgSender())",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller is admin.",
+            "references": ["ConstraintMintAmount"]
+        }
+    ],
+    "setJackpot(address jackpotAddress)": [
+        {
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, _msgSender())",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller is admin.",
+            "references": ["Jackpot"]
+        }
+    ],
+    "setMaxSupply(uint256 newMaxSupply)": [
+        {
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, _msgSender())",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller is admin.",
+            "references": ["MaxSupply"]
+        }
+    ],
+    "withdrawToken(address to, uint256 amount)": [
+        {
+            "specific_checks": "hasRole(MINTER_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller has MINTER_ROLE.",
+            "references": ["_balances","_totalSupply"]
+        }
+    ],
+    "withdrawAnyToken(address token, address to, uint256 amount)": [
+        {
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller is admin.",
+            "references": ["_balances","_totalSupply"]
+        }
+    ],
+    "pause()": [
+        {  
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",  
+            "involved_variables": ["_roles","msg.sender"],  
+            "descriptions": "Restrict pausing to admin.",  
+            "references": ["_paused"]  
+        },  
+        {  
+            "specific_checks": "!paused()",  
+            "involved_variables": ["_paused"],  
+            "descriptions": "Ensure contract is not already paused.",  
+            "references": ["_paused"]  
+        }  
+    ],
+    "unpause()": [
+        {
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller is admin.",
+            "references": ["_roles"]
+        },
+        {
+            "specific_checks": "paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is paused.",
+            "references": ["_paused"]
+        }
+    ],
+    "denomination(address[] holders)": [
+        {
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller is admin.",
+            "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "specific_checks": "paused()",
+            "involved_variables": ["_paused"],
+            "descriptions": "Ensure the contract is paused.",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ],
+    "updateTetherAddress(IERC20Upgradeable tetherAddress)": [
+        {
+            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller is admin.",
+            "references": ["tether"]
+        }
+    ],
+    "inactiveBurn(address[] holders, uint256[] amounts)": [
+        {
+            "specific_checks": "hasRole(BURNER_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Ensure caller has BURNER_ROLE.",
+            "references": ["isBlacklisted", "_balances", "_totalSupply"]
+        }
+    ]
+}

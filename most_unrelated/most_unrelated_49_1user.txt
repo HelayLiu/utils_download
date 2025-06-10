@@ -1,0 +1,6 @@
+- As a minter, I want to mint tokens securely, ensuring only authorized accounts can create new assets.  
+- As a user, I want my token ownership isolated via access controls, preventing unauthorized transfers.  
+- As a blocker, I want to restrict suspicious wallets/tokens, ensuring ecosystem security.  
+- As a burner, I want to destroy tokens under strict authorization, maintaining token scarcity.  
+- As an upgrader, I want to securely update contract logic without compromising state integrity.  
+- As an admin, I want to enforce state isolation via role-based access controls for critical operations.  

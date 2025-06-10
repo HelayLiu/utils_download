@@ -1,0 +1,6 @@
+- As a staker, I want to securely stake tokens so that my balances and rewards are isolated from other users.  
+- As a staker, I want to claim rewards after a minimum period to ensure fair distribution.  
+- As a staker, I want to unstake tokens securely, ensuring only I can access my deposits and accrued rewards.  
+- As the owner, I want to configure staking parameters to enforce reward calculations and security rules.  
+- As the owner, I want to pause the contract during emergencies to protect user funds.  
+- As the owner, I want to withdraw excess tokens to manage contract reserves securely.  

@@ -1,0 +1,19 @@
+- balanceOf (mapping):  
+  · Write restricted to contract-internal functions (mint/burn/transfers).  
+  · Read restricted to None (public).
+
+- \_totalSupply (uint256):  
+  · Write restricted to contract-internal mint/burn logic.  
+  · Read restricted to None (via totalSupply()).
+
+- \_oldOwner / \_newOwner / \_newOwnerEffectiveTime (address/uint256):  
+  · Write restricted to contract owner via changeDCRMOwner.  
+  · Read restricted to None (via owner() function).
+
+- nonces (mapping):  
+  · Write restricted to contract during permit execution.  
+  · Read restricted to None (public).
+
+- allowance (nested mapping):  
+  · Write restricted to token holder (via approve/permit) or contract (during transferFrom).  
+  · Read restricted to None (public).

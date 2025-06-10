@@ -1,0 +1,9 @@
+- As the contract owner, I want to pause token transfers during emergencies to protect users and prevent unauthorized state changes.
+- As the contract owner, I want to unpause token transfers to resume normal operations when safe.
+- As the contract owner, I want to airdrop tokens to up to 150 recipients at once to distribute tokens efficiently while enforcing transfer rules.
+- As the contract owner, I want to transfer ownership to delegate control securely.
+- As the contract owner, I want to renounce ownership to make the contract ownerless and immutable.
+- As a token holder, I want to transfer tokens securely when the contract is unpaused, ensuring only I can initiate transfers from my balance.
+- As a token holder, I want to burn my tokens to reduce supply, with checks preventing burns exceeding my balance or during pauses.
+- As a token holder, I want to approve or adjust allowances for spenders, with zero-address checks to prevent errors.
+- As a spender, I want to transfer tokens on behalf of holders within allowance limits, with state isolation enforced via pause controls and balance checks.

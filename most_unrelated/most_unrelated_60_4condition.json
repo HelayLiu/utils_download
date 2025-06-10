@@ -1,0 +1,161 @@
+{
+    "admin() returns (address)": [
+        {
+            "potential_checks": "msg.sender == _getAdmin()",
+            "involved_variables": [
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "implementation() returns (address)": [
+        {
+            "potential_checks": "msg.sender == _getAdmin()",
+            "involved_variables": [
+                "msg.sender",
+                "switch_expr_1763_227_0__delegate_asm_0"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "switch_expr_1763_227_0__delegate_asm_0 == 0 == False",
+            "involved_variables": [
+                "msg.sender",
+                "switch_expr_1763_227_0__delegate_asm_0"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "changeAdmin(address newAdmin)": [
+        {
+            "potential_checks": "msg.sender == _getAdmin()",
+            "involved_variables": [
+                "msg.sender",
+                "switch_expr_1763_227_0__delegate_asm_0"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "switch_expr_1763_227_0__delegate_asm_0 == 0 == False",
+            "involved_variables": [
+                "msg.sender",
+                "switch_expr_1763_227_0__delegate_asm_0"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "upgradeTo(address newImplementation)": [
+        {
+            "potential_checks": "msg.sender == _getAdmin()",
+            "involved_variables": [
+                "newImplementation",
+                "data",
+                "Address",
+                "switch_expr_1763_227_0__delegate_asm_0",
+                "forceCall",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "switch_expr_1763_227_0__delegate_asm_0 == 0 == False",
+            "involved_variables": [
+                "newImplementation",
+                "data",
+                "Address",
+                "switch_expr_1763_227_0__delegate_asm_0",
+                "forceCall",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "Address.isContract(newImplementation)",
+            "involved_variables": [
+                "newImplementation",
+                "data",
+                "Address",
+                "switch_expr_1763_227_0__delegate_asm_0",
+                "forceCall",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "data.length > 0 || forceCall == False",
+            "involved_variables": [
+                "newImplementation",
+                "data",
+                "Address",
+                "switch_expr_1763_227_0__delegate_asm_0",
+                "forceCall",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "upgradeToAndCall(address newImplementation, bytes data)": [
+        {
+            "potential_checks": "msg.sender == _getAdmin()",
+            "involved_variables": [
+                "newImplementation",
+                "data",
+                "Address",
+                "switch_expr_1763_227_0__delegate_asm_0",
+                "forceCall",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "switch_expr_1763_227_0__delegate_asm_0 == 0 == False",
+            "involved_variables": [
+                "newImplementation",
+                "data",
+                "Address",
+                "switch_expr_1763_227_0__delegate_asm_0",
+                "forceCall",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "Address.isContract(newImplementation)",
+            "involved_variables": [
+                "newImplementation",
+                "data",
+                "Address",
+                "switch_expr_1763_227_0__delegate_asm_0",
+                "forceCall",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "data.length > 0 || forceCall == False",
+            "involved_variables": [
+                "newImplementation",
+                "data",
+                "Address",
+                "switch_expr_1763_227_0__delegate_asm_0",
+                "forceCall",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "lib() returns (address)": []
+}

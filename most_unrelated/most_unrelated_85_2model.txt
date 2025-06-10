@@ -1,0 +1,27 @@
+- stakingContract (address public):
+  · Write restricted to: Initializer (only during contract initialization).
+  · Read restricted to: None (publicly accessible).
+- initializer (address public):
+  · Write restricted to: Contract constructor and initialization function.
+  · Read restricted to: None (publicly accessible).
+- INDEX (uint public):
+  · Write restricted to: Contract owner (only if INDEX is unset).
+  · Read restricted to: None (publicly accessible).
+- rebases (Rebase[] public):
+  · Write restricted to: Staking contract (during rebase operations).
+  · Read restricted to: None (publicly accessible).
+- \_gonBalances (mapping(address => uint256) internal):
+  · Write restricted to: Token transfers/approvals and rebase calculations.
+  · Read restricted to: Contract-internal (exposed via balanceOf()).
+- \_gonsPerFragment (uint256 internal):
+  · Write restricted to: Initialization and rebase functions.
+  · Read restricted to: Contract-internal (used in balance conversions).
+- \_allowedValue (mapping(address => mapping(address => uint256)) internal):
+  · Write restricted to: Approval/permit functions.
+  · Read restricted to: Contract-internal (exposed via allowance()).
+- \_owner (address internal from Ownable):
+  · Write restricted to: Ownership management functions.
+  · Read restricted to: Public via manager().
+- \_nonces (mapping(address => Counters.Counter) internal):
+  · Write restricted to: Permit function (increments on use).
+  · Read restricted to: Public via nonces().

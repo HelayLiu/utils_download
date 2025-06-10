@@ -1,0 +1,27 @@
+- transferMaxLimit:  
+  · Write restricted to `MINTER_ROLE`.  
+  · Read restricted to None.  
+- _basicUri:  
+  · Write restricted to `MINTER_ROLE`.  
+  · Read restricted to None.  
+- paused:  
+  · Write restricted to `MINTER_ROLE`.  
+  · Read restricted to None.  
+- blockWalletLists:  
+  · Write restricted to `BLOCKER_ROLE`.  
+  · Read restricted to None.  
+- blockTokenLists:  
+  · Write restricted to `BLOCKER_ROLE`.  
+  · Read restricted to None.  
+- _owners:  
+  · Write restricted to mint/transfer/burn operations.  
+  · Read restricted via `ownerOf`.  
+- _balances:  
+  · Write restricted to mint/transfer/burn operations.  
+  · Read restricted via `balanceOf`.  
+- _tokenApprovals:  
+  · Write restricted to token owners/approvers.  
+  · Read restricted via `getApproved`.  
+- _operatorApprovals:  
+  · Write restricted to token owners.  
+  · Read restricted via `isApprovedForAll`.  

@@ -1,0 +1,5 @@
+- As a contract admin, I want to manage roles (MINTER_ROLE, TRANSFER_ROLE) to control token minting and transfer permissions, ensuring only authorized entities can execute sensitive operations.  
+- As a minter, I want to mint tokens via `mintTo` or signed `mintWithSignature` requests to distribute tokens securely while enforcing validity windows and signature verification.  
+- As a user, I want to transfer tokens only if I hold TRANSFER_ROLE (when enabled) to prevent unauthorized transfers while allowing unrestricted burns.  
+- As a fee administrator, I want to set platform fees (recipient/basis points) and primary sale recipients to manage revenue distribution, capped at MAX_BPS (10,000) for safety.  
+- As a meta-transaction user, I want to interact via trusted forwarders to enable gasless transactions while maintaining access control integrity.  

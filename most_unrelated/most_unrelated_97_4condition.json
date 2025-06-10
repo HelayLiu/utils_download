@@ -1,0 +1,816 @@
+{
+    "setVRFCoordinatorInfoByMethod(GameVRF.FulfillmentMethod method, bytes32 gasLane, address coordAddress, uint64 subscriptionId, uint32 callbackGasLimit)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getRequestConfirmations() returns (uint16)": [],
+    "setRequestConfirmations(uint16 requestConfirmations)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getNumWords() returns (uint256)": [],
+    "setVRFCoordinator(address coordinator, bool active)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "rawFulfillRandomWords(uint256 requestId, uint256[] randomWords)": [
+        {
+            "potential_checks": "vrfCoordinators[msg.sender] != true == False",
+            "involved_variables": [
+                "gi",
+                "GameState",
+                "vrfCoordinators",
+                "amountToUser",
+                "gameById",
+                "choicesLength",
+                "gameId",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vrfCoordinators",
+                "gameById"
+            ]
+        },
+        {
+            "potential_checks": "gameId != 0",
+            "involved_variables": [
+                "gi",
+                "GameState",
+                "vrfCoordinators",
+                "amountToUser",
+                "gameById",
+                "choicesLength",
+                "gameId",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vrfCoordinators",
+                "gameById"
+            ]
+        },
+        {
+            "potential_checks": "gi.state == GameState.CALCULATING",
+            "involved_variables": [
+                "gi",
+                "GameState",
+                "vrfCoordinators",
+                "amountToUser",
+                "gameById",
+                "choicesLength",
+                "gameId",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vrfCoordinators",
+                "gameById"
+            ]
+        },
+        {
+            "potential_checks": "i < choicesLength == False",
+            "involved_variables": [
+                "gi",
+                "GameState",
+                "vrfCoordinators",
+                "amountToUser",
+                "gameById",
+                "choicesLength",
+                "gameId",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vrfCoordinators",
+                "gameById"
+            ]
+        },
+        {
+            "potential_checks": "amountToUser > 0 == False",
+            "involved_variables": [
+                "gi",
+                "GameState",
+                "vrfCoordinators",
+                "amountToUser",
+                "gameById",
+                "choicesLength",
+                "gameId",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "vrfCoordinators",
+                "gameById"
+            ]
+        }
+    ],
+    "pendingOwner() returns (address)": [],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "acceptOwnership()": [
+        {
+            "potential_checks": "pendingOwner() == sender == False",
+            "involved_variables": [
+                "sender"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setMinBet(uint256 minBet_)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setMaxBetDivisor(uint256 maxBetDivisor_)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setMaxConsecutiveRounds(uint256 maxConsecutiveRounds_)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBetMultiplePerRound(uint256 betMultiplePerRound_)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getGameInfo(uint256 gameId) returns (CentralGameBase.GameInfo)": [],
+    "getManyGameInfo(uint256[] gameIds) returns (CentralGameBase.GameInfo[])": [
+        {
+            "potential_checks": "i < gameIdLength == False",
+            "involved_variables": [
+                "i",
+                "gameIdLength"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setPaused(bool paused_)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setRakeDistributorAddress(address rakeAddress)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setTreasuryAddress(address _treasuryAddress)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setReferralTrackerAddress(address _referralTrackerAddress)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setCurrentGameId(uint256 gameId_)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "rescueNative(uint256 amount)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "success"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "(success,None) = address(msg.sender).call{value: amount}() == False",
+            "involved_variables": [
+                "success"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "rescueERC20(address tokenAddress)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "rescueERC721(address tokenAddress, uint256 tokenId)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "playGame(uint8 subgame, Slide.RoundChoice[] choices, string referralCode, GameVRF.FulfillmentMethod method) returns (uint256)": [
+        {
+            "potential_checks": "tx.origin == msg.sender",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "paused",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "ITreasury(treasuryAddress).isTreasuryTooLow()",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "bet >= minBet",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "bet <= (treasuryBalance / maxBetDivisor)",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "numRounds > 0",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "numRounds <= maxConsecutiveRounds",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "bet % numRounds == 0",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "betPerRound % betMultiplePerRound == 0",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "rake % numRounds == 0",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "i < numChoices",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "minMark >= 1",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "maxMark <= 100",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "maxMark >= minMark",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "maxMark - minMark < 95",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        },
+        {
+            "potential_checks": "potentialProfit <= (treasuryAddress.balance / maxBetDivisor) == False",
+            "involved_variables": [
+                "betMultiplePerRound",
+                "tx.origin",
+                "rake",
+                "minMark",
+                "numRounds",
+                "numChoices",
+                "maxMark",
+                "betPerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "potentialProfit",
+                "bet",
+                "maxBetDivisor",
+                "treasuryBalance",
+                "treasuryAddress",
+                "minBet",
+                "i",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "betMultiplePerRound",
+                "maxConsecutiveRounds",
+                "paused",
+                "maxBetDivisor",
+                "treasuryAddress",
+                "minBet"
+            ]
+        }
+    ],
+    "forceRequestWinner(uint256 gameId, GameVRF.FulfillmentMethod method)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "gi",
+                "coordinatorAddress",
+                "GameState",
+                "gameById"
+            ],
+            "descriptions": "",
+            "references": [
+                "gameById"
+            ]
+        },
+        {
+            "potential_checks": "gi.state != GameState.CLOSED",
+            "involved_variables": [
+                "gi",
+                "coordinatorAddress",
+                "GameState",
+                "gameById"
+            ],
+            "descriptions": "",
+            "references": [
+                "gameById"
+            ]
+        }
+    ],
+    "getMaxBetPerRound(uint8 minMark, uint8 maxMark) returns (uint256)": []
+}

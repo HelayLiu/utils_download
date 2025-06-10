@@ -1,0 +1,6 @@
+- As a contract owner, I want to manage ownership (transfer/renounce) to control administrative privileges securely.
+- As a token holder, I want to transfer tokens securely while ensuring zero-addresses are blocked to prevent irreversible losses.
+- As a spender, I want approved allowances to be adjustable (increase/decrease) with integrity checks to prevent underflows/overflows.
+- As any user, I want to view token metadata (name/symbol/supply) without restrictions for transparency.
+- As a token holder, I want my balances and allowances isolated from unauthorized access/modification to ensure asset security.
+- As an approved operator, I want to transfer tokens on behalf of holders only within allowed limits to enable delegated management.

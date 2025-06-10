@@ -1,0 +1,5 @@
+- As a user, I want to deposit tokens to earn interest, knowing my balance is isolated from others via ERC20 shares.
+- As a borrower, I want to open/manage positions with collateral, ensuring only I or approved workers modify my position's debt.
+- As a liquidator, I want to liquidate unhealthy positions for rewards, with access restricted to whitelisted accounts.
+- As the owner, I want to configure vault parameters and manage reserves, restricting write access to administrative functions.
+- As a worker contract, I want to interact with positions during `work` calls, with execution scoped to prevent reentrancy.

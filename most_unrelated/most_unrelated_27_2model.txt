@@ -1,0 +1,43 @@
+- `totalSupply` (mapping): 
+  · Write restricted to internal mint/burn operations only.
+  · Read restricted to None (publicly accessible).
+
+- `maxTotalSupply` (mapping):
+  · Write restricted to `DEFAULT_ADMIN_ROLE`.
+  · Read restricted to None (publicly accessible).
+
+- `saleRecipient` (mapping):
+  · Write restricted to `DEFAULT_ADMIN_ROLE`.
+  · Read restricted to None (publicly accessible).
+
+- `baseURI` (mapping in BatchMintMetadata):
+  · Write restricted to `MINTER_ROLE` (during lazy mint) or `METADATA_ROLE` (via updates).
+  · Read restricted to None (via public `uri` function).
+
+- `batchFrozen` (mapping):
+  · Write restricted to `METADATA_ROLE` (freezing base URI).
+  · Read restricted to None (publicly accessible).
+
+- `platformFeeRecipient`:
+  · Write restricted to `DEFAULT_ADMIN_ROLE`.
+  · Read restricted to None (via `getPlatformFeeInfo`).
+
+- `platformFeeBps`:
+  · Write restricted to `DEFAULT_ADMIN_ROLE`.
+  · Read restricted to None (via `getPlatformFeeInfo`).
+
+- `royaltyRecipient`:
+  · Write restricted to `DEFAULT_ADMIN_ROLE`.
+  · Read restricted to None (via `getDefaultRoyaltyInfo`).
+
+- `royaltyBps`:
+  · Write restricted to `DEFAULT_ADMIN_ROLE`.
+  · Read restricted to None (via `getDefaultRoyaltyInfo`).
+
+- `nextTokenIdToLazyMint`:
+  · Write restricted to `MINTER_ROLE` (via lazy minting).
+  · Read restricted to None (via `nextTokenIdToMint`).
+
+- `claimCondition` (mapping):
+  · Write restricted to `DEFAULT_ADMIN_ROLE` (setting conditions).
+  · Read restricted to None (public getters).

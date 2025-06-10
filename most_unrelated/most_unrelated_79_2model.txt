@@ -1,0 +1,31 @@
+- STP_TOKEN (address public immutable):  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to None (publicly accessible).  
+
+- hasCheckedIn (mapping public):  
+  · Write restricted to the user themselves (via `checkIn` function).  
+  · Read restricted to None (publicly accessible).  
+
+- hasCreatedAgent (mapping public):  
+  · Write restricted to the user themselves (via `createAgent` function).  
+  · Read restricted to None (publicly accessible).  
+
+- hasInterfacedAgent (mapping public):  
+  · Write restricted to the user themselves (via `agentInterfacing` function).  
+  · Read restricted to None (publicly accessible).  
+
+- isSigner (mapping public):  
+  · Write restricted to None (no write functions implemented).  
+  · Read restricted to None (publicly accessible).  
+
+- signers (address[] public):  
+  · Write restricted to None (no write functions implemented).  
+  · Read restricted to None (publicly accessible).  
+
+- signerCount (uint256 public):  
+  · Write restricted to None (no write functions implemented).  
+  · Read restricted to None (publicly accessible).  
+
+- _owner (address private):  
+  · Write restricted to the current owner (via `transferOwnership`/`renounceOwnership`).  
+  · Read restricted to the contract itself (private, exposed via `owner()` getter).  

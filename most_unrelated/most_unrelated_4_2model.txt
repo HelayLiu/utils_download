@@ -1,0 +1,19 @@
+- `_balances: mapping(address => uint256) private`  
+  · Write restricted to token holder (via `transfer`) or approved spender (via `transferFrom`).  
+  · Read restricted to None (publicly accessible via `balanceOf`).  
+
+- `_allowances: mapping(address => mapping(address => uint256)) private`  
+  · Write restricted to token holder (via `approve`) or contract (during allowance spending).  
+  · Read restricted to None (publicly accessible via `allowance`).  
+
+- `_totalSupply: uint256 private`  
+  · Write restricted to contract (during minting/burning).  
+  · Read restricted to None (publicly accessible via `totalSupply`).  
+
+- `_name: string private`  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to None (publicly accessible via `name`).  
+
+- `_symbol: string private`  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to None (publicly accessible via `symbol`).  

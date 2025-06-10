@@ -1,0 +1,559 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "tokenOfOwnerByIndex(address owner, uint256 index) returns (uint256)": [],
+    "totalSupply() returns (uint256)": [],
+    "tokenByIndex(uint256 index) returns (uint256)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "ownerOf(uint256 tokenId) returns (address)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "approve(address to, uint256 tokenId)": [
+        {
+            "potential_checks": "to != owner",
+            "involved_variables": [
+                "to",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "msg.sender == owner || isApprovedForAll(owner,msg.sender) == False",
+            "involved_variables": [
+                "to",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getApproved(uint256 tokenId) returns (address)": [
+        {
+            "potential_checks": "_exists(tokenId) == False",
+            "involved_variables": [
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setApprovalForAll(address operator, bool _approved)": [],
+    "isApprovedForAll(address owner, address operator) returns (bool)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "tokenURI(uint256 tokenId) returns (string)": [
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "revealed",
+                "TMP_502",
+                "currentBaseURI",
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": [
+                "revealed"
+            ]
+        },
+        {
+            "potential_checks": "revealed == false == False",
+            "involved_variables": [
+                "revealed",
+                "TMP_502",
+                "currentBaseURI",
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": [
+                "revealed"
+            ]
+        },
+        {
+            "potential_checks": "bytes(currentBaseURI).length > 0 == False",
+            "involved_variables": [
+                "revealed",
+                "TMP_502",
+                "currentBaseURI",
+                "tokenId"
+            ],
+            "descriptions": "",
+            "references": [
+                "revealed"
+            ]
+        }
+    ],
+    "setApprovalForAll(address operator, bool approved)": [
+        {
+            "potential_checks": "operator != msg.sender == False",
+            "involved_variables": [
+                "operator"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes _data)": [
+        {
+            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
+            "involved_variables": [
+                "from",
+                "tokenId",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "mint(uint256 _mintAmount)": [
+        {
+            "potential_checks": "paused",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "_mintAmount > 0",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "_mintAmount <= maxMintAmount",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "supply + _mintAmount <= maxSupply",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "msg.sender != owner()",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "msg.value >= cost * _mintAmount",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "i <= _mintAmount",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "_exists(tokenId)",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "from != to == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        },
+        {
+            "potential_checks": "to != from == False",
+            "involved_variables": [
+                "maxMintAmount",
+                "maxSupply",
+                "i",
+                "paused",
+                "tokenId",
+                "supply",
+                "msg.value",
+                "to",
+                "cost",
+                "_mintAmount",
+                "msg.sender",
+                "from",
+                "_data"
+            ],
+            "descriptions": "",
+            "references": [
+                "maxMintAmount",
+                "maxSupply",
+                "paused",
+                "cost"
+            ]
+        }
+    ],
+    "walletOfOwner(address _owner) returns (uint256[])": [
+        {
+            "potential_checks": "i < ownerTokenCount",
+            "involved_variables": [
+                "i",
+                "index",
+                "ownerTokenCount",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "index < ERC721.balanceOf(owner) == False",
+            "involved_variables": [
+                "i",
+                "index",
+                "ownerTokenCount",
+                "owner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "reveal()": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setCost(uint256 _newCost)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setmaxMintAmount(uint256 _newmaxMintAmount)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setNotRevealedURI(string _notRevealedURI)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBaseURI(string _newBaseURI)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setBaseExtension(string _newBaseExtension)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "pause(bool _state)": [
+        {
+            "potential_checks": "owner() == msg.sender == False",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdraw()": [
+        {
+            "potential_checks": "owner() == msg.sender",
+            "involved_variables": [
+                "os"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "(os,None) = address(owner()).call{value: address(this).balance}() == False",
+            "involved_variables": [
+                "os"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

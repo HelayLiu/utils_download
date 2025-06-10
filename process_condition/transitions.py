@@ -126,7 +126,7 @@ def enumerate_transitions(fn: FunctionContract, *, max_depth: int = 64) -> List[
              
         guard_expr, env_out = _scan_node(node, env_in)
         if guard_expr and node.contains_require_or_assert():
-            paths.append((path_so_far + [f"!({guard_expr})"], node_so_far + [node]))
+            paths.append((path_so_far + [f"{guard_expr} == False"], node_so_far + [node]))
 
         if not succs:
             if cont:                              # leaf of current frame
@@ -171,7 +171,7 @@ def enumerate_transitions(fn: FunctionContract, *, max_depth: int = 64) -> List[
             lbl = guard_expr
             if hasattr(node, "son_true") and hasattr(node, "son_false"):
                 if nxt == node.son_false:
-                    lbl = f"!({guard_expr})"
+                    lbl = f"{guard_expr} == False"
             new_path = path_so_far + ([lbl] if lbl else [])
             new_node = node_so_far + [node]
             stack.append((nxt, new_node, new_path, env_out, depth + 1, cont))
@@ -218,6 +218,7 @@ def get_conditions(path,file) -> List[str]:
             
             for i in range(len(max_condition)):
                 condition = max_condition[i]
+                condition = condition.replace("_msgSender()", "msg.sender")
                 if condition != '' and "address(0)" not in condition:
                     involved_variables = []
                     ref_variables = []

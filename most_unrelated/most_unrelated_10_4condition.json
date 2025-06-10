@@ -1,0 +1,168 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "Ensures that only the current owner can transfer ownership.",
+            "references": ["_owner"]
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 value) returns (bool)": [
+        {  
+        "specific_checks": "!bots[msg.sender] && !bots[to]",  
+        "involved_variables": ["bots[msg.sender]", "bots[to]"],  
+        "descriptions": "Block transfers involving flagged bots.",  
+        "references": ["_balances"]  
+        },  
+        {  
+        "specific_checks": "_limitExclusions[msg.sender] || _limitExclusions[to] || !limitsInEffect",  
+        "involved_variables": ["_limitExclusions", "limitsInEffect", "msg.sender", "to"],  
+        "descriptions": "Enforce transfer limits for non-excluded addresses.",  
+        "references": ["_balances"]  
+        }  
+    ],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {  
+        "specific_checks": "!bots[msg.sender] && !bots[to]",  
+        "involved_variables": ["bots[msg.sender]", "bots[to]"],  
+        "descriptions": "Block transfers involving flagged bots.",  
+        "references": ["_balances"]  
+        },  
+        {  
+        "specific_checks": "_limitExclusions[msg.sender] || _limitExclusions[to] || !limitsInEffect",  
+        "involved_variables": ["_limitExclusions", "limitsInEffect", "msg.sender", "to"],  
+        "descriptions": "Enforce transfer limits for non-excluded addresses.",  
+        "references": ["_balances"]  
+        },
+        {  
+        "specific_checks": "_allowances[from][msg.sender] >= value",  
+        "involved_variables": ["from", "value","msg.sender", "_allowances"],  
+        "descriptions": "Ensure sufficient allowance for transfer.",  
+        "references": ["_allowances"]  
+        }
+    ],
+    "getTradingEnabledBlock() returns (uint256)": [],
+    "enableTrading()": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Restrict trading activation to owner.",  
+        "references": ["_tradingEnabledBlock", "swapEnabled"]  
+        },  
+        {  
+        "specific_checks": "_tradingEnabledBlock == 0",  
+        "involved_variables": ["_tradingEnabledBlock"],  
+        "descriptions": "Prevent re-enabling trading once activated.",  
+        "references": ["_tradingEnabledBlock"]  
+        }  
+    ],
+    "removeLimits()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender", "_owner"],
+            "descriptions": "Ensure only owner can remove transfer limits.",
+            "references": ["limitsInEffect", "transferDelayEnabled"]
+        }
+    ],
+    "manageBoughtEarly(address wallet, bool flag)": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Ensure only owner can flag bots.",  
+        "references": ["bots"]  
+        }  
+    ],
+    "massManageBoughtEarly(address[] wallets, bool flag)": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Ensure only owner can flag bots.",  
+        "references": ["bots"]  
+        }
+    ],
+    "disableTransferDelay()": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Ensure only owner can flag bots.",  
+        "references": ["transferDelayEnabled"]  
+        }
+    ],
+    "setAirDropper(address newAirDropper)": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Ensure only owner can flag bots.",  
+        "references": ["_airDropper"]  
+        }
+    ],
+    "getAirDropper() returns (address)": [],
+    "airdropToWallets(address[] recipients, uint256[] amounts)": [
+        {  
+        "specific_checks": "msg.sender == _airDropper",  
+        "involved_variables": ["msg.sender", "_airDropper"],  
+        "descriptions": "Restrict airdrops to designated air dropper address.",  
+        "references": ["_balances", "_totalSupply"]  
+        }
+    ],
+    "excludeFromLimits(address account, bool excluded)": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Restrict limit exclusions to owner.",  
+        "references": ["_limitExclusions"]  
+        }  
+    ],
+    "transferForeignToken(address _token, address _to)": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Restrict token rescue to owner.",  
+        "references": []  
+        },  
+        {  
+        "specific_checks": "_token != address(this)",  
+        "involved_variables": ["_token"],  
+        "descriptions": "Prevent self-transfer of native token.",  
+        "references": []  
+        }  
+    ],
+    "withdrawStuckETH()": [
+    {  
+    "specific_checks": "msg.sender == _owner",  
+    "involved_variables": ["msg.sender", "_owner"],  
+    "descriptions": "Verify owner access for ETH withdrawal.",  
+    "references": []  
+    }
+    ],
+    "setUniswapRouter(address theAddress, bool flag)": [
+        {
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Verify owner access to update Uniswap router permissions.",
+            "references": ["_uniswapRouters"]
+        }
+    ],
+    "setKnownBNBUniswapRouters(bool flag)": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Ensure only owner can configure Uniswap routers.",  
+        "references": ["_uniswapRouters"]  
+        }  
+    ]
+}

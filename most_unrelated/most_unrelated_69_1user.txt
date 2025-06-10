@@ -1,0 +1,4 @@
+- As a user, I deposit LP tokens to earn yield, knowing my funds are isolated from others via the vault.  
+- As a keeper, I harvest and compound rewards while ensuring only authorized actors adjust fees.  
+- As the owner, I set fees and routes securely, with changes restricted to manager roles.  
+- As the strategist, I receive fees without accessing user funds directly.  

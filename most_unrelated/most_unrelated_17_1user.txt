@@ -1,0 +1,6 @@
+- As the contract owner, I want to transfer ownership securely to ensure only authorized parties control administrative functions.  
+- As the operator, I want to manage pool allocations and reward parameters to maintain fair reward distribution across staking pools.  
+- As a user, I want to deposit tokens into isolated pools where my balances are protected from unauthorized access or modifications.  
+- As a user, I want to withdraw tokens and rewards securely, ensuring only I can access my staked assets.  
+- As the protocol, I want to collect deposit fees automatically to fund protocol operations without manual intervention.  
+- As the operator, I want to recover unsupported tokens sent accidentally to the contract to prevent asset lockups.  

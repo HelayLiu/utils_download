@@ -1,0 +1,15 @@
+- `nfts` (mapping):  
+  · Write restricted to sellers (for listing/modifying/canceling) and the contract (on purchase).  
+  · Read restricted to the contract (no public getter).  
+- `operatorBasis`, `operatorDiscount`, `operatorCommission` (uint256):  
+  · Write restricted to the contract (initialized at deployment).  
+  · Read restricted to the contract.  
+- `operatorAddress` (address):  
+  · Write restricted to the admin.  
+  · Read restricted to anyone (via `getWithdrawAddress`).  
+- `payableTokens` (mapping):  
+  · Write restricted to the admin.  
+  · Read restricted to the contract (via `isPayableToken` modifier).  
+- `royalties` (mapping):  
+  · Write restricted to the admin.  
+  · Read restricted to anyone (via `getCreatorRoyalty`).  

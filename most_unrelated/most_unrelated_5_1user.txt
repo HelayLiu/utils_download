@@ -1,0 +1,5 @@
+- As a user, I want to transfer tokens securely, knowing bot addresses are blocked to prevent malicious transfers.  
+- As a user, I expect my token balances and allowances to be isolated and only modifiable by me or approved spenders.  
+- As the owner, I want to enforce trading limits (max TX/wallet) and fee adjustments to protect the ecosystem.  
+- As the tax wallet, I want to collect fees from swaps and manually trigger swaps when needed.  
+- As the owner, I need to blacklist bots to maintain transaction integrity and prevent abuse.  

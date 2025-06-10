@@ -1,0 +1,47 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "supportsInterface(bytes4 interfaceId) returns (bool)": [],
+    "tokenURI(uint256 tokenId) returns (string)": [],
+    "balanceOf(address owner) returns (uint256)": [],
+    "ownerOf(uint256 tokenId) returns (address)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "approve(address to, uint256 tokenId)": [],
+    "getApproved(uint256 tokenId) returns (address)": [],
+    "setApprovalForAll(address operator, bool approved)": [],
+    "isApprovedForAll(address owner, address operator) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 tokenId)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [],
+    "mintNFT(address recipient, string tokenURI) returns (uint256)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "auth",
+                "previousOwner",
+                "from",
+                "to"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

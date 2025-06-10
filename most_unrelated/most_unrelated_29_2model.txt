@@ -1,0 +1,23 @@
+- `_balances: mapping(address => uint256) private`:  
+  · Write restricted to Token Holder (transfers), Minter (minting), or Burn operations.  
+  · Read restricted to None.  
+
+- `_allowances: mapping(address => mapping(address => uint256)) private`:  
+  · Write restricted to Token Holder (approvals) or Spender (allowance reduction).  
+  · Read restricted to None.  
+
+- `_totalSupply: uint256 private`:  
+  · Write restricted to Contract (minting/burning).  
+  · Read restricted to None.  
+
+- `_roles: mapping(bytes32 => AccessControl.RoleData) private`:  
+  · Write restricted to Admin (role management).  
+  · Read restricted to None.  
+
+- `_nonces: mapping(address => uint256) private`:  
+  · Write restricted to Contract (permit execution).  
+  · Read restricted to None.  
+
+- `MAX_SUPPLY: uint256 public immutable`:  
+  · Write restricted to None (immutable).  
+  · Read restricted to None.  

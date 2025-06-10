@@ -1,0 +1,6 @@
+- As the contract owner, I want to control token trading states (open/stop) to enforce trading restrictions during specific conditions.  
+- As the safe address, I want to manage whitelisted addresses to allow trading when the contract is stopped.  
+- As a user, I want my token balances and allowances isolated so only I or authorized entities can modify them.  
+- As a liquidity provider, I want fee deductions enforced during LP trades to distribute tokens to designated addresses.  
+- As a token holder, I want to burn my tokens securely to reduce total supply.  
+- As any user, I want to query public state variables (e.g., balances, supply) without access restrictions.  

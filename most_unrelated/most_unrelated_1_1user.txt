@@ -1,0 +1,6 @@
+- This is a ERC20 Token contract with transfer function.
+- As a user, I want to securely transfer tokens to others, ensuring only I can spend my balance.  
+- As a user, I want to delegate spending limits via allowances, isolated to specific spender addresses.  
+- As a contract owner, I want to mint an initial token supply during deployment, with no post-deployment minting/burning.  
+- As a user, I want public visibility of token metadata (name/symbol/decimals) while keeping core state variables private.  
+- As an external contract, I want to spend tokens on a user’s behalf if granted an allowance.  

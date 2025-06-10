@@ -1,0 +1,5 @@
+- As a contract owner, I want to control fee exemptions and trading activation to manage token economics securely.
+- As a user, I want my token transfers to be subject to automated fee processing and liquidity provisions when interacting with DEX pairs.
+- As a fee receiver, I want marketing fees collected in ETH and liquidity fees auto-added to pools to ensure project sustainability.
+- As a token holder, I want explicit state isolation for fee exemptions and trading status to prevent unauthorized access.
+- As a trader, I want trading to be enabled only after contract initialization to prevent premature market manipulation.

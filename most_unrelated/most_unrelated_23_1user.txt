@@ -1,0 +1,4 @@
+- As the contract owner, I want to upgrade the contract implementation securely via UUPS proxies to ensure only authorized upgrades occur.
+- As the contract owner, I want to manage critical dependencies (SwapRouter/FastTransferGateway) to maintain operational integrity.
+- As a user, I want to swap tokens and submit cross-domain orders atomically, ensuring fee validation and swap execution integrity.
+- As a user, I want to submit direct orders to the FastTransferGateway with token custody controls to prevent unauthorized access.

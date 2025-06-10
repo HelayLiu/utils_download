@@ -1,0 +1,6 @@
+- As a contract admin, I want to manage roles and permissions to ensure only authorized users can perform sensitive operations like minting, revoking tokens, and updating metadata.  
+- As a minter, I want to mint loyalty card NFTs to users, ensuring each token's metadata is securely stored and isolated.  
+- As a metadata manager, I want to update token URIs while preventing unauthorized modifications by freezing metadata when necessary.  
+- As a revoke manager, I want to revoke loyalty cards without owner approval to handle misuse or deactivation.  
+- As a user, I want to securely manage my loyalty cards (transfer, cancel) with guarantees that my balances and approvals are isolated from others.  
+- As a fee administrator, I want to configure platform fees and royalties, ensuring fee settings are restricted to authorized roles.  

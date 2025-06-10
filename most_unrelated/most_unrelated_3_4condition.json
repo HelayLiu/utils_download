@@ -1,0 +1,140 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner"],
+            "descriptions": "Verify caller is owner to renounce ownership.",
+            "references": ["_owner"]
+        }
+    ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "Verify caller is owner to transfer ownership.",
+            "references": ["_owner"]
+        }
+    ],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 value) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "isDelivers[sender] || ! _BList[sender] == False",
+            "involved_variables": [
+                "sender",
+                "_BList",
+                "isDelivers"
+            ],
+            "descriptions": "Ensure sender is whitelisted or not blacklisted.",
+            "references": [
+                "_BList",
+                "isDelivers"
+            ]
+        }
+    ],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "isDelivers[sender] || ! _BList[sender] == False",
+            "involved_variables": [
+                "sender",
+                "_BList",
+                "isDelivers"
+            ],
+            "descriptions": "Ensure sender is whitelisted or not blacklisted.",
+            "references": [
+                "_BList",
+                "isDelivers"
+            ]
+        },
+        {  
+            "specific_checks": "amount <= _allowances[sender][msg.sender]",  
+            "involved_variables": ["sender","msg.sender","amount"],  
+            "descriptions": "Ensure transfer amount ≤ approved allowance.",  
+            "references": ["_allowances"]  
+        }  
+    ],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
+    "startTrade()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Verify caller is owner",
+            "references": [
+                "startTime"
+            ]
+        },
+        {
+            "potential_checks": "0 == startTime",
+            "involved_variables": [
+                "startTime"
+            ],
+            "descriptions": "Verify trading hasn't started",
+            "references": [
+                "startTime"
+            ]
+        }
+    ],
+    "setNumTokensSellToSwap(uint256 value)": [
+        {  
+            "specific_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Verify caller is owner to update swap threshold.",  
+            "references": ["numTokensSellToSwap"]  
+        }  
+    ],
+    "batchSetDelivers(address[] addr, bool enable)": [
+        {  
+            "specific_checks": "msg.sender == _owner",  
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Verify caller is owner to modify whitelist.",  
+            "references": ["isDelivers"]  
+        }  
+    ],
+    "batchSetBList(address[] addr, bool enable)": [
+        {  
+            "specific_checks": "msg.sender == _owner",  
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Verify caller is owner to modify blacklist.",  
+            "references": ["_BList"]  
+        }
+    ],
+    "setSwapPairList(address addr, bool enable)": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Verify caller is owner to modify blacklist.",  
+        "references": ["_swapPairList"]  
+        }
+    ],
+    "claimBalance(uint256 amount)": [
+        {  
+            "specific_checks": "msg.sender == saleAddress",  
+            "involved_variables": ["msg.sender", "saleAddress"],  
+            "descriptions": "Restrict token claiming to sale address.",  
+            "references": []  
+        }  
+    ],
+    "claimToken(address token, uint256 amount)": [
+        {  
+            "specific_checks": "msg.sender == saleAddress",  
+            "involved_variables": ["msg.sender", "saleAddress"],  
+            "descriptions": "Restrict token claiming to sale address.",  
+            "references": []  
+        }  
+    ]
+}

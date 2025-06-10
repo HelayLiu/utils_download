@@ -1,0 +1,6 @@
+- As a token holder, I want to securely transfer tokens to others while ensuring fees are automatically deducted and my balance is isolated from unauthorized access.  
+- As the contract owner, I want to pause/unpause the contract during emergencies to protect user funds and enforce state isolation.  
+- As the owner, I want to blacklist malicious addresses to prevent them from manipulating token state.  
+- As the owner, I want to mint new tokens to expand supply while restricting this privilege to authorized roles.  
+- As the owner, I want to update fee parameters to adjust economic policies while ensuring only I can modify these settings.  
+- As a token holder, I want to burn my tokens to reduce supply, with guarantees that only I can initiate burns on my balance.  

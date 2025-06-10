@@ -1,0 +1,19 @@
+- _balances (mapping):  
+  · Write restricted to token holders (for transfers) or approved spenders (for allowances).  
+  · Read restricted to None (public via `balanceOf`).
+
+- _allowances (nested mapping):  
+  · Write restricted to token owners (setting approvals) or spenders (using allowances).  
+  · Read restricted to None (public via `allowance`).
+
+- _totalSupply (uint256):  
+  · Write restricted to contract initialization and burn functions.  
+  · Read restricted to None (public via `totalSupply`).
+
+- _name / _symbol (string):  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to None (public via `name`/`symbol`).
+
+- _owner (address):  
+  · Write restricted to contract owner (using ownership-transfer functions).  
+  · Read restricted to None (public via `owner`).

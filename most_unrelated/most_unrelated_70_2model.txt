@@ -1,0 +1,23 @@
+- allowances (mapping (address => mapping (address => uint96)) internal:  
+  · Write restricted to the token owner (via `approve`) or approved spender (via `transferFrom`).  
+  · Read restricted to public (via `allowance`).  
+
+- balances (mapping (address => uint96) internal):  
+  · Write restricted to the token owner (via `transfer`) or approved spender (via `transferFrom`).  
+  · Read restricted to public (via `balanceOf`).  
+
+- delegates (mapping (address => address) public):  
+  · Write restricted to the token owner (via `delegate` or `delegateBySig`).  
+  · Read restricted to public.  
+
+- checkpoints (mapping (address => mapping (uint32 => Checkpoint)) public):  
+  · Write restricted to the contract during delegation/transfers (via `_moveDelegates`).  
+  · Read restricted to public (via `getCurrentVotes`/`getPriorVotes`).  
+
+- numCheckpoints (mapping (address => uint32) public):  
+  · Write restricted to the contract during checkpoint updates.  
+  · Read restricted to public.  
+
+- nonces (mapping (address => uint) public):  
+  · Write restricted to the contract during `delegateBySig` (nonce increment).  
+  · Read restricted to public.  

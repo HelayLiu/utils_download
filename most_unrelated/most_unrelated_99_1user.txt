@@ -1,0 +1,6 @@
+- As the contract owner, I want to set the signer address to control authorization for claims.
+- As the contract owner, I want to update the Merkle root to manage eligible claimants.
+- As the contract owner, I want to withdraw tokens from the contract for emergency management.
+- As the contract owner, I want to pause/unpause the contract to control claim activity.
+- As a user, I want to claim my airdrop tokens by providing valid proof and signature, ensuring my claim is processed only once.
+- As a user, I want half of my claimed tokens auto-staked and the rest transferred to me securely.

@@ -1,0 +1,60 @@
+{
+    "pendingOwner() returns (address)": [],
+    "transferOwnership(address newOwner)": [
+        {
+            "specific_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender"],
+            "descriptions": "Verify ownership transfer initiation authority.",
+            "references": ["_pendingOwner"]
+        }
+    ],
+    "acceptOwnership()": [
+        {
+            "specific_checks": "_pendingOwner == msg.sender",
+            "involved_variables": ["msg.sender", "_pendingOwner"],
+            "descriptions": "Verify caller is pending owner before ownership transfer.",
+            "references": ["_owner", "_pendingOwner"]
+        }
+    ],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "specific_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender"],
+            "descriptions": "Confirm caller is owner before renouncing ownership.",
+            "references": ["_owner"]
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address to, uint256 value) returns (bool)": [],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "specific_checks": "_allowances[from][msg.sender] >= value",
+            "involved_variables": ["_allowances","from","msg.sender","value"],
+            "descriptions": "Ensure spender has sufficient allowance for transfer.",
+            "references": ["_allowances"]
+        }
+    ],
+    "mint(address to, uint256 amount)": [
+        {
+            "specific_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Restrict minting to contract owner only.",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ],
+    "adminBurn(address from, uint256 amount)": [
+        {
+            "specific_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Verify caller is owner to enforce burn authorization.",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ]
+}

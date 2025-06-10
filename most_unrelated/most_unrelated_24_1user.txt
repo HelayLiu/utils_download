@@ -1,0 +1,6 @@
+- As a user, I want to deposit assets to mint LP tokens, ensuring my assets are securely isolated and only accessible through my redemption requests.
+- As a user, I want to request redemption of my LP tokens, with my redemption state isolated to prevent interference from other users' actions.
+- As a vault operator, I want to manage underlying assets and fee configurations, ensuring only authorized roles can modify critical contract parameters.
+- As an assets manager, I want to borrow and repay assets, with borrowing limits enforced to protect the vault's solvency and user funds.
+- As a fee recipient, I want to receive minting fees, with fee rates securely configured and isolated from unauthorized changes.
+- As an admin, I want to manage role-based access, ensuring only designated roles can perform sensitive state-changing operations.

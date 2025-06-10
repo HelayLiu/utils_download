@@ -1,0 +1,121 @@
+{
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [
+        {  
+            "specific_checks": "!bots[msg.sender] && !bots[recipient]",  
+            "involved_variables": ["bots","msg.sender","recipient"],
+            "descriptions": "Prevent transfers involving blacklisted bot addresses.",  
+            "references": ["_balances"]  
+        }
+    ],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {  
+            "specific_checks": "!bots[sender] && !bots[recipient]",  
+            "involved_variables": ["bots","msg.sender","recipient"],
+            "descriptions": "Prevent transfers involving blacklisted bot addresses.",  
+            "references": ["_balances"]  
+        },
+        {
+            "potential_checks": "_allowances[sender][msg.sender] >= amount",
+            "involved_variables": ["sender","msg.sender]", "amount"],
+            "descriptions": "Validate spender's authorized allowance",
+            "references": ["_allowances"]
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "removeLimits()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that only the owner can remove limits.",
+            "references": [
+                "_maxTxAmount",
+                "_maxWalletAmount"
+            ]
+        }
+    ],
+    "addBots(address[] bots_)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Only owner can add bots",
+            "references": [
+                "bots"
+            ]
+        }
+    ],
+    "delBots(address[] notbot)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner"
+            ],
+            "descriptions": "Only owner can delete bots",
+            "references": [
+                "bots"
+            ]
+        }
+    ],
+    "isBot(address a) returns (bool)": [],
+    "openTrading()": [
+        {  
+        "specific_checks": "msg.sender == owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Only owner can open trading.",  
+        "references": ["tradingOpen", "uniswapV2Pair"]  
+        },  
+        {  
+        "specific_checks": "!tradingOpen",  
+        "involved_variables": ["tradingOpen"],  
+        "descriptions": "Prevent re-opening trading.",  
+        "references": ["tradingOpen"]  
+        }  
+    ],
+    "reduceFee(uint256 _newFee)": [
+        {  
+        "specific_checks": "msg.sender == _taxWallet",  
+        "involved_variables": ["msg.sender", "_taxWallet"],  
+        "descriptions": "Only tax wallet can reduce fees.",  
+        "references": ["_finalBuyTax", "_finalSellTax"]  
+        },  
+        {  
+        "specific_checks": "_newFee <= _finalBuyTax && _newFee <= _finalSellTax",  
+        "involved_variables": ["_newFee", "_finalBuyTax", "_finalSellTax"],  
+        "descriptions": "Ensure new fee is not higher than current fees.",  
+        "references": ["_finalBuyTax", "_finalSellTax"]  
+        }  
+    ],
+    "manualSwap()": [
+        {  
+        "specific_checks": "msg.sender == _taxWallet",  
+        "involved_variables": ["msg.sender", "_taxWallet"],  
+        "descriptions": "Only tax wallet can trigger manual swaps.",  
+        "references": ["_balances"]  
+        }  
+    ]
+}

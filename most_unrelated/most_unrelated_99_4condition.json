@@ -1,0 +1,253 @@
+{
+    "paused() returns (bool)": [],
+    "pendingOwner() returns (address)": [],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "acceptOwnership()": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setSigner(address _signer)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setClaimRoot(bytes32 _claimRoot)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdrawTokens(address receiver, uint256 amount)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "pause()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "! paused()",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "claim(bytes32[] _proof, bytes _signature, uint256 _amount, address _onBehalfOf)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "_signature",
+                "_stakingAmount",
+                "claimed",
+                "_amount",
+                "this",
+                "token",
+                "claimRoot",
+                "_proof",
+                "leaf",
+                "signer",
+                "MerkleProofLib",
+                "recoveredSigner",
+                "_onBehalfOf"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "claimed",
+                "signer",
+                "claimRoot"
+            ]
+        },
+        {
+            "potential_checks": "IERC20(token).balanceOf(address(this)) < _amount == False",
+            "involved_variables": [
+                "_signature",
+                "_stakingAmount",
+                "claimed",
+                "_amount",
+                "this",
+                "token",
+                "claimRoot",
+                "_proof",
+                "leaf",
+                "signer",
+                "MerkleProofLib",
+                "recoveredSigner",
+                "_onBehalfOf"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "claimed",
+                "signer",
+                "claimRoot"
+            ]
+        },
+        {
+            "potential_checks": "claimed[_onBehalfOf] == False",
+            "involved_variables": [
+                "_signature",
+                "_stakingAmount",
+                "claimed",
+                "_amount",
+                "this",
+                "token",
+                "claimRoot",
+                "_proof",
+                "leaf",
+                "signer",
+                "MerkleProofLib",
+                "recoveredSigner",
+                "_onBehalfOf"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "claimed",
+                "signer",
+                "claimRoot"
+            ]
+        },
+        {
+            "potential_checks": "! MerkleProofLib.verify(_proof,claimRoot,leaf) == False",
+            "involved_variables": [
+                "_signature",
+                "_stakingAmount",
+                "claimed",
+                "_amount",
+                "this",
+                "token",
+                "claimRoot",
+                "_proof",
+                "leaf",
+                "signer",
+                "MerkleProofLib",
+                "recoveredSigner",
+                "_onBehalfOf"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "claimed",
+                "signer",
+                "claimRoot"
+            ]
+        },
+        {
+            "potential_checks": "_signature.length == 0 == False",
+            "involved_variables": [
+                "_signature",
+                "_stakingAmount",
+                "claimed",
+                "_amount",
+                "this",
+                "token",
+                "claimRoot",
+                "_proof",
+                "leaf",
+                "signer",
+                "MerkleProofLib",
+                "recoveredSigner",
+                "_onBehalfOf"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "claimed",
+                "signer",
+                "claimRoot"
+            ]
+        },
+        {
+            "potential_checks": "recoveredSigner != signer == False",
+            "involved_variables": [
+                "_signature",
+                "_stakingAmount",
+                "claimed",
+                "_amount",
+                "this",
+                "token",
+                "claimRoot",
+                "_proof",
+                "leaf",
+                "signer",
+                "MerkleProofLib",
+                "recoveredSigner",
+                "_onBehalfOf"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "claimed",
+                "signer",
+                "claimRoot"
+            ]
+        },
+        {
+            "potential_checks": "_amount - _stakingAmount > 0 == False",
+            "involved_variables": [
+                "_signature",
+                "_stakingAmount",
+                "claimed",
+                "_amount",
+                "this",
+                "token",
+                "claimRoot",
+                "_proof",
+                "leaf",
+                "signer",
+                "MerkleProofLib",
+                "recoveredSigner",
+                "_onBehalfOf"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "claimed",
+                "signer",
+                "claimRoot"
+            ]
+        }
+    ]
+}

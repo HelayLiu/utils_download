@@ -1,0 +1,5 @@
+- As a user, I want to securely deposit tokens for cross-chain transfers with state isolation ensuring my deposits are processed only once and protected from replay attacks.
+- As a relayer, I want to execute relay functions with guarantees that message execution is non-reentrant and validated against gas thresholds to prevent low-gas failures.
+- As a contract admin, I want exclusive control over critical parameters (like gateway addresses and fees) to enforce write isolation and maintain system integrity.
+- As a community member, I want to stake native tokens to pause the contract during emergencies, with stake amounts validated against configured limits.
+- As a role-holder (PAUSER/RESOURCE_SETTER), I want to modify contract states under strict access control to ensure only authorized changes are made.
