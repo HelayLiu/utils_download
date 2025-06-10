@@ -2,20 +2,18 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender", "_owner"],
+            "descriptions": "Only the contract owner can renounce ownership",
+            "references": ["_owner"]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "newOwner"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender", "_owner"],
+            "descriptions": "Only the contract owner can transfer ownership",
+            "references": ["_owner"]
         }
     ],
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
@@ -28,95 +26,36 @@
         {
             "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
             "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
+                "msg.sender",
+                "tokenId"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Caller must be owner, approved, or operator",
+            "references": [ "_balances","_owners"]
         }
     ],
     "transferFrom(address from, address to, uint256 tokenId)": [
         {
             "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
             "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
+                "msg.sender",
+                "tokenId"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Caller must be owner, approved, or operator",
+            "references": ["_balances","_owners"]
         }
     ],
     "approve(address to, uint256 tokenId)": [
         {
-            "potential_checks": "to != owner",
+            "potential_checks": "msg.sender == owner || isApprovedForAll(owner,msg.sender)",
             "involved_variables": [
-                "to",
+                "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "msg.sender == owner || isApprovedForAll(owner,msg.sender) == False",
-            "involved_variables": [
-                "to",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Caller must be owner or approved to manage the token",
+            "references": ["_tokenApprovals"]
         }
     ],
     "getApproved(uint256 tokenId) returns (address)": [
-        {
-            "potential_checks": "_exists(tokenId) == False",
-            "involved_variables": [
-                "tokenId"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "setApprovalForAll(address operator, bool _approved)": [],
     "isApprovedForAll(address owner, address operator) returns (bool)": [],
@@ -124,436 +63,106 @@
     "name() returns (string)": [],
     "symbol() returns (string)": [],
     "tokenURI(uint256 tokenId) returns (string)": [
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "revealed",
-                "TMP_502",
-                "currentBaseURI",
-                "tokenId"
-            ],
-            "descriptions": "",
-            "references": [
-                "revealed"
-            ]
-        },
-        {
-            "potential_checks": "revealed == false == False",
-            "involved_variables": [
-                "revealed",
-                "TMP_502",
-                "currentBaseURI",
-                "tokenId"
-            ],
-            "descriptions": "",
-            "references": [
-                "revealed"
-            ]
-        },
-        {
-            "potential_checks": "bytes(currentBaseURI).length > 0 == False",
-            "involved_variables": [
-                "revealed",
-                "TMP_502",
-                "currentBaseURI",
-                "tokenId"
-            ],
-            "descriptions": "",
-            "references": [
-                "revealed"
-            ]
-        }
     ],
     "setApprovalForAll(address operator, bool approved)": [
-        {
-            "potential_checks": "operator != msg.sender == False",
-            "involved_variables": [
-                "operator"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "safeTransferFrom(address from, address to, uint256 tokenId, bytes _data)": [
         {
             "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
             "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
+                "msg.sender",
+                "tokenId"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "ERC721.ownerOf(tokenId) == from == False",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Caller must be owner, approved, or operator",
+            "references": ["_balances","_owners"]
         }
     ],
     "mint(uint256 _mintAmount)": [
         {
-            "potential_checks": "paused",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
-            ]
+            "specific_checks": "!paused",
+            "involved_variables": ["paused"],
+            "descriptions": "Contract must not be paused",
+            "references": ["_owners", "_balances"]
         },
         {
-            "potential_checks": "_mintAmount > 0",
+            "potential_checks": "msg.sender == _owner || msg.value >= cost * _mintAmount",
             "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
                 "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
-            ]
-        },
-        {
-            "potential_checks": "_mintAmount <= maxMintAmount",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
+                "_owner",
                 "msg.value",
-                "to",
-                "cost",
                 "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
                 "cost"
-            ]
-        },
-        {
-            "potential_checks": "supply + _mintAmount <= maxSupply",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
             ],
-            "descriptions": "",
+            "descriptions": "Non-owner must pay the required cost",
             "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
-            ]
-        },
-        {
-            "potential_checks": "msg.sender != owner()",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
-            ]
-        },
-        {
-            "potential_checks": "msg.value >= cost * _mintAmount",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
-            ]
-        },
-        {
-            "potential_checks": "i <= _mintAmount",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
-            ]
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
-            ]
-        },
-        {
-            "potential_checks": "from != to == False",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
-            ]
-        },
-        {
-            "potential_checks": "to != from == False",
-            "involved_variables": [
-                "maxMintAmount",
-                "maxSupply",
-                "i",
-                "paused",
-                "tokenId",
-                "supply",
-                "msg.value",
-                "to",
-                "cost",
-                "_mintAmount",
-                "msg.sender",
-                "from",
-                "_data"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxMintAmount",
-                "maxSupply",
-                "paused",
-                "cost"
+                    "_owners", "_balances"
             ]
         }
     ],
     "walletOfOwner(address _owner) returns (uint256[])": [
-        {
-            "potential_checks": "i < ownerTokenCount",
-            "involved_variables": [
-                "i",
-                "index",
-                "ownerTokenCount",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "index < ERC721.balanceOf(owner) == False",
-            "involved_variables": [
-                "i",
-                "index",
-                "ownerTokenCount",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "reveal()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Only the contract owner can reveal the NFTs",
+            "references": ["revealed"]
         }
     ],
     "setCost(uint256 _newCost)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Only the contract owner can reveal the NFTs",
+            "references": ["cost"]
         }
     ],
     "setmaxMintAmount(uint256 _newmaxMintAmount)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Only owner can set the maximum mint amount",
+            "references": ["maxMintAmount"]
         }
     ],
     "setNotRevealedURI(string _notRevealedURI)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Only owner can set the notRevealedUri",
+            "references": ["notRevealedUri"]
         }
     ],
     "setBaseURI(string _newBaseURI)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Only owner can set the BaseURI",
+            "references": ["baseURI"]
         }
     ],
     "setBaseExtension(string _newBaseExtension)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Only owner can set the BaseExtension",
+            "references": ["baseExtension"]
         }
     ],
     "pause(bool _state)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Only owner can set the pause",
+            "references": ["paused"]
         }
     ],
     "withdraw()": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "os"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "(os,None) = address(owner()).call{value: address(this).balance}() == False",
-            "involved_variables": [
-                "os"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Only owner can withdraw funds",
+            "references": ["_owner"]
         }
     ]
 }
