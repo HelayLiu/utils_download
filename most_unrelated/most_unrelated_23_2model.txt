@@ -4,3 +4,12 @@
 - fastTransferGateway: IFastTransferGateway public  
     · Write restricted to Contract Owner.  
     · Read restricted to None.  
+- _initialized: uint8 private
+    · Write restricted when not _initialized.  
+    · Read restricted to None.  
+- _initializing: bool private
+    · Write restricted when not _initialized.  
+    · Read restricted to None.  
+- _owner: address private
+    · Write restricted to Contract Owner.  
+    · Read restricted to private.  
