@@ -2,20 +2,28 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "totalSupply() returns (uint256)": [],
@@ -23,7 +31,14 @@
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "specific_checks": "_allowances[sender][msg.sender] >= amount",
+            "involved_variables": ["_allowances","sender","msg.sender","amount"],
+            "descriptions": "Verify spender allowance covers transfer amount to isolate unauthorized access.",
+            "references": ["_balances"]
+        }
+    ],
     "name() returns (string)": [],
     "symbol() returns (string)": [],
     "decimals() returns (uint8)": [],
