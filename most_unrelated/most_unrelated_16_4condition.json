@@ -1,47 +1,86 @@
 {
     "paused() returns (bool)": [],
-    "submitMerkleRoot(bytes32 root, uint256 totalRewards, uint256 boostRewards) returns (bool)": [],
-    "claim(uint256 _amount, uint256 _totalRewards, uint256 _cycle, bytes32[] proof)": [],
-    "getRemainingAllocatedRewards(address account, uint256 amount, uint256 cycle, bytes32[] proof) returns (uint256)": [],
+    "submitMerkleRoot(bytes32 root, uint256 totalRewards, uint256 boostRewards) returns (bool)": [
+        {
+        "specific_checks": "hasRole(DISTRIBUTOR_ROLE, msg.sender)",
+        "involved_variables": ["msg.sender","_role"],
+        "descriptions": "Restrict root submission to DISTRIBUTOR_ROLE.",
+        "references": ["token"]
+        },
+        {
+        "specific_checks": "!paused()",
+        "involved_variables": ["_paused"],
+        "descriptions": "Ensure contract is not paused.",
+        "references": ["token"]
+        },
+        {
+        "specific_checks": "firstRewardCycleTs == 0 || cycle < getCurrCycle()",
+        "involved_variables": ["firstRewardCycleTs", "cycle"],
+        "descriptions": "Enforce 24h rate limit between root submissions.",
+        "references": ["token"]
+        },
+        {
+        "specific_checks": "delta >= baseRewards",
+        "involved_variables": ["delta", "baseRewards"],
+        "descriptions": "Verify vault emission covers base rewards.",
+        "references": ["token"]
+        }
+    ],
+    "claim(uint256 _amount, uint256 _totalRewards, uint256 _cycle, bytes32[] proof)": [
+        {
+        "specific_checks": "!paused()",
+        "involved_variables": ["_paused"],
+        "descriptions": "Ensure contract is not paused.",
+        "references": []
+        },
+        {
+        "specific_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
+        "involved_variables": ["amount", "_totalRewards", "proof", "msg.sender", "_cycle"],
+        "descriptions": "Ensure claimed amount ≤ available rewards.",
+        "references": ["claims","token","claimedRewards"]
+        }
+    ],
+    "getRemainingAllocatedRewards(address account, uint256 amount, uint256 cycle, bytes32[] proof) returns (uint256)": [
+        {
+        "specific_checks": "!paused()",
+        "involved_variables": ["_paused"],
+        "descriptions": "Ensure contract is not paused.",
+        "references": []
+        },
+        {
+        "specific_checks": "MerkleProof.verify(proof, roots[_cycle], keccak256(bytes.concat(keccak256(abi.encode(account, amount)))))",
+        "involved_variables": ["proof", "roots", "_cycle", "account", "amount"],
+        "descriptions": "Verify Merkle proof validity.",
+        "references": ["amount"]
+        }
+    ],
     "cycle() returns (uint256)": [],
     "pause()": [
         {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+        "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["msg.sender", "_role"],
+        "descriptions": "Restrict pause to DEFAULT_ADMIN_ROLE.",
+        "references": ["_paused"]
         },
         {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+        "specific_checks": "!paused()",
+        "involved_variables": ["_paused"],
+        "descriptions": "Prevent redundant pausing.",
+        "references": ["_paused"]
         }
     ],
     "unpause()": [
         {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+        "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["msg.sender", "_role"],
+        "descriptions": "Restrict pause to DEFAULT_ADMIN_ROLE.",
+        "references": ["_paused"]
         },
         {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+        "specific_checks": "_paused",
+        "involved_variables": ["_paused"],
+        "descriptions": "Prevent redundant pausing.",
+        "references": ["_paused"]
         }
     ],
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
@@ -55,950 +94,112 @@
     "proxiableUUID() returns (bytes32)": [],
     "upgradeTo(address newImplementation)": [
         {
-            "potential_checks": "address(this) != __self",
+            "potential_checks": "hasRole(UPGRADER_ROLE,msg.sender)",
             "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
+                "_role",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure only UPGRADER_ROLE can upgrade.",
             "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "_getImplementation() == __self",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
             ]
         }
     ],
-    "upgradeToAndCall(address newImplementation, bytes data)": [
-        {
-            "potential_checks": "address(this) != __self",
+    "upgradeToAndCall(address newImplementation, bytes data)": [        {
+            "potential_checks": "hasRole(UPGRADER_ROLE,msg.sender)",
             "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
+                "_role",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure only UPGRADER_ROLE can upgrade.",
             "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
             ]
-        },
-        {
-            "potential_checks": "_getImplementation() == __self",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "TMP_1285",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        }
-    ],
+        }],
     "initialize(address _token, address _rewardsVault, address _rewardsChangeTreasury)": [
-        {
-            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "isTopLevelCall == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
         {
             "potential_checks": "_initializing == False",
             "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
+                "_initializing"
             ],
-            "descriptions": "",
+            "descriptions": "Only initialize once.",
             "references": [
-                "_initialized",
                 "_initializing"
             ]
         }
     ],
     "getCurrCycle() returns (uint256)": [],
-    "submitMerkleRoot(bytes32 root, uint256 baseRewards, uint256 boostRewards) returns (bool)": [
-        {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "delta",
-                "boostRewards",
-                "firstRewardCycleTs",
-                "baseRewards",
-                "role",
-                "cycle",
-                "currCycle",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "cycle",
-                "firstRewardCycleTs"
-            ]
+    "submitMerkleRoot(bytes32 root, uint256 baseRewards, uint256 boostRewards) returns (bool)": [        {
+        "specific_checks": "hasRole(DISTRIBUTOR_ROLE, msg.sender)",
+        "involved_variables": ["msg.sender","_role"],
+        "descriptions": "Restrict root submission to DISTRIBUTOR_ROLE.",
+        "references": ["token"]
         },
         {
-            "potential_checks": "firstRewardCycleTs == 0 == False",
-            "involved_variables": [
-                "delta",
-                "boostRewards",
-                "firstRewardCycleTs",
-                "baseRewards",
-                "role",
-                "cycle",
-                "currCycle",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "cycle",
-                "firstRewardCycleTs"
-            ]
+        "specific_checks": "!paused()",
+        "involved_variables": ["_paused"],
+        "descriptions": "Ensure contract is not paused.",
+        "references": ["token"]
         },
         {
-            "potential_checks": "cycle >= currCycle == False",
-            "involved_variables": [
-                "delta",
-                "boostRewards",
-                "firstRewardCycleTs",
-                "baseRewards",
-                "role",
-                "cycle",
-                "currCycle",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "cycle",
-                "firstRewardCycleTs"
-            ]
+        "specific_checks": "firstRewardCycleTs == 0 || cycle < getCurrCycle()",
+        "involved_variables": ["firstRewardCycleTs", "cycle"],
+        "descriptions": "Enforce 24h rate limit between root submissions.",
+        "references": ["token"]
         },
         {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "delta",
-                "boostRewards",
-                "firstRewardCycleTs",
-                "baseRewards",
-                "role",
-                "cycle",
-                "currCycle",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "cycle",
-                "firstRewardCycleTs"
-            ]
-        },
-        {
-            "potential_checks": "delta > baseRewards == False",
-            "involved_variables": [
-                "delta",
-                "boostRewards",
-                "firstRewardCycleTs",
-                "baseRewards",
-                "role",
-                "cycle",
-                "currCycle",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "cycle",
-                "firstRewardCycleTs"
-            ]
-        },
-        {
-            "potential_checks": "delta < baseRewards == False",
-            "involved_variables": [
-                "delta",
-                "boostRewards",
-                "firstRewardCycleTs",
-                "baseRewards",
-                "role",
-                "cycle",
-                "currCycle",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "cycle",
-                "firstRewardCycleTs"
-            ]
-        },
-        {
-            "potential_checks": "boostRewards > 0 == False",
-            "involved_variables": [
-                "delta",
-                "boostRewards",
-                "firstRewardCycleTs",
-                "baseRewards",
-                "role",
-                "cycle",
-                "currCycle",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "cycle",
-                "firstRewardCycleTs"
-            ]
-        }
-    ],
+        "specific_checks": "delta >= baseRewards",
+        "involved_variables": ["delta", "baseRewards"],
+        "descriptions": "Verify vault emission covers base rewards.",
+        "references": ["token"]
+        }],
     "getRemainingAllocatedRewards(address account, uint256 amount, uint256 _cycle, bytes32[] proof) returns (uint256)": [
         {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "MerkleProof",
-                "amount",
-                "roots",
-                "_cycle",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots"
-            ]
+        "specific_checks": "!paused()",
+        "involved_variables": ["_paused"],
+        "descriptions": "Ensure contract is not paused.",
+        "references": []
         },
         {
-            "potential_checks": "amount == 0 == False",
-            "involved_variables": [
-                "MerkleProof",
-                "amount",
-                "roots",
-                "_cycle",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots"
-            ]
-        },
-        {
-            "potential_checks": "MerkleProof.verify(proof,roots[_cycle],leaf) == False",
-            "involved_variables": [
-                "MerkleProof",
-                "amount",
-                "roots",
-                "_cycle",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots"
-            ]
+        "specific_checks": "MerkleProof.verify(proof, roots[_cycle], keccak256(bytes.concat(keccak256(abi.encode(account, amount)))))",
+        "involved_variables": ["proof", "roots", "_cycle", "account", "amount"],
+        "descriptions": "Verify Merkle proof validity.",
+        "references": ["amount"]
         }
     ],
-    "claim(uint256 amount, uint256 _totalRewards, uint256 _cycle, bytes32[] proof)": [
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "MerkleProof",
-                "_totalRewards",
-                "_ENTERED",
-                "amount",
-                "_status",
-                "_cycle",
-                "roots",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status"
-            ]
+    "claim(uint256 amount, uint256 _totalRewards, uint256 _cycle, bytes32[] proof)": [        {
+        "specific_checks": "!paused()",
+        "involved_variables": ["_paused"],
+        "descriptions": "Ensure contract is not paused.",
+        "references": []
         },
         {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "MerkleProof",
-                "_totalRewards",
-                "_ENTERED",
-                "amount",
-                "_status",
-                "_cycle",
-                "roots",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status"
-            ]
+        "specific_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
+        "involved_variables": ["amount", "_totalRewards", "proof", "msg.sender", "_cycle"],
+        "descriptions": "Ensure claimed amount ≤ available rewards.",
+        "references": ["claims","token","claimedRewards"]
+        }],
+    "claimFor(address rewardReceiver, uint256 amount, uint256 totalRewards, uint256 _cycle, uint256 claimForFee, bytes32[] proof, bytes32 nonce, bytes signature)": [{
+        "specific_checks": "!paused()",
+        "involved_variables": ["_paused"],
+        "descriptions": "Ensure contract is not paused.",
+        "references": []
         },
         {
-            "potential_checks": "_totalRewards == 0 == False",
-            "involved_variables": [
-                "MerkleProof",
-                "_totalRewards",
-                "_ENTERED",
-                "amount",
-                "_status",
-                "_cycle",
-                "roots",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status"
-            ]
+        "specific_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
+        "involved_variables": ["amount", "_totalRewards", "proof", "msg.sender", "_cycle"],
+        "descriptions": "Ensure claimed amount ≤ available rewards.",
+        "references": ["claims","token","claimedRewards"]
         },
-        {
-            "potential_checks": "amount == 0 == False",
-            "involved_variables": [
-                "MerkleProof",
-                "_totalRewards",
-                "_ENTERED",
-                "amount",
-                "_status",
-                "_cycle",
-                "roots",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "amount > _allocatedRewardsForProofMinusRewarded(msg.sender,_totalRewards,_cycle,proof)",
-            "involved_variables": [
-                "MerkleProof",
-                "_totalRewards",
-                "_ENTERED",
-                "amount",
-                "_status",
-                "_cycle",
-                "roots",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "amount == 0 == False",
-            "involved_variables": [
-                "MerkleProof",
-                "_totalRewards",
-                "_ENTERED",
-                "amount",
-                "_status",
-                "_cycle",
-                "roots",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "MerkleProof.verify(proof,roots[_cycle],leaf) == False",
-            "involved_variables": [
-                "MerkleProof",
-                "_totalRewards",
-                "_ENTERED",
-                "amount",
-                "_status",
-                "_cycle",
-                "roots",
-                "account",
-                "proof",
-                "leaf"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status"
-            ]
-        }
-    ],
-    "claimFor(address rewardReceiver, uint256 amount, uint256 totalRewards, uint256 _cycle, uint256 claimForFee, bytes32[] proof, bytes32 nonce, bytes signature)": [
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "nonces[hashedNonce] == False",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "signer != rewardReceiver == False",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "totalRewards == 0 == False",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "amount == 0 == False",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "amount > _allocatedRewardsForProofMinusRewarded(rewardReceiver,totalRewards,_cycle,proof)",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "amount == 0 == False",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "MerkleProof.verify(proof,roots[_cycle],leaf) == False",
-            "involved_variables": [
-                "name",
-                "roots",
-                "verifyingContract",
-                "this",
-                "amount",
-                "_ENTERED",
-                "totalRewards",
-                "nonces",
-                "nonce",
-                "rewardReceiver",
-                "signature",
-                "_status",
-                "_cycle",
-                "proof",
-                "leaf",
-                "hashedNonce",
-                "DOMAIN_SEPARATOR",
-                "MerkleProof",
-                "chainId",
-                "account",
-                "EIP712_DOMAIN_TYPE",
-                "claimForFee",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "roots",
-                "_ENTERED",
-                "_status",
-                "nonces"
-            ]
-        }
+            {
+      "specific_checks": "!nonces[hashedNonce]",
+      "involved_variables": ["nonces", "hashedNonce"],
+      "descriptions": "The signature nonce must not have been used before.",
+      "references": ["token"]
+    },
+    {
+      "specific_checks": "signer == rewardReceiver",
+      "involved_variables": ["signer", "rewardReceiver"],
+      "descriptions": "The signature must be signed by the rewardReceiver.",
+      "references": ["token"]
+    }
     ]
 }

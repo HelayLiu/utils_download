@@ -1,38 +1,12 @@
 {
     "burn(uint256 amount)": [
-        {
-            "potential_checks": "accountBalance >= amount == False",
-            "involved_variables": [
-                "amount",
-                "accountBalance",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "burnFrom(address account, uint256 amount)": [
-        {
-            "potential_checks": "currentAllowance != type()(uint256).max",
-            "involved_variables": [
-                "amount",
-                "spender",
-                "currentAllowance",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "currentAllowance >= amount",
-            "involved_variables": [
-                "amount",
-                "spender",
-                "currentAllowance",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+        {  
+        "specific_checks": "_allowances[account][msg.sender] >= amount",  
+        "involved_variables": ["_allowances", "account", "msg.sender", "amount"],  
+        "descriptions": "Verify spender's allowance covers burn amount.",  
+        "references": ["_allowances"]  
         }
     ],
     "name() returns (string)": [],
@@ -43,36 +17,50 @@
     "transfer(address to, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 amount) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [
+        {  
+        "specific_checks": "_allowances[account][msg.sender] >= amount",  
+        "involved_variables": ["_allowances", "account", "msg.sender", "amount"],  
+        "descriptions": "Verify spender's allowance covers transfer amount.",  
+        "references": ["_allowances"]  
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance >= subtractedValue",
-            "involved_variables": [
-                "subtractedValue",
-                "spender",
-                "currentAllowance",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
     "hasRole(bytes32 role, address account) returns (bool)": [],
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
-    "grantRole(bytes32 role, address account)": [],
-    "revokeRole(bytes32 role, address account)": [],
-    "renounceRole(bytes32 role, address account)": [],
+    "grantRole(bytes32 role, address account)": [
+        {  
+        "specific_checks": "hasRole(getRoleAdmin(role), msg.sender)",  
+        "involved_variables": ["_roles","msg.sender"],  
+        "descriptions": "Restrict role grants to admins of the target role.",  
+        "references": ["_roles"]  
+        }  
+    ],
+    "revokeRole(bytes32 role, address account)": [
+        {  
+        "specific_checks": "hasRole(getRoleAdmin(role), msg.sender)",  
+        "involved_variables": ["_roles", "msg.sender"],  
+        "descriptions": "Restrict role revocations to admins of the target role.",  
+        "references": ["_roles"]  
+        }  
+    ],
+    "renounceRole(bytes32 role, address account)": [
+        {  
+        "specific_checks": "account == msg.sender",  
+        "involved_variables": ["_roles", "msg.sender"],  
+        "descriptions": "Allow account to renounce its own roles only.",  
+        "references": ["_roles"]  
+        }
+    ],
     "mint(address account, uint256 amount)": [
-        {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+        {  
+        "specific_checks": "hasRole(MINTER, msg.sender)",  
+        "involved_variables": ["_roles","msg.sender"],  
+        "descriptions": "Verify caller has MINTER role to enforce minting authority.",  
+        "references": ["_totalSupply", "_balances"]  
         }
     ]
 }

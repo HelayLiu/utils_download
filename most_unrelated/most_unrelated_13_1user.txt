@@ -1,0 +1,9 @@
+- This contract is an ERC721-compliant NFT collection with minting, pausing, metadata reveal, and ownership management features. It enforces state isolation to ensure only authorized actors can modify critical state variables.
+- As a contract owner, I want to control global settings (cost, max mint amount, metadata URIs) to manage the collection.
+- As a contract owner, I want to pause/unpause minting to prevent abuse during issues.
+- As a contract owner, I want to reveal metadata after minting to manage token visibility.
+- As a contract owner, I want to withdraw collected funds securely.
+- As a contract owner, I want to restrict ownership transfers to myself.
+- As a user, I want to mint NFTs within set limits (cost, supply) to own tokens.
+- As a user, I want to securely transfer tokens to others without unauthorized access.
+- As a user, I want to approve specific operators to manage my tokens.

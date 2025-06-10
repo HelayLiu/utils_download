@@ -1,0 +1,36 @@
+-`_owners` (mapping(uint256 => address) private):
+    · Write restricted to contract-internal functions (during mint/transfer).
+    · Read restricted to public via ownerOf().
+-`_balances` (mapping(address => uint256) private):
+    · Write restricted to contract-internal functions (during mint/transfer).
+    · Read restricted to public via balanceOf().
+-`_tokenApprovals` (mapping(uint256 => address) private):
+    · Write restricted to token owner or approved operator.
+    · Read restricted to public via getApproved().
+-`_operatorApprovals` (mapping(address => mapping(address => bool)) private):
+    · Write restricted to token owner (via setApprovalForAll).
+    · Read restricted to public via isApprovedForAll().
+-`baseURI` (string private):
+    · Write restricted to contract owner.
+    · Read restricted to internal via _baseURI(), then public via tokenURI().
+-`baseExtension` (string public):
+    · Write restricted to contract owner.
+    · Read restricted to public.
+-`cost` (uint256 public):
+    · Write restricted to contract owner.
+    · Read restricted to public.
+-`maxMintAmount` (uint256 public):
+    · Write restricted to contract owner.
+    · Read restricted to public.
+-`paused` (bool public):
+    · Write restricted to contract owner.
+    · Read restricted to public.
+-`revealed` (bool public):
+    · Write restricted to contract owner.
+    · Read restricted to public.
+-`notRevealedUri` (string public):
+    · Write restricted to contract owner.
+    · Read restricted to public.
+-`_owner` (address private, from Ownable):
+    · Write restricted to contract owner (via ownership transfers).
+    · Read restricted to public via owner().

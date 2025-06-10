@@ -1,9 +1,6 @@
-- Token Holders:  
-  - As a token holder, I want to securely transfer my tokens to others while maintaining privacy of my balance and transaction history.  
-  - As a token holder, I want to burn my tokens to reduce supply without affecting other users' balances.  
-- Approved Spenders:  
-  - As an approved spender, I want permission to spend tokens on behalf of holders via signed permits without direct transactions.  
-- External Contracts:  
-  - As an external contract, I want to verify token ownership and allowances trustlessly for composable DeFi interactions.  
-- All Users:  
-  - As any user, I want cryptographic guarantees that token metadata (name/symbol) remains immutable.  
+
+- As a token holder, I want to securely transfer my tokens to others while maintaining privacy of my balance and transaction history.  
+- As a token holder, I want to burn my tokens to reduce supply without affecting other users' balances.  
+- As an approved spender, I want permission to spend tokens on behalf of holders via signed permits without direct transactions.  
+- As an external contract, I want to verify token ownership and allowances trustlessly for composable DeFi interactions.  
+- As any user, I want cryptographic guarantees that token metadata (name/symbol) remains immutable.  
