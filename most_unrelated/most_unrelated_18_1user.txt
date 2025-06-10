@@ -1,0 +1,6 @@
+- The BuildingToken contract is an ERC721-compliant NFT for managing digital assets ("buildings"). It enables minting, updating metadata, burning tokens, and access-controlled operations. State isolation is enforced through ownership and allowlists, ensuring only authorized actors modify critical states.
+- As a contract owner, I want to restrict minting and metadata updates to pre-approved addresses to prevent unauthorized token creation/modification.
+- As an allowed address, I want to mint tokens exclusively to the main wallet to centralize asset custody.
+- As a token owner, I want to burn my tokens without interference from other users, ensuring exclusive write access to my assets.
+- As an external contract, I want to read token metadata only if it exists, preventing access to invalid/non-minted tokens.
+- As a user, I want my token ownership and balances isolated from others via ERC721's inherent owner/tokenID mappings.

@@ -1,76 +1,15 @@
 {
     "existAddress(address wallet) returns (bool)": [
-        {
-            "potential_checks": "i < _allowedAddresses.length",
-            "involved_variables": [
-                "i",
-                "_allowedAddresses",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "_allowedAddresses[i] == wallet",
-            "involved_variables": [
-                "i",
-                "_allowedAddresses",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        }
     ],
     "allowedAddresses() returns (address[])": [],
     "setAllowedAddress(address wallet)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "i",
-                "_allowedAddresses",
-                "wallet"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "existAddress(wallet)",
-            "involved_variables": [
-                "i",
-                "_allowedAddresses",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "i < _allowedAddresses.length",
-            "involved_variables": [
-                "i",
-                "_allowedAddresses",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "_allowedAddresses[i] == wallet",
-            "involved_variables": [
-                "i",
-                "_allowedAddresses",
-                "wallet"
-            ],
-            "descriptions": "",
+            "descriptions": "Only the owner can set allowed addresses.",
             "references": [
                 "_allowedAddresses"
             ]
@@ -78,85 +17,12 @@
     ],
     "removeAllowedAddress(address wallet)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_allowedAddresses",
-                "n",
-                "exist",
-                "i",
-                "wallet"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "existAddress(wallet)",
-            "involved_variables": [
-                "_allowedAddresses",
-                "n",
-                "exist",
-                "i",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "i < _allowedAddresses.length == False",
-            "involved_variables": [
-                "_allowedAddresses",
-                "n",
-                "exist",
-                "i",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "i < _allowedAddresses.length == False",
-            "involved_variables": [
-                "_allowedAddresses",
-                "n",
-                "exist",
-                "i",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "exist",
-            "involved_variables": [
-                "_allowedAddresses",
-                "n",
-                "exist",
-                "i",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "i < n - 1 == False",
-            "involved_variables": [
-                "_allowedAddresses",
-                "n",
-                "exist",
-                "i",
-                "wallet"
-            ],
-            "descriptions": "",
+            "descriptions": "Only the owner can remove allowed addresses.",
             "references": [
                 "_allowedAddresses"
             ]
@@ -165,31 +31,42 @@
     "mainWallet() returns (address)": [],
     "setMainWallet(address newWallet)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newWallet"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Only the owner can set main wallet.",
+            "references": [
+                "_mainWallet"
+            ]
         }
     ],
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "burn(uint256 tokenId)": [
@@ -197,19 +74,10 @@
             "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
             "involved_variables": [
                 "tokenId",
-                "owner"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId) == False",
-            "involved_variables": [
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Verifies caller owns or is approved to burn token, updating _owners/_balances.",
+            "references": ["_owners", "_balances"]
         }
     ],
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
@@ -218,456 +86,107 @@
     "name() returns (string)": [],
     "symbol() returns (string)": [],
     "tokenURI(uint256 tokenId) returns (string)": [
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "tokenId",
-                "base",
-                "TMP_1048",
-                "TMP_1046",
-                "_tokenURI"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "bytes(base).length == 0 == False",
-            "involved_variables": [
-                "tokenId",
-                "base",
-                "TMP_1048",
-                "TMP_1046",
-                "_tokenURI"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "bytes(_tokenURI).length > 0 == False",
-            "involved_variables": [
-                "tokenId",
-                "base",
-                "TMP_1048",
-                "TMP_1046",
-                "_tokenURI"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "approve(address to, uint256 tokenId)": [],
     "getApproved(uint256 tokenId) returns (address)": [],
     "setApprovalForAll(address operator, bool approved)": [],
     "isApprovedForAll(address owner, address operator) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 tokenId)": [],
-    "safeTransferFrom(address from, address to, uint256 tokenId)": [],
-    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [],
-    "paused() returns (bool)": [],
+    "transferFrom(address from, address to, uint256 tokenId)": [
+        {  
+        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "involved_variables": ["msg.sender", "tokenId"],  
+        "descriptions": "Verifies caller is owner/approved before transferring token.",  
+        "references": ["_owners", "_tokenApprovals"]  
+        }  
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
+        {  
+        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "involved_variables": ["msg.sender", "tokenId"],  
+        "descriptions": "Verifies caller is owner/approved before transferring token.",  
+        "references": ["_owners", "_tokenApprovals"]  
+        }  
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
+        {  
+        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "involved_variables": ["msg.sender", "tokenId"],  
+        "descriptions": "Verifies caller is owner/approved before transferring token.",  
+        "references": ["_owners", "_tokenApprovals"]  
+        }  
+    ],
+    "paused() returns (bool)": [
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Allows only owner to pause contract if not already paused.",  
+        "references": ["_paused"]  
+        }  
+    ],
     "tokenOfOwnerByIndex(address owner, uint256 index) returns (uint256)": [],
     "totalSupply() returns (uint256)": [],
     "tokenByIndex(uint256 index) returns (uint256)": [],
     "mint(string itemURI) returns (uint256)": [
-        {
-            "potential_checks": "i < _allowedAddresses.length == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "to",
-                "batchSize",
-                "owner",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "to",
-                "batchSize",
-                "owner",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "to",
-                "batchSize",
-                "owner",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "batchSize > 1 == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "to",
-                "batchSize",
-                "owner",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "from != to == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "to",
-                "batchSize",
-                "owner",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "to != from == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "to",
-                "batchSize",
-                "owner",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "_exists(tokenId) == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "to",
-                "batchSize",
-                "owner",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        }
+        {  
+        "specific_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
+        "involved_variables": ["msg.sender", "_allowedAddresses", "owner"],  
+        "descriptions": "Verifies caller is owner/allowed to mint tokens and write to _owners/_tokenURIs.",  
+        "references": ["_owners", "_tokenURIs"]  
+        }  
     ],
     "update(uint256 tokenId, uint256 fieldId)": [
-        {
-            "potential_checks": "i < _allowedAddresses.length",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "owner",
-                "i",
-                "msg.sender",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "_allowedAddresses[i] == wallet",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "owner",
-                "i",
-                "msg.sender",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "allowed || msg.sender == owner == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "owner",
-                "i",
-                "msg.sender",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        }
+        {  
+        "specific_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
+        "involved_variables": ["msg.sender", "_allowedAddresses", "owner"],  
+        "descriptions": "Verifies caller is owner/allowed to update tokens and write to _owners/_tokenURIs.",  
+        "references": ["_owners", "_tokenURIs"]  
+        }  
     ],
     "setBaseURI(string baseUri)": [
-        {
-            "potential_checks": "i < _allowedAddresses.length",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "owner",
-                "i",
-                "msg.sender",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "_allowedAddresses[i] == wallet",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "owner",
-                "i",
-                "msg.sender",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "allowed || msg.sender == owner == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "owner",
-                "i",
-                "msg.sender",
-                "wallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        }
+    {  
+        "specific_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
+        "involved_variables": ["msg.sender", "_allowedAddresses", "owner"],  
+        "descriptions": "Verifies caller is owner/allowed to set BaseURI",  
+        "references": ["_baseUri"]  
+        }  
     ],
     "getBaseURI() returns (string)": [],
     "updateURI(uint256 tokenId, string uri)": [
-        {
-            "potential_checks": "i < _allowedAddresses.length == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "owner",
-                "i",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "owner",
-                "i",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "_exists(tokenId) == False",
-            "involved_variables": [
-                "allowed",
-                "_allowedAddresses",
-                "tokenId",
-                "owner",
-                "i",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_allowedAddresses"
-            ]
-        }
+    {  
+        "specific_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
+        "involved_variables": ["msg.sender", "_allowedAddresses", "owner"],  
+        "descriptions": "Verifies caller is owner/allowed to set _tokenURIs",  
+        "references": ["_tokenURIs"]  
+        }  
     ],
     "pause()": [
-        {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        }
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Allows only owner to pause contract",  
+        "references": ["_paused"]  
+        }  
     ],
     "unpause()": [
-        {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        }
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Allows only owner to unpause contract",  
+        "references": ["_paused"]  
+        }  
     ],
     "safeMint(address to, string uri)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "data",
-                "tokenId",
-                "Address",
-                "batchSize",
-                "to",
-                "from"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "data",
-                "tokenId",
-                "Address",
-                "batchSize",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "data",
-                "tokenId",
-                "Address",
-                "batchSize",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "batchSize > 1 == False",
-            "involved_variables": [
-                "data",
-                "tokenId",
-                "Address",
-                "batchSize",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "from != to == False",
-            "involved_variables": [
-                "data",
-                "tokenId",
-                "Address",
-                "batchSize",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "data",
-                "tokenId",
-                "Address",
-                "batchSize",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "to.isContract() == False",
-            "involved_variables": [
-                "data",
-                "tokenId",
-                "Address",
-                "batchSize",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId) == False",
-            "involved_variables": [
-                "data",
-                "tokenId",
-                "Address",
-                "batchSize",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Only owner can safe mint tokens.",
+            "references": [
+                "_owners",
+                "_tokenURIs"
+            ]
         }
     ]
 }

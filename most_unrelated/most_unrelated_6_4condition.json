@@ -276,13 +276,7 @@
             "involved_variables": ["_roles","msg.sender"],  
             "descriptions": "Restrict pausing to admin.",  
             "references": ["_paused"]  
-        },  
-        {  
-            "specific_checks": "!paused()",  
-            "involved_variables": ["_paused"],  
-            "descriptions": "Ensure contract is not already paused.",  
-            "references": ["_paused"]  
-        }  
+        }
     ],
     "unpause()": [
         {
@@ -290,12 +284,6 @@
             "involved_variables": ["_roles","msg.sender"],
             "descriptions": "Ensure caller is admin.",
             "references": ["_roles"]
-        },
-        {
-            "specific_checks": "paused()",
-            "involved_variables": ["_paused"],
-            "descriptions": "Ensure the contract is paused.",
-            "references": ["_paused"]
         }
     ],
     "denomination(address[] holders)": [

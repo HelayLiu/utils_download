@@ -1,0 +1,21 @@
+- `_tokenIdCounter (Counters.Counter)`:  
+  · Write restricted to the contract during minting.  
+  · Read restricted to the contract.  
+- `_baseUri (string)`:  
+  · Write restricted to allowed addresses or owner (via `setBaseURI`).  
+  · Read restricted to the public (via `getBaseURI`/`tokenURI`).  
+- `_allowedAddresses (address[])`:  
+  · Write restricted to the owner (via `setAllowedAddress`/`removeAllowedAddress`).  
+  · Read restricted to the public (via `allowedAddresses`).  
+- `_mainWallet (address)`:  
+  · Write restricted to the owner (via `setMainWallet`).  
+  · Read restricted to the public (via `mainWallet`).  
+- `_owners (mapping(uint256 => address), _balances (mapping(address => uint256))`:  
+  · Write restricted to the contract during mint/burn/transfers.  
+  · Read restricted to the public (via `ownerOf`/`balanceOf`).  
+- `_tokenURIs (mapping(uint256 => string))`:  
+  · Write restricted to allowed addresses or owner (via `mint`/`updateURI`).  
+  · Read restricted to the public (via `tokenURI`).  
+- `_paused (bool)`:  
+  · Write restricted to the owner (via `pause`/`unpause`).  
+  · Read restricted to the public (via `paused`).  

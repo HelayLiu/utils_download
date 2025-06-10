@@ -61,12 +61,6 @@
         "involved_variables": ["msg.sender", "_role"],
         "descriptions": "Restrict pause to DEFAULT_ADMIN_ROLE.",
         "references": ["_paused"]
-        },
-        {
-        "specific_checks": "!paused()",
-        "involved_variables": ["_paused"],
-        "descriptions": "Prevent redundant pausing.",
-        "references": ["_paused"]
         }
     ],
     "unpause()": [
@@ -74,12 +68,6 @@
         "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
         "involved_variables": ["msg.sender", "_role"],
         "descriptions": "Restrict pause to DEFAULT_ADMIN_ROLE.",
-        "references": ["_paused"]
-        },
-        {
-        "specific_checks": "_paused",
-        "involved_variables": ["_paused"],
-        "descriptions": "Prevent redundant pausing.",
         "references": ["_paused"]
         }
     ],
