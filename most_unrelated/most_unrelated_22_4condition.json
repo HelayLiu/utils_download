@@ -2,44 +2,27 @@
     "isMinter(address account) returns (bool)": [],
     "addMinter(address account)": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Only the owner can add a minter.",
             "references": [
                 "owner"
             ]
         }
     ],
-    "renounceMinter()": [],
+    "renounceMinter()": [
+    ],
     "burn(uint256 amount)": [
-        {
-            "potential_checks": "totalMinted().add(amount) <= cap() == False",
-            "involved_variables": [
-                "amount",
-                "SafeMath",
-                "account",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "burnFrom(address account, uint256 amount)": [
         {
-            "potential_checks": "totalMinted().add(amount) <= cap() == False",
-            "involved_variables": [
-                "spender",
-                "SafeMath",
-                "amount",
-                "account",
-                "owner",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
+            "specific_checks": "allowance(account, msg.sender) >= amount",
+            "involved_variables": ["_allowances","account","msg.sender","amount"],
+            "descriptions": "Validate spender burn allowance",
+            "references": ["_balances","_totalSupply"]
         }
     ],
     "name() returns (string)": [],
@@ -50,98 +33,36 @@
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "specific_checks": "allowance(account, msg.sender) >= amount",
+            "involved_variables": ["_allowances","account","msg.sender","amount"],
+            "descriptions": "Validate spender transfer allowance",
+            "references": ["_balances","_totalSupply"]
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
     "cap() returns (uint256)": [],
     "totalMinted() returns (uint256)": [],
     "mintBulk(address[] accounts, uint256[] amounts) returns (bool)": [
         {
-            "potential_checks": "isMinter(msg.sender)",
-            "involved_variables": [
-                "SafeMath",
-                "amounts",
-                "amount",
-                "account",
-                "accounts",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "accounts.length == amounts.length",
-            "involved_variables": [
-                "SafeMath",
-                "amounts",
-                "amount",
-                "account",
-                "accounts",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < accounts.length",
-            "involved_variables": [
-                "SafeMath",
-                "amounts",
-                "amount",
-                "account",
-                "accounts",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "amounts[i] > 0",
-            "involved_variables": [
-                "SafeMath",
-                "amounts",
-                "amount",
-                "account",
-                "accounts",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "totalMinted().add(amount) <= cap() == False",
-            "involved_variables": [
-                "SafeMath",
-                "amounts",
-                "amount",
-                "account",
-                "accounts",
-                "i",
-                "msg.sender",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
+            "specific_checks": "isMinter(msg.sender)",
+            "involved_variables": ["msg.sender", "_minters"],
+            "descriptions": "Verify minter role for minting authority",
+            "references": ["_balances", "_totalSupply"]
         }
     ],
     "removeMinter(address account)": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Only the owner can remove any minter.",
             "references": [
-                "owner"
+                "_minters"
             ]
         }
     ]
