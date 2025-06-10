@@ -1,0 +1,6 @@
+- As a contract owner, I want to manage operators who can authorize token minting, ensuring only trusted parties can sign minting requests.  
+- As a user, I want to mint a unique non-transferable AnimeID token bound to my address, preventing others from minting on my behalf.  
+- As an operator, I want to sign minting requests so users can mint their tokens without direct owner involvement.  
+- As a contract owner, I want to pause/unpause minting to control token issuance during maintenance or emergencies.  
+- As a user, I want my token metadata to be securely stored and only accessible via the token URI, ensuring data integrity.  
+- As a contract owner, I want to update token metadata (URI/suffix) to correct or improve information without disrupting existing tokens.  

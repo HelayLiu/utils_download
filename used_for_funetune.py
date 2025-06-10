@@ -183,17 +183,27 @@ def is_in_time_range(start_hour, start_minute, end_hour, end_minute):
     end_minutes = end_hour * 60 + end_minute
     return start_minutes <= now_minutes <= end_minutes
 if __name__ == "__main__":
+    cou=0
     root_path = f"/home/liuhan/utils_download/most_unrelated"
     for file in tqdm(os.listdir(root_path)):
         if file.endswith('.sol'):
-            while True:
-                if is_in_time_range(0, 30, 8, 20):
-                    break
-                print("Waiting for the time range to be valid...")
-                time.sleep(60)
+            
+            # while True:
+            #     if is_in_time_range(0, 30, 8, 20):
+            #         break
+            #     print("Waiting for the time range to be valid...")
+            #     time.sleep(60)
             output_file = file.replace('.sol', '_deepseek_res.txt')
-            if os.path.exists(os.path.join(root_path, output_file)):
+            with open(os.path.join(root_path, output_file), 'r') as f:
+                code = f.read()
+            if code != """<THINKING_CONTENT>\n\n</THINKING_CONTENT>\n<RESPONSE>\n\n</RESPONSE>""":
                 continue
+            cou += 1
+            # continue
+    # print(f"Total files with empty response: {cou}")
+
+            # if os.path.exists(os.path.join(root_path, output_file)):
+            #     continue
             with open(os.path.join(root_path,file),'r') as f:
                 code=f.read()
             config_path = os.path.join(root_path, file.replace('.sol', '.json'))

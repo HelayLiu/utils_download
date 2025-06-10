@@ -1,0 +1,19 @@
+- `uri` (string public):  
+  · Write restricted to Contract Owner.  
+  · Read restricted to None.  
+
+- `suffix` (string public):  
+  · Write restricted to Contract Owner.  
+  · Read restricted to None.  
+
+- `curTokenId` (uint256 private):  
+  · Write restricted to Contract (during minting).  
+  · Read restricted to None (via `totalSupply()`).  
+
+- `isOperator` (mapping(address => bool) private):  
+  · Write restricted to Contract Owner.  
+  · Read restricted to Contract (internal verification).  
+
+- `operators` (address[] private):  
+  · Write restricted to Contract Owner.  
+  · Read restricted to None (via `getAllOperators()`).  
