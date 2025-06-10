@@ -1,0 +1,79 @@
+<User Stories> 
+- This is a BEP20Token contracts, which can mint and transfer tokens.
+- As a token holder, I want to securely transfer my tokens to others, ensuring only authorized parties can access my balance.
+- As a token holder, I want to delegate spending allowances to specific addresses while maintaining control over my funds.
+- As a contract owner, I want exclusive rights to mint new tokens and manage ownership to control token supply and administration.
+- As any user, I want to transparently view token balances and allowances to verify account states without modification rights.
+- As a spender, I want to utilize delegated allowances for transfers while respecting the token holder's access controls.  
+</User Stories>
+
+<Domain Models>
+- **_balances**: mapping(address => uint256) private  
+  · Write restricted to the token owner (for their own balance) or the contract owner (for minting).  
+  · Read restricted to the public via `balanceOf` function.  
+- **_allowances**: mapping(address => mapping(address => uint256)) private  
+  · Write restricted to the token owner (for setting allowances) or approved spenders (when transferring).  
+  · Read restricted to the public via `allowance` function.  
+- **_totalSupply**: uint256 private  
+  · Write restricted to the contract owner (via minting).  
+  · Read restricted to the public via `totalSupply` function.  
+- **_decimals**: uint8 private  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to the public via `decimals` function.  
+- **_symbol**: string private  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to the public via `symbol` function.  
+- **_name**: string private  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to the public via `name` function.  
+- **_owner**: address private  
+  · Write restricted to the current owner (via ownership transfer/renunciation).  
+  · Read restricted to the public via `owner` or `getOwner` functions.  
+</Domain Models>
+ 
+<Specific Checks in Functions>  
+function increaseAllowance(address spender,uint256 addedValue) returns(bool):[]  
+function transferFrom(address sender,address recipient,uint256 amount) returns(bool):[  
+{  
+  "potential_checks": "_allowances[sender][msg.sender] >= amount",  
+  "involved_variables": ["msg.sender","sender"],  
+  "descriptions": "Validate the msg.sender has enough allownances transfer from sender",  
+  "references": ["_allowances"]  
+}
+]  
+function renounceOwnership() returns():[  
+{  
+  "potential_checks": "_owner == msg.sender",  
+  "involved_variables": ["_owner", "msg.sender"],  
+  "descriptions": "Restrict ownership renunciation to current owner.",  
+  "references": ["_owner"]  
+}  
+]  
+function transferOwnership(address newOwner) returns():[  
+{  
+  "potential_checks": "_owner == msg.sender",  
+  "involved_variables": ["_owner", "msg.sender"],  
+  "descriptions": "Restrict ownership transfer to current owner.",  
+  "references": ["_owner"]  
+}
+]  
+function decreaseAllowance(address spender, uint256 subtractedValue) returns(bool):[]  
+function approve(address,uint256) returns(bool):[]  
+function transfer(address,uint256) returns(bool):[]  
+function mint(uint256) returns(bool):[  
+{  
+  "potential_checks": "_owner == msg.sender",  
+  "involved_variables": ["_owner", "msg.sender"],  
+  "descriptions": "Restrict minting to contract owner.",  
+  "references": ["_totalSupply", "_balances"]  
+}
+]  
+function symbol() returns(string):[]  
+function balanceOf(address account) returns(uint256):[]  
+function decimals() returns(uint8):[]  
+function name() returns(string):[]  
+function getOwner() returns(address):[]  
+function owner() returns(address):[]  
+function allowance(address owner, address spender) returns(uint256):[]  
+function totalSupply() returns(uint256):[]  
+</Specific Checks in Functions>
