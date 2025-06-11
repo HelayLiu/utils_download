@@ -10,21 +10,6 @@
     "verify(ITokenERC20.MintRequest req, bytes signature) returns (bool, address)": [],
     "mintTo(address to, uint256 amount)": [
         {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "account",
-                "_ENTERED",
-                "_status",
-                "MINTER_ROLE"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "MINTER_ROLE"
-            ]
-        },
-        {
             "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
             "involved_variables": [
                 "account",
