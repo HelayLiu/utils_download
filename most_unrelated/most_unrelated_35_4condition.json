@@ -2,133 +2,49 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
-        {
-            "potential_checks": "spender != tokenPool == False",
-            "involved_variables": [
-                "spender",
-                "this",
-                "emitEvent",
-                "_cachedChainId",
-                "tokenPool",
-                "block.chainid",
-                "deadline",
-                "_cachedThis",
-                "owner",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_cachedThis",
-                "_cachedChainId",
-                "tokenPool"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp > deadline == False",
-            "involved_variables": [
-                "spender",
-                "this",
-                "emitEvent",
-                "_cachedChainId",
-                "tokenPool",
-                "block.chainid",
-                "deadline",
-                "_cachedThis",
-                "owner",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_cachedThis",
-                "_cachedChainId",
-                "tokenPool"
-            ]
-        },
-        {
-            "potential_checks": "address(this) == _cachedThis && block.chainid == _cachedChainId == False",
-            "involved_variables": [
-                "spender",
-                "this",
-                "emitEvent",
-                "_cachedChainId",
-                "tokenPool",
-                "block.chainid",
-                "deadline",
-                "_cachedThis",
-                "owner",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_cachedThis",
-                "_cachedChainId",
-                "tokenPool"
-            ]
-        },
-        {
-            "potential_checks": "signer != owner == False",
-            "involved_variables": [
-                "spender",
-                "this",
-                "emitEvent",
-                "_cachedChainId",
-                "tokenPool",
-                "block.chainid",
-                "deadline",
-                "_cachedThis",
-                "owner",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_cachedThis",
-                "_cachedChainId",
-                "tokenPool"
-            ]
-        },
-        {
-            "potential_checks": "emitEvent == False",
-            "involved_variables": [
-                "spender",
-                "this",
-                "emitEvent",
-                "_cachedChainId",
-                "tokenPool",
-                "block.chainid",
-                "deadline",
-                "_cachedThis",
-                "owner",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_cachedThis",
-                "_cachedChainId",
-                "tokenPool"
-            ]
-        }
+        {  
+        "specific_checks": "spender == tokenPool",  
+        "involved_variables": ["spender", "tokenPool"],  
+        "descriptions": "Enforce tokenPool as the only valid spender to prevent phishing.",  
+        "references": [ "_allowances"]  
+        },  
+        {  
+        "specific_checks": "block.timestamp <= deadline",  
+        "involved_variables": ["block.timestamp", "deadline"],  
+        "descriptions": "Prevent expired permits to maintain state validity.",  
+        "references": ["_allowances"]  
+        },  
+        {  
+        "specific_checks": "signer == owner",  
+        "involved_variables": ["signer", "owner"],  
+        "descriptions": "Verify signature matches token owner for write access to allowances.",  
+        "references": ["_allowances"]  
+        }  
     ],
     "nonces(address owner) returns (uint256)": [],
     "DOMAIN_SEPARATOR() returns (bytes32)": [],
@@ -141,15 +57,23 @@
     "transfer(address to, uint256 value) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 value) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "_allowances[from][msg.sender] >= value",
+            "involved_variables": ["_allowances", "from", "msg.sender", "value"],
+            "descriptions": "Verify spender allowance covers transfer amount to isolate unauthorized access.",
+            "references": ["_balances"]
+        }
+    ],
     "setTokenPool(address _tokenPool)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
-                "_tokenPool"
+                "msg.sender",
+                "owner"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Only the owner can set the token pool address.",
+            "references": ["tokenPool"]
         }
     ]
 }
