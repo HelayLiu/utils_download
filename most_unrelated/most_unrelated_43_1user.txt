@@ -1,0 +1,4 @@
+- As an owner, I want to transfer contract ownership securely to delegate administrative control.
+- As an owner, I want to withdraw ETH/ERC20 tokens from the contract to recover funds.
+- As a whitelisted caller, I want to execute trades via the reactor to utilize UniversalRouter for order fulfillment.
+- As the reactor contract, I want to trigger approvals and trade execution during callbacks to finalize orders atomically.

@@ -1,0 +1,6 @@
+- As a user, I want to stake tokens to earn rewards while ensuring my staked balance is isolated from others' access.  
+- As a user, I want to withdraw my staked tokens securely, knowing only I can initiate withdrawals.  
+- As a user, I want to claim/compound rewards securely, with computations isolated to my account.  
+- As the contract owner, I want to control reward distribution parameters to prevent unauthorized changes.  
+- As the liquidity pool manager, I want to notify rewards while being restricted from modifying other contract states.  
+- As the owner, I want to recover accidentally sent ERC20 tokens (excluding staking tokens) to protect contract funds.

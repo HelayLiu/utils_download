@@ -1,0 +1,15 @@
+- `owner` (address):  
+  · Write restricted to current owner.  
+  · Read restricted to none.  
+- `whitelistedCallers` (mapping):  
+  · Write restricted to constructor.  
+  · Read restricted to none.  
+- `universalRouter` (address):  
+  · Write restricted to none.  
+  · Read restricted to none.  
+- `reactor` (IReactor):  
+  · Write restricted to the whitelistedCallers and the owners.
+  · Read restricted to none.  
+- `permit2` (IPermit2):  
+  · Write restricted to none.  
+  · Read restricted to none.  

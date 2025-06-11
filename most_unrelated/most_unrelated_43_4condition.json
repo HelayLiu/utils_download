@@ -1,12 +1,12 @@
 {
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before transferring ownership.",
             "references": [
                 "owner"
             ]
@@ -15,140 +15,63 @@
     "reactorCallback(ResolvedOrder[] resolvedOrders, bytes callbackData)": [],
     "execute(SignedOrder order, bytes callbackData)": [
         {
-            "potential_checks": "whitelistedCallers[msg.sender] == false == False",
+            "potential_checks": "whitelistedCallers[msg.sender] == true",
             "involved_variables": [
                 "whitelistedCallers",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Restricts single order execution to whitelisted callers.",
             "references": [
-                "whitelistedCallers"
+                "reactor"
             ]
         }
     ],
     "executeBatch(SignedOrder[] orders, bytes callbackData)": [
         {
-            "potential_checks": "whitelistedCallers[msg.sender] == false == False",
+            "potential_checks": "whitelistedCallers[msg.sender] == true",
             "involved_variables": [
                 "whitelistedCallers",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Restricts batch order execution to whitelisted callers.",
             "references": [
-                "whitelistedCallers"
+                "reactor"
             ]
         }
     ],
     "reactorCallback(ResolvedOrder[] , bytes callbackData)": [
         {
-            "potential_checks": "msg.sender != address(reactor) == False",
-            "involved_variables": [
-                "this",
-                "i_scope_0",
-                "success",
-                "tokensToApproveForReactor",
-                "tokensToApproveForUniversalRouter",
-                "reactor",
-                "i",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "reactor"
-            ]
-        },
-        {
-            "potential_checks": "i < tokensToApproveForUniversalRouter.length == False",
-            "involved_variables": [
-                "this",
-                "i_scope_0",
-                "success",
-                "tokensToApproveForReactor",
-                "tokensToApproveForUniversalRouter",
-                "reactor",
-                "i",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "reactor"
-            ]
-        },
-        {
-            "potential_checks": "i_scope_0 < tokensToApproveForReactor.length == False",
-            "involved_variables": [
-                "this",
-                "i_scope_0",
-                "success",
-                "tokensToApproveForReactor",
-                "tokensToApproveForUniversalRouter",
-                "reactor",
-                "i",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "reactor"
-            ]
-        },
-        {
-            "potential_checks": "! success == False",
-            "involved_variables": [
-                "this",
-                "i_scope_0",
-                "success",
-                "tokensToApproveForReactor",
-                "tokensToApproveForUniversalRouter",
-                "reactor",
-                "i",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "reactor"
-            ]
-        },
-        {
-            "potential_checks": "address(this).balance > 0 == False",
-            "involved_variables": [
-                "this",
-                "i_scope_0",
-                "success",
-                "tokensToApproveForReactor",
-                "tokensToApproveForUniversalRouter",
-                "reactor",
-                "i",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "reactor"
-            ]
+        "potential_checks": "msg.sender == address(reactor)",
+        "involved_variables": ["msg.sender", "reactor"],
+        "descriptions": "Ensures only the reactor contract triggers the callback.",
+        "references": [
+            "reactor"
+        ]
         }
     ],
     "withdrawETH(address recipient)": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before withdrawing ETH.",
             "references": [
-                "owner"
+                "balance"
             ]
         }
     ],
     "withdrawERC20(ERC20 token, address to)": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before withdrawing ERC20 tokens.",
             "references": [
-                "owner"
+                "balance"
             ]
         }
     ]

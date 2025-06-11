@@ -1,0 +1,27 @@
+- `_balances (mapping(address => uint256) private`:  
+  · Write restricted to the user (via stake/withdraw) and contract (during compounding).  
+  · Read restricted to the contract and owner via `balanceOf()`.  
+- `rewards (mapping(address => uint256) public`:  
+  · Write restricted to the contract (during reward updates/claims).  
+  · Read restricted to public (anyone can view rewards).  
+- `userRewardPerTokenPaid (mapping(address => uint256) public`:  
+  · Write restricted to the contract (during stake/withdraw/reward claims).  
+  · Read restricted to public.  
+- `_totalSupply (uint256) private`:  
+  · Write restricted to the contract (during stake/withdraw/compounding).  
+  · Read restricted to public via `totalSupply()`.  
+- `rewardRate (uint256) public`:  
+  · Write restricted to owner/`liqPoolManager` (via `notifyRewardAmount`).  
+  · Read restricted to public.  
+- `periodFinish (uint256) public`:  
+  · Write restricted to owner/`liqPoolManager` (via `notifyRewardAmount`).  
+  · Read restricted to public.  
+- `rewardsDuration (uint256) public`:  
+  · Write restricted to owner (via `setRewardsDuration`).  
+  · Read restricted to public.  
+- `liqPoolManager (address) public`:  
+  · Write restricted to owner (via `setLiqPoolManager`).  
+  · Read restricted to public.  
+- `lastUpdateTime (uint256) public`:
+  · Write restricted to owner (via `notifyRewardAmount`).  
+  · Read restricted to public.
