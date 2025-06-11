@@ -1,295 +1,35 @@
 {
     "proxiableUUID() returns (bytes32)": [],
     "upgradeTo(address newImplementation)": [
-        {
-            "potential_checks": "address(this) != __self",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "_getImplementation() == __self",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        }
+        {  
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",  
+        "involved_variables": ["_roles","msg.sender"],  
+        "descriptions": "Restrict upgrades to admin.",  
+        "references": ["implementation"]  
+        }  
     ],
     "upgradeToAndCall(address newImplementation, bytes data)": [
-        {
-            "potential_checks": "address(this) != __self",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "_getImplementation() == __self",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "TMP_1051",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        }
+        {  
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",  
+        "involved_variables": ["_roles","msg.sender"],  
+        "descriptions": "Restrict upgrades to admin.",  
+        "references": ["implementation"]  
+        }  
     ],
     "burn(uint256 amount)": [
-        {
-            "potential_checks": "accountBalance >= amount == False",
-            "involved_variables": [
-                "amount",
-                "accountBalance",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+
     ],
     "burnFrom(address account, uint256 amount)": [
         {
-            "potential_checks": "currentAllowance != type()(uint256).max",
+            "potential_checks": "_allowances[account][msg.sender] >= amount",
             "involved_variables": [
-                "amount",
-                "spender",
+                "msg.sender",
                 "currentAllowance",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "currentAllowance >= amount",
-            "involved_variables": [
                 "amount",
-                "spender",
-                "currentAllowance",
-                "owner"
+                "account"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure spender has sufficient allowance.",
+            "references": ["_allowances", "_balances"]
         }
     ],
     "name() returns (string)": [],
@@ -300,87 +40,81 @@
     "transfer(address to, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 amount) returns (bool)": [],
-    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
-    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance >= subtractedValue",
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [
+                {
+            "potential_checks": "_allowances[account][msg.sender] >= amount",
             "involved_variables": [
-                "spender",
+                "msg.sender",
                 "currentAllowance",
-                "subtractedValue",
-                "owner"
+                "amount",
+                "account"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure spender has sufficient allowance.",
+            "references": ["_allowances", "_balances"]
         }
     ],
-    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+    ],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {  
+            "potential_checks": "block.timestamp <= deadline",  
+            "involved_variables": ["deadline", "block.timestamp"],  
+            "descriptions": "Ensure permit is not expired.",  
+            "references": ["_allowances"]  
+            },  
+            {  
+            "potential_checks": "signer == owner",  
+            "involved_variables": ["signer", "owner", "v", "r", "s"],  
+            "descriptions": "Verify ECDSA signature matches token owner.",  
+            "references": ["_allowances"]  
+            }  
+    ],
     "nonces(address owner) returns (uint256)": [],
     "DOMAIN_SEPARATOR() returns (bytes32)": [],
     "eip712Domain() returns (bytes1, string, string, uint256, address, bytes32, uint256[])": [],
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
     "hasRole(bytes32 role, address account) returns (bool)": [],
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
-    "grantRole(bytes32 role, address account)": [],
-    "revokeRole(bytes32 role, address account)": [],
-    "renounceRole(bytes32 role, address account)": [],
-    "initialize(string _name, string _symbol, uint8 _decimal)": [
-        {
-            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "isTopLevelCall == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "_initializing == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
+    "grantRole(bytes32 role, address account)": [
+        {  
+        "potential_checks": "hasRole(getRoleAdmin(role), msg.sender)",  
+        "involved_variables": ["_roles", "msg.sender"],  
+        "descriptions": "Restrict to role's admin.",  
+        "references": ["_roles"]  
+        }  
+    ],
+    "revokeRole(bytes32 role, address account)": [
+        {  
+        "potential_checks": "hasRole(getRoleAdmin(role), msg.sender)",  
+        "involved_variables": ["_roles", "msg.sender"],  
+        "descriptions": "Restrict to role's admin.",  
+        "references": ["_roles"]  
         }
+    ],
+    "renounceRole(bytes32 role, address account)": [
+        {  
+        "potential_checks": "account == msg.sender",  
+        "involved_variables": ["account", "msg.sender"],  
+        "descriptions": "Restrict renouncing to self.",  
+        "references": ["_roles"]  
+        }  
+    ],
+    "initialize(string _name, string _symbol, uint8 _decimal)": [
+
     ],
     "mint(address to, uint256 amount)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(MINTER_ROLE, msg.sender)",
             "involved_variables": [
-                "role",
-                "account"
+                "_roles",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Restrict minting to MINTER_ROLE.",
+            "references": [
+                "_balances",
+                "_totalSupply"
+            ]
         }
     ]
 }
