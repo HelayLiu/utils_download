@@ -1,23 +1,72 @@
 {
     "setMinter(address minter_) returns (bool)": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
                 "msg.sender",
                 "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting a new minter.",
             "references": [
-                "_owner"
+                "_minter"
             ]
         }
     ],
     "minter() returns (address)": [],
     "owner() returns (address)": [],
-    "renounceManagement(string confirm)": [],
-    "pushManagement(address newOwner_)": [],
-    "pullManagement()": [],
-    "permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "renounceManagement(string confirm)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing management.",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "pushManagement(address newOwner_)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before pushing management to a new owner.",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "pullManagement()": [
+        {
+            "potential_checks": "msg.sender == _newOwner",
+            "involved_variables": [
+                "msg.sender",
+                "_newOwner"
+            ],
+            "descriptions": "Ensure that the caller is the _newOwner before pulling management.",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "specific_checks": "block.timestamp <= deadline",
+            "involved_variables": ["block.timestamp", "deadline"],
+            "descriptions": "Ensures permit is used before expiration.",
+            "references": ["_allowances"]
+        },
+        {
+            "specific_checks": "signer == owner",
+            "involved_variables": ["signer", "owner", "v", "r", "s"],
+            "descriptions": "Verifies signature validity for off-chain approvals.",
+            "references": ["_allowances"]
+        }
+    ],
     "nonces(address owner) returns (uint256)": [],
     "name() returns (string)": [],
     "symbol() returns (string)": [],
@@ -27,7 +76,21 @@
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "_allowances[sender][msg.sender] >= amount",
+            "involved_variables": [
+                "_allowances",
+                "sender",
+                "msg.sender",
+                "amount"
+            ],
+            "descriptions": "Verify spender allowance covers transfer amount to isolate unauthorized access.",
+            "references": [
+                "_balances"
+            ]
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
     "mint(address account_, uint256 amount_)": [
@@ -35,15 +98,30 @@
             "potential_checks": "_minter == msg.sender",
             "involved_variables": [
                 "_minter",
-                "account_",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current minter before minting tokens.",
             "references": [
-                "_minter"
+                "_balances",
+                "_totalSupply"
             ]
         }
     ],
     "burn(uint256 amount)": [],
-    "burnFrom(address account_, uint256 amount_)": []
+    "burnFrom(address account_, uint256 amount_)": [
+        {
+            "potential_checks": "_allowances[account_][msg.sender] >= amount",
+            "involved_variables": [
+                "_allowances",
+                "account_",
+                "msg.sender",
+                "amount"
+            ],
+            "descriptions": "Verify spender allowance covers burn amount to isolate unauthorized access.",
+            "references": [
+                "_balances",
+                "_totalSupply"
+            ]
+        }
+    ]
 }
