@@ -28,7 +28,7 @@
     ],
     "acceptOwnership()": [
         {
-        "specific_checks": "msg.sender == _pendingOwner",
+        "potential_checks": "msg.sender == _pendingOwner",
         "involved_variables": ["msg.sender", "_pendingOwner"],
         "descriptions": "Verify caller is designated pending owner before ownership transfer.",
         "references": ["_pendingOwner", "_owner"]
@@ -48,7 +48,7 @@
     ],
     "depositReward(uint256 period)": [
         {
-        "specific_checks": "msg.sender == _owner",
+        "potential_checks": "msg.sender == _owner",
         "involved_variables": ["msg.sender", "_owner"],
         "descriptions": "Restrict reward configuration to contract owner.",
         "references": ["rewardPerSec", "lastDistributionRoundEndTime","lastTotalRewardTokenAmount","lastRewardTimestamp"]
@@ -56,7 +56,7 @@
     ],
     "emergencyWithdrawRewards()": [
         {
-        "specific_checks": "msg.sender == _owner",
+        "potential_checks": "msg.sender == _owner",
         "involved_variables": ["msg.sender", "_owner"],
         "descriptions": "Ensure only owner can extract reward tokens during emergencies",
         "references": ["rewardToken", "rewardPerSec", "lastDistributionRoundEndTime","lastTotalRewardTokenAmount","lastRewardTimestamp"]
