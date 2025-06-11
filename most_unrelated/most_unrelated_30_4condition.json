@@ -2,84 +2,53 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
-    "paused() returns (bool)": [],
-    "burn(uint256 amount)": [
+    "paused() returns (bool)": [
         {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "accountBalance",
-                "amount",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "accountBalance >= amount == False",
-            "involved_variables": [
-                "accountBalance",
-                "amount",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+            "specific_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender", "_owner"],
+            "descriptions": "Restrict unpause to contract owner.",
+            "references": ["_paused"]
         }
+    ],
+    "burn(uint256 amount)": [
     ],
     "burnFrom(address account, uint256 amount)": [
         {
-            "potential_checks": "currentAllowance >= amount",
+            "potential_checks": "_allowances[account][msg.sender] >= amount",
             "involved_variables": [
-                "spender",
-                "currentAllowance",
-                "amount",
-                "owner",
                 "account",
-                "accountBalance"
+                "msg.sender",
+                "amount"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "spender",
-                "currentAllowance",
-                "amount",
-                "owner",
-                "account",
-                "accountBalance"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "accountBalance >= amount == False",
-            "involved_variables": [
-                "spender",
-                "currentAllowance",
-                "amount",
-                "owner",
-                "account",
-                "accountBalance"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the spender has enough allowance to burn tokens from the account.",
+            "references": [
+                "_allowances",
+                "_balances"
+            ]
         }
     ],
     "name() returns (string)": [],
@@ -90,114 +59,61 @@
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "_allowances[account][msg.sender] >= amount",
+            "involved_variables": [
+                "account",
+                "msg.sender",
+                "amount"
+            ],
+            "descriptions": "Ensure that the spender has enough allowance to transfer tokens from the account.",
+            "references": [
+                "_allowances",
+                "_balances"
+            ]
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance >= subtractedValue",
-            "involved_variables": [
-                "subtractedValue",
-                "currentAllowance",
-                "spender",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "pause()": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before pausing the contract.",
+            "references": [
+                "_paused"
+            ]
         }
     ],
     "unpause()": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before unpausing the contract.",
+            "references": [
+                "_paused"
+            ]
         }
     ],
     "airdropACTIVE(address[] recipients, uint256[] tokenAmount) returns (bool)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "amount",
-                "totalAddresses",
-                "recipient",
-                "sender",
-                "senderBalance",
-                "i"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "totalAddresses <= 150",
-            "involved_variables": [
-                "amount",
-                "totalAddresses",
-                "recipient",
-                "sender",
-                "senderBalance",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < totalAddresses",
-            "involved_variables": [
-                "amount",
-                "totalAddresses",
-                "recipient",
-                "sender",
-                "senderBalance",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "amount",
-                "totalAddresses",
-                "recipient",
-                "sender",
-                "senderBalance",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "senderBalance >= amount == False",
-            "involved_variables": [
-                "amount",
-                "totalAddresses",
-                "recipient",
-                "sender",
-                "senderBalance",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before executing the airdrop.",
+            "references": [
+                "_balances"
+            ]
         }
     ]
 }
