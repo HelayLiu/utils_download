@@ -28,7 +28,7 @@
     ],
     "paused() returns (bool)": [
         {
-            "specific_checks": "msg.sender == _owner",
+            "potential_checks": "msg.sender == _owner",
             "involved_variables": ["msg.sender", "_owner"],
             "descriptions": "Restrict unpause to contract owner.",
             "references": ["_paused"]
