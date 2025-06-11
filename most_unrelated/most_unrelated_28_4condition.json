@@ -3,828 +3,133 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
-    "initialize(address _stakeToken, address _rewardToken, uint256 _rewardInterval, uint256 _rewardsRatioNumerator, uint256 _rewardsRatioDenominator, uint256 _minStakingPeriod, uint256 _maxStakingPeriod)": [
-        {
-            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
             "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "isTopLevelCall == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "_initializing == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
+                "_owner"
             ]
         }
     ],
+    "initialize(address _stakeToken, address _rewardToken, uint256 _rewardInterval, uint256 _rewardsRatioNumerator, uint256 _rewardsRatioDenominator, uint256 _minStakingPeriod, uint256 _maxStakingPeriod)": [],
     "pause()": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before pausing the contract.",
+            "references": ["_paused"]
         }
     ],
     "unPause()": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before unpausing the contract.",
+            "references": ["_paused"]
         }
     ],
     "setStakeToken(address _stakeToken)": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "stakeToken",
-                "_stakeToken"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeToken"
-            ]
-        },
-        {
-            "potential_checks": "_stakeToken != stakeToken == False",
-            "involved_variables": [
-                "stakeToken",
-                "_stakeToken"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeToken"
-            ]
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before setting the stake token.",
+            "references": ["stakeToken"]
         }
     ],
     "setRewardToken(address _rewardToken)": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "rewardToken",
-                "_rewardToken"
-            ],
-            "descriptions": "",
-            "references": [
-                "rewardToken"
-            ]
-        },
-        {
-            "potential_checks": "_rewardToken != rewardToken == False",
-            "involved_variables": [
-                "rewardToken",
-                "_rewardToken"
-            ],
-            "descriptions": "",
-            "references": [
-                "rewardToken"
-            ]
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before setting the reward token.",
+            "references": ["rewardToken"]
         }
     ],
     "setRewardInterval(uint256 _rewardInterval)": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "_rewardInterval"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_rewardInterval > 0 == False",
-            "involved_variables": [
-                "_rewardInterval"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before setting the rewardInterval.",
+            "references": ["rewardInterval"]
         }
     ],
     "setRewardsRatioNumerator(uint256 _rewardsRatioNumerator)": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "_rewardsRatioNumerator"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_rewardsRatioNumerator > 0 == False",
-            "involved_variables": [
-                "_rewardsRatioNumerator"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before setting the rewardsRatioNumerator.",
+            "references": ["rewardsRatioNumerator"]
         }
     ],
     "setRewardsRatioDenominator(uint256 _rewardsRatioDenominator)": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "_rewardsRatioDenominator"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_rewardsRatioDenominator > 0 == False",
-            "involved_variables": [
-                "_rewardsRatioDenominator"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before setting the rewardsRatioDenominator.",
+            "references": ["rewardsRatioDenominator"]
         }
     ],
     "setMinStakingPeriod(uint256 _minStakingPeriod)": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "_minStakingPeriod"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_minStakingPeriod > 0 == False",
-            "involved_variables": [
-                "_minStakingPeriod"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before setting the minStakingPeriod.",
+            "references": ["minStakingPeriod"]
         }
     ],
     "setMaxStakingPeriod(uint256 _maxStakingPeriod)": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "_maxStakingPeriod"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_maxStakingPeriod > 0 == False",
-            "involved_variables": [
-                "_maxStakingPeriod"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before setting the minStakingPeriod.",
+            "references": ["maxStakingPeriod"]
         }
     ],
     "stake(uint256 _stakeAmount) returns (bool)": [
-        {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_stakeAmount",
-                "_ENTERED",
-                "_status",
-                "stakeToken"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "stakeToken"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "_stakeAmount",
-                "_ENTERED",
-                "_status",
-                "stakeToken"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "stakeToken"
-            ]
-        },
-        {
-            "potential_checks": "_stakeAmount > 0",
-            "involved_variables": [
-                "_stakeAmount",
-                "_ENTERED",
-                "_status",
-                "stakeToken"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "stakeToken"
-            ]
-        },
-        {
-            "potential_checks": "IERC20Upgradeable(stakeToken).balanceOf(msg.sender) >= _stakeAmount == False",
-            "involved_variables": [
-                "_stakeAmount",
-                "_ENTERED",
-                "_status",
-                "stakeToken"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "stakeToken"
-            ]
-        }
     ],
     "getTotalActiveRewards() returns (uint256)": [
-        {
-            "potential_checks": "i < allStakers.length == False",
-            "involved_variables": [
-                "i",
-                "allStakers"
-            ],
-            "descriptions": "",
-            "references": [
-                "allStakers"
-            ]
-        }
     ],
     "claim(uint256 _id) returns (bool)": [
         {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "stakedCount[msg.sender] > 0",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "stakeInfo.amount > 0",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "stakeInfo.isActive",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= stakeInfo.lastClaimedTS + minStakingPeriod",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "! stakeInfo.isActive == False",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp <= stakeInfo.startTS + maxStakingPeriod == False",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "stakeInfo.lastClaimedTS <= stakeInfo.startTS + maxStakingPeriod == False",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "IERC20Upgradeable(rewardToken).balanceOf(address(this)) >= rewardTokens == False",
-            "involved_variables": [
-                "stakeInfos",
-                "stakeInfo",
-                "this",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardTokens",
-                "rewardToken",
-                "minStakingPeriod",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "maxStakingPeriod",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "rewardToken",
-                "minStakingPeriod"
-            ]
+        "specific_checks": "stakedCount[msg.sender] > 0",
+        "involved_variables": ["stakedCount"],
+        "descriptions": "Verify user has active stakes",
+        "references": ["stakeInfos"]
         }
     ],
     "unStake(uint256 _id) returns (bool)": [
-        {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "stakeInfos",
-                "isMinPeriodElapsed",
-                "stakeInfo",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "totalAmount",
-                "contractBalance",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "_ENTERED",
-                "_status",
-                "stakedCount"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "stakeInfos",
-                "isMinPeriodElapsed",
-                "stakeInfo",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "totalAmount",
-                "contractBalance",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "_ENTERED",
-                "_status",
-                "stakedCount"
-            ]
-        },
-        {
-            "potential_checks": "stakedCount[msg.sender] > 0",
-            "involved_variables": [
-                "stakeInfos",
-                "isMinPeriodElapsed",
-                "stakeInfo",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "totalAmount",
-                "contractBalance",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "_ENTERED",
-                "_status",
-                "stakedCount"
-            ]
-        },
-        {
-            "potential_checks": "stakeInfo.amount > 0",
-            "involved_variables": [
-                "stakeInfos",
-                "isMinPeriodElapsed",
-                "stakeInfo",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "totalAmount",
-                "contractBalance",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "_ENTERED",
-                "_status",
-                "stakedCount"
-            ]
-        },
-        {
-            "potential_checks": "stakeInfo.isActive",
-            "involved_variables": [
-                "stakeInfos",
-                "isMinPeriodElapsed",
-                "stakeInfo",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "totalAmount",
-                "contractBalance",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "_ENTERED",
-                "_status",
-                "stakedCount"
-            ]
-        },
-        {
-            "potential_checks": "isMinPeriodElapsed == False",
-            "involved_variables": [
-                "stakeInfos",
-                "isMinPeriodElapsed",
-                "stakeInfo",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "totalAmount",
-                "contractBalance",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "_ENTERED",
-                "_status",
-                "stakedCount"
-            ]
-        },
-        {
-            "potential_checks": "contractBalance >= totalAmount == False",
-            "involved_variables": [
-                "stakeInfos",
-                "isMinPeriodElapsed",
-                "stakeInfo",
-                "_ENTERED",
-                "_status",
-                "stakedCount",
-                "totalAmount",
-                "contractBalance",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakeInfos",
-                "_ENTERED",
-                "_status",
-                "stakedCount"
-            ]
-        }
     ],
     "getRewardsByID(address user, uint256 _id) returns (uint256)": [
-        {
-            "potential_checks": "! stakeInfo.isActive == False",
-            "involved_variables": [
-                "block.timestamp",
-                "stakeInfo",
-                "maxStakingPeriod"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp <= stakeInfo.startTS + maxStakingPeriod == False",
-            "involved_variables": [
-                "block.timestamp",
-                "stakeInfo",
-                "maxStakingPeriod"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxStakingPeriod"
-            ]
-        },
-        {
-            "potential_checks": "stakeInfo.lastClaimedTS <= stakeInfo.startTS + maxStakingPeriod == False",
-            "involved_variables": [
-                "block.timestamp",
-                "stakeInfo",
-                "maxStakingPeriod"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxStakingPeriod"
-            ]
-        }
     ],
     "getRewardsByUser(address user) returns (uint256)": [
-        {
-            "potential_checks": "i < count == False",
-            "involved_variables": [
-                "count",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+
     ],
     "getUserStakes(address user) returns (Stake.StakeDetails[], Stake.StakeDetails[])": [
-        {
-            "potential_checks": "i < stakedCount[user] == False",
-            "involved_variables": [
-                "user",
-                "i",
-                "i_scope_0",
-                "stakedCount"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakedCount"
-            ]
-        },
-        {
-            "potential_checks": "i_scope_0 < stakedCount[user] == False",
-            "involved_variables": [
-                "user",
-                "i",
-                "i_scope_0",
-                "stakedCount"
-            ],
-            "descriptions": "",
-            "references": [
-                "stakedCount"
-            ]
-        }
     ],
     "withdrawTokens(uint256 _amount)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": ["_owner", "msg.sender"],
+            "descriptions": "Ensure that the caller is the current owner before withdrawing tokens.",
             "references": []
         }
     ],
     "getContractTokenBalance() returns (uint256)": [],
     "getTotalStakedAmount() returns (uint256)": [
-        {
-            "potential_checks": "i < allStakers.length == False",
-            "involved_variables": [
-                "i",
-                "allStakers"
-            ],
-            "descriptions": "",
-            "references": [
-                "allStakers"
-            ]
-        }
     ]
 }
