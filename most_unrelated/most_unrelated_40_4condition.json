@@ -5,54 +5,31 @@
     "totalSupply() returns (uint256)": [],
     "balanceOf(address account) returns (uint256)": [],
     "transfer(address recipient, uint256 amount) returns (bool)": [
-        {
-            "potential_checks": "senderBalance >= amount == False",
-            "involved_variables": [
-                "sender",
-                "recipient",
-                "amount",
-                "senderBalance"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance != type()(uint256).max == False",
+                {
+            "potential_checks": "_allowances[account][msg.sender] >= amount",
             "involved_variables": [
-                "sender",
-                "amount",
+                "msg.sender",
                 "currentAllowance",
-                "senderBalance",
-                "recipient"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "senderBalance >= amount == False",
-            "involved_variables": [
-                "sender",
                 "amount",
-                "currentAllowance",
-                "senderBalance",
-                "recipient"
+                "account"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure spender has sufficient allowance.",
+            "references": ["_allowances", "_balances"]
         }
     ],
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
             "references": [
                 "_owner"
             ]
@@ -63,9 +40,9 @@
             "potential_checks": "_owner == msg.sender",
             "involved_variables": [
                 "_owner",
-                "newOwner"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
             "references": [
                 "_owner"
             ]
@@ -73,16 +50,5 @@
     ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance >= subtractedValue",
-            "involved_variables": [
-                "subtractedValue",
-                "spender",
-                "currentAllowance",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ]
 }
