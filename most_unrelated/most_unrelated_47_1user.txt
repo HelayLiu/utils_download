@@ -1,4 +1,6 @@
-- Contributors can securely participate in fundraising with caps enforced per address, ensuring individual contribution states are isolated.
-- The owner/admin manages whitelisting and caps to enforce participation rules, with modifications restricted to authorized roles.
-- The protocol admin performs emergency operations with exclusive access rights, isolating critical recovery functions.
-- Post-fundraising, the DAO executes arbitrary calls while maintaining state integrity through access controls.
+- As a project owner, I want to set up a fundraising with a goal and deadline, and finalize it to create a token and liquidity pool.
+- As a contributor, I want to contribute ETH to the fundraising and receive tokens if the goal is reached, or get a refund if not.
+- As a whitelisted user, I want to contribute during the whitelist period with a maximum cap.
+- As a public user, I want to contribute (if the project allows public contributions) with a maximum cap per user.
+- As the owner or protocol admin, I want to add/remove users from the whitelist and adjust the caps.
+- As the protocol admin, I want to perform emergency escape to recover funds in case something goes wrong before finalization.

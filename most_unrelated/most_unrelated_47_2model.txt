@@ -1,21 +1,21 @@
-- `contributions`:
-  · Write restricted to Contributor or Contract.
-  · Read restricted to None.
-- `whitelist`:
-  · Write restricted to Owner or Protocol Admin.
-  · Read restricted to None.
-- `fundraisingFinalized`:
-  · Write restricted to Contract.
-  · Read restricted to None.
-- `fundraisingDeadline`:
-  · Write restricted to Owner or Protocol Admin.
-  · Read restricted to None.
-- `goalReached`:
-  · Write restricted to Contract.
-  · Read restricted to None.
-- `liquidityLocker`:
-  · Write restricted to Contract.
-  · Read restricted to None.
-- `_status` (ReentrancyGuard):
-  · Write restricted to Contract.
-  · Read restricted to Contract (internal).
+- `contributions`: `mapping(address => uint256) public`
+  · Write restricted to: Contributors (during `contribute`), Contract (during `refund`)
+  · Read restricted to: None (public visibility)
+- `whitelist`: `mapping(address => bool) public`
+  · Write restricted to: Owner/Protocol Admin (via `addToWhitelist`/`removeFromWhitelist`)
+  · Read restricted to: None
+- `fundraisingFinalized`: `bool public`
+  · Write restricted to: Contract (during `finalizeFundraising`)
+  · Read restricted to: None
+- `fundraisingDeadline`: `uint256 public`
+  · Write restricted to: Owner/Protocol Admin (via `extendFundraisingDeadline`)
+  · Read restricted to: None
+- `goalReached`: `bool public`
+  · Write restricted to: Contract (set when `totalRaised` hits goal)
+  · Read restricted to: None
+- `liquidityLocker`: `address public`
+  · Write restricted to: Contract (during `finalizeFundraising`)
+  · Read restricted to: None
+- `_status` (ReentrancyGuard): `uint256 private`
+  · Write restricted to: Contract (via `nonReentrant` modifier)
+  · Read restricted to: Contract (internal)
