@@ -4,50 +4,48 @@
     "getRoleMemberCount(bytes32 role) returns (uint256)": [],
     "hasRole(bytes32 role, address account) returns (bool)": [],
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
-    "grantRole(bytes32 role, address account)": [],
-    "revokeRole(bytes32 role, address account)": [],
-    "renounceRole(bytes32 role, address callerConfirmation)": [],
-    "burn(uint256 value)": [
+    "grantRole(bytes32 role, address account)": [
+        {  
+        "potential_checks": "hasRole(getRoleAdmin(role), msg.sender)",  
+        "involved_variables": ["msg.sender", "role"],  
+        "descriptions": "Ensure caller has admin role for the specified role.",  
+        "references": ["_roles"]  
+        }  
+    ],
+    "revokeRole(bytes32 role, address account)": [
+        {  
+        "potential_checks": "hasRole(getRoleAdmin(role), msg.sender)",  
+        "involved_variables": ["msg.sender", "role"],  
+        "descriptions": "Ensure caller has admin role for the specified role.",  
+        "references": ["_roles"]  
+        }  
+    ],
+    "renounceRole(bytes32 role, address callerConfirmation)": [
         {
-            "potential_checks": "fromBalance < value == False",
+            "potential_checks": "callerConfirmation == msg.sender",
             "involved_variables": [
-                "fromBalance",
-                "account",
-                "to",
-                "from",
-                "value"
+                "msg.sender",
+                "callerConfirmation"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure the caller is the account renouncing the role.",
+            "references": ["_roles"]
         }
+    ],
+    "burn(uint256 value)": [
     ],
     "burnFrom(address account, uint256 value)": [
         {
-            "potential_checks": "currentAllowance != type()(uint256).max == False",
+            "potential_checks": "_allowances[account][msg.sender] >= value",
             "involved_variables": [
-                "fromBalance",
+                "_allowances",
                 "account",
-                "currentAllowance",
-                "to",
-                "from",
+                "msg.sender",
                 "value"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "fromBalance < value == False",
-            "involved_variables": [
-                "fromBalance",
-                "account",
-                "currentAllowance",
-                "to",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure caller has sufficient allowance from account.",
+            "references": ["_balances", "_allowances"]
         }
+
     ],
     "name() returns (string)": [],
     "symbol() returns (string)": [],
@@ -57,23 +55,48 @@
     "transfer(address to, uint256 value) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 value) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
-    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "_allowances[from][msg.sender] >= value",
+            "involved_variables": [
+                "_allowances",
+                "from",
+                "msg.sender",
+                "value"
+            ],
+            "descriptions": "Ensure from has enough balance and spender has enough allowance.",
+            "references": ["_balances", "_allowances"]
+        }
+    ],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {  
+        "potential_checks": "block.timestamp <= deadline",  
+        "involved_variables": ["block.timestamp"],  
+        "descriptions": "Ensure permit deadline has not expired.",  
+        "references": ["_allowances"]  
+        },  
+        {  
+        "potential_checks": "signer == owner",  
+        "involved_variables": ["owner","v", "r", "s"],  
+        "descriptions": "Verify signature matches token owner.",  
+        "references": ["_allowances"]  
+        },  
+        {  
+        "potential_checks": "nonce == _nonces[owner]",  
+        "involved_variables": ["_nonces[owner]"],  
+        "descriptions": "Ensure provided nonce matches owner's current nonce.",  
+        "references": ["_allowances"]  
+        }  
+    ],
     "nonces(address owner) returns (uint256)": [],
     "DOMAIN_SEPARATOR() returns (bytes32)": [],
     "eip712Domain() returns (bytes1, string, string, uint256, address, bytes32, uint256[])": [],
     "mint(address to, uint256 amount)": [
         {
-            "potential_checks": "fromBalance < value == False",
-            "involved_variables": [
-                "fromBalance",
-                "account",
-                "to",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "hasRole(MINTER_ROLE, msg.sender)",
+            "involved_variables": ["msg.sender","_roles"],
+            "descriptions": "Ensure caller has the MINTER_ROLE to mint tokens.",
+            "references": ["_balances","totalSupply"]
         }
     ]
 }
