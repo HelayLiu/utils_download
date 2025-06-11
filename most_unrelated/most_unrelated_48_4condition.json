@@ -55,13 +55,13 @@
     ],
     "permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
         {
-            "specific_checks": "block.timestamp <= deadline",
+            "potential_checks": "block.timestamp <= deadline",
             "involved_variables": ["block.timestamp", "deadline"],
             "descriptions": "Ensures permit is used before expiration.",
             "references": ["_allowances"]
         },
         {
-            "specific_checks": "signer == owner",
+            "potential_checks": "signer == owner",
             "involved_variables": ["signer", "owner", "v", "r", "s"],
             "descriptions": "Verifies signature validity for off-chain approvals.",
             "references": ["_allowances"]
