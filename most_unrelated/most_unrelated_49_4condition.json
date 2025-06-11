@@ -2,266 +2,72 @@
     "proxiableUUID() returns (bytes32)": [],
     "upgradeTo(address newImplementation)": [
         {
-            "potential_checks": "address(this) != __self",
+            "potential_checks": "hasRole(UPGRADER_ROLE, msg.sender)",
             "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
+                "msg.sender",
+                "_roles"
             ],
-            "descriptions": "",
+            "descriptions": "Restricts upgrades to UPGRADER_ROLE.",
             "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "_getImplementation() == __self",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
+                "implementation"
             ]
         }
     ],
     "upgradeToAndCall(address newImplementation, bytes data)": [
         {
-            "potential_checks": "address(this) != __self",
+            "potential_checks": "hasRole(UPGRADER_ROLE, msg.sender)",
             "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
+                "msg.sender",
+                "_roles"
             ],
-            "descriptions": "",
+            "descriptions": "Restricts upgrades to UPGRADER_ROLE.",
             "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "_getImplementation() == __self",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value == False",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "AddressUpgradeable.isContract(newImplementation)",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "TMP_736",
-                "newImplementation",
-                "_ROLLBACK_SLOT",
-                "this",
-                "role",
-                "__self",
-                "StorageSlotUpgradeable",
-                "data",
-                "forceCall",
-                "account",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "__self",
-                "_ROLLBACK_SLOT"
+                "implementation"
             ]
         }
     ],
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
     "hasRole(bytes32 role, address account) returns (bool)": [],
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
-    "grantRole(bytes32 role, address account)": [],
-    "revokeRole(bytes32 role, address account)": [],
-    "renounceRole(bytes32 role, address account)": [],
+    "grantRole(bytes32 role, address account)": [
+        {
+            "potential_checks": "hasRole(getRoleAdmin(role), msg.sender)",
+            "involved_variables": [
+                "msg.sender",
+                "_roles"
+            ],
+            "descriptions": "Ensures only accounts with the admin role can grant roles.",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
+    "revokeRole(bytes32 role, address account)": [
+        {
+            "potential_checks": "hasRole(getRoleAdmin(role), msg.sender)",
+            "involved_variables": [
+                "msg.sender",
+                "_roles"
+            ],
+            "descriptions": "Ensures only accounts with the admin role can grant roles.",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
+    "renounceRole(bytes32 role, address account)": [
+        {
+            "potential_checks": "account == msg.sender",
+            "involved_variables": [
+                "account",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the account renouncing the role.",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
     "balanceOf(address owner) returns (uint256)": [],
     "ownerOf(uint256 tokenId) returns (address)": [],
     "name() returns (string)": [],
@@ -273,750 +79,271 @@
     "isApprovedForAll(address owner, address operator) returns (bool)": [],
     "transferFrom(address from, address to, uint256 tokenId)": [
         {
-            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "potential_checks": "msg.sender == owner || _operatorApprovals[owner][msg.sender] || tokenApprovals[tokenId] == msg.sender",
             "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
+                "msg.sender",
+                "owner",
+                "_operatorApprovals",
+                "tokenApprovals",
+                "tokenId"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "ERC721Upgradeable.ownerOf(tokenId) == from == False",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is either the owner, an approved operator, or has specific token approval.",
+            "references": [
+                "_balances",
+                "_owners"
+            ]
         }
     ],
     "safeTransferFrom(address from, address to, uint256 tokenId)": [
         {
-            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "potential_checks": "msg.sender == owner || _operatorApprovals[owner][msg.sender] || tokenApprovals[tokenId] == msg.sender",
             "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
+                "msg.sender",
+                "owner",
+                "_operatorApprovals",
+                "tokenApprovals",
+                "tokenId"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "ERC721Upgradeable.ownerOf(tokenId) == from == False",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is either the owner, an approved operator, or has specific token approval.",
+            "references": [
+                "_balances",
+                "_owners"
+            ]
         }
     ],
     "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
         {
-            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "potential_checks": "msg.sender == owner || _operatorApprovals[owner][msg.sender] || tokenApprovals[tokenId] == msg.sender",
             "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
+                "msg.sender",
+                "owner",
+                "_operatorApprovals",
+                "tokenApprovals",
+                "tokenId"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "ERC721Upgradeable.ownerOf(tokenId) == from == False",
-            "involved_variables": [
-                "from",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
-    "initialize()": [
-        {
-            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is either the owner, an approved operator, or has specific token approval.",
             "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "isTopLevelCall == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "_initializing == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
+                "_balances",
+                "_owners"
             ]
         }
     ],
+    "initialize()": [],
     "setURI(string uri)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
             "involved_variables": [
                 "role",
-                "account",
-                "TMP_955",
-                "uri"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "bytes(uri).length > 0 == False",
-            "involved_variables": [
-                "role",
-                "account",
-                "TMP_955",
-                "uri"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller has the MINTER_ROLE before setting the URI.",
+            "references": [
+                "_basicUri"
+            ]
         }
     ],
     "safeMint(address to, uint256 tokenId)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
             "involved_variables": [
                 "role",
-                "reason",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "AddressUpgradeable",
-                "to",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the MINTER_ROLE before minting a token.",
             "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
+                "_balances",
+                "_owners"
             ]
         },
         {
-            "potential_checks": "_exists(tokenId)",
+            "potential_checks": "!blockTokenLists[tokenId]",
             "involved_variables": [
-                "role",
-                "reason",
-                "paused",
                 "tokenId",
-                "data",
-                "account",
-                "AddressUpgradeable",
-                "to",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
+                "blockTokenLists"
             ],
-            "descriptions": "",
+            "descriptions": "Blocks minting for restricted tokens.",
             "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
+                "_balances",
+                "_owners"
             ]
         },
         {
-            "potential_checks": "paused",
+            "potential_checks": "!blockWalletLists[to]",
             "involved_variables": [
-                "role",
-                "reason",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "AddressUpgradeable",
                 "to",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
+                "blockWalletLists"
             ],
-            "descriptions": "",
+            "descriptions": "Blocks minting to restricted wallets.",
             "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "blockTokenLists[tokenId]",
-            "involved_variables": [
-                "role",
-                "reason",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "AddressUpgradeable",
-                "to",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "! blockWalletLists[from] && ! blockWalletLists[to]",
-            "involved_variables": [
-                "role",
-                "reason",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "AddressUpgradeable",
-                "to",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "role",
-                "reason",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "AddressUpgradeable",
-                "to",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "to.isContract()",
-            "involved_variables": [
-                "role",
-                "reason",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "AddressUpgradeable",
-                "to",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "reason.length == 0 == False",
-            "involved_variables": [
-                "role",
-                "reason",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "AddressUpgradeable",
-                "to",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
+                "_balances",
+                "_owners"
             ]
         }
     ],
     "safeMintBatch(address to, uint256[] tokenIds)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
             "involved_variables": [
-                "tokenIds",
                 "role",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "to",
-                "i",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the MINTER_ROLE before minting a token.",
             "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
+                "_balances",
+                "_owners"
             ]
         },
         {
-            "potential_checks": "i < tokenIds.length",
+            "potential_checks": "!blockTokenLists[tokenId]",
             "involved_variables": [
-                "tokenIds",
-                "role",
-                "paused",
                 "tokenId",
-                "data",
-                "account",
-                "to",
-                "i",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
+                "blockTokenLists"
             ],
-            "descriptions": "",
+            "descriptions": "Blocks minting for restricted tokens.",
             "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
+                "_balances",
+                "_owners"
             ]
         },
         {
-            "potential_checks": "_exists(tokenId)",
+            "potential_checks": "!blockWalletLists[to]",
             "involved_variables": [
-                "tokenIds",
-                "role",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
                 "to",
-                "i",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
+                "blockWalletLists"
             ],
-            "descriptions": "",
+            "descriptions": "Blocks minting to restricted wallets.",
             "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "paused",
-            "involved_variables": [
-                "tokenIds",
-                "role",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "to",
-                "i",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "blockTokenLists[tokenId]",
-            "involved_variables": [
-                "tokenIds",
-                "role",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "to",
-                "i",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "! blockWalletLists[from] && ! blockWalletLists[to]",
-            "involved_variables": [
-                "tokenIds",
-                "role",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "to",
-                "i",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
-            ]
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "tokenIds",
-                "role",
-                "paused",
-                "tokenId",
-                "data",
-                "account",
-                "to",
-                "i",
-                "blockWalletLists",
-                "blockTokenLists",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "blockWalletLists",
-                "blockTokenLists",
-                "paused"
+                "_balances",
+                "_owners"
             ]
         }
     ],
     "safeTransferFromBatch(address from, address to, uint256[] tokenIds)": [
         {
-            "potential_checks": "tokenIds.length <= transferMaxLimit",
+            "potential_checks": "msg.sender == owner || _operatorApprovals[owner][msg.sender] || tokenApprovals[tokenId] == msg.sender",
             "involved_variables": [
-                "tokenIds",
-                "transferMaxLimit",
-                "tokenId",
+                "msg.sender",
                 "owner",
-                "i",
-                "from"
+                "_operatorApprovals",
+                "tokenApprovals",
+                "tokenId"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is either the owner, an approved operator, or has specific token approval.",
             "references": [
-                "transferMaxLimit"
-            ]
-        },
-        {
-            "potential_checks": "i < tokenIds.length",
-            "involved_variables": [
-                "tokenIds",
-                "transferMaxLimit",
-                "tokenId",
-                "owner",
-                "i",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "transferMaxLimit"
-            ]
-        },
-        {
-            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
-            "involved_variables": [
-                "tokenIds",
-                "transferMaxLimit",
-                "tokenId",
-                "owner",
-                "i",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "transferMaxLimit"
-            ]
-        },
-        {
-            "potential_checks": "_exists(tokenId)",
-            "involved_variables": [
-                "tokenIds",
-                "transferMaxLimit",
-                "tokenId",
-                "owner",
-                "i",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "transferMaxLimit"
-            ]
-        },
-        {
-            "potential_checks": "ERC721Upgradeable.ownerOf(tokenId) == from == False",
-            "involved_variables": [
-                "tokenIds",
-                "transferMaxLimit",
-                "tokenId",
-                "owner",
-                "i",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "transferMaxLimit"
+                "_balances",
+                "_owners"
             ]
         }
     ],
     "burn(uint256 tokenId)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(BURNER_ROLE,msg.sender)",
             "involved_variables": [
                 "role",
-                "account",
-                "tokenId",
-                "owner"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller has the BURNER_ROLE before burning a token.",
+            "references": [
+                "_balances",
+                "_owners"
+            ]
         },
         {
-            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
+            "potential_checks": "msg.sender == owner || _operatorApprovals[owner][msg.sender] || tokenApprovals[tokenId] == msg.sender",
             "involved_variables": [
-                "role",
-                "account",
-                "tokenId",
-                "owner"
+                "msg.sender",
+                "owner",
+                "_operatorApprovals",
+                "tokenApprovals",
+                "tokenId"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId) == False",
-            "involved_variables": [
-                "role",
-                "account",
-                "tokenId",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is either the owner, an approved operator, or has specific token approval.",
+            "references": [
+                "_balances",
+                "_owners"
+            ]
         }
     ],
     "burnBatch(uint256[] tokenIds)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(BURNER_ROLE,msg.sender)",
             "involved_variables": [
-                "tokenIds",
                 "role",
-                "tokenId",
-                "account",
-                "owner",
-                "i"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller has the BURNER_ROLE before burning a token.",
+            "references": [
+                "_balances",
+                "_owners"
+            ]
         },
         {
-            "potential_checks": "i < tokenIds.length",
+            "potential_checks": "msg.sender == owner || _operatorApprovals[owner][msg.sender] || tokenApprovals[tokenId] == msg.sender",
             "involved_variables": [
-                "tokenIds",
-                "role",
-                "tokenId",
-                "account",
+                "msg.sender",
                 "owner",
-                "i"
+                "_operatorApprovals",
+                "tokenApprovals",
+                "tokenId"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_isApprovedOrOwner(msg.sender,tokenId)",
-            "involved_variables": [
-                "tokenIds",
-                "role",
-                "tokenId",
-                "account",
-                "owner",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_exists(tokenId) == False",
-            "involved_variables": [
-                "tokenIds",
-                "role",
-                "tokenId",
-                "account",
-                "owner",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is either the owner, an approved operator, or has specific token approval.",
+            "references": [
+                "_balances",
+                "_owners"
+            ]
         }
     ],
     "setBlockWalletList(address[] addresses, bool[] isBlocks)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(BLOCKER_ROLE,msg.sender)",
             "involved_variables": [
                 "role",
-                "i",
-                "addresses",
-                "account"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < addresses.length == False",
-            "involved_variables": [
-                "role",
-                "i",
-                "addresses",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller has the BLOCKER_ROLE before setting block wallet list.",
+            "references": [
+                "blockWalletLists"
+            ]
         }
     ],
     "setBlockTokenList(uint256[] tokenIds, bool[] isBlocks)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(BLOCKER_ROLE,msg.sender)",
             "involved_variables": [
                 "role",
-                "i",
-                "tokenIds",
-                "account"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < tokenIds.length == False",
-            "involved_variables": [
-                "role",
-                "i",
-                "tokenIds",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller has the BLOCKER_ROLE before setting block token list.",
+            "references": [
+                "blockTokenLists"
+            ]
         }
     ],
     "setTransferMaxLimit(uint256 maxLimit)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
             "involved_variables": [
                 "role",
-                "account"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller has the MINTER_ROLE before setting transfer max limit.",
+            "references": [
+                "transferMaxLimit"
+            ]
         }
     ],
     "setPasuedState(bool paused_)": [
         {
-            "potential_checks": "! hasRole(role,account)",
+            "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
             "involved_variables": [
                 "role",
-                "account"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller has the MINTER_ROLE before setting paused state.",
+            "references": [
+                "paused"
+            ]
         }
     ],
-    "ownerOfBatch(uint256[] tokenIds) returns (address[])": [
-        {
-            "potential_checks": "i < tokenIds.length == False",
-            "involved_variables": [
-                "i",
-                "tokenIds"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ]
+    "ownerOfBatch(uint256[] tokenIds) returns (address[])": []
 }
