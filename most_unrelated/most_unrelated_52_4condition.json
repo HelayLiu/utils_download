@@ -3,352 +3,118 @@
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
     "hasRole(bytes32 role, address account) returns (bool)": [],
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
-    "grantRole(bytes32 role, address account)": [],
-    "revokeRole(bytes32 role, address account)": [],
-    "renounceRole(bytes32 role, address account)": [],
+    "grantRole(bytes32 role, address account)": [
+        {
+            "specific_checks": "hasRole(getRoleAdmin(role), msg.sender)",
+            "involved_variables":  ["_roles", "msg.sender"],
+            "descriptions": "Restrict to role admin",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
+    "revokeRole(bytes32 role, address account)": [
+        {
+            "specific_checks": "hasRole(getRoleAdmin(role), msg.sender)",
+            "involved_variables": ["_roles", "msg.sender"],
+            "descriptions": "Restrict to role admin",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
+    "renounceRole(bytes32 role, address account)": [
+        {
+            "specific_checks": "account == msg.sender",
+            "involved_variables": ["_roles", "msg.sender"],
+            "descriptions": "Allow users to renounce their own roles",
+            "references": [
+                "_roles"
+            ]
+        }
+    ],
     "deposit(address _receiver, string _referralId) returns (uint256)": [
         {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "specific_checks": "msg.value >= minDeposit() && msg.value <= maxDeposit()",
+            "involved_variables":  ["minDeposit", "maxDeposit", "msg.value"],
+            "descriptions": "Ensure deposit amount is within allowed limits",
+            "references": ["_balances"]
         }
     ],
     "deposit(address _receiver) returns (uint256)": [
         {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "specific_checks": "msg.value >= minDeposit() && msg.value <= maxDeposit()",
+            "involved_variables":  ["minDeposit", "maxDeposit", "msg.value"],
+            "descriptions": "Ensure deposit amount is within allowed limits",
+            "references": ["_balances"]
         }
     ],
     "previewDeposit(uint256 _assets) returns (uint256)": [
-        {
-            "potential_checks": "(_assets == 0 || supply == 0) == False",
-            "involved_variables": [
-                "_assets",
-                "supply"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "previewWithdraw(uint256 _shares) returns (uint256)": [
-        {
-            "potential_checks": "(supply == 0) == False",
-            "involved_variables": [
-                "supply"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "getExchangeRate() returns (uint256)": [],
     "totalAssets() returns (uint256)": [],
     "convertToShares(uint256 _assets) returns (uint256)": [
-        {
-            "potential_checks": "(_assets == 0 || supply == 0) == False",
-            "involved_variables": [
-                "_assets",
-                "supply"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "convertToAssets(uint256 _shares) returns (uint256)": [
-        {
-            "potential_checks": "(supply == 0) == False",
-            "involved_variables": [
-                "supply"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "maxDeposit() returns (uint256)": [
-        {
-            "potential_checks": "isVaultHealthy()",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "minDeposit() returns (uint256)": [
-        {
-            "potential_checks": "isVaultHealthy()",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "receiveExecutionLayerRewards()": [],
     "receiveWithdrawVaultUserShare()": [],
     "receiveEthFromAuction()": [],
     "receiveExcessEthFromPool(uint8 _poolId)": [],
     "transferETHToUserWithdrawManager(uint256 _amount)": [
-        {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_ENTERED",
-                "success",
-                "_status"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "_ENTERED",
-                "success",
-                "_status"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "! success == False",
-            "involved_variables": [
-                "_ENTERED",
-                "success",
-                "_status"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        }
+    {
+        "specific_checks": "msg.sender == staderConfig.getUserWithdrawManager()",
+        "involved_variables":  ["staderConfig", "msg.sender"],
+        "descriptions": "Restrict access to UserWithdrawManager contract",
+        "references": ["staderConfig"]
+    }
     ],
     "validatorBatchDeposit(uint8 _poolId)": [
-        {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_ENTERED",
-                "_status",
-                "poolDepositSize",
-                "poolUtils",
-                "selectedPoolCapacity",
-                "availableETHForNewDeposit",
-                "_poolId"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "_ENTERED",
-                "_status",
-                "poolDepositSize",
-                "poolUtils",
-                "selectedPoolCapacity",
-                "availableETHForNewDeposit",
-                "_poolId"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "! poolUtils.isExistingPoolId(_poolId) == False",
-            "involved_variables": [
-                "_ENTERED",
-                "_status",
-                "poolDepositSize",
-                "poolUtils",
-                "selectedPoolCapacity",
-                "availableETHForNewDeposit",
-                "_poolId"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "availableETHForNewDeposit < poolDepositSize == False",
-            "involved_variables": [
-                "_ENTERED",
-                "_status",
-                "poolDepositSize",
-                "poolUtils",
-                "selectedPoolCapacity",
-                "availableETHForNewDeposit",
-                "_poolId"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "selectedPoolCapacity == 0 == False",
-            "involved_variables": [
-                "_ENTERED",
-                "_status",
-                "poolDepositSize",
-                "poolUtils",
-                "selectedPoolCapacity",
-                "availableETHForNewDeposit",
-                "_poolId"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        }
+{
+    "specific_checks": "poolUtils.isExistingPoolId(_poolId)",
+    "involved_variables":  ["poolUtils", "_poolId"],
+    "descriptions": "Verify pool ID exists",
+    "references": ["staderConfig","poolAddress"]
+},
+{
+    "specific_checks": "availableETHForNewDeposit >= poolDepositSize",
+    "involved_variables":  ["availableETHForNewDeposit", "poolDepositSize"],
+    "descriptions": "Ensure sufficient ETH for deposit",
+    "references": ["staderConfig","poolAddress"]
+}
     ],
     "depositETHOverTargetWeight()": [
-        {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "block.number",
-                "_ENTERED",
-                "_status",
-                "lastExcessETHDepositBlock",
-                "ETH_PER_NODE",
-                "poolCount",
-                "excessETHDepositCoolDown",
-                "availableETHForNewDeposit",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "excessETHDepositCoolDown",
-                "_status",
-                "lastExcessETHDepositBlock"
-            ]
-        },
-        {
-            "potential_checks": "block.number < lastExcessETHDepositBlock + excessETHDepositCoolDown == False",
-            "involved_variables": [
-                "block.number",
-                "_ENTERED",
-                "_status",
-                "lastExcessETHDepositBlock",
-                "ETH_PER_NODE",
-                "poolCount",
-                "excessETHDepositCoolDown",
-                "availableETHForNewDeposit",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "excessETHDepositCoolDown",
-                "_status",
-                "lastExcessETHDepositBlock"
-            ]
-        },
-        {
-            "potential_checks": "availableETHForNewDeposit < ETH_PER_NODE == False",
-            "involved_variables": [
-                "block.number",
-                "_ENTERED",
-                "_status",
-                "lastExcessETHDepositBlock",
-                "ETH_PER_NODE",
-                "poolCount",
-                "excessETHDepositCoolDown",
-                "availableETHForNewDeposit",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "excessETHDepositCoolDown",
-                "_status",
-                "lastExcessETHDepositBlock"
-            ]
-        },
-        {
-            "potential_checks": "i < poolCount == False",
-            "involved_variables": [
-                "block.number",
-                "_ENTERED",
-                "_status",
-                "lastExcessETHDepositBlock",
-                "ETH_PER_NODE",
-                "poolCount",
-                "excessETHDepositCoolDown",
-                "availableETHForNewDeposit",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "excessETHDepositCoolDown",
-                "_status",
-                "lastExcessETHDepositBlock"
-            ]
-        }
+{
+    "specific_checks": "block.number >= lastExcessETHDepositBlock + excessETHDepositCoolDown",
+    "involved_variables":  ["lastExcessETHDepositBlock", "excessETHDepositCoolDown"],
+    "descriptions": "Enforce cooldown between excess deposits",
+    "references": ["staderConfig"]
+},
+{
+    "specific_checks": "availableETHForNewDeposit >= ETH_PER_NODE",
+    "involved_variables":  ["availableETHForNewDeposit"],
+    "descriptions": "Ensure sufficient ETH for validator allocation",
+    "references": ["staderConfig"]
+}
     ],
     "isVaultHealthy() returns (bool)": [],
     "initialize(address _admin, address _staderConfig)": [
+ 
+    ],
+    "updateExcessETHDepositCoolDown(uint256 _excessETHDepositCoolDown)": [
         {
-            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "isTopLevelCall == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "_initializing == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
+                "specific_checks": "hasRole(MANAGER_ROLE, msg.sender)",
+    "involved_variables":  ["_roles"],
+    "descriptions": "Restrict to manager role",
+    "references": []
         }
     ],
-    "updateExcessETHDepositCoolDown(uint256 _excessETHDepositCoolDown)": [],
     "updateStaderConfig(address _staderConfig)": [
         {
             "potential_checks": "! hasRole(role,account)",

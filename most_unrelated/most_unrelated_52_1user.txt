@@ -1,0 +1,6 @@
+- As a user, I can deposit ETH to mint ETHx tokens, ensuring my assets are converted based on the current exchange rate reflecting total ETH backing and ETHx supply.  
+- As a staking participant, I can rely on the protocol to allocate my deposited ETH to validators across decentralized pools, maintaining decentralization and security.  
+- As a protocol operator, I can pause deposits during emergencies to protect user assets and system integrity.  
+- As an admin, I can update critical protocol parameters like configuration addresses and deposit cooldowns to adapt to evolving conditions.  
+- As a reward recipient, I benefit from execution layer rewards distributed securely to the protocol, enhancing overall yields.  
+- As a withdrawal requester, I trust that requested ETH withdrawals are processed securely via the dedicated UserWithdrawalManager contract.  

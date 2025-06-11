@@ -1,0 +1,18 @@
+- staderConfig:  
+    · Write restricted to the DEFAULT_ADMIN_ROLE.  
+    · Read restricted to None.  
+- lastExcessETHDepositBlock:  
+    · Write restricted to the contract itself (during depositETHOverTargetWeight execution).  
+    · Read restricted to None.  
+- excessETHDepositCoolDown:  
+    · Write restricted to the MANAGER_ROLE.  
+    · Read restricted to None.  
+- _paused (from PausableUpgradeable):  
+    · Write restricted to the MANAGER_ROLE (pause) or DEFAULT_ADMIN_ROLE (unpause).  
+    · Read restricted to None.  
+- _status (from ReentrancyGuardUpgradeable):  
+    · Write restricted to the contract itself (via nonReentrant modifier).  
+    · Read restricted to None.  
+- _roles (from AccessControlUpgradeable):  
+    · Write restricted to the DEFAULT_ADMIN_ROLE or relevant role admins.  
+    · Read restricted via hasRole/getRoleAdmin functions.  
