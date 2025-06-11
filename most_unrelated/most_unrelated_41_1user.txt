@@ -1,0 +1,6 @@
+- As a contract admin, I want to manage roles (grant/revoke minter/pauser) to enforce access control over critical functions.  
+- As a minter, I want to mint tokens only when the contract is not paused to ensure token supply integrity.  
+- As a pauser, I want to pause/unpause token transfers during emergencies to protect user assets.  
+- As a token holder, I want to transfer/burn my tokens when the contract is not paused to maintain operational security.  
+- As a spender, I want to use allowances only for non-zero addresses with sufficient balances to ensure valid operations.  
+- As any user, I want to query public state (balances, roles, supply) without restrictions for transparency.  

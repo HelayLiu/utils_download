@@ -1,0 +1,18 @@
+- `_balances`: mapping(address => uint256) private  
+  · Write restricted to Token holders (transfers/burns) and Minter (minting).  
+  · Read restricted to Public via getter.  
+- `_allowances`: mapping(address => mapping(address => uint256)) private  
+  · Write restricted to Token owners (approvals) and Spenders (transfers/burns).  
+  · Read restricted to Public via getter.  
+- `_totalSupply`: uint256 private  
+  · Write restricted to Contract during minting/burning.  
+  · Read restricted to Public via getter.  
+- `_roles`: mapping(bytes32 => AccessControl.RoleData) private  
+  · Write restricted to Role admins (grant/revoke) and Self (renounceRole).  
+  · Read restricted to Public via role getters.  
+- `_paused`: bool private  
+  · Write restricted to Pauser role.  
+  · Read restricted to Public via getter.  
+- `_name`, `_symbol`, `_decimals`: (string, string, uint8) private  
+  · Write restricted to None (immutable after construction).  
+  · Read restricted to Public via getters.  

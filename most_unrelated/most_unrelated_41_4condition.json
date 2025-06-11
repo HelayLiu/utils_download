@@ -8,29 +8,40 @@
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "_allowances[sender][msg.sender] >= amount",
+            "involved_variables": [
+                "msg.sender",
+                "currentAllowance",
+                "amount",
+                "sender"
+            ],
+            "descriptions": "Ensure spender has sufficient allowance.",
+            "references": [
+                "_allowances",
+                "_balances"
+            ]
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
     "burn(uint256 amount)": [
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "burnFrom(address account, uint256 amount)": [
         {
-            "potential_checks": "paused() == False",
+            "potential_checks": "_allowances[account][msg.sender] >= amount",
             "involved_variables": [
-                "spender",
-                "account",
-                "owner"
+                "msg.sender",
+                "currentAllowance",
+                "amount",
+                "account"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure spender has sufficient allowance.",
+            "references": [
+                "_allowances",
+                "_balances"
+            ]
         }
     ],
     "hasRole(bytes32 role, address account) returns (bool)": [],
@@ -41,25 +52,10 @@
         {
             "potential_checks": "hasRole(_roles[role].adminRole,msg.sender)",
             "involved_variables": [
-                "role",
-                "EnumerableSet",
                 "_roles",
-                "account"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": [
-                "_roles"
-            ]
-        },
-        {
-            "potential_checks": "_roles[role].members.add(account) == False",
-            "involved_variables": [
-                "role",
-                "EnumerableSet",
-                "_roles",
-                "account"
-            ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the admin role for the specified role.",
             "references": [
                 "_roles"
             ]
@@ -69,25 +65,10 @@
         {
             "potential_checks": "hasRole(_roles[role].adminRole,msg.sender)",
             "involved_variables": [
-                "role",
-                "EnumerableSet",
                 "_roles",
-                "account"
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": [
-                "_roles"
-            ]
-        },
-        {
-            "potential_checks": "_roles[role].members.remove(account) == False",
-            "involved_variables": [
-                "role",
-                "EnumerableSet",
-                "_roles",
-                "account"
-            ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the admin role for the specified role.",
             "references": [
                 "_roles"
             ]
@@ -97,25 +78,10 @@
         {
             "potential_checks": "account == msg.sender",
             "involved_variables": [
-                "role",
-                "EnumerableSet",
-                "_roles",
+                "msg.sender",
                 "account"
             ],
-            "descriptions": "",
-            "references": [
-                "_roles"
-            ]
-        },
-        {
-            "potential_checks": "_roles[role].members.remove(account) == False",
-            "involved_variables": [
-                "role",
-                "EnumerableSet",
-                "_roles",
-                "account"
-            ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the account renouncing the role.",
             "references": [
                 "_roles"
             ]
@@ -125,23 +91,13 @@
         {
             "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
             "involved_variables": [
-                "account",
-                "MINTER_ROLE"
+                "_roles",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the MINTER_ROLE before minting tokens.",
             "references": [
-                "MINTER_ROLE"
-            ]
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "account",
-                "MINTER_ROLE"
-            ],
-            "descriptions": "",
-            "references": [
-                "MINTER_ROLE"
+                "_balances",
+                "_totalSupply"
             ]
         }
     ],
@@ -149,24 +105,11 @@
         {
             "potential_checks": "hasRole(PAUSER_ROLE,msg.sender)",
             "involved_variables": [
-                "PAUSER_ROLE",
-                "_paused"
+                "msg.sender",
+                "_roles"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the PAUSER_ROLE before pausing the contract.",
             "references": [
-                "PAUSER_ROLE",
-                "_paused"
-            ]
-        },
-        {
-            "potential_checks": "_paused == False",
-            "involved_variables": [
-                "PAUSER_ROLE",
-                "_paused"
-            ],
-            "descriptions": "",
-            "references": [
-                "PAUSER_ROLE",
                 "_paused"
             ]
         }
@@ -175,24 +118,11 @@
         {
             "potential_checks": "hasRole(PAUSER_ROLE,msg.sender)",
             "involved_variables": [
-                "PAUSER_ROLE",
-                "_paused"
+                "msg.sender",
+                "_roles"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the PAUSER_ROLE before unpausing the contract.",
             "references": [
-                "PAUSER_ROLE",
-                "_paused"
-            ]
-        },
-        {
-            "potential_checks": "_paused == False",
-            "involved_variables": [
-                "PAUSER_ROLE",
-                "_paused"
-            ],
-            "descriptions": "",
-            "references": [
-                "PAUSER_ROLE",
                 "_paused"
             ]
         }
