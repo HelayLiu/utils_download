@@ -7,13 +7,13 @@
     "isApprovedForAll(address account, address operator) returns (bool)": [],
     "safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes data)": [
         {
-        "specific_checks": "from == msg.sender || isApprovedForAll(from, msg.sender)",
+        "potential_checks": "from == msg.sender || isApprovedForAll(from, msg.sender)",
         "involved_variables": ["from", "msg.sender", "_isApprovedForAll"],
         "descriptions": "Verify msg.sender owns tokens or is approved operator.",
         "references": ["_balances"]
         },
         {
-        "specific_checks": "hasRole(transferRole, from) || hasRole(transferRole, to) || hasRole(transferRole, address(0))",
+        "potential_checks": "hasRole(transferRole, from) || hasRole(transferRole, to) || hasRole(transferRole, address(0))",
         "involved_variables": ["_hasRole", "to", "from"],
         "descriptions": "Verify from/to has TRANSFER_ROLE when transfers are restricted.",
         "references": ["_balances"]
@@ -21,13 +21,13 @@
     ],
     "safeBatchTransferFrom(address from, address to, uint256[] ids, uint256[] amounts, bytes data)": [
                 {
-        "specific_checks": "from == msg.sender || isApprovedForAll(from, msg.sender)",
+        "potential_checks": "from == msg.sender || isApprovedForAll(from, msg.sender)",
         "involved_variables": ["from", "msg.sender", "_isApprovedForAll"],
         "descriptions": "Verify msg.sender owns tokens or is approved operator.",
         "references": ["_balances"]
         },
         {
-        "specific_checks": "hasRole(transferRole, from) || hasRole(transferRole, to) || hasRole(transferRole, address(0))",
+        "potential_checks": "hasRole(transferRole, from) || hasRole(transferRole, to) || hasRole(transferRole, address(0))",
         "involved_variables": ["_hasRole", "to", "from"],
         "descriptions": "Verify from/to has TRANSFER_ROLE when transfers are restricted.",
         "references": ["_balances"]
@@ -38,11 +38,19 @@
     "isTrustedForwarder(address forwarder) returns (bool)": [],
     "claim(address _receiver, uint256 _tokenId, uint256 _quantity, address _currency, uint256 _pricePerToken, IDrop1155.AllowlistProof _allowlistProof, bytes _data)": [
         {
-            ""
+            "potential_checks":"verifyClaim(activeConditionId, _dropMsgSender(),_tokenId, _quantity,_currency,_pricePerToken,_allowlistProof)",
+            "involved_variables":["_dropMsgSender", "_tokenId", "_quantity", "_currency", "_pricePerToken", "_allowlistProof", "activeConditionId"],
+            "descriptions":"Verify claim eligibility and conditions before processing claim.",
+            "references":["_claimConditions"]
         }
     ],
     "setClaimConditions(uint256 _tokenId, IClaimCondition.ClaimCondition[] _conditions, bool _resetClaimEligibility)": [
- 
+        {
+            "potential_checks":"hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables":["msg.sender", "_hasRole"],
+            "descriptions":"Ensure only admin can set claim conditions.",
+            "references":["conditionList"]
+        }
     ],
     "verifyClaim(uint256 _conditionId, address _claimer, uint256 _tokenId, uint256 _quantity, address _currency, uint256 _pricePerToken, IDrop1155.AllowlistProof _allowlistProof) returns (bool)": [
 
@@ -52,37 +60,142 @@
     "getClaimConditionById(uint256 _tokenId, uint256 _conditionId) returns (IClaimCondition.ClaimCondition)": [],
     "getSupplyClaimedByWallet(uint256 _tokenId, uint256 _conditionId, address _claimer) returns (uint256)": [],
     "claim(address receiver, uint256 tokenId, uint256 quantity, address currency, uint256 pricePerToken, IDrop1155.AllowlistProof allowlistProof, bytes data)": [],
-    "setClaimConditions(uint256 tokenId, IClaimCondition.ClaimCondition[] phases, bool resetClaimEligibility)": [],
+    "setClaimConditions(uint256 tokenId, IClaimCondition.ClaimCondition[] phases, bool resetClaimEligibility)": [
+                {
+            "potential_checks":"hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables":["msg.sender", "_hasRole"],
+            "descriptions":"Ensure only admin can set claim conditions.",
+            "references":["conditionList"]
+        }
+    ],
     "getRoleMember(bytes32 role, uint256 index) returns (address)": [],
     "getRoleMemberCount(bytes32 role) returns (uint256)": [],
     "hasRole(bytes32 role, address account) returns (bool)": [],
     "hasRoleWithSwitch(bytes32 role, address account) returns (bool)": [],
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
-    "grantRole(bytes32 role, address account)": [],
-    "revokeRole(bytes32 role, address account)": [],
-    "renounceRole(bytes32 role, address account)": [],
-    "lazyMint(uint256 _amount, string _baseURIForTokens, bytes _data) returns (uint256)": [],
+    "grantRole(bytes32 role, address account)": [
+        {
+        "potential_checks": "hasRole(_getRoleAdmin[role], msg.sender)",
+        "involved_variables": ["_hasRole", "msg.sender"],
+        "descriptions": "Verify msg.sender has admin role for the target role.",
+        "references": [ "_hasRole"]
+        }
+    ],
+    "revokeRole(bytes32 role, address account)": [
+        {
+        "potential_checks": "hasRole(_getRoleAdmin[role], msg.sender)",
+        "involved_variables": ["_hasRole", "msg.sender"],
+        "descriptions": "Verify msg.sender has admin role for the revoke role.",
+        "references": [ "_hasRole"]
+        }
+    ],
+    "renounceRole(bytes32 role, address account)": [
+        {
+        "potential_checks": "msg.sender == account",
+        "involved_variables": ["msg.sender", "account"],
+        "descriptions": "Verify msg.sender is renouncing their own role.",
+        "references": ["_hasRole"]
+        }
+    ],
+    "lazyMint(uint256 _amount, string _baseURIForTokens, bytes _data) returns (uint256)": [
+        {
+        "potential_checks": "hasRole(minterRole, msg.sender)",
+        "involved_variables": ["_hasRole","msg.sender"],
+        "descriptions": "Verify msg.sender has MINTER_ROLE to lazy mint tokens.",
+        "references": ["baseURI","batchIds"]
+        }
+    ],
     "getBaseURICount() returns (uint256)": [],
     "getBatchIdAtIndex(uint256 _index) returns (uint256)": [],
-    "lazyMint(uint256 amount, string baseURIForTokens, bytes extraData) returns (uint256)": [],
+    "lazyMint(uint256 amount, string baseURIForTokens, bytes extraData) returns (uint256)": [
+                {
+        "potential_checks": "hasRole(minterRole, msg.sender)",
+        "involved_variables": ["_hasRole","msg.sender"],
+        "descriptions": "Verify msg.sender has MINTER_ROLE to lazy mint tokens.",
+        "references": ["baseURI","batchIds"]
+        }
+    ],
     "owner() returns (address)": [],
-    "setOwner(address _newOwner)": [],
+    "setOwner(address _newOwner)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set owner.",
+        "references": ["_owner"]
+        }
+    ],
     "primarySaleRecipient() returns (address)": [],
-    "setPrimarySaleRecipient(address _saleRecipient)": [],
+    "setPrimarySaleRecipient(address _saleRecipient)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set primary sale recipient.",
+        "references": ["recipient"]
+        }
+    ],
     "royaltyInfo(uint256 tokenId, uint256 salePrice) returns (address, uint256)": [],
     "getRoyaltyInfoForToken(uint256 _tokenId) returns (address, uint16)": [],
     "getDefaultRoyaltyInfo() returns (address, uint16)": [],
-    "setDefaultRoyaltyInfo(address _royaltyRecipient, uint256 _royaltyBps)": [],
-    "setRoyaltyInfoForToken(uint256 _tokenId, address _recipient, uint256 _bps)": [],
-    "setRoyaltyInfoForToken(uint256 tokenId, address recipient, uint256 bps)": [],
+    "setDefaultRoyaltyInfo(address _royaltyRecipient, uint256 _royaltyBps)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set default royalty info.",
+        "references": ["royaltyRecipient", "royaltyBps"]
+        }
+    ],
+    "setRoyaltyInfoForToken(uint256 _tokenId, address _recipient, uint256 _bps)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set royalty info for token.",
+        "references": ["royaltyInfoForToken"]
+        }
+    ],
+    "setRoyaltyInfoForToken(uint256 tokenId, address recipient, uint256 bps)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set royalty info for token.",
+        "references": ["royaltyInfoForToken"]
+        }
+    ],
     "getRoyaltyInfoForToken(uint256 tokenId) returns (address, uint16)": [],
     "getPlatformFeeInfo() returns (address, uint16)": [],
     "getFlatPlatformFeeInfo() returns (address, uint256)": [],
     "getPlatformFeeType() returns (IPlatformFee.PlatformFeeType)": [],
-    "setPlatformFeeInfo(address _platformFeeRecipient, uint256 _platformFeeBps)": [],
-    "setFlatPlatformFeeInfo(address _platformFeeRecipient, uint256 _flatFee)": [],
-    "setPlatformFeeType(IPlatformFee.PlatformFeeType _feeType)": [],
-    "setContractURI(string _uri)": [],
+    "setPlatformFeeInfo(address _platformFeeRecipient, uint256 _platformFeeBps)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set platform fee info.",
+        "references": ["platformFeeBps", "platformFeeRecipient"]
+        }
+    ],
+    "setFlatPlatformFeeInfo(address _platformFeeRecipient, uint256 _flatFee)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set flat platform fee info.",
+        "references": ["platformFeeRecipient", "flatPlatformFee"]
+        }
+    ],
+    "setPlatformFeeType(IPlatformFee.PlatformFeeType _feeType)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set platform fee type.",
+        "references": ["platformFeeType"]
+        }
+    ],
+    "setContractURI(string _uri)": [
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole[DEFAULT_ADMIN_ROLE][msg.sender]"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set contract URI.",
+        "references": ["contractURI"]
+        }
+    ],
     "contractURI() returns (string)": [],
     "initialize(address _defaultAdmin, string _name, string _symbol, string _contractURI, address[] _trustedForwarders, address _saleRecipient, address _royaltyRecipient, uint128 _royaltyBps, uint128 _platformFeeBps, address _platformFeeRecipient)": [
     ],
@@ -91,18 +204,44 @@
     "contractType() returns (bytes32)": [],
     "contractVersion() returns (uint8)": [],
     "setMaxTotalSupply(uint256 _tokenId, uint256 _maxTotalSupply)": [
-
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole", "msg.sender"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set max total supply.",
+        "references": ["_maxTotalSupply"]
+        }
     ],
     "setSaleRecipientForToken(uint256 _tokenId, address _saleRecipient)": [
-
+        {
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "involved_variables": ["_hasRole", "msg.sender"],
+        "descriptions": "Verify msg.sender has DEFAULT_ADMIN_ROLE to set sale recipient for token.",
+        "references": ["saleRecipient"]
+        }
     ],
     "updateBatchBaseURI(uint256 _index, string _uri)": [
-        
+        {
+        "potential_checks": "hasRole(metadataRole, msg.sender)",
+        "involved_variables": ["_hasRole", "msg.sender"],
+        "descriptions": "Verify msg.sender has metadataRole to update batch base URI.",
+        "references": ["baseURI"]
+        }
     ],
     "freezeBatchBaseURI(uint256 _index)": [
-
+        {
+        "potential_checks": "hasRole(metadataRole, msg.sender)",
+        "involved_variables": ["_hasRole", "msg.sender"],
+        "descriptions": "Verify msg.sender has metadataRole to freeze batch base URI.",
+        "references": ["batchFrozen"]
+        }
     ],
     "nextTokenIdToMint() returns (uint256)": [],
     "burnBatch(address account, uint256[] ids, uint256[] values)": [
+        {
+        "potential_checks": "_operatorApprovals[account][msg.sender] || account == msg.sender",
+        "involved_variables": ["_operatorApprovals", "msg.sender", "account"],
+        "descriptions": "Verify msg.sender has operator or is burning their own tokens.",
+        "references": ["_balances"]
+        }
     ]
 }
