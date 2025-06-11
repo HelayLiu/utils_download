@@ -1,0 +1,55 @@
+- `balances`: mapping(address => Balances) 
+  - Write Isolation: Restricted to the user (via `lock`, `withdraw`, etc.) and the contract during reward processing and kicking. Also, the autocompounder can lock on behalf of the user (if whitelisted? Not directly, but `lockFromAutocompound` is called by the autocompounder contract). 
+  - Read Isolation: No restrictions.
+
+- `userLocks`: mapping(address => LockedBalance[])
+  - Write Isolation: Same as `balances`.
+  - Read Isolation: No restrictions.
+
+- `userData`: mapping(address => mapping(address => UserData))
+  - Write Isolation: Modified when the user claims rewards or when the reward is updated (via `updateReward` modifier). Also, when rewards are queued, the global state is updated which affects user rewards.
+  - Read Isolation: No restrictions.
+
+- `rewardTokens`: address[]
+  - Write Isolation: Only by owner via `addReward`.
+  - Read Isolation: No restrictions.
+
+- `rewardData`: mapping(address => RewardData)
+  - Write Isolation: By owner (when adding a reward) and by reward distributors (when queuing new rewards).
+  - Read Isolation: No restrictions.
+
+- `rewardDistributors`: mapping(address => mapping(address => bool))
+  - Write Isolation: Only by owner via `approveRewardDistributor`.
+  - Read Isolation: No restrictions.
+
+- `lockedSupply`: uint256
+  - Write Isolation: Modified internally when users lock or withdraw.
+  - Read Isolation: No restrictions.
+
+- `epochs`: Epoch[]
+  - Write Isolation: Modified during `_checkpointEpoch` (called during locking and by anyone via `checkpointEpoch`).
+  - Read Isolation: No restrictions.
+
+- `penaltyReceiver`: address
+  - Write Isolation: Set at initialization and not updated (in the given code). But there's an event for update, so likely there is a function (not provided) to update it.
+  - Read Isolation: No restrictions.
+
+- `stakingToken`: IERC20Upgradeable
+  - Write Isolation: Set at initialization and never changed.
+  - Read Isolation: No restrictions.
+
+- `isShutdown`: bool
+  - Write Isolation: Only by owner via `shutdown`.
+  - Read Isolation: No restrictions.
+
+- `cappedSupply`: uint256
+  - Write Isolation: Set at initialization and not updated (in the given code).
+  - Read Isolation: No restrictions.
+
+- `whitelist`: mapping(address => bool)
+  - Write Isolation: Set at initialization (owner is whitelisted) and no update function in the given code.
+  - Read Isolation: No restrictions.
+
+- `matic` and `autocompound`: address
+  - Write Isolation: Only by owner via `setAutocompoundData`.
+  - Read Isolation: No restrictions.

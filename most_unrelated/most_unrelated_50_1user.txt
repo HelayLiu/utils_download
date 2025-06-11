@@ -1,0 +1,9 @@
+- As a user, I want to lock my SPHERE tokens to earn rewards, knowing that my tokens are safely locked and only withdrawable after the lock period.
+- As a user, I want to claim my rewards in various tokens, with the option to autocompound MATIC rewards if available.
+- As a user, I want to withdraw my tokens after the lock period, either normally or with a penalty (in case of early withdrawal) and receive a kick reward if I help kick expired locks.
+- As a user, I want to see my locked balances, claimable rewards, and expired locks.
+- As the owner, I want to manage reward tokens and their distributors to ensure continuous reward distribution.
+- As the owner, I want to blacklist malicious contracts to protect users.
+- As the owner, I want to set kick incentives to encourage users to kick expired locks.
+- As the owner, I want to shut down the contract in case of an emergency, allowing users to withdraw without penalties.
+- As a reward distributor, I want to add rewards for a specific token to incentivize users.
