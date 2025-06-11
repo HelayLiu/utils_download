@@ -3,20 +3,28 @@
     "isOwner() returns (bool)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "isOwner() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "isOwner()",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "name() returns (string)": [],
@@ -27,255 +35,142 @@
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "_allowances[sender][msg.sender] >= amount",
+            "involved_variables": [
+                "_allowances",
+                "sender",
+                "msg.sender",
+                "amount"
+            ],
+            "descriptions": "Verify spender allowance covers transfer amount to isolate unauthorized access.",
+            "references": [
+                "_balances"
+            ]
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
     "setName(string name_)": [
         {
-            "potential_checks": "isOwner() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before setting the name.",
+            "references": [
+                "_name"
+            ]
+
         }
     ],
     "setSymbol(string symbol_)": [
         {
-            "potential_checks": "isOwner() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before setting the symbol.",
+            "references": [
+                "_symbol"
+            ]
         }
     ],
     "mint(address _receiver, uint256 _amount)": [
         {
-            "potential_checks": "isOwner()",
-            "involved_variables": [
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",  
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Restrict minting to the owner.",  
+            "references": ["_balances", "_totalSupply"]  
         }
     ],
     "pauseAsset(address _token)": [
         {
-            "potential_checks": "isOwner()",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "msg.sender == _owner",  
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Restrict pausing to the owner.",  
+            "references": ["_able"]  
         },
         {
-            "potential_checks": "_able[_token].allowed",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
-        },
-        {
-            "potential_checks": "_able[_token].paused == False",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "_able[_token].allowed",  
+            "involved_variables": ["_able[_token].allowed"],  
+            "descriptions": "Ensure token is whitelisted.",  
+            "references": ["_able"]  
         }
     ],
     "unPauseAsset(address _token)": [
         {
-            "potential_checks": "isOwner()",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "msg.sender == _owner",  
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Restrict pausing to the owner.",  
+            "references": ["_able"]  
         },
         {
-            "potential_checks": "_able[_token].allowed",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
-        },
-        {
-            "potential_checks": "_able[_token].paused == False",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "_able[_token].allowed",  
+            "involved_variables": ["_able[_token].allowed"],  
+            "descriptions": "Ensure token is whitelisted.",  
+            "references": ["_able"]  
         }
     ],
     "setLimit(address _token, uint256 _limit)": [
         {
-            "potential_checks": "isOwner()",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "msg.sender == _owner",  
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Restrict set limit to the owner.",  
+            "references": ["_able"]  
         },
         {
-            "potential_checks": "_able[_token].allowed == False",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "_able[_token].allowed",  
+            "involved_variables": ["_able[_token].allowed"],  
+            "descriptions": "Ensure token is whitelisted.",  
+            "references": ["_able"]  
         }
     ],
     "addAsset(address _token)": [
         {
-            "potential_checks": "isOwner()",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "msg.sender == _owner",  
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Restrict adding asset to the owner.",  
+            "references": ["_able"]  
         },
         {
-            "potential_checks": "_able[_token].allowed",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
-        },
-        {
-            "potential_checks": "DEC(_token).decimals() == decimals() == False",
-            "involved_variables": [
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "_able[_token].allowed",  
+            "involved_variables": ["_able[_token].allowed"],  
+            "descriptions": "Ensure token is whitelisted.",  
+            "references": ["_able"]  
         }
     ],
     "removeAsset(address _token)": [
         {
-            "potential_checks": "isOwner()",
-            "involved_variables": [
-                "_token",
-                "this"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",  
+            "involved_variables": ["msg.sender", "_owner"],  
+            "descriptions": "Restrict removing asset to the owner.",  
+            "references": ["_able"]  
         },
         {
-            "potential_checks": "IERC20(_token).balanceOf(address(this)) == 0 == False",
-            "involved_variables": [
-                "_token",
-                "this"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_able[_token].allowed",  
+            "involved_variables": ["_able[_token].allowed"],  
+            "descriptions": "Ensure token is whitelisted.",  
+            "references": ["_able"]  
         }
     ],
     "swapIn(address _token, uint256 _amount)": [
         {
-            "potential_checks": "_able[_token].allowed",
-            "involved_variables": [
-                "SafeMath",
-                "_amount",
-                "this",
-                "_able",
-                "account",
-                "_token"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
-        },
-        {
-            "potential_checks": "_able[_token].paused",
-            "involved_variables": [
-                "SafeMath",
-                "_amount",
-                "this",
-                "_able",
-                "account",
-                "_token"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
-        },
-        {
-            "potential_checks": "_able[_token].limit > 0 && (IERC20(_token).balanceOf(address(this))).add(_amount) <= _able[_token].limit",
-            "involved_variables": [
-                "SafeMath",
-                "_amount",
-                "this",
-                "_able",
-                "account",
-                "_token"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "_able[_token].allowed",  
+            "involved_variables": ["_able[_token].allowed"],  
+            "descriptions": "Ensure token is whitelisted.",  
+            "references": ["_able"]  
         }
     ],
     "swapOut(address _token, uint256 _amount)": [
         {
-            "potential_checks": "_able[_token].allowed",
-            "involved_variables": [
-                "account",
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
-        },
-        {
-            "potential_checks": "_able[_token].paused",
-            "involved_variables": [
-                "account",
-                "_token",
-                "_able"
-            ],
-            "descriptions": "",
-            "references": [
-                "_able"
-            ]
+            "potential_checks": "_able[_token].allowed",  
+            "involved_variables": ["_able[_token].allowed"],  
+            "descriptions": "Ensure token is whitelisted.",  
+            "references": ["_able"]  
         }
     ]
 }
