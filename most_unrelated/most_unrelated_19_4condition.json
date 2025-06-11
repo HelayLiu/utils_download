@@ -34,7 +34,7 @@
     "ownerOf(uint256 tokenId) returns (address)": [],
     "safeTransferFrom(address from, address to, uint256 tokenId)": [
         {  
-        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "potential_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
         "involved_variables": ["msg.sender", "tokenId"],  
         "descriptions": "Verifies caller is owner/approved before transferring token.",  
         "references": ["_owners", "_balances"]  
@@ -42,7 +42,7 @@
     ],
     "transferFrom(address from, address to, uint256 tokenId)": [
         {  
-        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "potential_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
         "involved_variables": ["msg.sender", "tokenId"],  
         "descriptions": "Verifies caller is owner/approved before transferring token.",  
         "references": ["_owners", "_balances"]  
@@ -71,7 +71,7 @@
     ],
     "safeTransferFrom(address from, address to, uint256 tokenId, bytes _data)": [
         {  
-        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "potential_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
         "involved_variables": ["msg.sender", "tokenId"],  
         "descriptions": "Verifies caller is owner/approved before transferring token.",  
         "references": ["_owners", "_balances"]  
@@ -115,7 +115,7 @@
             ]
         },
         {  
-        "specific_checks": "!hasClaimedRebase[_hash]",  
+        "potential_checks": "!hasClaimedRebase[_hash]",  
         "involved_variables": ["hasClaimedRebase"],  
         "descriptions": "Prevents double-claiming for the same legacy NFT.",  
         "references": ["hasClaimedRebase"]  

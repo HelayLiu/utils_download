@@ -79,7 +79,7 @@
     ],
     "mint(uint256 _mintAmount)": [
         {
-            "specific_checks": "!paused",
+            "potential_checks": "!paused",
             "involved_variables": ["paused"],
             "descriptions": "Contract must not be paused",
             "references": ["_owners", "_balances"]

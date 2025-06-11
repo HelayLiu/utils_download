@@ -26,7 +26,7 @@
     ],
     "updatePool(uint256 _pid)": [
        {  
-        "specific_checks": "block.timestamp > pool.lastRewardTime",  
+        "potential_checks": "block.timestamp > pool.lastRewardTime",  
         "involved_variables": ["block.timestamp", "pool"],  
         "descriptions": "Skips update if pool was recently updated to prevent redundant operations.",  
         "references": ["pool"]  
@@ -34,7 +34,7 @@
     ],
     "deposit(uint256 _pid, uint256 _amount)": [
         {  
-        "specific_checks": "pool.token.balanceOf(address(this)) == balanceBeforeTransfer + _amount",  
+        "potential_checks": "pool.token.balanceOf(address(this)) == balanceBeforeTransfer + _amount",  
         "involved_variables": ["pool", "balanceBeforeTransfer", "_amount","this"],  
         "descriptions": "Detects fee-on-transfer tokens by verifying exact balance change.",  
         "references": ["pool"]  
@@ -42,13 +42,13 @@
     ],
     "withdraw(uint256 _pid, uint256 _amount)": [
     {  
-        "specific_checks": "userInfo[_pid][_sender].amount >= _amount",  
+        "potential_checks": "userInfo[_pid][_sender].amount >= _amount",  
         "involved_variables": ["_pid","_amount"],  
         "descriptions": "Ensures user cannot withdraw more than their staked balance.",  
         "references": ["RewardToken"]  
         },  
         {  
-        "specific_checks": "RewardToken.balanceOf(address(this)) >= _pending",  
+        "potential_checks": "RewardToken.balanceOf(address(this)) >= _pending",  
         "involved_variables": ["RewardToken", "this"],  
         "descriptions": "Verifies sufficient reward balance before transfer to prevent overflows.",  
         "references": ["RewardToken"]  
@@ -57,7 +57,7 @@
     "emergencyWithdraw(uint256 _pid)": [],
     "add(IERC20 _token, uint256 _depFee, uint256 _allocPoint, uint256 _lastRewardTime, bool _withUpdate)": [
         {  
-        "specific_checks": "operator == msg.sender",  
+        "potential_checks": "operator == msg.sender",  
         "involved_variables": ["msg.sender","operator"],  
         "descriptions": "Restricts pool creation to authorized operator only.",  
         "references": ["totalAllocPoint","poolInfo"]  

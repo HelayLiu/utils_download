@@ -2,25 +2,25 @@
     "paused() returns (bool)": [],
     "submitMerkleRoot(bytes32 root, uint256 totalRewards, uint256 boostRewards) returns (bool)": [
         {
-        "specific_checks": "hasRole(DISTRIBUTOR_ROLE, msg.sender)",
+        "potential_checks": "hasRole(DISTRIBUTOR_ROLE, msg.sender)",
         "involved_variables": ["msg.sender","_role"],
         "descriptions": "Restrict root submission to DISTRIBUTOR_ROLE.",
         "references": ["token"]
         },
         {
-        "specific_checks": "!paused()",
+        "potential_checks": "!paused()",
         "involved_variables": ["_paused"],
         "descriptions": "Ensure contract is not paused.",
         "references": ["token"]
         },
         {
-        "specific_checks": "firstRewardCycleTs == 0 || cycle < getCurrCycle()",
+        "potential_checks": "firstRewardCycleTs == 0 || cycle < getCurrCycle()",
         "involved_variables": ["firstRewardCycleTs", "cycle"],
         "descriptions": "Enforce 24h rate limit between root submissions.",
         "references": ["token"]
         },
         {
-        "specific_checks": "delta >= baseRewards",
+        "potential_checks": "delta >= baseRewards",
         "involved_variables": ["delta", "baseRewards"],
         "descriptions": "Verify vault emission covers base rewards.",
         "references": ["token"]
@@ -28,13 +28,13 @@
     ],
     "claim(uint256 _amount, uint256 _totalRewards, uint256 _cycle, bytes32[] proof)": [
         {
-        "specific_checks": "!paused()",
+        "potential_checks": "!paused()",
         "involved_variables": ["_paused"],
         "descriptions": "Ensure contract is not paused.",
         "references": []
         },
         {
-        "specific_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
+        "potential_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
         "involved_variables": ["amount", "_totalRewards", "proof", "msg.sender", "_cycle"],
         "descriptions": "Ensure claimed amount ≤ available rewards.",
         "references": ["claims","token","claimedRewards"]
@@ -42,13 +42,13 @@
     ],
     "getRemainingAllocatedRewards(address account, uint256 amount, uint256 cycle, bytes32[] proof) returns (uint256)": [
         {
-        "specific_checks": "!paused()",
+        "potential_checks": "!paused()",
         "involved_variables": ["_paused"],
         "descriptions": "Ensure contract is not paused.",
         "references": []
         },
         {
-        "specific_checks": "MerkleProof.verify(proof, roots[_cycle], keccak256(bytes.concat(keccak256(abi.encode(account, amount)))))",
+        "potential_checks": "MerkleProof.verify(proof, roots[_cycle], keccak256(bytes.concat(keccak256(abi.encode(account, amount)))))",
         "involved_variables": ["proof", "roots", "_cycle", "account", "amount"],
         "descriptions": "Verify Merkle proof validity.",
         "references": ["amount"]
@@ -57,7 +57,7 @@
     "cycle() returns (uint256)": [],
     "pause()": [
         {
-        "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
         "involved_variables": ["msg.sender", "_role"],
         "descriptions": "Restrict pause to DEFAULT_ADMIN_ROLE.",
         "references": ["_paused"]
@@ -65,7 +65,7 @@
     ],
     "unpause()": [
         {
-        "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+        "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
         "involved_variables": ["msg.sender", "_role"],
         "descriptions": "Restrict pause to DEFAULT_ADMIN_ROLE.",
         "references": ["_paused"]
@@ -116,75 +116,75 @@
     ],
     "getCurrCycle() returns (uint256)": [],
     "submitMerkleRoot(bytes32 root, uint256 baseRewards, uint256 boostRewards) returns (bool)": [        {
-        "specific_checks": "hasRole(DISTRIBUTOR_ROLE, msg.sender)",
+        "potential_checks": "hasRole(DISTRIBUTOR_ROLE, msg.sender)",
         "involved_variables": ["msg.sender","_role"],
         "descriptions": "Restrict root submission to DISTRIBUTOR_ROLE.",
         "references": ["token"]
         },
         {
-        "specific_checks": "!paused()",
+        "potential_checks": "!paused()",
         "involved_variables": ["_paused"],
         "descriptions": "Ensure contract is not paused.",
         "references": ["token"]
         },
         {
-        "specific_checks": "firstRewardCycleTs == 0 || cycle < getCurrCycle()",
+        "potential_checks": "firstRewardCycleTs == 0 || cycle < getCurrCycle()",
         "involved_variables": ["firstRewardCycleTs", "cycle"],
         "descriptions": "Enforce 24h rate limit between root submissions.",
         "references": ["token"]
         },
         {
-        "specific_checks": "delta >= baseRewards",
+        "potential_checks": "delta >= baseRewards",
         "involved_variables": ["delta", "baseRewards"],
         "descriptions": "Verify vault emission covers base rewards.",
         "references": ["token"]
         }],
     "getRemainingAllocatedRewards(address account, uint256 amount, uint256 _cycle, bytes32[] proof) returns (uint256)": [
         {
-        "specific_checks": "!paused()",
+        "potential_checks": "!paused()",
         "involved_variables": ["_paused"],
         "descriptions": "Ensure contract is not paused.",
         "references": []
         },
         {
-        "specific_checks": "MerkleProof.verify(proof, roots[_cycle], keccak256(bytes.concat(keccak256(abi.encode(account, amount)))))",
+        "potential_checks": "MerkleProof.verify(proof, roots[_cycle], keccak256(bytes.concat(keccak256(abi.encode(account, amount)))))",
         "involved_variables": ["proof", "roots", "_cycle", "account", "amount"],
         "descriptions": "Verify Merkle proof validity.",
         "references": ["amount"]
         }
     ],
     "claim(uint256 amount, uint256 _totalRewards, uint256 _cycle, bytes32[] proof)": [        {
-        "specific_checks": "!paused()",
+        "potential_checks": "!paused()",
         "involved_variables": ["_paused"],
         "descriptions": "Ensure contract is not paused.",
         "references": []
         },
         {
-        "specific_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
+        "potential_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
         "involved_variables": ["amount", "_totalRewards", "proof", "msg.sender", "_cycle"],
         "descriptions": "Ensure claimed amount ≤ available rewards.",
         "references": ["claims","token","claimedRewards"]
         }],
     "claimFor(address rewardReceiver, uint256 amount, uint256 totalRewards, uint256 _cycle, uint256 claimForFee, bytes32[] proof, bytes32 nonce, bytes signature)": [{
-        "specific_checks": "!paused()",
+        "potential_checks": "!paused()",
         "involved_variables": ["_paused"],
         "descriptions": "Ensure contract is not paused.",
         "references": []
         },
         {
-        "specific_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
+        "potential_checks": "amount <= _allocatedRewardsForProofMinusRewarded(_msgSender(), _totalRewards, _cycle, proof)",
         "involved_variables": ["amount", "_totalRewards", "proof", "msg.sender", "_cycle"],
         "descriptions": "Ensure claimed amount ≤ available rewards.",
         "references": ["claims","token","claimedRewards"]
         },
             {
-      "specific_checks": "!nonces[hashedNonce]",
+      "potential_checks": "!nonces[hashedNonce]",
       "involved_variables": ["nonces", "hashedNonce"],
       "descriptions": "The signature nonce must not have been used before.",
       "references": ["token"]
     },
     {
-      "specific_checks": "signer == rewardReceiver",
+      "potential_checks": "signer == rewardReceiver",
       "involved_variables": ["signer", "rewardReceiver"],
       "descriptions": "The signature must be signed by the rewardReceiver.",
       "references": ["token"]

@@ -58,7 +58,7 @@
             ]
         },
         {  
-            "specific_checks": "amount <= _allowances[sender][msg.sender]",  
+            "potential_checks": "amount <= _allowances[sender][msg.sender]",  
             "involved_variables": ["sender","msg.sender","amount"],  
             "descriptions": "Ensure transfer amount ≤ approved allowance.",  
             "references": ["_allowances"]  
@@ -91,7 +91,7 @@
     ],
     "setNumTokensSellToSwap(uint256 value)": [
         {  
-            "specific_checks": "msg.sender == _owner",
+            "potential_checks": "msg.sender == _owner",
             "involved_variables": ["msg.sender", "_owner"],  
             "descriptions": "Verify caller is owner to update swap threshold.",  
             "references": ["numTokensSellToSwap"]  
@@ -99,7 +99,7 @@
     ],
     "batchSetDelivers(address[] addr, bool enable)": [
         {  
-            "specific_checks": "msg.sender == _owner",  
+            "potential_checks": "msg.sender == _owner",  
             "involved_variables": ["msg.sender", "_owner"],  
             "descriptions": "Verify caller is owner to modify whitelist.",  
             "references": ["isDelivers"]  
@@ -107,7 +107,7 @@
     ],
     "batchSetBList(address[] addr, bool enable)": [
         {  
-            "specific_checks": "msg.sender == _owner",  
+            "potential_checks": "msg.sender == _owner",  
             "involved_variables": ["msg.sender", "_owner"],  
             "descriptions": "Verify caller is owner to modify blacklist.",  
             "references": ["_BList"]  
@@ -115,7 +115,7 @@
     ],
     "setSwapPairList(address addr, bool enable)": [
         {  
-        "specific_checks": "msg.sender == _owner",  
+        "potential_checks": "msg.sender == _owner",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Verify caller is owner to modify blacklist.",  
         "references": ["_swapPairList"]  
@@ -123,7 +123,7 @@
     ],
     "claimBalance(uint256 amount)": [
         {  
-            "specific_checks": "msg.sender == saleAddress",  
+            "potential_checks": "msg.sender == saleAddress",  
             "involved_variables": ["msg.sender", "saleAddress"],  
             "descriptions": "Restrict token claiming to sale address.",  
             "references": []  
@@ -131,7 +131,7 @@
     ],
     "claimToken(address token, uint256 amount)": [
         {  
-            "specific_checks": "msg.sender == saleAddress",  
+            "potential_checks": "msg.sender == saleAddress",  
             "involved_variables": ["msg.sender", "saleAddress"],  
             "descriptions": "Restrict token claiming to sale address.",  
             "references": []  

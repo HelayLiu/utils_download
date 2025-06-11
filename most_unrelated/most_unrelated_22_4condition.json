@@ -19,7 +19,7 @@
     ],
     "burnFrom(address account, uint256 amount)": [
         {
-            "specific_checks": "allowance(account, msg.sender) >= amount",
+            "potential_checks": "allowance(account, msg.sender) >= amount",
             "involved_variables": ["_allowances","account","msg.sender","amount"],
             "descriptions": "Validate spender burn allowance",
             "references": ["_balances","_totalSupply"]
@@ -35,7 +35,7 @@
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
         {
-            "specific_checks": "allowance(account, msg.sender) >= amount",
+            "potential_checks": "allowance(account, msg.sender) >= amount",
             "involved_variables": ["_allowances","account","msg.sender","amount"],
             "descriptions": "Validate spender transfer allowance",
             "references": ["_balances","_totalSupply"]
@@ -47,7 +47,7 @@
     "totalMinted() returns (uint256)": [],
     "mintBulk(address[] accounts, uint256[] amounts) returns (bool)": [
         {
-            "specific_checks": "isMinter(msg.sender)",
+            "potential_checks": "isMinter(msg.sender)",
             "involved_variables": ["msg.sender", "_minters"],
             "descriptions": "Verify minter role for minting authority",
             "references": ["_balances", "_totalSupply"]

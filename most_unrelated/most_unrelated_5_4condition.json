@@ -17,7 +17,7 @@
     "balanceOf(address account) returns (uint256)": [],
     "transfer(address recipient, uint256 amount) returns (bool)": [
         {  
-            "specific_checks": "!bots[msg.sender] && !bots[recipient]",  
+            "potential_checks": "!bots[msg.sender] && !bots[recipient]",  
             "involved_variables": ["bots","msg.sender","recipient"],
             "descriptions": "Prevent transfers involving blacklisted bot addresses.",  
             "references": ["_balances"]  
@@ -27,7 +27,7 @@
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
         {  
-            "specific_checks": "!bots[sender] && !bots[recipient]",  
+            "potential_checks": "!bots[sender] && !bots[recipient]",  
             "involved_variables": ["bots","msg.sender","recipient"],
             "descriptions": "Prevent transfers involving blacklisted bot addresses.",  
             "references": ["_balances"]  
@@ -84,13 +84,13 @@
     "isBot(address a) returns (bool)": [],
     "openTrading()": [
         {  
-        "specific_checks": "msg.sender == owner",  
+        "potential_checks": "msg.sender == owner",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Only owner can open trading.",  
         "references": ["tradingOpen", "uniswapV2Pair"]  
         },  
         {  
-        "specific_checks": "!tradingOpen",  
+        "potential_checks": "!tradingOpen",  
         "involved_variables": ["tradingOpen"],  
         "descriptions": "Prevent re-opening trading.",  
         "references": ["tradingOpen"]  
@@ -98,13 +98,13 @@
     ],
     "reduceFee(uint256 _newFee)": [
         {  
-        "specific_checks": "msg.sender == _taxWallet",  
+        "potential_checks": "msg.sender == _taxWallet",  
         "involved_variables": ["msg.sender", "_taxWallet"],  
         "descriptions": "Only tax wallet can reduce fees.",  
         "references": ["_finalBuyTax", "_finalSellTax"]  
         },  
         {  
-        "specific_checks": "_newFee <= _finalBuyTax && _newFee <= _finalSellTax",  
+        "potential_checks": "_newFee <= _finalBuyTax && _newFee <= _finalSellTax",  
         "involved_variables": ["_newFee", "_finalBuyTax", "_finalSellTax"],  
         "descriptions": "Ensure new fee is not higher than current fees.",  
         "references": ["_finalBuyTax", "_finalSellTax"]  
@@ -112,7 +112,7 @@
     ],
     "manualSwap()": [
         {  
-        "specific_checks": "msg.sender == _taxWallet",  
+        "potential_checks": "msg.sender == _taxWallet",  
         "involved_variables": ["msg.sender", "_taxWallet"],  
         "descriptions": "Only tax wallet can trigger manual swaps.",  
         "references": ["_balances"]  

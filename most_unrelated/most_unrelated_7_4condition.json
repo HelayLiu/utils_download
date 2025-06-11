@@ -2,7 +2,7 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "specific_checks": "_owner == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": ["_owner", "msg.sender"],
             "descriptions": "Restrict ownership renunciation to current owner.",
             "references": ["_owner"]
@@ -10,7 +10,7 @@
     ],
     "transferOwnership(address newOwner)": [
         {
-            "specific_checks": "_owner == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": ["_owner", "msg.sender"],
             "descriptions": "Restrict ownership transfer to current owner.",
             "references": ["_owner"]
@@ -20,7 +20,7 @@
     ],
     "burnFrom(address account, uint256 amount)": [
         {
-            "specific_checks": "_allowances[from][msg.sender] >= amount",
+            "potential_checks": "_allowances[from][msg.sender] >= amount",
             "involved_variables": ["from", "amount","msg.sender","_allowances"],
             "descriptions": "Enforce allowance limits for delegated spending.",
             "references": ["_allowances"]
@@ -36,7 +36,7 @@
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address from, address to, uint256 amount) returns (bool)": [
         {
-            "specific_checks": "_allowances[from][msg.sender] >= amount",
+            "potential_checks": "_allowances[from][msg.sender] >= amount",
             "involved_variables": ["from", "amount","msg.sender","_allowances"],
             "descriptions": "Enforce allowance limits for delegated spending.",
             "references": ["_allowances"]

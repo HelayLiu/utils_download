@@ -4,7 +4,7 @@
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
     "grantRole(bytes32 role, address account)": [
         {
-        "specific_checks": "onlyRole(getRoleAdmin(role))",
+        "potential_checks": "onlyRole(getRoleAdmin(role))",
         "involved_variables": ["role"],
         "descriptions": "Restrict write access to admin role.",
         "references": ["_roles"]
@@ -12,7 +12,7 @@
     ],
     "revokeRole(bytes32 role, address account)": [
         {
-        "specific_checks": "onlyRole(getRoleAdmin(role))",
+        "potential_checks": "onlyRole(getRoleAdmin(role))",
         "involved_variables": ["role"],
         "descriptions": "Restrict write access to admin role.",
         "references": ["_roles"]
@@ -159,7 +159,7 @@
     ],
     "setDepositPause(address _token, bool _pause)": [
         {
-        "specific_checks": "hasRole(VAULT_OPERATOR_ROLE,msg.sender)",
+        "potential_checks": "hasRole(VAULT_OPERATOR_ROLE,msg.sender)",
         "involved_variables": ["msg.sender","_roles"],
         "descriptions": "Restrict write access to Vault Operator role.",
         "references": ["depositPaused"]
@@ -167,13 +167,13 @@
     ],
     "setFeeRate(address _token, uint256 _feeRate)": [
         {
-        "specific_checks": "hasRole(VAULT_OPERATOR_ROLE,msg.sender)",
+        "potential_checks": "hasRole(VAULT_OPERATOR_ROLE,msg.sender)",
         "involved_variables": ["msg.sender","_roles"],
         "descriptions": "Restrict write access to Vault Operator role.",
         "references": ["feeRate"]
         },
         {
-        "specific_checks": "isUnderlyingAssets[_token]",
+        "potential_checks": "isUnderlyingAssets[_token]",
         "involved_variables": ["isUnderlyingAssets", "_token"],
         "descriptions": "Ensure token is a valid underlying asset.",
         "references": ["feeRate"]
@@ -181,7 +181,7 @@
     ],
     "setFeeRecipient(address _feeRecipient)": [
         {
-        "specific_checks": "hasRole(VAULT_OPERATOR_ROLE,msg.sender)",
+        "potential_checks": "hasRole(VAULT_OPERATOR_ROLE,msg.sender)",
         "involved_variables": ["msg.sender","_roles"],
         "descriptions": "Restrict write access to Vault Operator role.",
         "references": ["feeRecipient"]

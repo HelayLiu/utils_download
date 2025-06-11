@@ -93,7 +93,7 @@
     "getAllOperators() returns (address[])": [],
     "pause()": [
         {  
-        "specific_checks": "_owner == msg.sender",  
+        "potential_checks": "_owner == msg.sender",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Ensure only owner can pause minting operations.",  
         "references": ["_paused"]  
@@ -101,7 +101,7 @@
     ],
     "unpause()": [
     {  
-        "specific_checks": "_owner == msg.sender",  
+        "potential_checks": "_owner == msg.sender",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Ensure only owner can unpause minting operations.",  
         "references": ["_paused"]  
@@ -109,7 +109,7 @@
     ],
     "setUri(string _uri)": [
         {  
-        "specific_checks": "_owner == msg.sender",  
+        "potential_checks": "_owner == msg.sender",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Ensure only owner can set uri.",  
         "references": ["uri"]  
@@ -117,7 +117,7 @@
     ],
     "setSuffix(string _suffix)": [
         {  
-        "specific_checks": "_owner == msg.sender",  
+        "potential_checks": "_owner == msg.sender",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Ensure only owner can set uri.",  
         "references": ["suffix"]  
@@ -125,7 +125,7 @@
     ],
     "removeOperator(address _op)": [
     {  
-        "specific_checks": "_owner == msg.sender",  
+        "potential_checks": "_owner == msg.sender",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Ensure only owner can remove operator.",  
         "references": ["operator", "isOperator"]  
@@ -133,7 +133,7 @@
     ],
     "mint(address to)": [
         {  
-        "specific_checks": "_owner == msg.sender",  
+        "potential_checks": "_owner == msg.sender",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Ensure only owner can mint token.",  
         "references": ["curTokenId", "_owners", "_balances"]  

@@ -93,7 +93,7 @@
     "isApprovedForAll(address owner, address operator) returns (bool)": [],
     "transferFrom(address from, address to, uint256 tokenId)": [
         {  
-        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "potential_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
         "involved_variables": ["msg.sender", "tokenId"],  
         "descriptions": "Verifies caller is owner/approved before transferring token.",  
         "references": ["_owners", "_tokenApprovals"]  
@@ -101,7 +101,7 @@
     ],
     "safeTransferFrom(address from, address to, uint256 tokenId)": [
         {  
-        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "potential_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
         "involved_variables": ["msg.sender", "tokenId"],  
         "descriptions": "Verifies caller is owner/approved before transferring token.",  
         "references": ["_owners", "_tokenApprovals"]  
@@ -109,7 +109,7 @@
     ],
     "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
         {  
-        "specific_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
+        "potential_checks": "require(_isApprovedOrOwner(_msgSender(), tokenId))",  
         "involved_variables": ["msg.sender", "tokenId"],  
         "descriptions": "Verifies caller is owner/approved before transferring token.",  
         "references": ["_owners", "_tokenApprovals"]  
@@ -117,7 +117,7 @@
     ],
     "paused() returns (bool)": [
         {  
-        "specific_checks": "msg.sender == _owner",  
+        "potential_checks": "msg.sender == _owner",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Allows only owner to pause contract if not already paused.",  
         "references": ["_paused"]  
@@ -128,7 +128,7 @@
     "tokenByIndex(uint256 index) returns (uint256)": [],
     "mint(string itemURI) returns (uint256)": [
         {  
-        "specific_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
+        "potential_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
         "involved_variables": ["msg.sender", "_allowedAddresses", "owner"],  
         "descriptions": "Verifies caller is owner/allowed to mint tokens and write to _owners/_tokenURIs.",  
         "references": ["_owners", "_tokenURIs"]  
@@ -136,7 +136,7 @@
     ],
     "update(uint256 tokenId, uint256 fieldId)": [
         {  
-        "specific_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
+        "potential_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
         "involved_variables": ["msg.sender", "_allowedAddresses", "owner"],  
         "descriptions": "Verifies caller is owner/allowed to update tokens and write to _owners/_tokenURIs.",  
         "references": ["_owners", "_tokenURIs"]  
@@ -144,7 +144,7 @@
     ],
     "setBaseURI(string baseUri)": [
     {  
-        "specific_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
+        "potential_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
         "involved_variables": ["msg.sender", "_allowedAddresses", "owner"],  
         "descriptions": "Verifies caller is owner/allowed to set BaseURI",  
         "references": ["_baseUri"]  
@@ -153,7 +153,7 @@
     "getBaseURI() returns (string)": [],
     "updateURI(uint256 tokenId, string uri)": [
     {  
-        "specific_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
+        "potential_checks": "existAllowedAddress(msg.sender) || msg.sender == owner",  
         "involved_variables": ["msg.sender", "_allowedAddresses", "owner"],  
         "descriptions": "Verifies caller is owner/allowed to set _tokenURIs",  
         "references": ["_tokenURIs"]  
@@ -161,7 +161,7 @@
     ],
     "pause()": [
         {  
-        "specific_checks": "msg.sender == _owner",  
+        "potential_checks": "msg.sender == _owner",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Allows only owner to pause contract",  
         "references": ["_paused"]  
@@ -169,7 +169,7 @@
     ],
     "unpause()": [
         {  
-        "specific_checks": "msg.sender == _owner",  
+        "potential_checks": "msg.sender == _owner",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Allows only owner to unpause contract",  
         "references": ["_paused"]  

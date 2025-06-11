@@ -1,13 +1,13 @@
 {
     "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
         {
-            "specific_checks": "block.timestamp <= deadline",
+            "potential_checks": "block.timestamp <= deadline",
             "involved_variables": ["block.timestamp", "deadline"],
             "descriptions": "Ensure permit signature is not expired",
             "references": [ "_allowances"]
         },
         {
-            "specific_checks": "signer == owner",
+            "potential_checks": "signer == owner",
             "involved_variables": ["signer", "owner"],
             "descriptions": "Verify ECDSA signature matches token owner",
             "references": [ "_allowances"]
@@ -26,7 +26,7 @@
     "approve(address spender, uint256 value) returns (bool)": [],
     "transferFrom(address from, address to, uint256 value) returns (bool)": [
         {
-            "specific_checks": "_allowances[from][msg.sender] >= value",
+            "potential_checks": "_allowances[from][msg.sender] >= value",
             "involved_variables": ["_allowances", "value", "from", "msg.sender"],
             "descriptions": "Verify spender has sufficient allowance",
             "references": ["_allowances"]
@@ -48,7 +48,7 @@
     ],
     "burnFrom(address account, uint256 value)": [
         {
-            "specific_checks": "_allowances[from][msg.sender] >= value",
+            "potential_checks": "_allowances[from][msg.sender] >= value",
             "involved_variables": ["_allowances", "value", "from", "msg.sender"],
             "descriptions": "Verify spender has sufficient allowance",
             "references": ["_allowances"]

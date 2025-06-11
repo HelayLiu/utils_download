@@ -9,7 +9,7 @@
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
         {  
-        "specific_checks": "_allowances[sender][msg.sender] >= amount",  
+        "potential_checks": "_allowances[sender][msg.sender] >= amount",  
         "involved_variables": ["_allowances","sender","msg.sender"],  
         "descriptions": "Ensure spender has sufficient allowance before deducting from _balances.",  
         "references": ["_allowances", "_balances"]  

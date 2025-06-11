@@ -2,7 +2,7 @@
     "multicall(bytes[] data) returns (bytes[])": [],
     "iDepositUSDC(uint256 partnerId, bytes32 destChainIdBytes, bytes32 recipient, uint256 amount)": [
         {
-            "specific_checks": "msg.value != destDetails[destChainIdBytes].fee",
+            "potential_checks": "msg.value != destDetails[destChainIdBytes].fee",
             "involved_variables": [
                 "destDetails"
             ],
@@ -24,7 +24,7 @@
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
     "grantRole(bytes32 role, address account)": [
         {
-            "specific_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
             "involved_variables": [
                 "msg.sender",
                 "_roles"
@@ -161,7 +161,7 @@
     ],
     "communityPause()": [
         {
-            "specific_checks": "msg.value >= pauseStakeAmountMin && msg.value <= pauseStakeAmountMax",
+            "potential_checks": "msg.value >= pauseStakeAmountMin && msg.value <= pauseStakeAmountMax",
             "involved_variables": [
                 "pauseStakeAmountMin",
                 "pauseStakeAmountMax",
@@ -187,7 +187,7 @@
             ]
         },
         {
-            "specific_checks": "address(this).balance >= totalStakedAmount",
+            "potential_checks": "address(this).balance >= totalStakedAmount",
             "involved_variables": [
                 "totalStakedAmount"
             ],
