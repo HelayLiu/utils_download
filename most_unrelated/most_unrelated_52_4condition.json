@@ -5,7 +5,7 @@
     "getRoleAdmin(bytes32 role) returns (bytes32)": [],
     "grantRole(bytes32 role, address account)": [
         {
-            "specific_checks": "hasRole(getRoleAdmin(role), msg.sender)",
+            "potential_checks": "hasRole(getRoleAdmin(role), msg.sender)",
             "involved_variables":  ["_roles", "msg.sender"],
             "descriptions": "Restrict to role admin",
             "references": [
@@ -15,7 +15,7 @@
     ],
     "revokeRole(bytes32 role, address account)": [
         {
-            "specific_checks": "hasRole(getRoleAdmin(role), msg.sender)",
+            "potential_checks": "hasRole(getRoleAdmin(role), msg.sender)",
             "involved_variables": ["_roles", "msg.sender"],
             "descriptions": "Restrict to role admin",
             "references": [
@@ -25,7 +25,7 @@
     ],
     "renounceRole(bytes32 role, address account)": [
         {
-            "specific_checks": "account == msg.sender",
+            "potential_checks": "account == msg.sender",
             "involved_variables": ["_roles", "msg.sender"],
             "descriptions": "Allow users to renounce their own roles",
             "references": [
@@ -35,7 +35,7 @@
     ],
     "deposit(address _receiver, string _referralId) returns (uint256)": [
         {
-            "specific_checks": "msg.value >= minDeposit() && msg.value <= maxDeposit()",
+            "potential_checks": "msg.value >= minDeposit() && msg.value <= maxDeposit()",
             "involved_variables":  ["minDeposit", "maxDeposit", "msg.value"],
             "descriptions": "Ensure deposit amount is within allowed limits",
             "references": ["_balances"]
@@ -43,7 +43,7 @@
     ],
     "deposit(address _receiver) returns (uint256)": [
         {
-            "specific_checks": "msg.value >= minDeposit() && msg.value <= maxDeposit()",
+            "potential_checks": "msg.value >= minDeposit() && msg.value <= maxDeposit()",
             "involved_variables":  ["minDeposit", "maxDeposit", "msg.value"],
             "descriptions": "Ensure deposit amount is within allowed limits",
             "references": ["_balances"]
@@ -69,39 +69,39 @@
     "receiveExcessEthFromPool(uint8 _poolId)": [],
     "transferETHToUserWithdrawManager(uint256 _amount)": [
     {
-        "specific_checks": "msg.sender == staderConfig.getUserWithdrawManager()",
+        "potential_checks": "msg.sender == staderConfig.getUserWithdrawManager()",
         "involved_variables":  ["staderConfig", "msg.sender"],
         "descriptions": "Restrict access to UserWithdrawManager contract",
         "references": ["staderConfig"]
     }
     ],
     "validatorBatchDeposit(uint8 _poolId)": [
-{
-    "specific_checks": "poolUtils.isExistingPoolId(_poolId)",
-    "involved_variables":  ["poolUtils", "_poolId"],
-    "descriptions": "Verify pool ID exists",
-    "references": ["staderConfig","poolAddress"]
-},
-{
-    "specific_checks": "availableETHForNewDeposit >= poolDepositSize",
-    "involved_variables":  ["availableETHForNewDeposit", "poolDepositSize"],
-    "descriptions": "Ensure sufficient ETH for deposit",
-    "references": ["staderConfig","poolAddress"]
-}
+        {
+            "potential_checks": "poolUtils.isExistingPoolId(_poolId)",
+            "involved_variables":  ["poolUtils", "_poolId"],
+            "descriptions": "Verify pool ID exists",
+            "references": ["staderConfig","poolAddress"]
+        },
+        {
+            "potential_checks": "availableETHForNewDeposit >= poolDepositSize",
+            "involved_variables":  ["availableETHForNewDeposit", "poolDepositSize"],
+            "descriptions": "Ensure sufficient ETH for deposit",
+            "references": ["staderConfig","poolAddress"]
+        }
     ],
     "depositETHOverTargetWeight()": [
-{
-    "specific_checks": "block.number >= lastExcessETHDepositBlock + excessETHDepositCoolDown",
-    "involved_variables":  ["lastExcessETHDepositBlock", "excessETHDepositCoolDown"],
-    "descriptions": "Enforce cooldown between excess deposits",
-    "references": ["staderConfig"]
-},
-{
-    "specific_checks": "availableETHForNewDeposit >= ETH_PER_NODE",
-    "involved_variables":  ["availableETHForNewDeposit"],
-    "descriptions": "Ensure sufficient ETH for validator allocation",
-    "references": ["staderConfig"]
-}
+        {
+            "potential_checks": "block.number >= lastExcessETHDepositBlock + excessETHDepositCoolDown",
+            "involved_variables":  ["lastExcessETHDepositBlock", "excessETHDepositCoolDown"],
+            "descriptions": "Enforce cooldown between excess deposits",
+            "references": ["staderConfig"]
+        },
+        {
+            "potential_checks": "availableETHForNewDeposit >= ETH_PER_NODE",
+            "involved_variables":  ["availableETHForNewDeposit"],
+            "descriptions": "Ensure sufficient ETH for validator allocation",
+            "references": ["staderConfig"]
+        }
     ],
     "isVaultHealthy() returns (bool)": [],
     "initialize(address _admin, address _staderConfig)": [
@@ -109,49 +109,34 @@
     ],
     "updateExcessETHDepositCoolDown(uint256 _excessETHDepositCoolDown)": [
         {
-                "specific_checks": "hasRole(MANAGER_ROLE, msg.sender)",
-    "involved_variables":  ["_roles"],
-    "descriptions": "Restrict to manager role",
-    "references": []
+            "potential_checks": "hasRole(MANAGER_ROLE, msg.sender)",
+            "involved_variables":  ["_roles","msg.sender"],
+            "descriptions": "Restrict to manager role",
+            "references": ["excessETHDepositCoolDown"]
         }
     ],
     "updateStaderConfig(address _staderConfig)": [
         {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables": ["_roles","msg.sender"],
+            "descriptions": "Restrict to admin role",
+            "references": ["staderConfig"]
         }
     ],
     "pause()": [
         {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "hasRole(MANAGER_ROLE, msg.sender)",
+            "involved_variables":  ["_roles","msg.sender"],
+            "descriptions": "Restrict to manager role",
+            "references": ["_paused"]
         }
     ],
     "unpause()": [
         {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables":  ["_roles","msg.sender"],
+            "descriptions": "Restrict to admin role",
+            "references": ["_paused"]
         }
     ]
 }
