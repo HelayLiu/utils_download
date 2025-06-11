@@ -1,0 +1,7 @@
+- As a token holder, I want to securely transfer tokens to others while ensuring my account isn't locked.  
+- As a contract owner, I want to restrict transfers during emergencies by setting a global lock.  
+- As a contract owner, I want to whitelist trusted addresses to bypass global locks.  
+- As a contract owner, I want to block malicious addresses from transferring tokens.  
+- As a token holder, I want to burn my tokens to reduce supply securely.  
+- As a token holder, I want to delegate spending rights to others via approvals.  
+- As a contract owner, I want to safely transfer ownership to a new address.  

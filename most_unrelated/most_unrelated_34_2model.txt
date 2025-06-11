@@ -1,0 +1,21 @@
+- `owner (address public)`:  
+    · Write restricted to the current owner.  
+    · Read restricted to None (public).  
+- `balances (mapping(address => uint256))`:  
+    · Write restricted to token holders (via transfers/burns) and approved spenders.  
+    · Read restricted to None (public via `balanceOf`).  
+- `allowedAddresses (mapping(address => bool) public)`:  
+    · Write restricted to the contract owner.  
+    · Read restricted to None (public).  
+- `lockedAddresses (mapping(address => bool) public)`:  
+    · Write restricted to the contract owner.  
+    · Read restricted to None (public).  
+- `locked (bool public)`:  
+    · Write restricted to the contract owner.  
+    · Read restricted to None (public).  
+- `totalSupply (uint256 public)`:  
+    · Write restricted to token holders (via burns).  
+    · Read restricted to None (public).  
+- `allowed (mapping(address => mapping(address => uint256))`:  
+    · Write restricted to token owners and approved spenders.  
+    · Read restricted to None (public via `allowance`).  

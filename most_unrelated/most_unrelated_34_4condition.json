@@ -1,133 +1,41 @@
 {
     "burn(uint256 _value)": [
-        {
-            "potential_checks": "_value > 0",
-            "involved_variables": [
-                "_value",
-                "msg.sender",
-                "balances"
-            ],
-            "descriptions": "",
-            "references": [
-                "balances"
-            ]
-        },
-        {
-            "potential_checks": "_value <= balances[msg.sender] == False",
-            "involved_variables": [
-                "_value",
-                "msg.sender",
-                "balances"
-            ],
-            "descriptions": "",
-            "references": [
-                "balances"
-            ]
-        }
     ],
     "transferFrom(address _from, address _to, uint256 _value) returns (bool)": [
-        {
-            "potential_checks": "canTransfer(msg.sender)",
-            "involved_variables": [
-                "_from",
-                "_addr",
-                "_to",
-                "lockedAddresses",
-                "locked",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "locked",
-                "lockedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "locked == False",
-            "involved_variables": [
-                "_from",
-                "_addr",
-                "_to",
-                "lockedAddresses",
-                "locked",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "locked",
-                "lockedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "lockedAddresses[_addr] == False",
-            "involved_variables": [
-                "_from",
-                "_addr",
-                "_to",
-                "lockedAddresses",
-                "locked",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "locked",
-                "lockedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "canTransfer(_from) == False",
-            "involved_variables": [
-                "_from",
-                "_addr",
-                "_to",
-                "lockedAddresses",
-                "locked",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "locked",
-                "lockedAddresses"
-            ]
-        }
+        {  
+    "potential_checks": "canTransfer(msg.sender)",  
+    "involved_variables": ["msg.sender", "locked", "allowedAddresses", "lockedAddresses", "owner"],  
+    "descriptions": "Verifies spender's transfer permissions.",  
+    "references": ["allowed","balances"]  
+},  
+{  
+    "potential_checks": "canTransfer(_from)",  
+    "involved_variables": ["_from", "locked", "allowedAddresses", "lockedAddresses", "owner"],  
+    "descriptions": "Verifies token owner's transfer permissions.",  
+    "references": ["allowed","balances"] 
+},  
+{  
+    "potential_checks": "_value <= allowed[_from][msg.sender]",  
+    "involved_variables": ["_value", "allowed[_from][msg.sender]"],  
+    "descriptions": "Ensures spender has sufficient allowance.",  
+    "references": ["allowed","balances"]  
+}  
     ],
     "approve(address _spender, uint256 _value) returns (bool)": [],
     "allowance(address _owner, address _spender) returns (uint256)": [],
     "increaseApproval(address _spender, uint256 _addedValue) returns (bool)": [],
     "decreaseApproval(address _spender, uint256 _subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "_subtractedValue > oldValue == False",
-            "involved_variables": [
-                "oldValue",
-                "_subtractedValue"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "allowAddress(address _addr, bool _allowed)": [
         {
             "potential_checks": "msg.sender == owner",
             "involved_variables": [
-                "_addr",
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Restricts write access to contract owner only.",
             "references": [
-                "owner"
-            ]
-        },
-        {
-            "potential_checks": "_addr != owner == False",
-            "involved_variables": [
-                "_addr",
-                "msg.sender",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "owner"
+                "allowedAddresses"
             ]
         }
     ],
@@ -135,68 +43,30 @@
         {
             "potential_checks": "msg.sender == owner",
             "involved_variables": [
-                "_addr",
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Restricts write access to contract owner only",
             "references": [
-                "owner"
-            ]
-        },
-        {
-            "potential_checks": "_addr != owner == False",
-            "involved_variables": [
-                "_addr",
-                "msg.sender",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "owner"
+                "lockedAddresses"
             ]
         }
     ],
     "setLocked(bool _locked)": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Restricts write access to contract owner only",
             "references": [
-                "owner"
+                "locked"
             ]
         }
     ],
     "canTransfer(address _addr) returns (bool)": [
-        {
-            "potential_checks": "locked == False",
-            "involved_variables": [
-                "_addr",
-                "locked",
-                "lockedAddresses"
-            ],
-            "descriptions": "",
-            "references": [
-                "locked",
-                "lockedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "lockedAddresses[_addr] == False",
-            "involved_variables": [
-                "_addr",
-                "locked",
-                "lockedAddresses"
-            ],
-            "descriptions": "",
-            "references": [
-                "locked",
-                "lockedAddresses"
-            ]
-        }
+
     ],
     "transfer(address _to, uint256 _value) returns (bool)": [
         {
@@ -208,40 +78,9 @@
                 "locked",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Verifies sender's transfer permissions.",
             "references": [
-                "locked",
-                "lockedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "locked == False",
-            "involved_variables": [
-                "_addr",
-                "_to",
-                "lockedAddresses",
-                "locked",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "locked",
-                "lockedAddresses"
-            ]
-        },
-        {
-            "potential_checks": "lockedAddresses[_addr] == False",
-            "involved_variables": [
-                "_addr",
-                "_to",
-                "lockedAddresses",
-                "locked",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "locked",
-                "lockedAddresses"
+                "balances"
             ]
         }
     ],
@@ -251,18 +90,57 @@
             "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
-                "newOwner",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Restricts write access to contract owner only",
             "references": [
                 "owner"
             ]
         }
     ],
     "balanceOf(address who) returns (uint256)": [],
-    "transfer(address to, uint256 value) returns (bool)": [],
+    "transfer(address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "canTransfer(msg.sender)",
+            "involved_variables": [
+                "msg.sender",
+                "to",
+                "lockedAddresses",
+                "locked"
+            ],
+            "descriptions": "Verifies sender's transfer permissions.",
+            "references": [
+                "balances"
+            ]
+        }
+    ],
     "allowance(address owner, address spender) returns (uint256)": [],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "canTransfer(msg.sender)",
+            "involved_variables": [
+                "msg.sender",
+                "from",
+                "to",
+                "lockedAddresses",
+                "locked"
+            ],
+            "descriptions": "Verifies spender's transfer permissions.",
+            "references": [
+                "balances"
+            ]
+        },
+        {
+            "potential_checks": "_value <= allowed[from][msg.sender]",
+            "involved_variables": [
+                "_value",
+                "allowed[from][msg.sender]"
+            ],
+            "descriptions": "Ensures spender has sufficient allowance.",
+            "references": [
+                "allowed"
+            ]
+        }
+    ],
     "approve(address spender, uint256 value) returns (bool)": []
 }
