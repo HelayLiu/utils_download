@@ -1,0 +1,8 @@
+- As a contract owner, I want to launch the token by setting up the Uniswap pair and initial liquidity, so that trading can begin.
+- As a contract owner, I want to set fees for buying and selling, so that I can collect fees for marketing and liquidity.
+- As a contract owner, I want to update the Treasury address, so that I can change where marketing fees are sent.
+- As a contract owner, I want to exclude certain addresses from fees and transaction limits, so that they can transfer tokens without restrictions.
+- As a contract owner, I want to blacklist certain addresses to prevent them from trading, so that I can protect the token from malicious actors.
+- As a contract owner, I want to renounce the ability to blacklist, so that the community knows that blacklisting can no longer be done.
+- As a user, I want to transfer tokens to another address, so that I can use the token for transactions, provided I am not blacklisted and within transaction limits.
+- As a user, I want to trade tokens on Uniswap, so that I can buy or sell the token, with fees applied and possibly swapped for ETH and added to liquidity.

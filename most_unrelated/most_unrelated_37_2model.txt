@@ -1,0 +1,31 @@
+- `_name` and `_symbol`:
+  · Write restricted to the contract (set during launch only).
+  · Read restricted to anyone via public view functions.
+  
+- `uniswapV2Pair`:
+  · Write restricted to the contract (set during launch).
+  · Read restricted to anyone.
+  
+- `Treasury`:
+  · Write restricted to the contract owner.
+  · Read restricted to anyone.
+  
+- `_isExcludedFromFees` (mapping):
+  · Write restricted to the contract owner.
+  · Read restricted to anyone via `isExcludedFromFees()`.
+  
+- `blacklists` (mapping):
+  · Write restricted to the contract owner (until renounced).
+  · Read restricted to anyone.
+  
+- `maxTransactionAmount` and `maxWallet`:
+  · Write restricted to the contract owner.
+  · Read restricted to anyone.
+  
+- `_balances` (inherited from ERC20):
+  · Write restricted to the contract (during transfers) or owner (via functions like `allocateReserve`).
+  · Read restricted to the token holder or anyone via `balanceOf()`.
+  
+- `swapTokensAtAmount`:
+  · Write restricted to the contract owner.
+  · Read restricted to anyone.

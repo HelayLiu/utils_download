@@ -2,20 +2,28 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "name() returns (string)": [],
@@ -26,408 +34,297 @@
     "transfer(address to, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 amount) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "_allowances[from][msg.sender] >= value",
+            "involved_variables": ["_allowances", "from", "msg.sender", "value"],
+            "descriptions": "Verify spender allowance covers transfer amount to isolate unauthorized access.",
+            "references": ["_balances"]
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance >= subtractedValue",
-            "involved_variables": [
-                "spender",
-                "currentAllowance",
-                "subtractedValue",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "launch(string name, string symbol, uint256 amountLeft)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "spender",
-                "tradingActive",
-                "owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before launching.",
             "references": [
-                "tradingActive"
-            ]
-        },
-        {
-            "potential_checks": "tradingActive",
-            "involved_variables": [
-                "spender",
-                "tradingActive",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": [
+                "_name",
+                "_symbol",
+                "uniswapV2Pair",
+                "tradingStartBlock",
+                "automatedMarketMakerPairs",
                 "tradingActive"
             ]
         }
     ],
     "limitsOff() returns (bool)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before disabling limits.",
+            "references": ["limitsInEffect"]
         }
     ],
     "updateSwapTokensAtAmount(uint256 newAmount) returns (bool)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newAmount"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "newAmount >= (totalSupply() * 1) / 100000",
-            "involved_variables": [
-                "newAmount"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "newAmount <= (totalSupply() * 4) / 100 == False",
-            "involved_variables": [
-                "newAmount"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before updating swap tokens at amount.",
+            "references": ["swapTokensAtAmount"]
         }
     ],
     "updateSwapEnabled(bool enabled)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before updating swap enabled.",
+            "references": [
+                "swapEnabled"
+            ]
         }
     ],
     "updateMaxTransaction(uint256 newNum)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newNum"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "newNum >= ((totalSupply() * 1) / 1000) / 1e18 == False",
-            "involved_variables": [
-                "newNum"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before updating max transaction.",
+            "references": [
+                "maxTransactionAmount"
+            ]
         }
     ],
     "updateMaxWallet(uint256 newNum)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newNum"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "newNum >= ((totalSupply() * 1) / 1000) / 1e18 == False",
-            "involved_variables": [
-                "newNum"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before updating max wallet.",
+            "references": [
+                "maxWallet"
+            ]
         }
     ],
     "disableWalletLimits(address updAds, bool isEx)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before disabling wallet limits.",
+            "references": [
+                "_isExcludedMaxTransactionAmount"
+            ]
         }
     ],
     "setBuyFees(uint256 _marketingFee, uint256 _liquidityFee)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "buyTotalFees"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting buy fees.",
             "references": [
-                "buyTotalFees"
-            ]
-        },
-        {
-            "potential_checks": "buyTotalFees <= 30 == False",
-            "involved_variables": [
-                "buyTotalFees"
-            ],
-            "descriptions": "",
-            "references": [
+                "buyMarketingFee",
+                "buyLiquidityFee",
                 "buyTotalFees"
             ]
         }
     ],
     "setSellFees(uint256 _marketingFee, uint256 _liquidityFee)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "sellTotalFees"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting sell fees.",
             "references": [
-                "sellTotalFees"
-            ]
-        },
-        {
-            "potential_checks": "sellTotalFees <= 30 == False",
-            "involved_variables": [
-                "sellTotalFees"
-            ],
-            "descriptions": "",
-            "references": [
+                "sellMarketingFee",
+                "sellLiquidityFee",
                 "sellTotalFees"
             ]
         }
     ],
     "_excludeFromFees(address account, bool excluded)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before excluding from fees.",
+            "references": [
+                "_isExcludedFromFees"
+            ]
         }
     ],
     "excludeFromFees(address account, bool excluded)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before excluding from fees.",
+            "references": [
+                "_isExcludedFromFees"
+            ]
         }
     ],
     "setAutomatedMarketMakerPair(address pair, bool value)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "pair",
-                "uniswapV2Pair"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting automated market maker pair.",
             "references": [
-                "uniswapV2Pair"
-            ]
-        },
-        {
-            "potential_checks": "pair != uniswapV2Pair == False",
-            "involved_variables": [
-                "pair",
-                "uniswapV2Pair"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair"
+                "automatedMarketMakerPairs"
             ]
         }
     ],
     "updateMarketingWallet(address _Treasury)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before updating marketing wallet.",
+            "references": [
+                "Treasury"
+            ]
         }
     ],
     "isExcludedFromFees(address account) returns (bool)": [],
     "blacklist(address _address, bool _isBlacklisting)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "uniswapV2Pair",
-                "routerAddress",
-                "_address",
-                "blacklistRenounced"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before blacklisting an address.",
             "references": [
-                "uniswapV2Pair",
-                "routerAddress",
-                "blacklistRenounced"
-            ]
-        },
-        {
-            "potential_checks": "blacklistRenounced",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "routerAddress",
-                "_address",
-                "blacklistRenounced"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "routerAddress",
-                "blacklistRenounced"
-            ]
-        },
-        {
-            "potential_checks": "_address != address(uniswapV2Pair)",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "routerAddress",
-                "_address",
-                "blacklistRenounced"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "routerAddress",
-                "blacklistRenounced"
-            ]
-        },
-        {
-            "potential_checks": "_address != address(routerAddress) == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "routerAddress",
-                "_address",
-                "blacklistRenounced"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "routerAddress",
-                "blacklistRenounced"
+                "blacklists"
             ]
         }
+
     ],
     "renounceBlacklist()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing blacklist.",
+            "references": [
+                "blacklistRenounced"
+            ]
         }
     ],
     "unsetReducedFirstBlock()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before unsetting reduced first block.",
+            "references": [
+                "reducedFirstBlockEnabled"
+            ]
         }
     ],
     "updateRestrictSwapBack(bool newVal)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before updating restrict swap back.",
+            "references": [
+                "restrictSwapBack"
+            ]
         }
     ],
     "removeStuckTokens()": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "spender",
-                "owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before removing stuck tokens.",
+            "references": [
+                "uniswapV2Router",
+                "_allowances"
+            ]
         }
     ],
     "recoverETH()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before recovering ETH.",
+            "references": [
+                "Treasury"
+            ]
         }
     ],
     "recoverTokens(address token)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "success",
-                "tokenBalance"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "tokenBalance > 0",
-            "involved_variables": [
-                "success",
-                "tokenBalance"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "IERC20(token).transfer(Treasury,tokenBalance) == False",
-            "involved_variables": [
-                "success",
-                "tokenBalance"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before recovering Tokens.",
+            "references": [
+                "Treasury"
+            ]
         }
     ],
     "allocateReserve(uint256 amount)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "this",
-                "amount",
-                "fromBalance",
-                "to",
-                "from"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "amount > 0",
-            "involved_variables": [
-                "this",
-                "amount",
-                "fromBalance",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "balanceOf(address(this)) >= amount",
-            "involved_variables": [
-                "this",
-                "amount",
-                "fromBalance",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "fromBalance >= amount == False",
-            "involved_variables": [
-                "this",
-                "amount",
-                "fromBalance",
-                "to",
-                "from"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before allocating reserve.",
+            "references": [
+                "Treasury"
+            ]
         }
+ 
     ]
 }

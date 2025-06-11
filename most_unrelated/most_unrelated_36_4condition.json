@@ -68,7 +68,7 @@
     ],
     "depositAll()": [
         {
-            "specific_checks": "validator.call{value: valAmt}() succeeds",
+            "potential_checks": "validator.call{value: valAmt}() succeeds",
             "involved_variables": ["validator", "valAmt"],
             "descriptions": "Verifies validator fee transfer before staking.",
             "references": ["_balances","stakingContract","_totalSupply"]
@@ -76,7 +76,7 @@
     ],
     "deposit(uint256 _amount)": [
         {
-            "specific_checks": "validator.call{value: valAmt}() succeeds",
+            "potential_checks": "validator.call{value: valAmt}() succeeds",
             "involved_variables": ["validator", "valAmt"],
             "descriptions": "Verifies validator fee transfer before staking.",
             "references": ["_balances","stakingContract","_totalSupply"]
@@ -84,7 +84,7 @@
     ],
     "depositNative()": [
         {
-            "specific_checks": "validator.call{value: valAmt}() succeeds",
+            "potential_checks": "validator.call{value: valAmt}() succeeds",
             "involved_variables": ["validator", "valAmt"],
             "descriptions": "Verifies validator fee transfer before staking.",
             "references": ["_balances","stakingContract","_totalSupply"]
@@ -101,7 +101,7 @@
     "pendingStakingRewards() returns (uint256)": [],
     "enableWithdraw()": [
         {
-            "specific_checks": "_owner == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": ["msg.sender", "_owner"],
             "descriptions": "Restricts withdrawal initiation to contract owner.",
             "references": ["stakingContract", "withdrawalTime"]
@@ -109,13 +109,13 @@
     ],
     "withdrawFromStaking()": [
         {
-            "specific_checks": "_owner == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": ["msg.sender", "_owner"],
             "descriptions": "Restricts withdrawal initiation to contract owner.",
             "references": ["stakingContract", "withdrawalTime"]
         },
         {
-            "specific_checks": "block.timestamp >= withdrawalTime",
+            "potential_checks": "block.timestamp >= withdrawalTime",
             "involved_variables": ["block.timestamp", "withdrawalTime"],
             "descriptions": "Enforces 7-day cooldown before final asset withdrawal.",
             "references": ["withdrawalTime", "stakingContract"]
