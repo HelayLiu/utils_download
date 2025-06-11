@@ -1,0 +1,6 @@
+- As a user, I want to deposit FTM/wFTM to receive staked tokens, ensuring my deposited amount is securely locked and represented by ERC20 shares.
+- As a user, I want to withdraw my staked assets after a waiting period, with guarantees that only I can redeem my share of the contract's assets.
+- As the contract owner, I want to control staking parameters (validator fees, lock durations) to maintain protocol security and efficiency.
+- As the reward pool contract, I want to exclusively claim staking rewards for distribution, preventing unauthorized access to yield.
+- As a keeper, I want to pause deposits during emergencies, ensuring no new funds are locked during vulnerabilities.
+- As a user, I want my ERC20 shares to follow standard token semantics (transfers, allowances) while maintaining isolation from other users' balances.

@@ -1,12 +1,13 @@
 {
     "setKeeper(address _keeper)": [
         {
-            "potential_checks": "msg.sender == owner() || msg.sender == keeper == False",
+            "potential_checks": "msg.sender == _owner || msg.sender == keeper",
             "involved_variables": [
                 "keeper",
-                "msg.sender"
+                "msg.sender",
+                "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is either the owner or the current keeper.",
             "references": [
                 "keeper"
             ]
@@ -14,30 +15,43 @@
     ],
     "setRewardPool(address _rewardPool)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the owner of the contract.",
+            "references": [
+                "rewardPool"
+            ]
         }
     ],
     "paused() returns (bool)": [],
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "name() returns (string)": [],
@@ -51,336 +65,29 @@
     "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance >= subtractedValue",
-            "involved_variables": [
-                "spender",
-                "currentAllowance",
-                "subtractedValue",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "depositAll()": [
         {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "_amount > 0",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "(sent,None) = validator.call{value: valAmt}()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "validatorLockDuration() > currentLockDuration()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "balanceOfLocked() > 0",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
+            "specific_checks": "validator.call{value: valAmt}() succeeds",
+            "involved_variables": ["validator", "valAmt"],
+            "descriptions": "Verifies validator fee transfer before staking.",
+            "references": ["_balances","stakingContract","_totalSupply"]
         }
     ],
     "deposit(uint256 _amount)": [
         {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "_amount > 0",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "(sent,None) = validator.call{value: valAmt}()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "validatorLockDuration() > currentLockDuration()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "balanceOfLocked() > 0",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
+            "specific_checks": "validator.call{value: valAmt}() succeeds",
+            "involved_variables": ["validator", "valAmt"],
+            "descriptions": "Verifies validator fee transfer before staking.",
+            "references": ["_balances","stakingContract","_totalSupply"]
         }
     ],
     "depositNative()": [
         {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "_amount > 0",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "(sent,None) = validator.call{value: valAmt}()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "validatorLockDuration() > currentLockDuration()",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "balanceOfLocked() > 0",
-            "involved_variables": [
-                "_amount",
-                "_ENTERED",
-                "_status",
-                "account",
-                "sent"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        }
-    ],
-    "withdraw(uint256 _shares)": [
-        {
-            "potential_checks": "withdrawEnabled",
-            "involved_variables": [
-                "withdrawEnabled",
-                "amount",
-                "sent",
-                "account",
-                "accountBalance"
-            ],
-            "descriptions": "",
-            "references": [
-                "withdrawEnabled"
-            ]
-        },
-        {
-            "potential_checks": "accountBalance >= amount",
-            "involved_variables": [
-                "withdrawEnabled",
-                "amount",
-                "sent",
-                "account",
-                "accountBalance"
-            ],
-            "descriptions": "",
-            "references": [
-                "withdrawEnabled"
-            ]
-        },
-        {
-            "potential_checks": "(sent,None) = msg.sender.call{value: r}() == False",
-            "involved_variables": [
-                "withdrawEnabled",
-                "amount",
-                "sent",
-                "account",
-                "accountBalance"
-            ],
-            "descriptions": "",
-            "references": [
-                "withdrawEnabled"
-            ]
+            "specific_checks": "validator.call{value: valAmt}() succeeds",
+            "involved_variables": ["validator", "valAmt"],
+            "descriptions": "Verifies validator fee transfer before staking.",
+            "references": ["_balances","stakingContract","_totalSupply"]
         }
     ],
     "currentUnlockTime() returns (uint256)": [],
@@ -394,146 +101,105 @@
     "pendingStakingRewards() returns (uint256)": [],
     "enableWithdraw()": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "specific_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender", "_owner"],
+            "descriptions": "Restricts withdrawal initiation to contract owner.",
+            "references": ["stakingContract", "withdrawalTime"]
         }
     ],
     "withdrawFromStaking()": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "block.timestamp",
-                "withdrawalTime"
-            ],
-            "descriptions": "",
-            "references": [
-                "withdrawalTime"
-            ]
+            "specific_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender", "_owner"],
+            "descriptions": "Restricts withdrawal initiation to contract owner.",
+            "references": ["stakingContract", "withdrawalTime"]
         },
         {
-            "potential_checks": "block.timestamp >= withdrawalTime == False",
-            "involved_variables": [
-                "block.timestamp",
-                "withdrawalTime"
-            ],
-            "descriptions": "",
-            "references": [
-                "withdrawalTime"
-            ]
+            "specific_checks": "block.timestamp >= withdrawalTime",
+            "involved_variables": ["block.timestamp", "withdrawalTime"],
+            "descriptions": "Enforces 7-day cooldown before final asset withdrawal.",
+            "references": ["withdrawalTime", "stakingContract"]
         }
     ],
     "lockFunds()": [
-        {
-            "potential_checks": "validatorLockDuration() > currentLockDuration() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "relockFunds()": [
         {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the owner before relocking funds.",
+            "references": [
+                "withdrawEnabled",
+                "stakingContract"
+            ]
         }
     ],
     "pause()": [
         {
-            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "potential_checks": "msg.sender == _owner || msg.sender == keeper",
             "involved_variables": [
                 "keeper",
-                "msg.sender"
+                "msg.sender",
+                "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is either the owner or the current keeper before pausing.",
             "references": [
-                "keeper"
-            ]
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "keeper",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "keeper"
+                "_paused"
             ]
         }
     ],
     "unpause()": [
         {
-            "potential_checks": "msg.sender == owner() || msg.sender == keeper",
+            "potential_checks": "msg.sender == _owner || msg.sender == keeper",
             "involved_variables": [
                 "keeper",
-                "msg.sender"
+                "msg.sender",
+                "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is either the owner or the current keeper before unpausing.",
             "references": [
-                "keeper"
-            ]
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "keeper",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "keeper"
+                "_paused"
             ]
         }
     ],
     "claimStakingReward()": [
         {
-            "potential_checks": "msg.sender == rewardPool == False",
+            "potential_checks": "msg.sender == rewardPool",
             "involved_variables": [
                 "msg.sender",
                 "rewardPool"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the reward pool before claiming staking rewards.",
             "references": [
-                "rewardPool"
+                "want",
+                "stakingContract"
             ]
         }
     ],
     "inCaseTokensGetStuck(address _token)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_token",
-                "want"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the owner before allowing tokens to be stuck.",
             "references": [
-                "want"
+                "_balances"
             ]
         },
         {
-            "potential_checks": "_token != address(want) == False",
+            "potential_checks": "_token != address(want)",
             "involved_variables": [
                 "_token",
                 "want"
             ],
-            "descriptions": "",
+            "descriptions": "Prevent stuck tokens from being the main asset to avoid accidental loss.",
             "references": [
-                "want"
+                "_balances"
             ]
         }
     ]
