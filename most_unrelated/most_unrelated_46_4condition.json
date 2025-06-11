@@ -1,5 +1,18 @@
 {
-    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "specific_checks": "block.timestamp <= deadline",
+            "involved_variables": ["block.timestamp", "deadline"],
+            "descriptions": "Ensure permit signature is not expired",
+            "references": ["_allowances"]
+        },
+        {
+            "specific_checks": "signer == owner",
+            "involved_variables": ["signer", "owner", "v", "r", "s"],
+            "descriptions": "Verify signature matches token owner",
+            "references": ["_allowances"]
+        }
+    ],
     "nonces(address owner) returns (uint256)": [],
     "DOMAIN_SEPARATOR() returns (bytes32)": [],
     "eip712Domain() returns (bytes1, string, string, uint256, address, bytes32, uint256[])": [],
@@ -11,296 +24,99 @@
     "transfer(address to, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 amount) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "_allowances[from][msg.sender] >= amount",
+            "involved_variables": [
+                "_allowances",
+                "from",
+                "msg.sender",
+                "amount"
+            ],
+            "descriptions": "Verify spender allowance covers transfer amount to isolate unauthorized access.",
+            "references": [
+                "_balances"
+            ]
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance >= subtractedValue",
-            "involved_variables": [
-                "subtractedValue",
-                "currentAllowance",
-                "spender",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "setLockbox(address _lockbox)": [
         {
-            "potential_checks": "msg.sender != FACTORY == False",
-            "involved_variables": [
-                "msg.sender",
-                "FACTORY"
-            ],
-            "descriptions": "",
-            "references": [
-                "FACTORY"
-            ]
+            "specific_checks": "msg.sender == FACTORY",
+            "involved_variables": ["msg.sender", "FACTORY"],
+            "descriptions": "Restrict lockbox setup to factory",
+            "references": ["lockbox"]
         }
     ],
     "setLimits(address _bridge, uint256 _mintingLimit, uint256 _burningLimit)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "specific_checks": "_owner == msg.sender",
+            "involved_variables": ["msg.sender", "_owner"],
+            "descriptions": "Enforce owner-only limit configuration",
+            "references": ["bridges"]
         }
     ],
     "mintingMaxLimitOf(address _minter) returns (uint256)": [],
     "burningMaxLimitOf(address _bridge) returns (uint256)": [],
     "mintingCurrentLimitOf(address _minter) returns (uint256)": [],
     "burningCurrentLimitOf(address _bridge) returns (uint256)": [
-        {
-            "potential_checks": "_limit == _maxLimit == False",
-            "involved_variables": [
-                "_timestamp",
-                "block.timestamp",
-                "_limit",
-                "_maxLimit",
-                "_DURATION"
-            ],
-            "descriptions": "",
-            "references": [
-                "_DURATION"
-            ]
-        },
-        {
-            "potential_checks": "_timestamp + _DURATION <= block.timestamp == False",
-            "involved_variables": [
-                "_timestamp",
-                "block.timestamp",
-                "_limit",
-                "_maxLimit",
-                "_DURATION"
-            ],
-            "descriptions": "",
-            "references": [
-                "_DURATION"
-            ]
-        },
-        {
-            "potential_checks": "_timestamp + _DURATION > block.timestamp == False",
-            "involved_variables": [
-                "_timestamp",
-                "block.timestamp",
-                "_limit",
-                "_maxLimit",
-                "_DURATION"
-            ],
-            "descriptions": "",
-            "references": [
-                "_DURATION"
-            ]
-        }
     ],
     "mint(address _user, uint256 _amount)": [
         {
-            "potential_checks": "_amount == 0 == False",
-            "involved_variables": [
-                "_amount",
-                "lockbox",
-                "_caller",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "lockbox"
-            ]
-        },
-        {
-            "potential_checks": "_caller != lockbox == False",
-            "involved_variables": [
-                "_amount",
-                "lockbox",
-                "_caller",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "lockbox"
-            ]
-        }
+        "specific_checks": "_currentLimit >= _amount",
+        "involved_variables": ["_currentLimit", "_amount"],
+        "descriptions": "Enforce bridge minting limits",
+        "references": ["bridges"]
+    }
     ],
     "burn(address _user, uint256 _amount)": [
         {
-            "potential_checks": "msg.sender != _user == False",
+            "potential_checks": "msg.sender != _user && _allowance[_user][msg.sender] < _amount",
             "involved_variables": [
                 "_amount",
-                "lockbox",
-                "amount",
                 "_user",
                 "msg.sender",
-                "account",
-                "accountBalance",
-                "_caller"
+                "_allowance"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure user has sufficient allowance for burn",
             "references": [
-                "lockbox"
-            ]
-        },
-        {
-            "potential_checks": "_amount == 0 == False",
-            "involved_variables": [
-                "_amount",
-                "lockbox",
-                "amount",
-                "_user",
-                "msg.sender",
-                "account",
-                "accountBalance",
-                "_caller"
-            ],
-            "descriptions": "",
-            "references": [
-                "lockbox"
-            ]
-        },
-        {
-            "potential_checks": "_caller != lockbox == False",
-            "involved_variables": [
-                "_amount",
-                "lockbox",
-                "amount",
-                "_user",
-                "msg.sender",
-                "account",
-                "accountBalance",
-                "_caller"
-            ],
-            "descriptions": "",
-            "references": [
-                "lockbox"
-            ]
-        },
-        {
-            "potential_checks": "accountBalance >= amount == False",
-            "involved_variables": [
-                "_amount",
-                "lockbox",
-                "amount",
-                "_user",
-                "msg.sender",
-                "account",
-                "accountBalance",
-                "_caller"
-            ],
-            "descriptions": "",
-            "references": [
-                "lockbox"
+                "_balances",
+                "totalSupply"
             ]
         }
     ],
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "initialize(string _name, string _symbol, address _factory)": [
-        {
-            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
-            "involved_variables": [
-                "_initializing",
-                "_initialized",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "isTopLevelCall == False",
-            "involved_variables": [
-                "_initializing",
-                "_initialized",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "_initializing == False",
-            "involved_variables": [
-                "_initializing",
-                "_initialized",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        }
     ],
     "mintingMaxLimitOf(address _bridge) returns (uint256)": [],
     "mintingCurrentLimitOf(address _bridge) returns (uint256)": [
-        {
-            "potential_checks": "_limit == _maxLimit == False",
-            "involved_variables": [
-                "_timestamp",
-                "block.timestamp",
-                "_limit",
-                "_maxLimit",
-                "_DURATION"
-            ],
-            "descriptions": "",
-            "references": [
-                "_DURATION"
-            ]
-        },
-        {
-            "potential_checks": "_timestamp + _DURATION <= block.timestamp == False",
-            "involved_variables": [
-                "_timestamp",
-                "block.timestamp",
-                "_limit",
-                "_maxLimit",
-                "_DURATION"
-            ],
-            "descriptions": "",
-            "references": [
-                "_DURATION"
-            ]
-        },
-        {
-            "potential_checks": "_timestamp + _DURATION > block.timestamp == False",
-            "involved_variables": [
-                "_timestamp",
-                "block.timestamp",
-                "_limit",
-                "_maxLimit",
-                "_DURATION"
-            ],
-            "descriptions": "",
-            "references": [
-                "_DURATION"
-            ]
-        }
     ]
 }
