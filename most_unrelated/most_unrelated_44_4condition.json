@@ -48,7 +48,7 @@
     ],
     "compoundReward()": [
         {
-        "specific_checks": "stakingToken == rewardsToken",
+        "potential_checks": "stakingToken == rewardsToken",
         "involved_variables": ["stakingToken", "rewardsToken"],
         "descriptions": "Ensure compounding only for same tokens.",
         "references": ["_balances", "_totalSupply"]
@@ -79,7 +79,7 @@
             ]
         },
         {
-        "specific_checks": "tokenAddress != address(stakingToken)",
+        "potential_checks": "tokenAddress != address(stakingToken)",
         "involved_variables": ["tokenAddress", "stakingToken"],
         "descriptions": "Prevent staking token recovery.",
         "references": ["stakingToken"]
