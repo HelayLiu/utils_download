@@ -1,13 +1,13 @@
 {
     "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
         {
-            "specific_checks": "block.timestamp <= deadline",
+            "potential_checks": "block.timestamp <= deadline",
             "involved_variables": ["block.timestamp", "deadline"],
             "descriptions": "Ensure permit signature is not expired",
             "references": ["_allowances"]
         },
         {
-            "specific_checks": "signer == owner",
+            "potential_checks": "signer == owner",
             "involved_variables": ["signer", "owner", "v", "r", "s"],
             "descriptions": "Verify signature matches token owner",
             "references": ["_allowances"]
@@ -44,7 +44,7 @@
     ],
     "setLockbox(address _lockbox)": [
         {
-            "specific_checks": "msg.sender == FACTORY",
+            "potential_checks": "msg.sender == FACTORY",
             "involved_variables": ["msg.sender", "FACTORY"],
             "descriptions": "Restrict lockbox setup to factory",
             "references": ["lockbox"]
@@ -52,7 +52,7 @@
     ],
     "setLimits(address _bridge, uint256 _mintingLimit, uint256 _burningLimit)": [
         {
-            "specific_checks": "_owner == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": ["msg.sender", "_owner"],
             "descriptions": "Enforce owner-only limit configuration",
             "references": ["bridges"]
@@ -65,7 +65,7 @@
     ],
     "mint(address _user, uint256 _amount)": [
         {
-        "specific_checks": "_currentLimit >= _amount",
+        "potential_checks": "_currentLimit >= _amount",
         "involved_variables": ["_currentLimit", "_amount"],
         "descriptions": "Enforce bridge minting limits",
         "references": ["bridges"]
