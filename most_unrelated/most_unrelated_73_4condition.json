@@ -1,340 +1,181 @@
 {
     "pendingOwner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "acceptOwnership()": [
         {
-            "potential_checks": "pendingOwner() == sender == False",
+            "potential_checks": "pendingOwner == msg.sender",
             "involved_variables": [
-                "sender"
+                "pendingOwner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the pending owner before accepting ownership.",
+            "references": [
+                "pendingOwner",
+                "_owner"
+            ]
         }
     ],
     "owner() returns (address)": [],
-    "renounceOwnership()": [
-        {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        }
-    ],
     "transfer(address wallet, address[] players, uint64[] amounts)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "amounts",
-                "len",
-                "i"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "amounts.length != len == False",
-            "involved_variables": [
-                "amounts",
-                "len",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < len == False",
-            "involved_variables": [
-                "amounts",
-                "len",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transferring funds.",
+            "references": ["balanceOf"]
         }
     ],
     "claim(address wallet, uint64 amount, bytes sig)": [
         {
-            "potential_checks": "checkthresholds && amount > thresholds == False",
+            "potential_checks": "isBlackListed[msg.sender]",
             "involved_variables": [
-                "amount",
-                "usedsignatures",
-                "wallet",
-                "sender",
-                "checkthresholds",
-                "signers",
-                "_signer",
-                "sig",
-                "thresholds",
+                "msg.sender",
                 "isBlackListed"
             ],
-            "descriptions": "",
+            "descriptions": "Check if the sender is blacklisted before allowing claim.",
             "references": [
-                "checkthresholds",
-                "signers",
-                "thresholds",
-                "isBlackListed",
-                "usedsignatures"
+                "balanceOf"
             ]
         },
         {
-            "potential_checks": "isBlackListed[sender]",
+            "potential_checks": "!usedsignatures[sig]",
             "involved_variables": [
-                "amount",
                 "usedsignatures",
-                "wallet",
-                "sender",
-                "checkthresholds",
-                "signers",
-                "_signer",
-                "sig",
-                "thresholds",
-                "isBlackListed"
+                "sig"
             ],
-            "descriptions": "",
+            "descriptions": "Check if the signature has already been used to prevent double claims.",
             "references": [
-                "checkthresholds",
-                "signers",
-                "thresholds",
-                "isBlackListed",
-                "usedsignatures"
+                "balanceOf"
             ]
         },
         {
-            "potential_checks": "usedsignatures[sig] == False",
-            "involved_variables": [
-                "amount",
-                "usedsignatures",
-                "wallet",
-                "sender",
-                "checkthresholds",
-                "signers",
-                "_signer",
-                "sig",
-                "thresholds",
-                "isBlackListed"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkthresholds",
-                "signers",
-                "thresholds",
-                "isBlackListed",
-                "usedsignatures"
-            ]
-        },
-        {
-            "potential_checks": "! signers[_signer] == False",
-            "involved_variables": [
-                "amount",
-                "usedsignatures",
-                "wallet",
-                "sender",
-                "checkthresholds",
-                "signers",
-                "_signer",
-                "sig",
-                "thresholds",
-                "isBlackListed"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkthresholds",
-                "signers",
-                "thresholds",
-                "isBlackListed",
-                "usedsignatures"
-            ]
+            "potential_checks": "signers[_signer] == true",
+            "involved_variables":  ["signers","_signer"],
+            "descriptions": "Verify the signature is from an authorized signer.",
+            "references": ["balanceOf"]
         }
     ],
     "bigClaim(address wallet, uint64 amount, bytes[] sigs)": [
         {
-            "potential_checks": "signumber != sigs.length == False",
+            "potential_checks": "isBlackListed[msg.sender]",
             "involved_variables": [
-                "thresholds",
-                "amount",
-                "signumber",
-                "sender",
-                "wallet",
-                "sig",
-                "sigs",
-                "isBlackListed",
-                "i"
+                "msg.sender",
+                "isBlackListed"
             ],
-            "descriptions": "",
+            "descriptions": "Check if the sender is blacklisted before allowing claim.",
             "references": [
-                "thresholds",
-                "isBlackListed",
-                "signumber"
+                "balanceOf"
             ]
         },
         {
-            "potential_checks": "amount < thresholds == False",
+            "potential_checks": "!usedsignatures[sig]",
             "involved_variables": [
-                "thresholds",
-                "amount",
-                "signumber",
-                "sender",
-                "wallet",
-                "sig",
-                "sigs",
-                "isBlackListed",
-                "i"
+                "usedsignatures",
+                "sig"
             ],
-            "descriptions": "",
+            "descriptions": "Check if the signature has already been used to prevent double claims.",
             "references": [
-                "thresholds",
-                "isBlackListed",
-                "signumber"
+                "balanceOf"
             ]
         },
         {
-            "potential_checks": "i < signumber",
-            "involved_variables": [
-                "thresholds",
-                "amount",
-                "signumber",
-                "sender",
-                "wallet",
-                "sig",
-                "sigs",
-                "isBlackListed",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "thresholds",
-                "isBlackListed",
-                "signumber"
-            ]
-        },
-        {
-            "potential_checks": "isBlackListed[sender] == False",
-            "involved_variables": [
-                "thresholds",
-                "amount",
-                "signumber",
-                "sender",
-                "wallet",
-                "sig",
-                "sigs",
-                "isBlackListed",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "thresholds",
-                "isBlackListed",
-                "signumber"
-            ]
+            "potential_checks": "signers[_signer] == true",
+            "involved_variables":  ["signers","_signer"],
+            "descriptions": "Verify the signature is from an authorized signer.",
+            "references": ["balanceOf"]
         }
     ],
     "setToken(address _token, uint8 _decimals)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before setting the token address and decimals.",
+            "references": [
                 "_token",
                 "_decimals"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_decimals < 19 == False",
-            "involved_variables": [
-                "_token",
-                "_decimals"
-            ],
-            "descriptions": "",
-            "references": []
+            ]
         }
     ],
     "addBlackList(address[] _evilUsers)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "len",
-                "i"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < len == False",
-            "involved_variables": [
-                "len",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Restricts adding users to the blacklist to the owner.",
+            "references": [
+                "isBlackListed"
+            ]
         }
     ],
     "removeBlackList(address[] _clearedUsers)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "len",
-                "i"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < len == False",
-            "involved_variables": [
-                "len",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Restricts removing users from the blacklist to the owner.",
+            "references": [
+                "isBlackListed"
+            ]
         }
     ],
     "invalidateUnusedSignature(bytes[] signatures)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "len",
-                "i"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < len == False",
-            "involved_variables": [
-                "len",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before invalidating unused signatures.",
+            "references": [
+                "usedsignatures"
+            ]
         }
     ],
     "invalidateUnusedNonce(address[] addrs)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "len",
-                "i"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < len == False",
-            "involved_variables": [
-                "len",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before invalidating unused nonces.",
+            "references": [
+                "nonces"
+            ]
         }
     ],
     "setSigNumber(uint8 _signumber)": [
@@ -343,58 +184,56 @@
             "involved_variables": [
                 "_signumber"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_signumber > 1 == False",
-            "involved_variables": [
-                "_signumber"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Restricts setting the number of signatures required to the owner.",
+            "references": ["signumber"]
+           
         }
     ],
     "setThresholds(uint64 _thresholds)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_thresholds"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_thresholds != 0 == False",
-            "involved_variables": [
-                "_thresholds"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Restricts setting the thresholds to the owner.",
+            "references": ["thresholds"]
         }
     ],
     "setThresholds(bool flag)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Restricts setting the thresholds flag to the owner.",
+            "references": ["checkthresholds"]
         }
     ],
     "setSigner(address _signer, bool flag)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Restricts setting the signer address to the owner.",
+            "references": ["signers"]
         }
     ],
     "withdrawsToken(address to)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before withdrawing tokens.",
+            "references": [
+                "balanceOf",
+                "totalSupply"
+            ]
         }
     ]
 }
