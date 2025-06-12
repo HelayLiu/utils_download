@@ -2,20 +2,28 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
@@ -28,20 +36,36 @@
     "getApproved(uint256 tokenId) returns (address)": [],
     "setApprovalForAll(address operator, bool approved)": [],
     "isApprovedForAll(address owner, address operator) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 tokenId)": [],
-    "safeTransferFrom(address from, address to, uint256 tokenId)": [],
-    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [],
+    "transferFrom(address from, address to, uint256 tokenId)": [
+        {
+            "specific_checks": "_owners[tokenId] == from",
+            "involved_variables": ["_owners", "from","tokenId"],
+            "descriptions": "Ensure token is transferred from correct owner.",
+            "references": ["_owners","_balances"]
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
+                {
+            "specific_checks": "_owners[tokenId] == from",
+            "involved_variables": ["_owners", "from","tokenId"],
+            "descriptions": "Ensure token is transferred from correct owner.",
+            "references": ["_owners","_balances"]
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
+        {
+            "specific_checks": "_owners[tokenId] == from",
+            "involved_variables": ["_owners", "from","tokenId"],
+            "descriptions": "Ensure token is transferred from correct owner.",
+            "references": ["_owners","_balances"]
+        }
+    ],
     "mintNFT(address recipient, string tokenURI) returns (uint256)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [
-                "auth",
-                "previousOwner",
-                "from",
-                "to"
-            ],
-            "descriptions": "",
-            "references": []
+            "specific_checks": "msg.sender == owner",
+            "involved_variables": ["msg.sender", "_owner"],
+            "descriptions": "Restrict minting to contract owner.",
+            "references": ["_tokenIds", "_owners", "_balances", "_tokenURIs"]
         }
     ]
 }
