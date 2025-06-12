@@ -1,0 +1,8 @@
+- As a user, I want to stake my NFTs to start earning rewards, so that I can participate in the staking program.
+- As a user, I want to start vesting my rewards so that I can lock them for a period and then claim.
+- As a user, I want to claim my rewards after vesting is complete, so that I can use the tokens.
+- As the owner, I want to enable vesting at a specific time, so that users can start vesting their rewards.
+- As the owner, I want to set the vesting period, so that I can control the lock-up duration.
+- As the owner, I want to stop rewards distribution at a future time, so that I can end the staking program.
+- As the owner, I want to block certain NFTs from earning rewards (e.g., if they are fraudulent), so that I can protect the system.
+- As the owner, I want to unblock NFTs, so that I can correct mistakes or reinstate legitimate users.

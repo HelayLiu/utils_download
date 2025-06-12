@@ -1,0 +1,35 @@
+- `nft (INodeERC721A)`: 
+    · Write restricted to the contract during staking/blocking operations.
+    · Read restricted to public via getters.
+  
+- `rewardToken (IERC20)`: 
+    · Write restricted to the contract during reward claims.
+    · Read restricted to public via getters.
+  
+- `rewardRate (uint256)`:
+    · Write restricted to the contract owner during initialization.
+    · Read restricted to public.
+
+- `vestingEnabledTime (uint256)`:
+    · Write restricted to the contract owner (one-time set).
+    · Read restricted to public.
+
+- `vestingPeriod (uint256)`:
+    · Write restricted to the contract owner.
+    · Read restricted to public.
+
+- `rewardDistributionStopTime (uint256)`:
+    · Write restricted to the contract owner.
+    · Read restricted to public.
+
+- `accounts (mapping)`:
+    · Write restricted to the user (staking/claiming) and owner (blocking operations).
+    · Read restricted to the user/owner via `getAccount`.
+
+- `blockList (mapping)`:
+    · Write restricted to the contract owner.
+    · Read restricted to the contract internally.
+
+- `registered (mapping)`:
+    · Write restricted to the contract during staking/blocking.
+    · Read restricted to the contract internally.

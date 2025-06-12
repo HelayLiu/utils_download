@@ -21,7 +21,7 @@
     "approve(address spender, uint256 value) returns (bool)": [],
     "transferFrom(address from, address to, uint256 value) returns (bool)": [
         {
-            "specific_checks": "_allowances[from][msg.sender] >= value",
+            "potential_checks": "_allowances[from][msg.sender] >= value",
             "involved_variables": ["_allowances", "from", "msg.sender", "value"],
             "descriptions": "Ensure spender has sufficient allowance",
             "references": ["_balances", "_allowances"]
@@ -29,13 +29,13 @@
     ],
     "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
         {
-            "specific_checks": "block.timestamp <= deadline",
+            "potential_checks": "block.timestamp <= deadline",
             "involved_variables": ["block.timestamp", "deadline"],
             "descriptions": "Prevent expired permit signatures",
             "references": []
         },
         {
-            "specific_checks": "signer == owner",
+            "potential_checks": "signer == owner",
             "involved_variables": ["signer", "owner", "v", "r", "s"],
             "descriptions": "Verify signature matches token owner",
             "references": ["_allowances"]
