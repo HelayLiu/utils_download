@@ -68,11 +68,56 @@
             "references": ["failedMessages"]
         }
     ],
-    "lzReceive(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, bytes _payload)": [],
-    "getConfig(uint16 _version, uint16 _chainId, address , uint256 _configType) returns (bytes)": [],
-    "setConfig(uint16 _version, uint16 _chainId, uint256 _configType, bytes _config)": [],
-    "setSendVersion(uint16 _version)": [],
-    "setReceiveVersion(uint16 _version)": [],
+    "lzReceive(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, bytes _payload)": [
+        {
+            "specific_checks": "msg.sender == address(lzEndpoint)",
+            "involved_variables": ["msg.sender", "lzEndpoint"],
+            "descriptions": "Authenticate LayerZero endpoint",
+            "references": []
+        },
+        {
+            "specific_checks": "keccak256(_srcAddress) == keccak256(trustedRemoteLookup[_srcChainId])",
+            "involved_variables": ["_srcAddress", "trustedRemoteLookup[_srcChainId]"],
+            "descriptions": "Validate trusted remote address",
+            "references": []
+        }
+    ],
+    "getConfig(uint16 _version, uint16 _chainId, address , uint256 _configType) returns (bytes)": [
+        
+    ],
+    "setConfig(uint16 _version, uint16 _chainId, uint256 _configType, bytes _config)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Restricts setting configuration to the owner.",
+            "references": ["lzEndpoint"]
+        }
+    ],
+    "setSendVersion(uint16 _version)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Restricts setting send version to the owner.",
+            "references": ["lzEndpoint"]
+        }
+    ],
+    "setReceiveVersion(uint16 _version)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Restricts setting receive version to the owner.",
+            "references": ["lzEndpoint"]
+        }
+    ],
     "forceResumeReceive(uint16 _srcChainId, bytes _srcAddress)": [],
     "setTrustedRemote(uint16 _remoteChainId, bytes _path)": [
         {
