@@ -242,3 +242,20 @@ def get_conditions(path,file) -> List[str]:
 # --------------------------------------------------------------------- #
 # quick demo                                                            #
 # --------------------------------------------------------------------- #
+def get_all_state_variables(path,file) -> List[str]:
+    """
+    Get all state variables used in the function.
+    """
+    config_path= os.path.join(path, file.replace('.sol', '.json'))
+    with open(config_path, 'r') as f:
+        config = json.load(f)
+    compiler_helper = CompilerHelper(os.path.join(path,file), version=config['version'], optimization=config['opt'], via_ir=config['via_ir'], contract_name=config['contract_name'])
+    slither = compiler_helper.get_slither()
+    contract = compiler_helper._contract[0]
+    res = []
+    for var in contract.state_variables:
+        temp = get_sources(var)
+        if var.is_constant:
+            continue
+        res.append(temp)
+    return res

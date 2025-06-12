@@ -49,24 +49,28 @@ if __name__ == "__main__":
     path="/home/liuhan/utils_download/most_unrelated"
     for file in tqdm(os.listdir(path)):
         if file.endswith('.sol'):
-            
-            condition_save_path=os.path.join(path,file.replace('.sol','_4condition.json'))
-            if os.path.exists(condition_save_path):
-                continue
-            condition=get_conditions(path,file)
-            ds_generate_path=os.path.join(path,file.replace('.sol','_deepseek_res.txt'))
-            with open(ds_generate_path, 'r') as f:
-                data = f.read()
-            usr, model, checks = split(data)
-            with open(condition_save_path, 'w') as f:
-                json.dump(condition, f, indent=4)
-            usr_save_path=os.path.join(path,file.replace('.sol','_1user.txt'))
-            with open(usr_save_path, 'w') as f:
-                f.write('\n'.join(usr))
-            model_save_path=os.path.join(path,file.replace('.sol','_2model.txt'))
-            with open(model_save_path, 'w') as f:
-                f.write('\n'.join(model))
-            checks_save_path=os.path.join(path,file.replace('.sol','_3checks.txt'))
-            with open(checks_save_path, 'w') as f:
-                f.write('\n'.join(checks))
+            # if os.path.exists(os.path.join(path, file.replace('.sol', '_state.txt'))):
+            #     continue
+            all_state= get_all_state_variables(path, file)
+            with open(os.path.join(path, file.replace('.sol', '_state.txt')), 'w') as f:
+                f.write('\n'.join(all_state))
+            # condition_save_path=os.path.join(path,file.replace('.sol','_4condition.json'))
+            # if os.path.exists(condition_save_path):
+            #     continue
+            # condition=get_conditions(path,file)
+            # ds_generate_path=os.path.join(path,file.replace('.sol','_deepseek_res.txt'))
+            # with open(ds_generate_path, 'r') as f:
+            #     data = f.read()
+            # usr, model, checks = split(data)
+            # with open(condition_save_path, 'w') as f:
+            #     json.dump(condition, f, indent=4)
+            # usr_save_path=os.path.join(path,file.replace('.sol','_1user.txt'))
+            # with open(usr_save_path, 'w') as f:
+            #     f.write('\n'.join(usr))
+            # model_save_path=os.path.join(path,file.replace('.sol','_2model.txt'))
+            # with open(model_save_path, 'w') as f:
+            #     f.write('\n'.join(model))
+            # checks_save_path=os.path.join(path,file.replace('.sol','_3checks.txt'))
+            # with open(checks_save_path, 'w') as f:
+            #     f.write('\n'.join(checks))
 

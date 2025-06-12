@@ -1,0 +1,157 @@
+import requests
+import re
+import json
+from openai import OpenAI
+from tqdm import tqdm
+import httpx
+import os
+import tiktoken
+from config import *
+import time
+from datetime import datetime
+
+def summarize_by_LLMs(desc,state,usr,func,model="deepseek-reasoner"):
+    role_content=f"""
+    Role: You are a smart contract Architect and Requirements Engineering Expert. You will be given a smart contracts, a user story, a set of state variables in the contract
+    and a set of function with their checks. Your task is to analyze the contract and generate a domain model which describe the isolation of the state variables in the contract.
+
+    Instructions:
+    1. Identify Actors
+    - Identify the main actors in the contract (e.g., users, external contracts).
+    - Determine the interactions between these actors and the contract.
+    2. Code Analysis
+    - Inline all inherited contracts to derive a complete codebase view.
+    - Identify read/write isolation needs according to the actors and their interactions.
+        · Write Isolation: How variables restrict write access for different actors (i.e., Access Control).
+        · Read Isolation: How variables restrict read access for different actors (i.e., Encrypted Data).
+    - Review the checks in the functions provided in the Function Checks section to understand the conditions under which state variables can be modified or accessed.
+    3. Domain Models
+    For each state variable in the contract, extract the isolation requirements:
+    - Focus on the state isolation of the contract (write/read isolation):
+        - Write Isolation:
+            · How variables restrict write access for different actors (i.e., Access Control).
+        - Read Isolation:
+            · How variables restrict read access for different actors (i.e., Encrypted Data).
+    - Note that you should include all state variables provided in the state variable section.
+    - Example:
+    For a token minting system:
+        _balances: mapping(address => uint256) private _balances;
+            · Write restricted to the user themselves or the owner of the contract.
+            · Read restriction to None.
+        allowedMinter: mapping(address => bool) private _allowedMinters;
+            · Write restricted to the contract owner.
+            · Read restriction to None.
+        allowance: mapping(address => mapping(address => uint256)) private _allowance;
+            · Write restricted to the user themselves or the owner of the contract.
+            · Read restriction to None.
+    For a lucky number contract:
+        _luckyNumber: uint256 private _luckyNumber;
+            · Write restricted to the contract owner.
+            · Read restricted to the contract owner and stored as a hash for integrity.
+        _userPreferences: mapping(address => bytes32) private _userPreferences;
+            · Write restricted to the user themselves or the contract owner.
+            · Read restricted to the user themselves and stored as a hash for integrity.
+    7. Output Format
+    The Domain Models are:  
+    <Domain Models>  
+    - [State Variable 1]:
+        · Write restricted to [Actor/Contract Type] or Write restricted to [None].
+        · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
+        
+    - [State Variable 2]:
+        · Write restricted to [Actor/Contract Type] or Write restricted to [None].
+        · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
+    ...
+    </Domain Models>
+    """
+
+    usr_content=f"""
+    The contract is <Contract>\n {desc} \n</Contract>
+    The state variables are <State Variables>\n {state} \n</State Variables>
+    The transition graph is <User Story>\n {usr} \n</User Story>
+    The function signature is <Function Checks>\n {func} \n\</Function Checks>  
+
+    """
+    try:
+        client= OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
+        response = client.chat.completions.create(
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": role_content},
+                                {"role": "user", "content": usr_content},
+                            ],
+                            stream=True,
+                            max_tokens=64000
+                        )
+        total_tokens_in = 0
+        total_tokens_out = 0
+        reasoning_content = ""
+        content = ""
+        for chunk in response:
+            if chunk.choices[0].delta.reasoning_content:
+                reasoning_content += chunk.choices[0].delta.reasoning_content
+            if chunk.choices[0].delta.content:
+                content += chunk.choices[0].delta.content
+            if chunk.usage:
+                if chunk.usage.prompt_tokens:
+                    total_tokens_in += chunk.usage.prompt_tokens
+                if chunk.usage.completion_tokens:
+                    total_tokens_out += chunk.usage.completion_tokens
+        if not content:
+            print("No content generated by the model.")
+            return None, None, None
+        res = f"<THINKING_CONTENT>\n{reasoning_content}\n</THINKING_CONTENT>\n<RESPONSE>\n{content}\n</RESPONSE>"
+        client.close()
+    except Exception as e:
+        print('Error in response')
+        print(e)
+        return None, None, None
+    return res, total_tokens_in, total_tokens_out
+def is_in_time_range(start_hour, start_minute, end_hour, end_minute):
+    now = datetime.now()
+    now_minutes = now.hour * 60 + now.minute
+    start_minutes = start_hour * 60 + start_minute
+    end_minutes = end_hour * 60 + end_minute
+    return start_minutes <= now_minutes <= end_minutes
+if __name__ == "__main__":
+    cou=0
+    root_path = f"/home/liuhan/utils_download/most_unrelated"
+    for file in tqdm(os.listdir(root_path)):
+        if file.endswith('.sol'):
+            while True:
+                if is_in_time_range(0, 30, 8, 20):
+                    break
+                print("Waiting for the time range to be valid...")
+                time.sleep(60)
+            output_file = file.replace('.sol', 'domain_models_deepseek_res.txt')
+            cou += 1
+            # continue
+    # print(f"Total files with empty response: {cou}")
+
+            if os.path.exists(os.path.join(root_path, output_file)):
+                continue
+            with open(os.path.join(root_path,file),'r') as f:
+                code=f.read()
+            usr_path = os.path.join(root_path, file.replace('.sol', '_1user.txt'))
+            with open(usr_path, 'r') as f:
+                usr = f.read()
+            check_path = os.path.join(root_path, file.replace('.sol', '_4condition.json'))
+            with open(check_path, 'r') as f:
+                func = json.load(f)
+
+            func = {k: v for k, v in func.items() if v not in (None, '', [], {})}
+            func_str = str(func)
+            state_path = os.path.join(root_path, file.replace('.sol', '_state.txt'))
+            with open(state_path, 'r') as f:
+                state = f.read()
+            # if func_str == '' or stg == '' or code == '':
+            #     print(f"Error in {file}, func_str or stg is empty")
+            #     continue
+            for i in range(5):
+                res,token_in,token_out= summarize_by_LLMs(code,state,usr,func_str)
+                if res is not None:
+                    print(f"Success in {file}, token_in: {token_in}, token_out: {token_out}")
+                    break
+            
+            with open(os.path.join(root_path,output_file),'w') as f:
+                f.write(res)
