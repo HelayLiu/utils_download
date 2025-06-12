@@ -7,285 +7,37 @@
     "balanceOf(address account) returns (uint256)": [],
     "transfer(address recipient, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "inSwap == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "amount",
-                "_maxTxAmount",
-                "inSwap",
-                "recipient",
-                "pair",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
-        },
-        {
-            "potential_checks": "! authorizations[sender] && ! authorizations[recipient] == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "amount",
-                "_maxTxAmount",
-                "inSwap",
-                "recipient",
-                "pair",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
-        },
-        {
-            "potential_checks": "! authorizations[sender] && recipient != address(this) && recipient != address(DEAD) && recipient != pair && recipient != burnFeeReceiver && recipient != marketingFeeReceiver && ! isexemptfrommaxTX[recipient] == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "amount",
-                "_maxTxAmount",
-                "inSwap",
-                "recipient",
-                "pair",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
-        },
-        {
-            "potential_checks": "amount <= _maxTxAmount || isexemptfrommaxTX[sender] == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "amount",
-                "_maxTxAmount",
-                "inSwap",
-                "recipient",
-                "pair",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
+        "potential_checks": "TradingOpen || authorizations[sender] || authorizations[recipient]",
+        "involved_variables": ["TradingOpen", "authorizations[sender]", "authorizations[recipient]"],
+        "descriptions": "Allows transfers only if trading is enabled or sender/recipient is authorized.",
+        "references": ["_allowances","_balances"]
         }
     ],
     "allowance(address _owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "_allowances[sender][msg.sender] != type()(uint256).max == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "pair",
-                "amount",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "recipient",
-                "msg.sender",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
+        "potential_checks": "amount <= _allowances[sender][msg.sender] || _allowances[sender][msg.sender] == type(uint256).max",
+        "involved_variables": ["amount", "_allowances","sender","msg.sender"],
+        "descriptions": "Verifies spender has sufficient allowance.",
+        "references": ["_allowances","_balances"]
         },
         {
-            "potential_checks": "inSwap == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "pair",
-                "amount",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "recipient",
-                "msg.sender",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
-        },
-        {
-            "potential_checks": "! authorizations[sender] && ! authorizations[recipient] == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "pair",
-                "amount",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "recipient",
-                "msg.sender",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
-        },
-        {
-            "potential_checks": "! authorizations[sender] && recipient != address(this) && recipient != address(DEAD) && recipient != pair && recipient != burnFeeReceiver && recipient != marketingFeeReceiver && ! isexemptfrommaxTX[recipient] == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "pair",
-                "amount",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "recipient",
-                "msg.sender",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
-        },
-        {
-            "potential_checks": "amount <= _maxTxAmount || isexemptfrommaxTX[sender] == False",
-            "involved_variables": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "this",
-                "burnFeeReceiver",
-                "sender",
-                "pair",
-                "amount",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "recipient",
-                "msg.sender",
-                "authorizations"
-            ],
-            "descriptions": "",
-            "references": [
-                "DEAD",
-                "marketingFeeReceiver",
-                "isexemptfrommaxTX",
-                "burnFeeReceiver",
-                "_maxTxAmount",
-                "_allowances",
-                "inSwap",
-                "pair",
-                "authorizations"
-            ]
+        "potential_checks": "TradingOpen || authorizations[sender] || authorizations[recipient]",
+        "involved_variables": ["TradingOpen", "authorizations[sender]", "authorizations[recipient]"],
+        "descriptions": "Allows transfers only if trading is enabled or sender/recipient is authorized.",
+        "references": ["_allowances","_balances"]
         }
     ],
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
             "references": [
                 "_owner"
             ]
@@ -296,9 +48,9 @@
             "potential_checks": "_owner == msg.sender",
             "involved_variables": [
                 "_owner",
-                "newOwner"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
             "references": [
                 "_owner"
             ]
@@ -310,82 +62,74 @@
         {
             "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "maxWallPercent",
+                "msg.sender",
                 "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting max wallet rule.",
             "references": [
-                "_owner"
-            ]
-        },
-        {
-            "potential_checks": "maxWallPercent >= 1 == False",
-            "involved_variables": [
-                "maxWallPercent",
-                "_owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "_owner"
+                "_maxWalletToken"
             ]
         }
     ],
     "removeLimits()": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before removing limits.",
             "references": [
-                "_owner"
+                "_maxTxAmount",
+                "_maxWalletToken"
             ]
         }
     ],
     "manualSend()": [],
     "clearStuckToken(address tokenAddress, uint256 tokens) returns (bool)": [
-        {
-            "potential_checks": "tokens == 0 == False",
-            "involved_variables": [
-                "tokens"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "setStructure(uint256 _percentonbuy, uint256 _percentonsell, uint256 _wallettransfer)": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting structure.",
             "references": [
-                "_owner"
+                "sellpercent",
+                "buypercent",
+                "transferpercent"
             ]
         }
     ],
     "startTrading()": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
             "descriptions": "",
             "references": [
-                "_owner"
+                "sellpercent",
+                "buypercent",
+                "transferpercent"
             ]
         }
     ],
     "reduceFee()": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before reducing fee.",
             "references": [
-                "_owner"
+                "sellpercent",
+                "buypercent",
+                "transferpercent"
             ]
         }
     ],
@@ -393,53 +137,49 @@
         {
             "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "feeDenominator",
-                "_owner",
-                "totalFee"
+                "msg.sender",
+                "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting parameters.",
             "references": [
+                "liquidityFee",
+                "buybackFee",
+                "marketingFee",
+                "devFee",
+                "burnFee",
                 "feeDenominator",
-                "_owner",
-                "totalFee"
-            ]
-        },
-        {
-            "potential_checks": "totalFee < feeDenominator / 2 == False",
-            "involved_variables": [
-                "feeDenominator",
-                "_owner",
-                "totalFee"
-            ],
-            "descriptions": "",
-            "references": [
-                "feeDenominator",
-                "_owner",
                 "totalFee"
             ]
         }
     ],
     "setWallets(address _autoLiquidityReceiver, address _marketingFeeReceiver, address _devFeeReceiver, address _burnFeeReceiver, address _buybackFeeReceiver)": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting wallets.",
             "references": [
-                "_owner"
+                "autoLiquidityReceiver",
+                "marketingFeeReceiver",
+                "devFeeReceiver",
+                "burnFeeReceiver",
+                "buybackFeeReceiver"
             ]
         }
     ],
     "setSwapBackSettings(bool _enabled, uint256 _amount)": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting swap back settings.",
             "references": [
-                "_owner"
+                "swapEnabled",
+                "swapThreshold"
             ]
         }
     ],
