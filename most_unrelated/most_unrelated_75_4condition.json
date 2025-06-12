@@ -28,13 +28,13 @@
     "nonces(address owner) returns (uint256)": [],
     "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
         {  
-            "specific_checks": "deadline >= block.timestamp",  
+            "potential_checks": "deadline >= block.timestamp",  
             "involved_variables": ["deadline", "block.timestamp"],  
             "descriptions": "Ensures permit signature is not expired.",  
             "references": ["allowance"]  
         },  
         {  
-            "specific_checks": "recoveredAddress == owner",  
+            "potential_checks": "recoveredAddress == owner",  
             "involved_variables": ["recoveredAddress", "owner", "v", "r", "s"],  
             "descriptions": "Validates ECDSA signature integrity to enforce only the owner can approve via permit.",  
             "references": [ "allowance"]  
