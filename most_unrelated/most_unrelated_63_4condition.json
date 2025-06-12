@@ -34,7 +34,7 @@
     ],
     "transfer(address recipient, uint256 amount) returns (bool)": [
         {
-        "specific_checks": "isReward(msg.sender) == 0",
+        "potential_checks": "isReward(msg.sender) == 0",
         "involved_variables": ["from"],
         "descriptions": "Block transfers from bot-listed addresses.",
         "references": ["_balances"]

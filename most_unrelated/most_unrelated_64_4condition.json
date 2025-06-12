@@ -2,20 +2,28 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "name() returns (string)": [],
@@ -26,375 +34,41 @@
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "_allowances[sender][msg.sender] >= amount",
+            "involved_variables": [
+                "sender",
+                "msg.sender",
+                "amount",
+                "_allowances"
+            ],
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the sender.",
+            "references": [
+                "_allowances",
+                "_balances",
+                "_totalSupply"
+            ]
+        }
+    ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [],
     "mint(address _to, uint256 _amount)": [
-        {
-            "potential_checks": "owner() == msg.sender",
-            "involved_variables": [
-                "SafeMath",
-                "_amount",
-                "dstRep",
-                "amount",
-                "errorMessage",
-                "account",
-                "dstRepOld",
-                "n",
-                "maxSupply",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxSupply"
-            ]
-        },
-        {
-            "potential_checks": "totalSupply().add(_amount) <= maxSupply",
-            "involved_variables": [
-                "SafeMath",
-                "_amount",
-                "dstRep",
-                "amount",
-                "errorMessage",
-                "account",
-                "dstRepOld",
-                "n",
-                "maxSupply",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxSupply"
-            ]
-        },
-        {
-            "potential_checks": "srcRep != dstRep && amount > 0",
-            "involved_variables": [
-                "SafeMath",
-                "_amount",
-                "dstRep",
-                "amount",
-                "errorMessage",
-                "account",
-                "dstRepOld",
-                "n",
-                "maxSupply",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxSupply"
-            ]
-        },
-        {
-            "potential_checks": "dstRepNum > 0 == False",
-            "involved_variables": [
-                "SafeMath",
-                "_amount",
-                "dstRep",
-                "amount",
-                "errorMessage",
-                "account",
-                "dstRepOld",
-                "n",
-                "maxSupply",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxSupply"
-            ]
-        },
-        {
-            "potential_checks": "n < 2 ** 32 == False",
-            "involved_variables": [
-                "SafeMath",
-                "_amount",
-                "dstRep",
-                "amount",
-                "errorMessage",
-                "account",
-                "dstRepOld",
-                "n",
-                "maxSupply",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "maxSupply"
-            ]
+        {  
+        "potential_checks": "_owner == msg.sender",  
+        "involved_variables": ["_owner", "msg.sender"],  
+        "descriptions": "Restrict minting to the owner for supply control.",  
+        "references": ["_balances", "_totalSupply"]  
         }
     ],
     "delegates(address delegator) returns (address)": [],
     "delegate(address delegatee)": [
-        {
-            "potential_checks": "srcRep != dstRep && amount > 0",
-            "involved_variables": [
-                "dstRep",
-                "amount",
-                "dstRepOld",
-                "n",
-                "errorMessage",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "dstRepNum > 0 == False",
-            "involved_variables": [
-                "dstRep",
-                "amount",
-                "dstRepOld",
-                "n",
-                "errorMessage",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "n < 2 ** 32 == False",
-            "involved_variables": [
-                "dstRep",
-                "amount",
-                "dstRepOld",
-                "n",
-                "errorMessage",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "delegateBySig(address delegatee, uint256 nonce, uint256 expiry, uint8 v, bytes32 r, bytes32 s)": [
-        {
-            "potential_checks": "nonce == nonces[signatory] ++",
-            "involved_variables": [
-                "dstRep",
-                "signatory",
-                "amount",
-                "expiry",
-                "now",
-                "nonces",
-                "nonce",
-                "dstRepOld",
-                "n",
-                "errorMessage",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "now <= expiry",
-            "involved_variables": [
-                "dstRep",
-                "signatory",
-                "amount",
-                "expiry",
-                "now",
-                "nonces",
-                "nonce",
-                "dstRepOld",
-                "n",
-                "errorMessage",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "srcRep != dstRep && amount > 0",
-            "involved_variables": [
-                "dstRep",
-                "signatory",
-                "amount",
-                "expiry",
-                "now",
-                "nonces",
-                "nonce",
-                "dstRepOld",
-                "n",
-                "errorMessage",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "dstRepNum > 0 == False",
-            "involved_variables": [
-                "dstRep",
-                "signatory",
-                "amount",
-                "expiry",
-                "now",
-                "nonces",
-                "nonce",
-                "dstRepOld",
-                "n",
-                "errorMessage",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "nonces"
-            ]
-        },
-        {
-            "potential_checks": "n < 2 ** 32 == False",
-            "involved_variables": [
-                "dstRep",
-                "signatory",
-                "amount",
-                "expiry",
-                "now",
-                "nonces",
-                "nonce",
-                "dstRepOld",
-                "n",
-                "errorMessage",
-                "dstRepNum",
-                "srcRep"
-            ],
-            "descriptions": "",
-            "references": [
-                "nonces"
-            ]
-        }
     ],
     "getCurrentVotes(address account) returns (uint256)": [
-        {
-            "potential_checks": "nCheckpoints > 0 == False",
-            "involved_variables": [
-                "nCheckpoints"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+
     ],
     "getPriorVotes(address account, uint256 blockNumber) returns (uint256)": [
-        {
-            "potential_checks": "blockNumber < block.number",
-            "involved_variables": [
-                "lower",
-                "checkpoints",
-                "upper",
-                "block.number",
-                "nCheckpoints",
-                "blockNumber",
-                "account",
-                "cp"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkpoints"
-            ]
-        },
-        {
-            "potential_checks": "nCheckpoints == 0 == False",
-            "involved_variables": [
-                "lower",
-                "checkpoints",
-                "upper",
-                "block.number",
-                "nCheckpoints",
-                "blockNumber",
-                "account",
-                "cp"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkpoints"
-            ]
-        },
-        {
-            "potential_checks": "checkpoints[account][nCheckpoints - 1].fromBlock <= blockNumber == False",
-            "involved_variables": [
-                "lower",
-                "checkpoints",
-                "upper",
-                "block.number",
-                "nCheckpoints",
-                "blockNumber",
-                "account",
-                "cp"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkpoints"
-            ]
-        },
-        {
-            "potential_checks": "checkpoints[account][0].fromBlock > blockNumber == False",
-            "involved_variables": [
-                "lower",
-                "checkpoints",
-                "upper",
-                "block.number",
-                "nCheckpoints",
-                "blockNumber",
-                "account",
-                "cp"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkpoints"
-            ]
-        },
-        {
-            "potential_checks": "upper > lower",
-            "involved_variables": [
-                "lower",
-                "checkpoints",
-                "upper",
-                "block.number",
-                "nCheckpoints",
-                "blockNumber",
-                "account",
-                "cp"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkpoints"
-            ]
-        },
-        {
-            "potential_checks": "cp.fromBlock == blockNumber",
-            "involved_variables": [
-                "lower",
-                "checkpoints",
-                "upper",
-                "block.number",
-                "nCheckpoints",
-                "blockNumber",
-                "account",
-                "cp"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkpoints"
-            ]
-        }
     ]
 }
