@@ -1,160 +1,67 @@
 {
     "admin() returns (address)": [
         {
-            "potential_checks": "msg.sender == _getAdmin()",
+            "specific_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
-                "msg.sender"
+                "msg.sender",
+                "_ADMIN_SLOT"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Restricts admin address read access to current admin only.",
+            "references": [
+                "_ADMIN_SLOT"
+            ]
         }
     ],
     "implementation() returns (address)": [
         {
-            "potential_checks": "msg.sender == _getAdmin()",
+            "specific_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
                 "msg.sender",
-                "switch_expr_1763_227_0__delegate_asm_0"
+                "_ADMIN_SLOT"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "switch_expr_1763_227_0__delegate_asm_0 == 0 == False",
-            "involved_variables": [
-                "msg.sender",
-                "switch_expr_1763_227_0__delegate_asm_0"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensures only admin can read implementation address via dedicated function.",
+            "references": [
+                "_IMPLEMENTATION_SLOT"
+            ]
         }
     ],
     "changeAdmin(address newAdmin)": [
         {
-            "potential_checks": "msg.sender == _getAdmin()",
+            "specific_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
                 "msg.sender",
-                "switch_expr_1763_227_0__delegate_asm_0"
+                "_ADMIN_SLOT"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "switch_expr_1763_227_0__delegate_asm_0 == 0 == False",
-            "involved_variables": [
-                "msg.sender",
-                "switch_expr_1763_227_0__delegate_asm_0"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Enforces admin privilege transfer exclusively by current admin.",
+            "references": [
+                "_ADMIN_SLOT"
+            ]
         }
     ],
     "upgradeTo(address newImplementation)": [
         {
-            "potential_checks": "msg.sender == _getAdmin()",
+            "specific_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
-                "newImplementation",
-                "data",
-                "Address",
-                "switch_expr_1763_227_0__delegate_asm_0",
-                "forceCall",
-                "msg.sender"
+                "msg.sender",
+                "_ADMIN_SLOT"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "switch_expr_1763_227_0__delegate_asm_0 == 0 == False",
-            "involved_variables": [
-                "newImplementation",
-                "data",
-                "Address",
-                "switch_expr_1763_227_0__delegate_asm_0",
-                "forceCall",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "Address.isContract(newImplementation)",
-            "involved_variables": [
-                "newImplementation",
-                "data",
-                "Address",
-                "switch_expr_1763_227_0__delegate_asm_0",
-                "forceCall",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "newImplementation",
-                "data",
-                "Address",
-                "switch_expr_1763_227_0__delegate_asm_0",
-                "forceCall",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Allows only admin to trigger implementation upgrades.",
+            "references": [
+                "_IMPLEMENTATION_SLOT"
+            ]
         }
     ],
     "upgradeToAndCall(address newImplementation, bytes data)": [
         {
-            "potential_checks": "msg.sender == _getAdmin()",
+            "specific_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
-                "newImplementation",
-                "data",
-                "Address",
-                "switch_expr_1763_227_0__delegate_asm_0",
-                "forceCall",
-                "msg.sender"
+                "msg.sender",
+                "_ADMIN_SLOT"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "switch_expr_1763_227_0__delegate_asm_0 == 0 == False",
-            "involved_variables": [
-                "newImplementation",
-                "data",
-                "Address",
-                "switch_expr_1763_227_0__delegate_asm_0",
-                "forceCall",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "Address.isContract(newImplementation)",
-            "involved_variables": [
-                "newImplementation",
-                "data",
-                "Address",
-                "switch_expr_1763_227_0__delegate_asm_0",
-                "forceCall",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "newImplementation",
-                "data",
-                "Address",
-                "switch_expr_1763_227_0__delegate_asm_0",
-                "forceCall",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Restricts upgrade+initialization calls to admin only.",
+            "references": [
+                "_IMPLEMENTATION_SLOT"
+            ]
         }
     ],
     "lib() returns (address)": []
