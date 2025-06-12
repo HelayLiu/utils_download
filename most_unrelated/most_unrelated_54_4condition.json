@@ -2,63 +2,45 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "burn(uint256 value)": [
-        {
-            "potential_checks": "fromBalance < value == False",
-            "involved_variables": [
-                "fromBalance",
-                "account",
-                "to",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "burnFrom(address account, uint256 value)": [
-        {
-            "potential_checks": "currentAllowance != type()(uint256).max == False",
+       {
+            "potential_checks": "allowance(account, msg.sender) >= value",
             "involved_variables": [
-                "fromBalance",
                 "account",
-                "currentAllowance",
-                "to",
-                "from",
+                "msg.sender",
                 "value"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "fromBalance < value == False",
-            "involved_variables": [
-                "fromBalance",
-                "account",
-                "currentAllowance",
-                "to",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+            "descriptions": "Ensure that the spender has enough allowance to burn from the account.",
+            "references": [
+                "allowance"
+            ]
+       }
     ],
     "name() returns (string)": [],
     "symbol() returns (string)": [],
@@ -68,99 +50,37 @@
     "transfer(address to, uint256 value) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 value) returns (bool)": [
-        {
-            "potential_checks": "finished || spender == owner()",
-            "involved_variables": [
-                "spender",
-                "finished",
-                "emitEvent",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "finished"
-            ]
-        },
-        {
-            "potential_checks": "emitEvent == False",
-            "involved_variables": [
-                "spender",
-                "finished",
-                "emitEvent",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "finished"
-            ]
+        {  
+        "specific_checks": "finished || spender == _owner",  
+        "involved_variables": ["finished", "spender", "_owner"],  
+        "descriptions": "Restrict approvals to owner during initial phase.",  
+        "references": ["_allowances"]  
         }
     ],
     "transferFrom(address from, address to, uint256 value) returns (bool)": [],
     "finish()": [
-        {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Only owner can finalize the initial phase.",  
+        "references": ["finished"]  
         }
     ],
     "depositEth()": [],
     "withtrawEth(address to, uint256 amount)": [
-        {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Only owner can withdraw Ether.",  
+        "references": []  
         }
     ],
     "mint(address to, uint256 amount)": [
-        {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [
-                "amount",
-                "fromBalance",
-                "value",
-                "account",
-                "to",
-                "from",
-                "MAX_SUPPLY"
-            ],
-            "descriptions": "",
-            "references": [
-                "MAX_SUPPLY"
-            ]
-        },
-        {
-            "potential_checks": "totalSupply() + amount <= MAX_SUPPLY",
-            "involved_variables": [
-                "amount",
-                "fromBalance",
-                "value",
-                "account",
-                "to",
-                "from",
-                "MAX_SUPPLY"
-            ],
-            "descriptions": "",
-            "references": [
-                "MAX_SUPPLY"
-            ]
-        },
-        {
-            "potential_checks": "fromBalance < value == False",
-            "involved_variables": [
-                "amount",
-                "fromBalance",
-                "value",
-                "account",
-                "to",
-                "from",
-                "MAX_SUPPLY"
-            ],
-            "descriptions": "",
-            "references": [
-                "MAX_SUPPLY"
-            ]
+        {  
+        "specific_checks": "msg.sender == _owner",  
+        "involved_variables": ["msg.sender", "_owner"],  
+        "descriptions": "Only owner can mint tokens.",  
+        "references": ["_totalSupply", "_balances"]  
         }
     ],
     "description() returns (string)": [],
