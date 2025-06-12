@@ -9,15 +9,17 @@
     "transfer(address to, uint256 value) returns (bool)": [],
     "transferFrom(address from, address to, uint256 value) returns (bool)": [
         {
-            "potential_checks": "allowance[from][msg.sender] != type()(uint128).max == False",
+            "potential_checks": "allowance[from][msg.sender] >= value",
             "involved_variables": [
-                "msg.sender",
                 "from",
+                "msg.sender",
+                "value",
                 "allowance"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the source account.",
             "references": [
-                "allowance"
+                "allowance",
+                "balanceOf"
             ]
         }
     ],
@@ -25,17 +27,18 @@
     "PERMIT_TYPEHASH() returns (bytes32)": [],
     "nonces(address owner) returns (uint256)": [],
     "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
-        {
-            "potential_checks": "deadline >= block.timestamp",
-            "involved_variables": [
-                "deadline",
-                "block.timestamp",
-                "recoveredAddress",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+        {  
+            "specific_checks": "deadline >= block.timestamp",  
+            "involved_variables": ["deadline", "block.timestamp"],  
+            "descriptions": "Ensures permit signature is not expired.",  
+            "references": ["allowance"]  
+        },  
+        {  
+            "specific_checks": "recoveredAddress == owner",  
+            "involved_variables": ["recoveredAddress", "owner", "v", "r", "s"],  
+            "descriptions": "Validates ECDSA signature integrity to enforce only the owner can approve via permit.",  
+            "references": [ "allowance"]  
+        }  
     ],
     "initialize(string tokenName, string tokenSymbol, uint256 tokenTotalSupply, address launcher)": []
 }
