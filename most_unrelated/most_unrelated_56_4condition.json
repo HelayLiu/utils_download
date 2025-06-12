@@ -1,197 +1,136 @@
 {
     "pendingOwner() returns (address)": [],
-    "transferOwnership(address newOwner)": [
-        {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [
-                "newOwner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
-    "acceptOwnership()": [],
-    "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
-    "addInitialLiquidity(address lpOwner)": [],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "addInitialLiquidity(address lpOwner)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": ["fundedDate", "_autoSwapInProgress", "_allowances"]
+        }
+    ],
     "isLiquidityPool(address queryAddress_) returns (bool)": [],
     "liquidityPools() returns (address[])": [],
-    "addLiquidityPool(address newLiquidityPool_)": [],
-    "removeLiquidityPool(address removedLiquidityPool_)": [],
+    "addLiquidityPool(address newLiquidityPool_)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": ["_liquidityPools"]
+        }
+    ],
+    "removeLiquidityPool(address removedLiquidityPool_)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": ["_liquidityPools"]
+        }
+    ],
     "isValidCaller(bytes32 queryHash_) returns (bool)": [],
     "validCallers() returns (bytes32[])": [],
-    "addValidCaller(bytes32 newValidCallerHash_)": [],
-    "removeValidCaller(bytes32 removedValidCallerHash_)": [],
-    "setProjectTaxRecipient(address projectTaxRecipient_)": [],
-    "setSwapThresholdBasisPoints(uint16 swapThresholdBasisPoints_)": [],
-    "setProjectTaxRates(uint16 newProjectBuyTaxBasisPoints_, uint16 newProjectSellTaxBasisPoints_)": [],
+    "addValidCaller(bytes32 newValidCallerHash_)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": ["_validCallerCodeHashes"]
+        }
+    ],
+    "removeValidCaller(bytes32 removedValidCallerHash_)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": ["_validCallerCodeHashes"]
+        }
+    ],
+    "setProjectTaxRecipient(address projectTaxRecipient_)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": ["projectTaxRecipient"]
+        }
+    ],
+    "setSwapThresholdBasisPoints(uint16 swapThresholdBasisPoints_)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": ["swapThresholdBasisPoints"]
+        }
+    ],
+    "setProjectTaxRates(uint16 newProjectBuyTaxBasisPoints_, uint16 newProjectSellTaxBasisPoints_)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": ["projectBuyTaxBasisPoints", "projectSellTaxBasisPoints"]
+        }
+    ],
     "totalBuyTaxBasisPoints() returns (uint256)": [],
     "totalSellTaxBasisPoints() returns (uint256)": [],
     "distributeTaxTokens()": [
-        {
-            "potential_checks": "projectTaxPendingSwap > 0",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_tokenHasTax",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ]
-        },
-        {
-            "potential_checks": "to_ == uniswapV2Pair && from_ != address(this) && fundedDate == 0 == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_tokenHasTax",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ]
-        },
-        {
-            "potential_checks": "fromBalance_ < amount_ == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_tokenHasTax",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ]
-        },
-        {
-            "potential_checks": "_tokenHasTax == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_tokenHasTax",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ]
-        },
-        {
-            "potential_checks": "_tokenHasTax && applyTax_ && ! _autoSwapInProgress == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_tokenHasTax",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate",
-                "projectTaxPendingSwap"
-            ]
-        }
     ],
-    "withdrawETH(uint256 amount_)": [],
-    "withdrawERC20(address token_, uint256 amount_)": [],
-    "burn(uint256 value)": [
+    "withdrawETH(uint256 amount_)": [
         {
-            "potential_checks": "accountBalance < amount == False",
-            "involved_variables": [
-                "accountBalance",
-                "amount",
-                "account"
-            ],
-            "descriptions": "",
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
             "references": []
         }
+    ],
+    "withdrawERC20(address token_, uint256 amount_)": [
+        {
+            "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
+            "involved_variables": ["_owner", "_factory"],
+            "descriptions": "Restrict to owner or factory",
+            "references": []
+        }
+    ],
+    "burn(uint256 value)": [
     ],
     "burnFrom(address account, uint256 value)": [
         {
-            "potential_checks": "currentAllowance != type()(uint256).max",
+            "potential_checks": "_allowances[account][msg.sender] >= value",
             "involved_variables": [
-                "amount",
-                "spender",
-                "currentAllowance",
-                "owner"
+                "account",
+                "msg.sender",
+                "value",
+                "_allowances"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "currentAllowance < amount == False",
-            "involved_variables": [
-                "amount",
-                "spender",
-                "currentAllowance",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the spender has enough allowance to burn from the account.",
+            "references": [
+                "_allowances",
+                "_balances",
+                "_totalSupply"
+            ]
         }
     ],
     "initialize(address[3] integrationAddresses_, bytes baseParams_, bytes supplyParams_, bytes taxParams_)": [],
@@ -203,227 +142,42 @@
     "transfer(address to, uint256 value) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 value) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
-    "transfer(address to, uint256 amount) returns (bool)": [
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
         {
-            "potential_checks": "to_ == uniswapV2Pair && from_ != address(this) && fundedDate == 0 == False",
+            "potential_checks": "_allowances[from][msg.sender] >= value",
             "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "_tokenHasTax"
+                "from",
+                "msg.sender",
+                "value",
+                "_allowances"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the account",
             "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
-            ]
-        },
-        {
-            "potential_checks": "fromBalance_ < amount_ == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "_tokenHasTax"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
-            ]
-        },
-        {
-            "potential_checks": "_tokenHasTax == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "_tokenHasTax"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
-            ]
-        },
-        {
-            "potential_checks": "_tokenHasTax && applyTax_ && ! _autoSwapInProgress == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "fundedDate",
-                "_tokenHasTax"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
+                "_allowances",
+                "_balances"
             ]
         }
+    ],
+    "transfer(address to, uint256 amount) returns (bool)": [
     ],
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address from, address to, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "currentAllowance != type()(uint256).max == False",
+            "potential_checks": "_allowances[from][msg.sender] >= amount",
             "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "currentAllowance",
-                "fundedDate",
-                "_tokenHasTax"
+                "from",
+                "msg.sender",
+                "amount",
+                "_allowances"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the account",
             "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
-            ]
-        },
-        {
-            "potential_checks": "to_ == uniswapV2Pair && from_ != address(this) && fundedDate == 0 == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "currentAllowance",
-                "fundedDate",
-                "_tokenHasTax"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
-            ]
-        },
-        {
-            "potential_checks": "fromBalance_ < amount_ == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "currentAllowance",
-                "fundedDate",
-                "_tokenHasTax"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
-            ]
-        },
-        {
-            "potential_checks": "_tokenHasTax == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "currentAllowance",
-                "fundedDate",
-                "_tokenHasTax"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
-            ]
-        },
-        {
-            "potential_checks": "_tokenHasTax && applyTax_ && ! _autoSwapInProgress == False",
-            "involved_variables": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "this",
-                "to_",
-                "amount_",
-                "applyTax_",
-                "fromBalance_",
-                "from_",
-                "currentAllowance",
-                "fundedDate",
-                "_tokenHasTax"
-            ],
-            "descriptions": "",
-            "references": [
-                "uniswapV2Pair",
-                "_autoSwapInProgress",
-                "_tokenHasTax",
-                "fundedDate"
+                "_allowances",
+                "_balances"
             ]
         }
     ],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "currentAllowance < subtractedValue == False",
-            "involved_variables": [
-                "spender",
-                "currentAllowance",
-                "subtractedValue",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ]
 }
