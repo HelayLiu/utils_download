@@ -1,0 +1,5 @@
+- As a user, I want to stake my miners to earn rewards while ensuring my mining power is isolated from unauthorized access.
+- As a user, I want to claim my rewards securely with proper access control preventing other users from claiming my rewards.
+- As a contract owner, I want to configure reward parameters and access controls to ensure only authorized contracts can modify critical state variables.
+- As the web2 backend, I need to distribute commissions and utility balances securely, ensuring calculations are isolated per user.
+- As a municipality contract, I need to update utility balances for electricity payments while ensuring user balances are modified securely.

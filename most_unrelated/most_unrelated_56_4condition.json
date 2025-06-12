@@ -41,7 +41,7 @@
             "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
             "involved_variables": ["_owner", "_factory"],
             "descriptions": "Restrict to owner or factory",
-            "references": ["_liquidityPools"]
+            "references": ["potential_checks"]
         }
     ],
     "removeLiquidityPool(address removedLiquidityPool_)": [
@@ -49,7 +49,7 @@
             "specific_checks": "_owner == msg.sender || address(_factory) == msg.sender",
             "involved_variables": ["_owner", "_factory"],
             "descriptions": "Restrict to owner or factory",
-            "references": ["_liquidityPools"]
+            "references": ["potential_checks"]
         }
     ],
     "isValidCaller(bytes32 queryHash_) returns (bool)": [],

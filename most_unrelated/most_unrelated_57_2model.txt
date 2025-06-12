@@ -1,0 +1,32 @@
+
+- `totalHashRate` (uint256):
+    · Write restricted to the contract via whitelisted functions (deposit/withdraw).
+    · Read restricted to None.
+
+- `userInfo` (mapping(address => UserInfo)):
+    · Write restricted to the contract (user-specific state modifications).
+    · Read restricted to None.
+
+- `minersInfo` (mapping(address => mapping(uint256 => MinerInfo))):
+    · Write restricted to whitelisted contracts (deposit/withdraw).
+    · Read restricted to None.
+
+- `utilInfo` (mapping(address => UtilBalance)):
+    · Write restricted to authorized contracts (municipality/web2 backend).
+    · Read restricted to None.
+
+- `whiteListed` (mapping(address => bool)):
+    · Write restricted to the contract owner.
+    · Read restricted to contract functions for access control.
+
+- `poolInfo` (struct PoolInfo):
+    · Write restricted to owner via `setPoolInfo` or internal updates.
+    · Read restricted to None.
+
+- `gasBal` (uint256):
+    · Write restricted to internal conversion functions.
+    · Read restricted to None.
+
+- `busdAmountToConvert` (uint256):
+    · Write restricted to commission distribution functions.
+    · Read restricted to None.
