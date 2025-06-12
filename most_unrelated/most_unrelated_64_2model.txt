@@ -1,0 +1,21 @@
+- `maxSupply` (public uint256):  
+  · Write restricted to None (immutable after deployment).  
+  · Read restricted to None.  
+- `_balances` (private mapping(address => uint256)):  
+  · Write restricted to Contract (via minting/transfers).  
+  · Read restricted to Token holder (via `balanceOf`).  
+- `_allowances` (private mapping(address => mapping(address => uint256))):  
+  · Write restricted to Token owner (via `approve`/`transferFrom`).  
+  · Read restricted to Owner/Spender pair (via `allowance`).  
+- `_delegates` (private mapping(address => address)):  
+  · Write restricted to Delegator (via `delegate`/`delegateBySig`).  
+  · Read restricted to Delegator (via `delegates`).  
+- `checkpoints` (public mapping(address => mapping(uint32 => Checkpoint))):  
+  · Write restricted to Contract (during delegation/vote updates).  
+  · Read restricted to None.  
+- `nonces` (public mapping(address => uint256)):  
+  · Write restricted to Contract (during `delegateBySig`).  
+  · Read restricted to None.  
+- `_owner` (private address):  
+  · Write restricted to Owner (via ownership transfers).  
+  · Read restricted to None (via `owner()`).  

@@ -1,0 +1,6 @@
+- JoeToken is an ERC20 governance token (JOE) with a capped supply of 500 million tokens. It enables token transfers, delegated voting, and restricted minting by the owner. 
+- As a token holder, I want my balance and voting power to be isolated from other users, ensuring only I or approved spenders can transfer my tokens.  
+- As a delegate, I want delegated voting power to be securely tracked per account, preventing unauthorized changes to my voting weight.  
+- As the contract owner, I want exclusive minting rights to control token supply and enforce the maximum cap.  
+- As a user, I want to delegate voting power via signed messages without exposing my private key, with nonce isolation to prevent replay attacks.  
+- As a voter, I want historical vote snapshots to be immutable and verifiable, ensuring accurate governance decisions.  

@@ -1,0 +1,5 @@
+- As a token holder, I want to securely transfer tokens while ensuring fees are correctly applied and state transitions are isolated to prevent unauthorized access.  
+- As a contract owner, I want to manage critical parameters (fees, limits, rewards) with exclusive access control to enforce state isolation and prevent malicious actions.  
+- As a liquidity provider, I want to add/remove liquidity without incurring fees, with state transitions isolating LP operations from regular transfers.  
+- As a fund recipient, I want to receive collected fees securely, with write access restricted to the contract’s fee mechanism.  
+- As a reward participant, I want to receive ETH rewards based on holdings, with state isolation ensuring only eligible holders are processed.  

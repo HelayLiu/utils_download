@@ -1,0 +1,43 @@
+- `_balances: mapping(address => uint256) private`:
+  - Write restricted to the contract during transfers and the initial distribution.
+  - Read restricted via the `balanceOf` function (which also has a check for antiSYNC when querying the main pair).
+
+- `_allowances: mapping(address => mapping(address => uint256)) private`:
+  - Write restricted to the user (via `approve`) and the contract (during `transferFrom`).
+  - Read restricted via the `allowance` function.
+
+- `fundAddress: address payable public`:
+  - Write restricted to the owner (via `setFundAddress`).
+  - Read restricted to anyone.
+
+- `_feeWhiteList: mapping(address => bool) public`:
+  - Write restricted to the owner (via `setFeeWhiteList`).
+  - Read restricted to anyone.
+
+- `_rewardList: mapping(address => bool) public`:
+  - Write restricted to the owner (via `multi_bclist`) and during transfers (if early trading and conditions met).
+  - Read restricted to anyone.
+
+- `isMaxEatExempt: mapping(address => bool) public`:
+  - Write restricted to the owner (via `setisMaxEatExempt`).
+  - Read restricted to anyone.
+
+- `_swapPairList: mapping(address => bool) public`:
+  - Write restricted to the owner (via `setSwapPairList`).
+  - Read restricted to anyone.
+
+- Fee variables (e.g., `_buyFundFee`):
+  - Write restricted to the owner (via `completeCustoms` if `enableChangeTax` is true).
+  - Read restricted to anyone.
+
+- `user2blocks: mapping(address => uint256) public`:
+  - Write restricted to the contract (during transfers, for anti-bot).
+  - Read restricted to anyone.
+
+- `startTradeBlock: uint256 public`:
+  - Write restricted to the owner (via `launch`).
+  - Read restricted to anyone.
+
+- `holderIndex: mapping(address => uint256) private` and `holders: address[] private`:
+  - Write restricted to the contract (during `addHolder` and `multiAddHolder`).
+  - Read restricted to the contract (during reward distribution).

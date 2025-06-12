@@ -38,7 +38,7 @@
     "isApprovedForAll(address owner, address operator) returns (bool)": [],
     "transferFrom(address from, address to, uint256 tokenId)": [
         {
-            "specific_checks": "_owners[tokenId] == from",
+            "potential_checks": "_owners[tokenId] == from",
             "involved_variables": ["_owners", "from","tokenId"],
             "descriptions": "Ensure token is transferred from correct owner.",
             "references": ["_owners","_balances"]
@@ -46,7 +46,7 @@
     ],
     "safeTransferFrom(address from, address to, uint256 tokenId)": [
                 {
-            "specific_checks": "_owners[tokenId] == from",
+            "potential_checks": "_owners[tokenId] == from",
             "involved_variables": ["_owners", "from","tokenId"],
             "descriptions": "Ensure token is transferred from correct owner.",
             "references": ["_owners","_balances"]
@@ -54,7 +54,7 @@
     ],
     "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
         {
-            "specific_checks": "_owners[tokenId] == from",
+            "potential_checks": "_owners[tokenId] == from",
             "involved_variables": ["_owners", "from","tokenId"],
             "descriptions": "Ensure token is transferred from correct owner.",
             "references": ["_owners","_balances"]
@@ -62,7 +62,7 @@
     ],
     "mintNFT(address recipient, string tokenURI) returns (uint256)": [
         {
-            "specific_checks": "msg.sender == owner",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": ["msg.sender", "_owner"],
             "descriptions": "Restrict minting to contract owner.",
             "references": ["_tokenIds", "_owners", "_balances", "_tokenURIs"]
