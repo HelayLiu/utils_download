@@ -10,22 +10,26 @@
     "verify(ITokenERC20.MintRequest req, bytes signature) returns (bool, address)": [],
     "mintTo(address to, uint256 amount)": [
         {
-            "potential_checks": "hasRole(MINTER_ROLE,msg.sender)",
-            "involved_variables": [
-                "account",
-                "_ENTERED",
-                "_status",
-                "MINTER_ROLE"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "MINTER_ROLE"
-            ]
+            "potential_checks": "hasRole(MINTER_ROLE, msg.sender)",
+            "involved_variables":  ["msg.sender", "_roles"],
+            "descriptions": "Verify caller has MINTER_ROLE to mint tokens.",
+            "references": ["_balances", "_totalSupply"]
         }
     ],
-    "mintWithSignature(ITokenERC20.MintRequest req, bytes signature)": [],
+    "mintWithSignature(ITokenERC20.MintRequest req, bytes signature)": [
+        {
+            "potential_checks": "!minted[_req.uid] && hasRole(MINTER_ROLE, signer)",
+            "involved_variables":  ["req", "_signature"],
+            "descriptions": "Ensure mint request is signed by MINTER_ROLE, active, and not duplicated.",
+            "references": ["_balances", "_totalSupply"]
+        },
+        {
+            "potential_checks": "req.price==0 ? msg.value==0 : (req.currency==NATIVE_TOKEN ? msg.value==req.price : msg.value==0)",
+            "involved_variables":  ["msg.value", "req.price", "req.currency"],
+            "descriptions": "Enforce correct payment (native/ERC20) for mintWithSignature.",
+            "references": ["_balances", "_totalSupply"]
+        }
+    ],
     "name() returns (string)": [],
     "symbol() returns (string)": [],
     "decimals() returns (uint8)": [],
@@ -33,86 +37,45 @@
     "balanceOf(address account) returns (uint256)": [],
     "transfer(address to, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "isTrustedForwarder(msg.sender)",
+            "potential_checks": "(!hasRole(TRANSFER_ROLE, address(0)) && to != address(0)) ? (hasRole(TRANSFER_ROLE,msg.sender) || hasRole(TRANSFER_ROLE,to)) :True",
             "involved_variables": [
-                "TRANSFER_ROLE",
+                "_roles",
                 "msg.sender",
-                "from",
                 "to"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure when address(0) is not a transfer role, the msg.sender or to must have the transfer role.",
             "references": [
-                "TRANSFER_ROLE"
-            ]
-        },
-        {
-            "potential_checks": "hasRole(TRANSFER_ROLE,from) || hasRole(TRANSFER_ROLE,to) == False",
-            "involved_variables": [
-                "TRANSFER_ROLE",
-                "msg.sender",
-                "from",
-                "to"
-            ],
-            "descriptions": "",
-            "references": [
-                "TRANSFER_ROLE"
+                "_balances"
             ]
         }
     ],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [
-        {
-            "potential_checks": "isTrustedForwarder(msg.sender)",
-            "involved_variables": [
-                "spender",
-                "msg.sender",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "transferFrom(address from, address to, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "isTrustedForwarder(msg.sender)",
+            "potential_checks": "(!hasRole(TRANSFER_ROLE, address(0)) && from != address(0) && to != address(0)) ? (hasRole(TRANSFER_ROLE, from) || hasRole(TRANSFER_ROLE,to)) :True",
             "involved_variables": [
-                "msg.sender",
-                "currentAllowance",
-                "to",
-                "TRANSFER_ROLE",
-                "from"
+                "_roles",
+                "from",
+                "to"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure when address(0) is not a transfer role, the from or to must have the transfer role.",
             "references": [
-                "TRANSFER_ROLE"
+                "_balances"
             ]
         },
         {
-            "potential_checks": "currentAllowance != type()(uint256).max == False",
+            "potential_checks": "_allowances[from][msg.sender] >= amount",
             "involved_variables": [
                 "msg.sender",
-                "currentAllowance",
-                "to",
-                "TRANSFER_ROLE",
-                "from"
+                "from",
+                "amount",
+                "_allowances"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure the current allowance is sufficient for the transfer.",
             "references": [
-                "TRANSFER_ROLE"
-            ]
-        },
-        {
-            "potential_checks": "hasRole(TRANSFER_ROLE,from) || hasRole(TRANSFER_ROLE,to) == False",
-            "involved_variables": [
-                "msg.sender",
-                "currentAllowance",
-                "to",
-                "TRANSFER_ROLE",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "TRANSFER_ROLE"
+                "_balances"
             ]
         }
     ],
@@ -126,90 +89,52 @@
     "getPastTotalSupply(uint256 timepoint) returns (uint256)": [],
     "delegate(address delegatee)": [],
     "delegateBySig(address delegatee, uint256 nonce, uint256 expiry, uint8 v, bytes32 r, bytes32 s)": [],
-    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "potential_checks": "signer == owner",
+            "involved_variables": [
+                "owner",
+                "signer",
+                "v",
+                "r",
+                "s"
+            ],
+            "descriptions": "Ensure the signer matches the owner for permit functionality.",
+            "references": [
+                "_allowances"
+            ]
+        },
+        {
+            "potential_checks": "deadline >= block.timestamp",
+            "involved_variables": [
+                "deadline",
+                "block.timestamp"
+            ],
+            "descriptions": "Ensure the permit is valid within the specified deadline.",
+            "references": ["_allowances"]
+        }
+    ],
     "nonces(address owner) returns (uint256)": [],
     "DOMAIN_SEPARATOR() returns (bytes32)": [],
     "eip712Domain() returns (bytes1, string, string, uint256, address, bytes32, uint256[])": [],
     "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [
-        {
-            "potential_checks": "isTrustedForwarder(msg.sender)",
-            "involved_variables": [
-                "spender",
-                "msg.sender",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "isTrustedForwarder(msg.sender)",
-            "involved_variables": [
-                "spender",
-                "currentAllowance",
-                "owner",
-                "msg.sender",
-                "subtractedValue"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "currentAllowance >= subtractedValue",
-            "involved_variables": [
-                "spender",
-                "currentAllowance",
-                "owner",
-                "msg.sender",
-                "subtractedValue"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "burn(uint256 amount)": [
-        {
-            "potential_checks": "hasRole(TRANSFER_ROLE,from) || hasRole(TRANSFER_ROLE,to) == False",
-            "involved_variables": [
-                "TRANSFER_ROLE",
-                "account",
-                "from",
-                "to"
-            ],
-            "descriptions": "",
-            "references": [
-                "TRANSFER_ROLE"
-            ]
-        }
     ],
     "burnFrom(address account, uint256 amount)": [
         {
-            "potential_checks": "currentAllowance != type()(uint256).max == False",
+            "potential_checks": "_allowances[account][msg.sender] >= amount",
             "involved_variables": [
+                "msg.sender",
                 "account",
-                "currentAllowance",
-                "to",
-                "TRANSFER_ROLE",
-                "from"
+                "amount",
+                "_allowances"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure the current allowance is sufficient for the burnFrom operation.",
             "references": [
-                "TRANSFER_ROLE"
-            ]
-        },
-        {
-            "potential_checks": "hasRole(TRANSFER_ROLE,from) || hasRole(TRANSFER_ROLE,to) == False",
-            "involved_variables": [
-                "account",
-                "currentAllowance",
-                "to",
-                "TRANSFER_ROLE",
-                "from"
-            ],
-            "descriptions": "",
-            "references": [
-                "TRANSFER_ROLE"
+                "_balances"
             ]
         }
     ],
@@ -218,42 +143,19 @@
     "getPlatformFeeInfo() returns (address, uint16)": [],
     "setPlatformFeeInfo(address _platformFeeRecipient, uint256 _platformFeeBps)": [
         {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "role",
-                "account",
-                "MAX_BPS",
-                "_platformFeeBps"
-            ],
-            "descriptions": "",
-            "references": [
-                "MAX_BPS"
-            ]
-        },
-        {
-            "potential_checks": "_platformFeeBps <= MAX_BPS == False",
-            "involved_variables": [
-                "role",
-                "account",
-                "MAX_BPS",
-                "_platformFeeBps"
-            ],
-            "descriptions": "",
-            "references": [
-                "MAX_BPS"
-            ]
+            "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables":  ["msg.sender", "_roles"],
+            "descriptions": "Restrict fee updates to DEFAULT_ADMIN_ROLE.",
+            "references": [ "platformFeeRecipient", "platformFeeBps"]
         }
     ],
     "primarySaleRecipient() returns (address)": [],
     "setPrimarySaleRecipient(address _saleRecipient)": [
         {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables":  ["msg.sender", "_roles"],
+            "descriptions": "Restrict primary sale recipient updates to DEFAULT_ADMIN_ROLE.",
+            "references": [ "primarySaleRecipient"]
         }
     ],
     "contractType() returns (bytes32)": [],
@@ -261,324 +163,28 @@
     "contractURI() returns (string)": [],
     "setContractURI(string _uri)": [
         {
-            "potential_checks": "! hasRole(role,account)",
-            "involved_variables": [
-                "role",
-                "account"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "hasRole(DEFAULT_ADMIN_ROLE, msg.sender)",
+            "involved_variables":  ["msg.sender", "_roles"],
+            "descriptions": "Restrict contract URI updates to DEFAULT_ADMIN_ROLE.",
+            "references": [ "contractURI"]
         }
     ],
     "initialize(address _defaultAdmin, string _name, string _symbol, string _contractURI, address[] _trustedForwarders, address _primarySaleRecipient, address _platformFeeRecipient, uint256 _platformFeeBps)": [
-        {
-            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "isTopLevelCall == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "_initializing == False",
-            "involved_variables": [
-                "_initializing",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "_initialized"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        }
     ],
     "verify(ITokenERC20.MintRequest _req, bytes _signature) returns (bool, address)": [
-        {
-            "potential_checks": "bytes(version).length > 0 == False",
-            "involved_variables": [
-                "version",
-                "hashedVersion",
-                "TMP_1884"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "hashedVersion != 0 == False",
-            "involved_variables": [
-                "version",
-                "hashedVersion",
-                "TMP_1884"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "mintWithSignature(ITokenERC20.MintRequest _req, bytes _signature)": [
         {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
+            "potential_checks": "!minted[_req.uid] && hasRole(MINTER_ROLE, signer)",
+            "involved_variables":  ["_req", "_signature"],
+            "descriptions": "Ensure mint request is signed by MINTER_ROLE, active, and not duplicated.",
+            "references": ["_balances", "_totalSupply"]
         },
         {
-            "potential_checks": "bytes(version).length > 0 == False",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "hashedVersion != 0 == False",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "(success,signer) = verify(_req,_signature)",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "_req.validityStartTimestamp <= block.timestamp && _req.validityEndTimestamp >= block.timestamp",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "_req.quantity > 0",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "_req.price == 0 == False",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "_req.currency == CurrencyTransferLib.NATIVE_TOKEN == False",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "msg.value == 0",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "isTrustedForwarder(msg.sender)",
-            "involved_variables": [
-                "_signature",
-                "_req",
-                "version",
-                "_ENTERED",
-                "success",
-                "_status",
-                "hashedVersion",
-                "CurrencyTransferLib",
-                "TMP_1884",
-                "msg.value",
-                "saleRecipient",
-                "msg.sender",
-                "block.timestamp",
-                "signer"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
+            "potential_checks": "(_req.price==0 ? msg.value==0 : (_req.currency==NATIVE_TOKEN ? msg.value==_req.price : msg.value==0))",
+            "involved_variables":  ["msg.value", "_req.price", "_req.currency"],
+            "descriptions": "Enforce correct payment (native/ERC20) for mintWithSignature.",
+            "references": ["_balances", "_totalSupply"]
         }
     ]
 }
