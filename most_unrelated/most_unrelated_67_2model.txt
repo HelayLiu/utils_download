@@ -1,0 +1,24 @@
+- `tokenUnderlying: IERC20 public`  
+    · Write restricted to None (immutable after deployment).  
+    · Read restricted to None.  
+- `tokenBorrowable: Borrowable public`  
+    · Write restricted to None (immutable after deployment).  
+    · Read restricted to None.  
+- `router: TerraceRouter public`  
+    · Write restricted to Admin (via `changeRouterAddress`).  
+    · Read restricted to None.  
+- `admin: address public`  
+    · Write restricted to Admin (via `revoke` to set to `address(0)`).  
+    · Read restricted to None.  
+- `_balances: mapping(address => uint256) private` (inherited)  
+    · Write restricted to Contract (via `_mint`, `_burn`, `transfer`).  
+    · Read restricted to Contract and `balanceOf` function.  
+- `_allowances: mapping(address => mapping(address => uint256)) private` (inherited)  
+    · Write restricted to Contract (via `approve`, `transferFrom`).  
+    · Read restricted to Contract and `allowance` function.  
+- `_checkpoints: mapping(address => Checkpoint[]) private` (inherited)  
+    · Write restricted to Contract (during delegation/token transfers).  
+    · Read restricted to Contract and `checkpoints` function.  
+- `_totalSupplyCheckpoints: Checkpoint[] private` (inherited)  
+    · Write restricted to Contract (during `_mint`/`_burn`).  
+    · Read restricted to Contract and `getPastTotalSupply` function.  

@@ -1,0 +1,7 @@
+- As a user, I want to stake my LIF3 tokens to receive stlLIF3 tokens so that I can participate in governance and earn rewards.  
+- As a user, I want to unstake my stlLIF3 tokens to reclaim the underlying LIF3 tokens or borrowable assets at any time.  
+- As a user, I want to delegate my voting power to another address so that they can vote on my behalf in governance decisions.  
+- As a user, I want my staked balances and voting power to be isolated from others, preventing unauthorized access or modifications.  
+- As an admin, I want to update the Terrace Router address to ensure the contract interacts with the correct external components.  
+- As an admin, I want to revoke my admin rights to decentralize control and make the contract immutable.  
+- As the contract, I enforce write restrictions on critical state variables to maintain integrity and prevent unauthorized state transitions. 
