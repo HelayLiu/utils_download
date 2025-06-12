@@ -1,0 +1,18 @@
+- `_balances`: mapping(address => uint256) private  
+    · Write restricted to the contract during transfers/minting/burning.  
+    · Read restricted to the account owner via `balanceOf` or public queries.  
+- `_allowances`: mapping(address => mapping(address => uint256)) private  
+    · Write restricted to the allowance owner (via `approve`/`increaseAllowance`/`decreaseAllowance`) or spenders during `transferFrom`.  
+    · Read restricted to the allowance owner/spender via `allowance`.  
+- `trustedRemoteLookup`: mapping(uint16 => bytes) public  
+    · Write restricted to the Owner.  
+    · Read restricted to None (publicly accessible).  
+- `minDstGasLookup`: mapping(uint16 => mapping(uint16 => uint)) public  
+    · Write restricted to the Owner.  
+    · Read restricted to None.  
+- `failedMessages`: mapping(uint16 => mapping(bytes => mapping(uint64 => bytes32))) public  
+    · Write restricted to the contract during message handling.  
+    · Read restricted to None.  
+- `_owner`: address private  
+    · Write restricted to the contract during ownership transfers.  
+    · Read restricted to None (via `owner()`).  

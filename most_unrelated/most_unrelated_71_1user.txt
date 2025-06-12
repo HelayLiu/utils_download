@@ -1,0 +1,5 @@
+- As a token holder, I want to securely transfer tokens to others on the same chain while ensuring only I can initiate transfers from my account and recipients receive the correct balance updates.
+- As a cross-chain user, I want to send tokens to other chains via LayerZero while guaranteeing tokens are burned on the source chain and minted on the destination chain, with state isolation preventing unauthorized access during the process.
+- As a dApp developer, I want to send tokens and trigger contract calls on destination chains atomically, ensuring callback functions are only executable by the LayerZero endpoint to maintain state consistency.
+- As the contract owner, I want to configure trusted remote addresses and gas parameters exclusively, preventing malicious actors from compromising cross-chain security.
+- As an external contract, I want to safely handle token receipts via standardized callbacks (e.g., `onOFTReceived`) with access restricted to the token contract itself to prevent reentrancy or spoofing.
