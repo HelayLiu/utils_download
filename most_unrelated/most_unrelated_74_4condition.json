@@ -1,245 +1,39 @@
 {
     "getOrderStatus(bytes32 orderHash_) returns (OrderStatus)": [],
     "validateOrder(Order order_)": [
-        {
-            "potential_checks": "bytes(version).length > 0 == False",
-            "involved_variables": [
-                "hashedVersion",
-                "version",
-                "TMP_2773"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "hashedVersion != 0 == False",
-            "involved_variables": [
-                "hashedVersion",
-                "version",
-                "TMP_2773"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+
     ],
     "cancelOrder(Order order_)": [
-        {
-            "potential_checks": "order_.maker != msg.sender == False",
-            "involved_variables": [
-                "order_",
-                "TMP_2773",
-                "version",
-                "msg.sender",
-                "status_",
-                "hashedVersion",
-                "orderStatus"
-            ],
-            "descriptions": "",
-            "references": [
-                "orderStatus"
-            ]
-        },
-        {
-            "potential_checks": "bytes(version).length > 0 == False",
-            "involved_variables": [
-                "order_",
-                "TMP_2773",
-                "version",
-                "msg.sender",
-                "status_",
-                "hashedVersion",
-                "orderStatus"
-            ],
-            "descriptions": "",
-            "references": [
-                "orderStatus"
-            ]
-        },
-        {
-            "potential_checks": "hashedVersion != 0 == False",
-            "involved_variables": [
-                "order_",
-                "TMP_2773",
-                "version",
-                "msg.sender",
-                "status_",
-                "hashedVersion",
-                "orderStatus"
-            ],
-            "descriptions": "",
-            "references": [
-                "orderStatus"
-            ]
-        },
-        {
-            "potential_checks": "status_.isFilledOrCancelled == False",
-            "involved_variables": [
-                "order_",
-                "TMP_2773",
-                "version",
-                "msg.sender",
-                "status_",
-                "hashedVersion",
-                "orderStatus"
-            ],
-            "descriptions": "",
-            "references": [
-                "orderStatus"
-            ]
-        }
+    {  
+    "potential_checks": "order_.maker == msg.sender",  
+    "involved_variables": ["order_", "msg.sender"],  
+    "descriptions": "Ensures only the order maker can cancel the order, enforcing write isolation.",  
+    "references": ["orderStatus"]  
+    }
     ],
     "cancelOrders(Order[] orders_)": [
-        {
-            "potential_checks": "i < length_ == False",
-            "involved_variables": [
-                "length_",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+    {  
+    "potential_checks": "order_.maker == msg.sender",  
+    "involved_variables": ["order_", "msg.sender"],  
+    "descriptions": "Ensures only the order maker can cancel the order, enforcing write isolation.",  
+    "references": ["orderStatus"]  
+    }
     ],
     "incrementNonce()": [],
     "isValidNonce(address user_, uint256 userNonce_) returns (bool)": [],
-    "validateOrderSignature(bytes32 orderHash_, Order order_)": [
-        {
-            "potential_checks": "! isValidSignature(order_.signer,order_.maker,orderHash_,order_.signature,order_.signatureType)",
-            "involved_variables": [
-                "structHash_",
-                "TMP_2672",
-                "order_",
-                "signer_",
-                "associated_",
-                "IAbstractAccount",
-                "None",
-                "signature_",
-                "maker_",
-                "SignatureType",
-                "signatureType",
-                "orderHash_"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "signatureType == SignatureType.EOA == False",
-            "involved_variables": [
-                "structHash_",
-                "TMP_2672",
-                "order_",
-                "signer_",
-                "associated_",
-                "IAbstractAccount",
-                "None",
-                "signature_",
-                "maker_",
-                "SignatureType",
-                "signatureType",
-                "orderHash_"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "maker_.code.length == 0 || ! IERC165(maker_).supportsInterface(type()(IAbstractAccount).interfaceId) == False",
-            "involved_variables": [
-                "structHash_",
-                "TMP_2672",
-                "order_",
-                "signer_",
-                "associated_",
-                "IAbstractAccount",
-                "None",
-                "signature_",
-                "maker_",
-                "SignatureType",
-                "signatureType",
-                "orderHash_"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
+    "validateOrderSignature(bytes32 orderHash_, Order order_)": [],
     "getConditionId(uint256 tokenId_) returns (bytes32)": [],
     "getComplement(uint256 tokenId_) returns (uint256)": [],
     "validateTokenId(uint256 tokenId_)": [
-        {
-            "potential_checks": "registry[tokenId_].complement == 0 == False",
-            "involved_variables": [
-                "tokenId_",
-                "registry"
-            ],
-            "descriptions": "",
-            "references": [
-                "registry"
-            ]
-        }
     ],
     "validateComplement(uint256 token0_, uint256 token1_)": [],
     "hashOrder(Order order_) returns (bytes32)": [
-        {
-            "potential_checks": "bytes(version).length > 0 == False",
-            "involved_variables": [
-                "hashedVersion",
-                "version",
-                "TMP_2773"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "hashedVersion != 0 == False",
-            "involved_variables": [
-                "hashedVersion",
-                "version",
-                "TMP_2773"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "getMaxFeeRate() returns (uint256)": [],
     "getConditionId(uint256 token_) returns (bytes32)": [],
     "getComplement(uint256 token_) returns (uint256)": [
-        {
-            "potential_checks": "registry[tokenId_].complement == 0 == False",
-            "involved_variables": [
-                "tokenId_",
-                "registry"
-            ],
-            "descriptions": "",
-            "references": [
-                "registry"
-            ]
-        }
     ],
     "validateComplement(uint256 token_, uint256 complement_)": [
-        {
-            "potential_checks": "getComplement(token_) != complement_",
-            "involved_variables": [
-                "tokenId_",
-                "token_",
-                "registry",
-                "complement_"
-            ],
-            "descriptions": "",
-            "references": [
-                "registry"
-            ]
-        },
-        {
-            "potential_checks": "registry[tokenId_].complement == 0 == False",
-            "involved_variables": [
-                "tokenId_",
-                "token_",
-                "registry",
-                "complement_"
-            ],
-            "descriptions": "",
-            "references": [
-                "registry"
-            ]
-        }
     ],
     "isValidNonce(address user_, uint256 nonce_) returns (bool)": [],
     "getCollateral() returns (address)": [],
@@ -250,281 +44,29 @@
     "proxiableUUID() returns (bytes32)": [],
     "upgradeTo(address newImplementation)": [
         {
-            "potential_checks": "address(this) != __self",
+            "potential_checks": "auth.hasRole(UPGRADER_ROLE,msg.sender)",
             "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
+                "auth",
                 "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the UPGRADER_ROLE before upgrading the implementation.",
             "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "_getImplementation() == __self",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "! auth.hasRole(UPGRADER_ROLE,account_) == False",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "StorageSlot.getBooleanSlot(_ROLLBACK_SLOT).value == False",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "Address.isContract(newImplementation)",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
+                "_IMPLEMENTATION_SLOT"
             ]
         }
     ],
     "upgradeToAndCall(address newImplementation, bytes data)": [
         {
-            "potential_checks": "address(this) != __self",
+            "potential_checks": "auth.hasRole(UPGRADER_ROLE,msg.sender)",
             "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
+                "auth",
                 "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the UPGRADER_ROLE before upgrading the implementation.",
             "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "_getImplementation() == __self",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "! auth.hasRole(UPGRADER_ROLE,account_) == False",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "StorageSlot.getBooleanSlot(_ROLLBACK_SLOT).value == False",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "Address.isContract(newImplementation)",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
-            ]
-        },
-        {
-            "potential_checks": "data.length > 0 || forceCall == False",
-            "involved_variables": [
-                "Address",
-                "account_",
-                "_ROLLBACK_SLOT",
-                "UPGRADER_ROLE",
-                "forceCall",
-                "__self",
-                "this",
-                "newImplementation",
-                "auth",
-                "TMP_2821",
-                "data",
-                "StorageSlot"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "__self",
-                "_ROLLBACK_SLOT"
+                "_IMPLEMENTATION_SLOT"
             ]
         }
     ],
@@ -535,355 +77,85 @@
     "onERC1155Received(address operator, address from, uint256 id, uint256 value, bytes data) returns (bytes4)": [],
     "onERC1155BatchReceived(address operator, address from, uint256[] ids, uint256[] values, bytes data) returns (bytes4)": [],
     "__CTFExchange_init(address authModule_, address collateral_, address adapter_, address conditionalTokens_)": [
-        {
-            "potential_checks": "(isTopLevelCall && _initialized < 1) || (! AddressUpgradeable.isContract(address(this)) && _initialized == 1)",
-            "involved_variables": [
-                "_initializing",
-                "None",
-                "_initialized",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "TMP_2873",
-                "INegRiskAdapter",
-                "adapter_"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "isTopLevelCall == False",
-            "involved_variables": [
-                "_initializing",
-                "None",
-                "_initialized",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "TMP_2873",
-                "INegRiskAdapter",
-                "adapter_"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "adapter_.code.length == 0 || ! IERC165(adapter_).supportsInterface(type()(INegRiskAdapter).interfaceId) == False",
-            "involved_variables": [
-                "_initializing",
-                "None",
-                "_initialized",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "TMP_2873",
-                "INegRiskAdapter",
-                "adapter_"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        },
-        {
-            "potential_checks": "_initializing == False",
-            "involved_variables": [
-                "_initializing",
-                "None",
-                "_initialized",
-                "this",
-                "isTopLevelCall",
-                "AddressUpgradeable",
-                "TMP_2873",
-                "INegRiskAdapter",
-                "adapter_"
-            ],
-            "descriptions": "",
-            "references": [
-                "_initialized",
-                "_initializing"
-            ]
-        }
     ],
     "pauseTrading()": [
         {
-            "potential_checks": "! auth.hasRole(ADMIN_ROLE,account_) == False",
+            "potential_checks": "auth.hasRole(ADMIN_ROLE,msg.sender)",
             "involved_variables": [
                 "auth",
                 "ADMIN_ROLE",
-                "account_"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the ADMIN_ROLE before pausing trading.",
             "references": [
-                "auth"
-            ]
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "auth",
-                "ADMIN_ROLE",
-                "account_"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth"
+                "_paused"
             ]
         }
     ],
     "unpauseTrading()": [
         {
-            "potential_checks": "! auth.hasRole(ADMIN_ROLE,account_) == False",
+            "potential_checks": "auth.hasRole(ADMIN_ROLE,msg.sender)",
             "involved_variables": [
                 "auth",
                 "ADMIN_ROLE",
-                "account_"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the ADMIN_ROLE before unpausing trading.",
             "references": [
-                "auth"
-            ]
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "auth",
-                "ADMIN_ROLE",
-                "account_"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth"
+                "_paused"
             ]
         }
     ],
     "fillOrder(Order order_, uint256 fillAmount_)": [
         {
-            "potential_checks": "_status != _ENTERED",
+            "potential_checks": "auth.hasRole(OPERATOR_ROLE, msg.sender)",
             "involved_variables": [
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
+                "msg.sender",
                 "auth"
-            ]
-        },
-        {
-            "potential_checks": "! auth.hasRole(OPERATOR_ROLE,account_) == False",
-            "involved_variables": [
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the OPERATOR_ROLE before filling the order.",
             "references": [
-                "_ENTERED",
-                "_status",
-                "auth"
-            ]
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "auth"
+                "_balances"
             ]
         }
     ],
     "fillOrders(Order[] orders_, uint256[] fillAmounts_)": [
-        {
-            "potential_checks": "_status != _ENTERED",
+           {
+            "potential_checks": "auth.hasRole(OPERATOR_ROLE, msg.sender)",
             "involved_variables": [
-                "length_",
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
+                "msg.sender",
                 "auth"
-            ]
-        },
-        {
-            "potential_checks": "! auth.hasRole(OPERATOR_ROLE,account_) == False",
-            "involved_variables": [
-                "length_",
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE",
-                "i"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the OPERATOR_ROLE before filling the order.",
             "references": [
-                "_ENTERED",
-                "_status",
-                "auth"
-            ]
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "length_",
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "auth"
-            ]
-        },
-        {
-            "potential_checks": "i < length_ == False",
-            "involved_variables": [
-                "length_",
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "auth"
+                "_balances"
             ]
         }
     ],
     "matchOrders(Order takerOrder_, Order[] makerOrders_, uint256 takerFillAmount_, uint256[] makerFillAmounts_)": [
         {
-            "potential_checks": "_status != _ENTERED",
+            "potential_checks": "auth.hasRole(OPERATOR_ROLE,msg.sender)",
             "involved_variables": [
-                "account_",
-                "_status",
+                "msg.sender",
                 "auth",
-                "_ENTERED",
                 "OPERATOR_ROLE"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the OPERATOR_ROLE before matching orders.",
             "references": [
-                "_ENTERED",
-                "_status",
-                "auth"
-            ]
-        },
-        {
-            "potential_checks": "! auth.hasRole(OPERATOR_ROLE,account_) == False",
-            "involved_variables": [
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "auth"
-            ]
-        },
-        {
-            "potential_checks": "paused() == False",
-            "involved_variables": [
-                "account_",
-                "_status",
-                "auth",
-                "_ENTERED",
-                "OPERATOR_ROLE"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status",
-                "auth"
+                "_balances"
             ]
         }
     ],
     "registerToken(uint256 token, uint256 complement, bytes32 conditionId)": [
         {
-            "potential_checks": "! auth.hasRole(ADMIN_ROLE,account_) == False",
+            "potential_checks": "auth.hasRole(ADMIN_ROLE,msg.sender)",
             "involved_variables": [
-                "account_",
-                "registry",
+                "msg.sender",
                 "auth",
-                "token1_",
-                "ADMIN_ROLE",
-                "token0_"
+                "ADMIN_ROLE"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller has the ADMIN_ROLE before registering a token.",
             "references": [
-                "auth",
-                "registry"
-            ]
-        },
-        {
-            "potential_checks": "token0_ == token1_ || (token0_ == 0 || token1_ == 0) == False",
-            "involved_variables": [
-                "account_",
-                "registry",
-                "auth",
-                "token1_",
-                "ADMIN_ROLE",
-                "token0_"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
-                "registry"
-            ]
-        },
-        {
-            "potential_checks": "registry[token0_].complement != 0 || registry[token1_].complement != 0 == False",
-            "involved_variables": [
-                "account_",
-                "registry",
-                "auth",
-                "token1_",
-                "ADMIN_ROLE",
-                "token0_"
-            ],
-            "descriptions": "",
-            "references": [
-                "auth",
                 "registry"
             ]
         }
