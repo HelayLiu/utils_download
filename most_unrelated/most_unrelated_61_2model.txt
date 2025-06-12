@@ -1,0 +1,30 @@
+- `token` (address immutable):  
+  · Write restricted to None (immutable).  
+  · Read restricted to Public.  
+- `bridgeType` (bytes32):  
+  · Write restricted to None (immutable).  
+  · Read restricted to Public.  
+- `hook__` (IHook):  
+  · Write restricted to Owner.  
+  · Read restricted to Public.  
+- `identifierCache` (mapping(bytes32 => bytes)):  
+  · Write restricted to Hook Contract (during `receiveInbound`/`retry`).  
+  · Read restricted to Public per messageId.  
+- `connectorCache` (mapping(address => bytes)):  
+  · Write restricted to Hook Contract (during `receiveInbound`/`retry`).  
+  · Read restricted to Public per connector address.  
+- `validConnectors` (mapping(address => bool)):  
+  · Write restricted to Owner.  
+  · Read restricted to Public.  
+- `_permits` (mapping(bytes32 => mapping(address => bool)) private:  
+  · Write restricted to Owner.  
+  · Read restricted via `hasRole` (public).  
+- `_owner` (address private):  
+  · Write restricted to Owner/Nominee.  
+  · Read restricted via `owner()` (public).  
+- `_nominee` (address private):  
+  · Write restricted to Owner.  
+  · Read restricted via `nominee()` (public).  
+- `locked` (uint256 private):  
+  · Write restricted to `nonReentrant` modifier.  
+  · Read restricted to None. 

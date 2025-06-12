@@ -1,0 +1,5 @@
+- As a user, I want to bridge tokens securely across chains, ensuring my funds are isolated and only accessible by authorized connectors.  
+- As the contract owner, I want to manage roles and connectors to enforce access control over critical state transitions.  
+- As a connector, I want to process inbound/retry operations safely with pre/post-hook validations to maintain state integrity.  
+- As a rescue role holder, I want to recover accidentally locked funds without compromising user balances.  
+- As any actor, I want to verify state transitions (e.g., non-reentrancy, valid connectors) to prevent unauthorized access or manipulation.  

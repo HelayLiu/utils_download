@@ -1,7 +1,7 @@
 {
     "admin() returns (address)": [
         {
-            "specific_checks": "msg.sender == _getAdmin()",
+            "potential_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
                 "msg.sender",
                 "_ADMIN_SLOT"
@@ -14,7 +14,7 @@
     ],
     "implementation() returns (address)": [
         {
-            "specific_checks": "msg.sender == _getAdmin()",
+            "potential_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
                 "msg.sender",
                 "_ADMIN_SLOT"
@@ -27,7 +27,7 @@
     ],
     "changeAdmin(address newAdmin)": [
         {
-            "specific_checks": "msg.sender == _getAdmin()",
+            "potential_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
                 "msg.sender",
                 "_ADMIN_SLOT"
@@ -40,7 +40,7 @@
     ],
     "upgradeTo(address newImplementation)": [
         {
-            "specific_checks": "msg.sender == _getAdmin()",
+            "potential_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
                 "msg.sender",
                 "_ADMIN_SLOT"
@@ -53,7 +53,7 @@
     ],
     "upgradeToAndCall(address newImplementation, bytes data)": [
         {
-            "specific_checks": "msg.sender == _getAdmin()",
+            "potential_checks": "msg.sender == _getAdmin()",
             "involved_variables": [
                 "msg.sender",
                 "_ADMIN_SLOT"
