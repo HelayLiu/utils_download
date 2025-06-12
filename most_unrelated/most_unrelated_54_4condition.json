@@ -30,15 +30,18 @@
     ],
     "burnFrom(address account, uint256 value)": [
        {
-            "potential_checks": "allowance(account, msg.sender) >= value",
+            "potential_checks": "_allowances[account][msg.sender] >= value",
             "involved_variables": [
                 "account",
                 "msg.sender",
-                "value"
+                "value",
+                "_allowances"
             ],
             "descriptions": "Ensure that the spender has enough allowance to burn from the account.",
             "references": [
-                "allowance"
+                "_allowances",
+                "_balances",
+                "_totalSupply"
             ]
        }
     ],
@@ -51,16 +54,31 @@
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 value) returns (bool)": [
         {  
-        "specific_checks": "finished || spender == _owner",  
+        "potential_checks": "finished || spender == _owner",  
         "involved_variables": ["finished", "spender", "_owner"],  
         "descriptions": "Restrict approvals to owner during initial phase.",  
         "references": ["_allowances"]  
         }
     ],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "_allowances[from][msg.sender] >= value",
+            "involved_variables": [
+                "from",
+                "msg.sender",
+                "value",
+                "_allowances"
+            ],
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the account",
+            "references": [
+                "_allowances",
+                "_balances"
+            ]
+        }
+    ],
     "finish()": [
         {  
-        "specific_checks": "msg.sender == _owner",  
+        "potential_checks": "msg.sender == _owner",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Only owner can finalize the initial phase.",  
         "references": ["finished"]  
@@ -69,7 +87,7 @@
     "depositEth()": [],
     "withtrawEth(address to, uint256 amount)": [
         {  
-        "specific_checks": "msg.sender == _owner",  
+        "potential_checks": "msg.sender == _owner",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Only owner can withdraw Ether.",  
         "references": []  
@@ -77,7 +95,7 @@
     ],
     "mint(address to, uint256 amount)": [
         {  
-        "specific_checks": "msg.sender == _owner",  
+        "potential_checks": "msg.sender == _owner",  
         "involved_variables": ["msg.sender", "_owner"],  
         "descriptions": "Only owner can mint tokens.",  
         "references": ["_totalSupply", "_balances"]  
