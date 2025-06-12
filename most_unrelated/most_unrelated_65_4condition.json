@@ -2,11 +2,12 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
             "references": [
                 "_owner"
             ]
@@ -17,9 +18,9 @@
             "potential_checks": "_owner == msg.sender",
             "involved_variables": [
                 "_owner",
-                "newOwner"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
             "references": [
                 "_owner"
             ]
@@ -32,104 +33,24 @@
     "getOwner() returns (address)": [],
     "balanceOf(address account) returns (uint256)": [],
     "transfer(address recipient, uint256 amount) returns (bool)": [
-        {
-            "potential_checks": "sender == lpacc == False",
-            "involved_variables": [
-                "sender",
-                "amount",
-                "lpacc",
-                "recipient",
-                "_balances"
-            ],
-            "descriptions": "",
-            "references": [
-                "_balances",
-                "lpacc"
-            ]
-        },
-        {
-            "potential_checks": "recipient == lpacc == False",
-            "involved_variables": [
-                "sender",
-                "amount",
-                "lpacc",
-                "recipient",
-                "_balances"
-            ],
-            "descriptions": "",
-            "references": [
-                "_balances",
-                "lpacc"
-            ]
-        },
-        {
-            "potential_checks": "sender != lpacc && amount == _balances[sender] == False",
-            "involved_variables": [
-                "sender",
-                "amount",
-                "lpacc",
-                "recipient",
-                "_balances"
-            ],
-            "descriptions": "",
-            "references": [
-                "_balances",
-                "lpacc"
-            ]
-        }
+
     ],
     "allowance(address _owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "sender == lpacc == False",
+            "potential_checks": "_allowances[sender][msg.sender] >= amount",
             "involved_variables": [
-                "spender",
                 "sender",
+                "msg.sender",
                 "amount",
-                "lpacc",
-                "owner",
-                "recipient",
-                "_balances"
+                "_allowances"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the sender.",
             "references": [
+                "_allowances",
                 "_balances",
-                "lpacc"
-            ]
-        },
-        {
-            "potential_checks": "recipient == lpacc == False",
-            "involved_variables": [
-                "spender",
-                "sender",
-                "amount",
-                "lpacc",
-                "owner",
-                "recipient",
-                "_balances"
-            ],
-            "descriptions": "",
-            "references": [
-                "_balances",
-                "lpacc"
-            ]
-        },
-        {
-            "potential_checks": "sender != lpacc && amount == _balances[sender] == False",
-            "involved_variables": [
-                "spender",
-                "sender",
-                "amount",
-                "lpacc",
-                "owner",
-                "recipient",
-                "_balances"
-            ],
-            "descriptions": "",
-            "references": [
-                "_balances",
-                "lpacc"
+                "_totalSupply"
             ]
         }
     ],
@@ -141,25 +62,12 @@
         {
             "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "isstop",
+                "msg.sender",
                 "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before checking if the contract is stopped.",
             "references": [
-                "isstop",
-                "_owner"
-            ]
-        },
-        {
-            "potential_checks": "isstop == 0 == False",
-            "involved_variables": [
-                "isstop",
-                "_owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "isstop",
-                "_owner"
+                "isstop"
             ]
         }
     ],
@@ -167,25 +75,12 @@
         {
             "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "isopenbuy",
+                "msg.sender",
                 "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before checking if open buy is enabled.",
             "references": [
-                "isopenbuy",
-                "_owner"
-            ]
-        },
-        {
-            "potential_checks": "isopenbuy == 0 == False",
-            "involved_variables": [
-                "isopenbuy",
-                "_owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "isopenbuy",
-                "_owner"
+                "isopenbuy"
             ]
         }
     ],
@@ -195,27 +90,12 @@
         {
             "potential_checks": "msg.sender == safeaddress",
             "involved_variables": [
-                "i",
                 "msg.sender",
-                "safeaddress",
-                "_acc"
-            ],
-            "descriptions": "",
-            "references": [
                 "safeaddress"
-            ]
-        },
-        {
-            "potential_checks": "i < _acc.length == False",
-            "involved_variables": [
-                "i",
-                "msg.sender",
-                "safeaddress",
-                "_acc"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the safe address before adding to the whitelist.",
             "references": [
-                "safeaddress"
+                "_whiteaddress"
             ]
         }
     ],
@@ -223,40 +103,26 @@
         {
             "potential_checks": "msg.sender == safeaddress",
             "involved_variables": [
-                "i",
                 "msg.sender",
-                "safeaddress",
-                "_acc"
-            ],
-            "descriptions": "",
-            "references": [
                 "safeaddress"
-            ]
-        },
-        {
-            "potential_checks": "i < _acc.length == False",
-            "involved_variables": [
-                "i",
-                "msg.sender",
-                "safeaddress",
-                "_acc"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the safe address before removing from the whitelist.",
             "references": [
-                "safeaddress"
+                "_whiteaddress"
             ]
         }
     ],
     "getlpall() returns (uint256)": [],
     "autoapprovetoken(address token, address to) returns (bool)": [
         {
-            "potential_checks": "_owner == msg.sender == False",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_owner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before auto approving token transfers.",
             "references": [
-                "_owner"
+                "_allowances"
             ]
         }
     ]
