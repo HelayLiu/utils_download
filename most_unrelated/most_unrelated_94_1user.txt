@@ -1,0 +1,5 @@
+- As a user, I want to execute token swaps securely with enforced reentrancy protection and state isolation to prevent unauthorized state changes during swaps.  
+- As a fee-exempt user, I want my transactions excluded from fee deductions to optimize swap costs.  
+- As the contract owner, I want exclusive control over critical parameters (fee rates, collectors) to manage protocol economics securely.  
+- As a liquidity provider, I want swap operations to validate pool addresses and deadlines to ensure swap integrity and prevent stale transactions.  
+- As the fee collector, I want isolated fee accumulation logic to securely receive fees without interference from user swap states. 

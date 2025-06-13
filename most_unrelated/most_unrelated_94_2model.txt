@@ -1,0 +1,21 @@
+- amountInCached:  
+  · Write restricted to contract-internal swap logic during callback operations.  
+  · Read restricted to contract-internal state handling.  
+- feeRate:  
+  · Write restricted to contract owner via `setFeeRate`.  
+  · Read restricted to public (no access control).  
+- feeDenominator:  
+  · Write restricted to initialization only (immutable post-deployment).  
+  · Read restricted to public.  
+- feeCollector:  
+  · Write restricted to contract owner via `setFeeCollector`.  
+  · Read restricted to public.  
+- WETH:  
+  · Write restricted to contract owner via `setWETH`.  
+  · Read restricted to public.  
+- factoryV3/pancakeFactoryV3:  
+  · Write restricted to initialization only (immutable post-deployment).  
+  · Read restricted to public.  
+- feeExcludeList:  
+  · Write restricted to contract owner (no direct setter in provided functions; assumed owner-controlled via upgrades).  
+  · Read restricted to public.  
