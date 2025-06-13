@@ -1,0 +1,6 @@
+   - As a user, I want to transfer tokens to another user securely, with state isolation ensuring only the sender can deduct from their balance and the recipient receives the tokens.
+   - As a user, I want to delegate my voting power to another address, with state isolation ensuring only I can change my delegate.
+   - As a user, I want to burn my tokens to reduce the total supply, with state isolation ensuring only I can burn my own tokens.
+   - As a user, I want to approve another address to spend my tokens, with state isolation ensuring only I can set the allowance for my account.
+   - As a user, I want to use a signed message (permit) to approve a spender without a transaction, with state isolation ensuring only the owner of the tokens can sign such a message.
+   - As a contract owner, I want to mint the initial supply, with state isolation ensuring only the owner can mint at deployment.

@@ -58,10 +58,3 @@ def generate_text(prompt, model_id):
     )
     return response.choices[0].text.strip()
 
-# 假设我们得到了微调后的模型ID，例如："davinci:ft-your-org:custom-model-name-2023-01-01-00-00-00"
-# 你可以从监控函数中获取模型ID
-# fine_tuned_model = job_status['fine_tuned_model']
-
-# 测试
-# result = generate_text("今天天气如何？", fine_tuned_model)
-# print(result)

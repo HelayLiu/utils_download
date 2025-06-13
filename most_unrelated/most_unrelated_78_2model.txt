@@ -1,19 +1,27 @@
-- `_balances` (mapping):  
-  · Write restricted to token owner or approved spender.  
-  · Read restricted to public via `balanceOf`.  
-
-- `_allowances` (mapping):  
-  · Write restricted to token owner (via `approve`/`permit`).  
-  · Read restricted to public via `allowance`.  
-
-- `_delegates` (mapping):  
-  · Write restricted to token owner (via `delegate`/`delegateBySig`).  
-  · Read restricted to public via `delegates`.  
-
-- `_checkpoints` (mapping):  
-  · Write restricted to contract during token transfers/delegation.  
-  · Read restricted to public via `getVotes`/`getPastVotes`.  
-
-- `_totalSupplyCheckpoints` (array):  
-  · Write restricted to contract during minting/burning.  
-  · Read restricted to public via `getPastTotalSupply`.  
+- `_balances`: mapping(address => uint256) private
+    · Write restricted to the token owner (via transfer, transferFrom, mint, burn) or approved spender (via transferFrom). 
+    · Read restricted to the public (via balanceOf) and internally by the contract.
+- `_allowances`: mapping(address => mapping(address => uint256)) private
+    · Write restricted to the token owner (via approve, increaseAllowance, decreaseAllowance, transferFrom) or via permit (signed by owner).
+    · Read restricted to the public (via allowance) and internally by the contract.
+- `_totalSupply`: uint256 private
+    · Write restricted to the contract during minting and burning.
+    · Read restricted to the public (via totalSupply).
+- `_name`: string private
+    · Write restricted to the contract (only at construction).
+    · Read restricted to the public (via name).
+- `_symbol`: string private
+    · Write restricted to the contract (only at construction).
+    · Read restricted to the public (via symbol).
+- `_nonces`: mapping(address => Counters.Counter) private (from ERC20Permit)
+    · Write restricted to the contract (incremented on each permit use).
+    · Read restricted to the public (via nonces) and internally.
+- `_delegates`: mapping(address => address) private (from ERC20Votes)
+    · Write restricted to the token owner (via delegate or delegateBySig) or by the owner via a signed message (delegateBySig).
+    · Read restricted to the public (via delegates).
+- `_checkpoints`: mapping(address => Checkpoint[]) private (from ERC20Votes)
+    · Write restricted to the contract (when tokens are moved or delegated).
+    · Read restricted to the public (via checkpoints and numCheckpoints, and through getVotes, getPastVotes, etc.).
+- `_totalSupplyCheckpoints`: Checkpoint[] private (from ERC20Votes)
+    · Write restricted to the contract (on mint and burn).
+    · Read restricted to the public (via getPastTotalSupply).
