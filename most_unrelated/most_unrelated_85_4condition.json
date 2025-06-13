@@ -2,7 +2,7 @@
     "manager() returns (address)": [],
     "renounceManagement()": [
         {
-            "specific_checks": "msg.sender == _owner",
+            "potential_checks": "msg.sender == _owner",
             "involved_variables": [
                 "msg.sender",
                 "_owner"
@@ -15,7 +15,7 @@
     ],
     "pushManagement(address newOwner_)": [
         {
-            "specific_checks": "msg.sender == _owner",
+            "potential_checks": "msg.sender == _owner",
             "involved_variables": [
                 "msg.sender",
                 "_owner"
@@ -28,7 +28,7 @@
     ],
     "pullManagement()": [
         {
-            "specific_checks": "msg.sender == _newOwner",
+            "potential_checks": "msg.sender == _newOwner",
             "involved_variables": [
                 "msg.sender",
                 "_newOwner"
@@ -42,7 +42,7 @@
     ],
     "permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
         {
-            "specific_checks": "block.timestamp <= deadline",
+            "potential_checks": "block.timestamp <= deadline",
             "involved_variables": [
                 "block.timestamp",
                 "deadline"
@@ -54,7 +54,7 @@
             ]
         },
         {
-            "specific_checks": " signer == owner",
+            "potential_checks": " signer == owner",
             "involved_variables": [
                 "signer",
                 "owner",
