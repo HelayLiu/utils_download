@@ -1,0 +1,31 @@
+- _balances: mapping(address => uint256) private
+    · Write restricted to the token holder (via transfers, transfersFrom) and MINTER_ROLE/BURNER_ROLE (via mint/burn).
+    · Read restricted to the public (anyone can check any balance via balanceOf).
+
+- _allowances: mapping(address => mapping(address => uint256)) private
+    · Write restricted to the token holder (via approve, increaseAllowance, decreaseAllowance) and the spender (via transferFrom when spending).
+    · Read restricted to the public (anyone can check allowance via allowance).
+
+- _totalSupply: uint256 private
+    · Write restricted to MINTER_ROLE (mint) and BURNER_ROLE (burn).
+    · Read restricted to the public (totalSupply).
+
+- _name: string private
+    · Write restricted to None (set only in the constructor and immutable).
+    · Read restricted to the public (name).
+
+- _symbol: string private
+    · Write restricted to None (set only in the constructor and immutable).
+    · Read restricted to the public (symbol).
+
+- _cap: uint256 private
+    · Write restricted to None (set only in the constructor and immutable).
+    · Read restricted to the public (cap).
+
+- _paused: bool private
+    · Write restricted to OWNER_ROLE (via pause and unpause).
+    · Read restricted to the public (paused).
+
+- _roles: mapping(bytes32 => RoleData) private (from AccessControl)
+    · Write restricted to the admin of each role (via grantRole, revokeRole, renounceRole).
+    · Read restricted to the public (hasRole, getRoleAdmin).

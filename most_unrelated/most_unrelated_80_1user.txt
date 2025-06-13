@@ -1,0 +1,7 @@
+- As a contract owner, I want to be able to pause token transfers in case of emergency.
+- As a contract owner, I want to be able to upgrade the token contract.
+- As a minter, I want to mint new tokens up to the cap.
+- As a burner, I want to burn tokens to reduce supply.
+- As a user, I want to transfer tokens to another user when not paused.
+- As a user, I want to approve another user to spend my tokens.
+- As a user, I want to transfer tokens on behalf of another user if I have an allowance.
