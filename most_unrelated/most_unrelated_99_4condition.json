@@ -1,252 +1,123 @@
 {
     "paused() returns (bool)": [],
     "pendingOwner() returns (address)": [],
-    "transferOwnership(address newOwner)": [
-        {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [
-                "newOwner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
-    "acceptOwnership()": [],
-    "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "acceptOwnership()": [
+        {
+            "potential_checks": "_pendingOwner == msg.sender",
+            "involved_variables": [
+                "_pendingOwner",
+                "msg.sender"
+            ],
+            "descriptions": "Verify caller is pending owner to accept ownership.",
+            "references": [
+                "_owner",
+                "_pendingOwner"
+            ]
+        }
+    ],
+    "owner() returns (address)": [],
     "setSigner(address _signer)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before setting the signer.",
+            "references": [
+                "_signer"
+            ]
         }
     ],
     "setClaimRoot(bytes32 _claimRoot)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before setting the claim root.",
+            "references": [
+                "_claimRoot"
+            ]
         }
     ],
     "withdrawTokens(address receiver, uint256 amount)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before withdrawing tokens.",
+            "references": [
+                "balance"
+            ]
         }
     ],
     "pause()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before pausing the contract.",
+            "references": [
+                "_paused"
+            ]
         }
     ],
     "unpause()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "! paused()",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before unpausing the contract.",
+            "references": [
+                "_paused"
+            ]
         }
     ],
     "claim(bytes32[] _proof, bytes _signature, uint256 _amount, address _onBehalfOf)": [
         {
-            "potential_checks": "paused()",
+            "potential_checks": "recoveredSigner == signer",
             "involved_variables": [
+                "signer",
                 "_signature",
-                "_stakingAmount",
-                "claimed",
-                "_amount",
-                "this",
-                "token",
-                "claimRoot",
-                "_proof",
-                "leaf",
-                "signer",
-                "MerkleProofLib",
-                "recoveredSigner",
-                "_onBehalfOf"
+                "recoveredSigner"
             ],
-            "descriptions": "",
+            "descriptions": "Verify signature is signed by authorized signer.",
             "references": [
-                "token",
-                "claimed",
-                "signer",
-                "claimRoot"
-            ]
-        },
-        {
-            "potential_checks": "IERC20(token).balanceOf(address(this)) < _amount == False",
-            "involved_variables": [
-                "_signature",
-                "_stakingAmount",
-                "claimed",
-                "_amount",
-                "this",
-                "token",
-                "claimRoot",
-                "_proof",
-                "leaf",
-                "signer",
-                "MerkleProofLib",
-                "recoveredSigner",
-                "_onBehalfOf"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "claimed",
-                "signer",
-                "claimRoot"
-            ]
-        },
-        {
-            "potential_checks": "claimed[_onBehalfOf] == False",
-            "involved_variables": [
-                "_signature",
-                "_stakingAmount",
-                "claimed",
-                "_amount",
-                "this",
-                "token",
-                "claimRoot",
-                "_proof",
-                "leaf",
-                "signer",
-                "MerkleProofLib",
-                "recoveredSigner",
-                "_onBehalfOf"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "claimed",
-                "signer",
-                "claimRoot"
-            ]
-        },
-        {
-            "potential_checks": "! MerkleProofLib.verify(_proof,claimRoot,leaf) == False",
-            "involved_variables": [
-                "_signature",
-                "_stakingAmount",
-                "claimed",
-                "_amount",
-                "this",
-                "token",
-                "claimRoot",
-                "_proof",
-                "leaf",
-                "signer",
-                "MerkleProofLib",
-                "recoveredSigner",
-                "_onBehalfOf"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "claimed",
-                "signer",
-                "claimRoot"
-            ]
-        },
-        {
-            "potential_checks": "_signature.length == 0 == False",
-            "involved_variables": [
-                "_signature",
-                "_stakingAmount",
-                "claimed",
-                "_amount",
-                "this",
-                "token",
-                "claimRoot",
-                "_proof",
-                "leaf",
-                "signer",
-                "MerkleProofLib",
-                "recoveredSigner",
-                "_onBehalfOf"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "claimed",
-                "signer",
-                "claimRoot"
-            ]
-        },
-        {
-            "potential_checks": "recoveredSigner != signer == False",
-            "involved_variables": [
-                "_signature",
-                "_stakingAmount",
-                "claimed",
-                "_amount",
-                "this",
-                "token",
-                "claimRoot",
-                "_proof",
-                "leaf",
-                "signer",
-                "MerkleProofLib",
-                "recoveredSigner",
-                "_onBehalfOf"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "claimed",
-                "signer",
-                "claimRoot"
-            ]
-        },
-        {
-            "potential_checks": "_amount - _stakingAmount > 0 == False",
-            "involved_variables": [
-                "_signature",
-                "_stakingAmount",
-                "claimed",
-                "_amount",
-                "this",
-                "token",
-                "claimRoot",
-                "_proof",
-                "leaf",
-                "signer",
-                "MerkleProofLib",
-                "recoveredSigner",
-                "_onBehalfOf"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "claimed",
-                "signer",
-                "claimRoot"
+                "claimed"
             ]
         }
     ]
