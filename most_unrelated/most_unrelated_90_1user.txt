@@ -1,0 +1,7 @@
+- As a contract owner, I want to set up mint groups with different prices, supply limits, and allowlists to control the minting process.
+- As a contract owner, I want to airdrop tokens to specific addresses, charging a fee for each airdropped token.
+- As a contract owner, I want to withdraw the collected funds from minting and airdrops.
+- As a user, I want to mint tokens during the public sale or an allowlist sale I am part of, paying the required price and fees.
+- As a delegated user (via DelegateRegistry), I want to mint tokens on behalf of a vault wallet that has delegated minting rights to me.
+- As the fee address, I want to withdraw my accumulated fees.
+- As the Kingdomly admin, I want to update the fee contract to ensure accurate fee calculations.

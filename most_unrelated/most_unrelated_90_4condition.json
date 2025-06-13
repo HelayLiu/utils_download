@@ -2,20 +2,28 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "supportsInterface(bytes4 interfaceId) returns (bool)": [],
@@ -30,620 +38,175 @@
     "getApproved(uint256 tokenId) returns (address)": [],
     "setApprovalForAll(address operator, bool approved)": [],
     "isApprovedForAll(address owner, address operator) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 tokenId)": [],
-    "safeTransferFrom(address from, address to, uint256 tokenId)": [],
-    "safeTransferFrom(address from, address to, uint256 tokenId, bytes _data)": [],
-    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [],
-    "setApprovalForAll(address operator, bool _approved)": [],
-    "mintLive() returns (bool)": [
+    "transferFrom(address from, address to, uint256 tokenId)": [
         {
-            "potential_checks": "! contractMintLive",
+            "potential_checks":"_owners[tokenId] == msg.sender || operatorApprovals[_owners[tokenId]][msg.sender] ||_tokenApprovals[tokenId]",
             "involved_variables": [
-                "block.timestamp",
-                "contractMintLive",
-                "scheduledMintLiveTimestamp"
+                "_owners",
+                "msg.sender",
+                "operatorApprovals",
+                "owner",
+                "_tokenApprovals",
+                "tokenId"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is either the owner of the token, an approved operator, or has a specific token approval.",
             "references": [
-                "contractMintLive",
-                "scheduledMintLiveTimestamp"
-            ]
-        },
-        {
-            "potential_checks": "scheduledMintLiveTimestamp == 0 || block.timestamp <= scheduledMintLiveTimestamp",
-            "involved_variables": [
-                "block.timestamp",
-                "contractMintLive",
-                "scheduledMintLiveTimestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "scheduledMintLiveTimestamp"
+                "_owners",
+                "_balances"
             ]
         }
     ],
-    "setNewMaxPerMintGroup(uint256 mintId, uint256 newMax)": [],
-    "setMintQuota(address[] addressToAdd, uint256 mintId, uint256[] _mintQuotas)": [],
-    "stopOrStartpresaleMint(bool presaleStatus, uint256 mintId)": [],
-    "schedulePresaleMintStart(uint256 startTimestamp, uint256 mintId)": [],
-    "presaleActive(uint256 mintId) returns (bool)": [
+    "safeTransferFrom(address from, address to, uint256 tokenId)": [
         {
-            "potential_checks": "! contractPresaleActive[mintId]",
+            "potential_checks":"_owners[tokenId] == msg.sender || operatorApprovals[_owners[tokenId]][msg.sender] ||_tokenApprovals[tokenId]",
             "involved_variables": [
-                "contractPresaleActive",
-                "block.timestamp",
-                "presaleScheduledStartTimestamp",
-                "mintId"
+                "_owners",
+                "msg.sender",
+                "operatorApprovals",
+                "owner",
+                "_tokenApprovals",
+                "tokenId"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is either the owner of the token, an approved operator, or has a specific token approval.",
             "references": [
-                "contractPresaleActive",
-                "presaleScheduledStartTimestamp"
-            ]
-        },
-        {
-            "potential_checks": "presaleScheduledStartTimestamp[mintId] == 0 || block.timestamp <= presaleScheduledStartTimestamp[mintId]",
-            "involved_variables": [
-                "contractPresaleActive",
-                "block.timestamp",
-                "presaleScheduledStartTimestamp",
-                "mintId"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractPresaleActive",
-                "presaleScheduledStartTimestamp"
+                "_owners",
+                "_balances"
             ]
         }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes _data)": [
+        {
+            "potential_checks":"_owners[tokenId] == msg.sender || operatorApprovals[_owners[tokenId]][msg.sender] ||_tokenApprovals[tokenId]",
+            "involved_variables": [
+                "_owners",
+                "msg.sender",
+                "operatorApprovals",
+                "owner",
+                "_tokenApprovals",
+                "tokenId"
+            ],
+            "descriptions": "Ensure that the caller is either the owner of the token, an approved operator, or has a specific token approval.",
+            "references": [
+                "_owners",
+                "_balances"
+            ]
+        }
+    ],
+    "safeTransferFrom(address from, address to, uint256 tokenId, bytes data)": [
+        {
+            "potential_checks":"_owners[tokenId] == msg.sender || operatorApprovals[_owners[tokenId]][msg.sender] ||_tokenApprovals[tokenId]",
+            "involved_variables": [
+                "_owners",
+                "msg.sender",
+                "operatorApprovals",
+                "owner",
+                "_tokenApprovals",
+                "tokenId"
+            ],
+            "descriptions": "Ensure that the caller is either the owner of the token, an approved operator, or has a specific token approval.",
+            "references": [
+                "_owners",
+                "_balances"
+            ]
+        }
+    ],
+    "setApprovalForAll(address operator, bool _approved)": [],
+    "mintLive() returns (bool)": [
+    ],
+    "setNewMaxPerMintGroup(uint256 mintId, uint256 newMax)": [
+        {
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Restrict mint group updates to contract owner.",
+            "references": ["maxSupplyPerMintGroup"]
+        }
+    ],
+    "setMintQuota(address[] addressToAdd, uint256 mintId, uint256[] _mintQuotas)": [
+        {
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Restrict mint quota updates to contract owner.",
+            "references": ["mintQuotas"]
+        }
+    ],
+    "stopOrStartpresaleMint(bool presaleStatus, uint256 mintId)": [
+        {
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Restrict presale status updates to contract owner.",
+            "references": ["contractPresaleActive"]
+        }
+    ],
+    "schedulePresaleMintStart(uint256 startTimestamp, uint256 mintId)": [
+        {
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Restrict presale start scheduling to contract owner.",
+            "references": ["presaleScheduledStartTimestamp"]
+        }
+    ],
+    "presaleActive(uint256 mintId) returns (bool)": [
     ],
     "setMaxMintPerWallet(uint256 newMaxMintPerWallet, uint256 mintGroupId)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Restrict max mint per wallet updates to contract owner.",
+            "references": ["maxMintPerWallet"]
         }
     ],
-    "changeSalePrice(uint256 newmintPrice, uint256 mintId)": [],
+    "changeSalePrice(uint256 newmintPrice, uint256 mintId)": [
+        {
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Restrict mintPrice updates to contract owner.",
+            "references": ["mintPrice"]
+        }        
+    ],
     "airdropNFTs(address[] recipients, uint256[] amounts) returns (uint256)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [
-                "msg.value",
-                "success",
-                "j",
-                "excess",
-                "totalCharge",
-                "recipients",
-                "amounts",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "recipients.length != amounts.length == False",
-            "involved_variables": [
-                "msg.value",
-                "success",
-                "j",
-                "excess",
-                "totalCharge",
-                "recipients",
-                "amounts",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < amounts.length == False",
-            "involved_variables": [
-                "msg.value",
-                "success",
-                "j",
-                "excess",
-                "totalCharge",
-                "recipients",
-                "amounts",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "msg.value < totalCharge == False",
-            "involved_variables": [
-                "msg.value",
-                "success",
-                "j",
-                "excess",
-                "totalCharge",
-                "recipients",
-                "amounts",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "j < recipients.length == False",
-            "involved_variables": [
-                "msg.value",
-                "success",
-                "j",
-                "excess",
-                "totalCharge",
-                "recipients",
-                "amounts",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "excess > 0",
-            "involved_variables": [
-                "msg.value",
-                "success",
-                "j",
-                "excess",
-                "totalCharge",
-                "recipients",
-                "amounts",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "! success == False",
-            "involved_variables": [
-                "msg.value",
-                "success",
-                "j",
-                "excess",
-                "totalCharge",
-                "recipients",
-                "amounts",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": ["msg.sender","_owner"],
+            "descriptions": "Restrict airdropNFTs to contract owner.",
+            "references": ["pendingBalances","totalCharge", "_balances"]
+        }          
     ],
     "canMintCheck(uint256 amount, uint256 mintId, address minterAddress) returns (bool, string)": [
+    ],
+    "batchMint(uint256 amount, uint256 mintId) returns (uint256)": [
         {
-            "potential_checks": "amount + addressMints[minterAddress][mintId] > maxMintPerWallet[mintId] == False",
-            "involved_variables": [
-                "addressMints",
-                "minterAddress",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "mintId",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "amount == 0 == False",
-            "involved_variables": [
-                "addressMints",
-                "minterAddress",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "mintId",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "! mintLive()",
-            "involved_variables": [
-                "addressMints",
-                "minterAddress",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "mintId",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "! contractMintLive == False",
-            "involved_variables": [
-                "addressMints",
-                "minterAddress",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "mintId",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "! contractPresaleActive[mintId] == False",
-            "involved_variables": [
-                "addressMints",
-                "minterAddress",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "mintId",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "mintId != 0",
-            "involved_variables": [
-                "addressMints",
-                "minterAddress",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "mintId",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "mintQuotas[mintId][minterAddress] == 0 == False",
-            "involved_variables": [
-                "addressMints",
-                "minterAddress",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "mintId",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "amount > mintQuotas[mintId][minterAddress]",
-            "involved_variables": [
-                "addressMints",
-                "minterAddress",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "mintId",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "maxMintPerWallet"
-            ]
+            "potential_checks": "amount + addressMints[msg.sender][mintId] <= maxMintPerWallet[mintId]",
+            "involved_variables": ["addressMints", "maxMintPerWallet", "msg.sender", "mintId", "amount"],
+            "descriptions": "Enforce per-wallet mint limit.",
+            "references": ["addressMints", "totalCostWithFee"]
         }
     ],
-    "batchMint(uint256 amount, uint256 mintId) returns (uint256)": [],
     "canDelegateMintCheck(uint256 amount, uint256 mintId, address vault, address minterAddress) returns (bool, string)": [
+    ],
+    "delegatedMint(uint256 amount, uint256 mintId, address vault) returns (uint256)": [
         {
-            "potential_checks": "! IDelegateRegistry(DELEGATE_REGISTRY).checkDelegateForContract(minterAddress,vault,address(this),) == False",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
+            "potential_checks": "IDelegateRegistry.checkDelegateForContract(msg.sender, vault, address(this))",
+            "involved_variables": ["msg.sender", "vault", "this"],
+            "descriptions": "Verify caller has delegation rights for the vault.",
+            "references": ["addressMints", "maxMintPerWallet"]
         },
         {
-            "potential_checks": "amount + addressMints[vault][mintId] > maxMintPerWallet[mintId] == False",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "amount == 0 == False",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "! mintLive()",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "! contractMintLive == False",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "! contractPresaleActive[mintId] == False",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "mintId != 0",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "mintQuotas[mintId][vault] == 0 == False",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
-        },
-        {
-            "potential_checks": "amount > mintQuotas[mintId][vault]",
-            "involved_variables": [
-                "vault",
-                "minterAddress",
-                "addressMints",
-                "contractMintLive",
-                "mintQuotas",
-                "contractPresaleActive",
-                "amount",
-                "this",
-                "mintId",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive",
-                "addressMints",
-                "mintQuotas",
-                "contractPresaleActive",
-                "DELEGATE_REGISTRY",
-                "maxMintPerWallet"
-            ]
+            "potential_checks": "amount + addressMints[vault][mintId] <= maxMintPerWallet[mintId]",
+            "involved_variables": ["addressMints", "maxMintPerWallet", "vault", "mintId", "amount"],
+            "descriptions": "Enforce per-wallet mint limit for vault.",
+            "references": ["addressMints", "maxMintPerWallet"]
         }
     ],
-    "delegatedMint(uint256 amount, uint256 mintId, address vault) returns (uint256)": [],
     "quoteBatchMint(uint256 mintId, uint256 amount) returns (uint256, uint256)": [],
     "quoteAirdropFees(uint256 amount) returns (uint256)": [],
     "changeMintStatus(bool status)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "contractMintLive",
-                "status"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive"
-            ]
-        },
-        {
-            "potential_checks": "contractMintLive == status == False",
-            "involved_variables": [
-                "contractMintLive",
-                "status"
-            ],
-            "descriptions": "",
-            "references": [
-                "contractMintLive"
-            ]
-        },
-        {
-            "potential_checks": "status == false == False",
-            "involved_variables": [
-                "contractMintLive",
-                "status"
-            ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before changing mint status.",
             "references": [
                 "contractMintLive"
             ]
@@ -651,53 +214,47 @@
     ],
     "setMintLiveTimestamp(uint256 timestamp)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before setting mint live timestamp.",
+            "references": [
+                "scheduledMintLiveTimestamp"
+            ]
         }
     ],
     "setBaseURI(string newBaseURI)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before setting the base URI.",
+            "references": [
+                "baseURI"
+            ]
         }
     ],
     "withdrawMintFunds()": [
-        {
-            "potential_checks": "! success == False",
-            "involved_variables": [
-                "success"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+
     ],
     "withdrawFeeFunds()": [
-        {
-            "potential_checks": "! success == False",
-            "involved_variables": [
-                "success"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "checkPendingBalance() returns (uint256)": [],
     "checkPendingBalanceFor(address user) returns (uint256)": [],
     "setNewKingdomlyFeeContract(KingdomlyFeeContract _kingdomlyFeeContract)": [
         {
-            "potential_checks": "msg.sender != kingdomlyAdmin == False",
+            "potential_checks": "msg.sender == kingdomlyAdmin",
             "involved_variables": [
                 "kingdomlyAdmin",
-                "msg.sender",
-                "_kingdomlyFeeContract"
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the kingdomly admin before setting a new KingdomlyFeeContract.",
             "references": [
-                "kingdomlyAdmin"
+                "kingdomlyFeeContract"
             ]
         }
     ],

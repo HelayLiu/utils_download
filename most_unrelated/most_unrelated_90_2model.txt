@@ -1,0 +1,75 @@
+- `pendingBalances`: mapping(address => uint256) private
+   · Write restricted to the contract itself (during minting, airdropping, and withdrawals).
+   · Read restricted to the address itself (via `checkPendingBalance`) or anyone for a specific address (via `checkPendingBalanceFor`).
+
+- `maxSupply`: uint256 public
+   · Write restricted to None (set in constructor, then immutable).
+   · Read restricted to None.
+
+- `threeDollarsInCents`: uint256 public immutable
+   · Write restricted to None (set in constructor, then immutable).
+   · Read restricted to None.
+
+- `contractMintLive`: bool public
+   · Write restricted to the contract owner (via `changeMintStatus`).
+   · Read restricted to None.
+
+- `scheduledMintLiveTimestamp`: uint256 public
+   · Write restricted to the contract owner (via `setMintLiveTimestamp` and `changeMintStatus`).
+   · Read restricted to None.
+
+- `baseURI`: string public
+   · Write restricted to the contract owner (via `setBaseURI`).
+   · Read restricted to None.
+
+- `feeAddress`: address public
+   · Write restricted to None (set in constructor, then immutable).
+   · Read restricted to None.
+
+- `ownerPayoutAddress`: address public
+   · Write restricted to None (set in constructor, then immutable).
+   · Read restricted to None.
+
+- `kingdomlyAdmin`: address public
+   · Write restricted to None (set in constructor, then immutable).
+   · Read restricted to None.
+
+- `kingdomlyFeeContract`: KingdomlyFeeContract public
+   · Write restricted to the Kingdomly admin (via `setNewKingdomlyFeeContract`).
+   · Read restricted to None.
+
+- `maxMintPerWallet`: mapping(uint256 => uint256) public
+   · Write restricted to the contract owner (via `setMaxMintPerWallet` and `setNewMaxPerMintGroup` when initializing a new group).
+   · Read restricted to None.
+
+- `mintPrice`: mapping(uint256 => uint256) public
+   · Write restricted to the contract owner (via `changeSalePrice` and `setNewMaxPerMintGroup` when initializing a new group).
+   · Read restricted to None.
+
+- `maxSupplyPerMintGroup`: mapping(uint256 => uint256) public
+   · Write restricted to the contract owner (via `setNewMaxPerMintGroup`).
+   · Read restricted to None.
+
+- `mintGroupMints`: mapping(uint256 => uint256) public
+   · Write restricted to the minting functions (batchMint, delegatedMint, airdropNFTs).
+   · Read restricted to None.
+
+- `addressMints`: mapping(address => mapping(uint256 => uint256)) private
+   · Write restricted to the minting functions (batchMint, delegatedMint).
+   · Read restricted to the contract (via `canMintCheck` and `canDelegateMintCheck`).
+
+- `mintQuotas`: mapping(uint256 => mapping(address => uint256)) public
+   · Write restricted to the contract owner (via `setMintQuota`) and the minting functions (when minting reduces the quota).
+   · Read restricted to None.
+
+- `contractPresaleActive`: mapping(uint256 => bool) public
+   · Write restricted to the contract owner (via `stopOrStartpresaleMint`).
+   · Read restricted to None.
+
+- `presaleScheduledStartTimestamp`: mapping(uint256 => uint256) public
+   · Write restricted to the contract owner (via `schedulePresaleMintStart` and `stopOrStartpresaleMint` when stopping).
+   · Read restricted to None.
+
+- `activeMintGroups`: uint256[] public
+   · Write restricted to the contract owner (via `setNewMaxPerMintGroup` and `setMintQuota` when initializing a new group).
+   · Read restricted to None.
