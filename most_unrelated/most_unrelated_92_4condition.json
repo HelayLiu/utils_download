@@ -2,20 +2,28 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "name() returns (string)": [],
@@ -26,112 +34,76 @@
     "transfer(address to, uint256 value) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 value) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "_allowances[from][msg.sender] >= value || _allowances[from][msg.sender] == type(uint256).max",
+            "involved_variables": [
+                "from",
+                "msg.sender",
+                "value",
+                "_allowances"
+            ],
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the owner.",
+            "references": [
+                "_allowances",
+                "_balances"
+            ]
+        }
+    ],
     "isContract(address addr) returns (bool)": [],
     "isExcludeFee(address account) returns (bool)": [],
     "setLaunch(bool value)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "value",
-                "tradingEnable"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before setting launch status.",
             "references": [
-                "tradingEnable"
-            ]
-        },
-        {
-            "potential_checks": "tradingEnable != value",
-            "involved_variables": [
-                "value",
-                "tradingEnable"
-            ],
-            "descriptions": "",
-            "references": [
-                "tradingEnable"
-            ]
-        },
-        {
-            "potential_checks": "value == False",
-            "involved_variables": [
-                "value",
-                "tradingEnable"
-            ],
-            "descriptions": "",
-            "references": [
-                "tradingEnable"
+                "tradingEnable",
+                "tradeStartTime"
             ]
         }
     ],
     "setExcludeFee(address[] addrs, bool value)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "addrs",
-                "i"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i < addrs.length == False",
-            "involved_variables": [
-                "addrs",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before setting exclude fee status.",
+            "references": ["excludeFeeList"]
         }
     ],
     "setAutoLPBurnSettings(uint256 _frequencyInSeconds, uint256 _percent, uint256 _div, bool _Enabled)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_frequencyInSeconds",
-                "_percent"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_percent <= 500",
-            "involved_variables": [
-                "_frequencyInSeconds",
-                "_percent"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_frequencyInSeconds >= 100 == False",
-            "involved_variables": [
-                "_frequencyInSeconds",
-                "_percent"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before setting auto LP burn settings.",
+            "references": [
+                "lpBurnFrequency",
+                "percentForLPBurn",
+                "percentDiv",
+                "lpBurnEnabled"
+            ]
         }
     ],
     "addLiquidity()": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "addLiquidityFlag"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before adding liquidity.",
             "references": [
-                "addLiquidityFlag"
-            ]
-        },
-        {
-            "potential_checks": "addLiquidityFlag == False",
-            "involved_variables": [
-                "addLiquidityFlag"
-            ],
-            "descriptions": "",
-            "references": [
-                "addLiquidityFlag"
+                "addLiquidityFlag",
+                "_allowances"
             ]
         }
     ]
