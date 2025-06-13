@@ -2,41 +2,51 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "checkIn(address recipient) returns (bool)": [],
     "createAgent(address recipient, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "IERC20(STP_TOKEN).transferFrom(msg.sender,recipient,amount) == False",
+            "potential_checks": "IERC20(STP_TOKEN).transferFrom(msg.sender,recipient,amount) == true",
             "involved_variables": [
-                "success"
+                "STP_TOKEN",
+                "recipient",
+                "amount",
+                "success",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Reverts if token transfer fails to protect state integrity of `hasCreatedAgent`.",
+            "references": ["hasCreatedAgent"]
         }
     ],
     "agentInterfacing(address recipient, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "IERC20(STP_TOKEN).transferFrom(msg.sender,recipient,amount) == False",
-            "involved_variables": [
-                "success"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "IERC20(STP_TOKEN).transferFrom(msg.sender, recipient, amount) == true",
+            "involved_variables": ["STP_TOKEN","msg.sender", "recipient", "amount", "success"],
+            "descriptions": "Reverts if token transfer fails to protect state integrity of `hasInterfacedAgent`.",
+            "references": ["hasInterfacedAgent"]
         }
     ],
     "hasUserCheckedIn(address user) returns (bool)": [],
