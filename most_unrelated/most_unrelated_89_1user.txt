@@ -1,4 +1,7 @@
-- As a user, I want to securely claim tokens with a signature so my claim is isolated from others via unique IDs and expiration timestamps.  
-- As an admin, I want to withdraw tokens to manage contract funds, with access restricted by the owner.  
-- As the owner, I want to assign admins and signers to delegate operations while maintaining control over critical state changes.  
-- As the owner, I want to prevent signature replay attacks by ensuring each claim ID is used only once.  
+- As an owner, I want to set and remove admins so that I can delegate withdrawal capabilities.
+- As an owner, I want to set a signer so that the signer can authorize token claims.
+- As an owner, I want to withdraw tokens from the contract so that I can manage the funds.
+- As an admin, I want to withdraw tokens from the contract so that I can assist in managing the funds.
+- As a user, I want to claim my tokens by providing a valid signature so that I can receive the tokens I am entitled to.
+- As a user, I want my claim to be processed only once (using a unique ID) so that no one can replay my claim.
+- As a user, I want the claim to be processed only before the expiration time so that I have a time window to claim.

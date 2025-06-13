@@ -2,170 +2,96 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "getClaimMessageHash(address tokenAddress, address user, uint256 id, uint256 amount, uint256 expiredAt) returns (bytes32)": [],
     "balanceOf(address tokenAddress) returns (uint256)": [],
     "setAdminAddress(address admin)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before setting an admin address.",
+            "references": ["admins"]
         }
     ],
     "removeAdminAddress(address admin)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before removing an admin address.",
+            "references": ["admins"]
         }
     ],
     "setSigner(address _signer)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "_signer"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before setting a signer address.",
+            "references": [
+                "_signer"
+            ]
         }
     ],
     "withdrawn(address tokenAddress, uint256 amount)": [
         {
-            "potential_checks": "admins[msg.sender] == False",
+            "potential_checks": "admins[msg.sender]",
             "involved_variables": [
                 "admins",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is an admin before withdrawing tokens.",
             "references": [
-                "admins"
+                "_balances"
             ]
         }
     ],
     "claimToken(address tokenAddress, uint256 id, uint256 amount, uint256 expiredAt, bytes signature)": [
-        {
-            "potential_checks": "amount > 0",
+                {
+            "potential_checks": "ECDSA.recover(ethSignedMessageHash,signature) == signer",
             "involved_variables": [
-                "ECDSA",
-                "this",
-                "amount",
-                "token",
-                "msg.sender",
-                "ids",
-                "id",
-                "expiredAt",
-                "ethSignedMessageHash",
                 "signature",
-                "block.timestamp",
                 "signer",
-                "tokenAddress"
+                "ethSignedMessageHash"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the signature is valid and signed by the designated signer before claiming tokens.",
             "references": [
                 "ids",
-                "signer"
-            ]
-        },
-        {
-            "potential_checks": "ids[id]",
-            "involved_variables": [
-                "ECDSA",
-                "this",
-                "amount",
-                "token",
-                "msg.sender",
-                "ids",
-                "id",
-                "expiredAt",
-                "ethSignedMessageHash",
-                "signature",
-                "block.timestamp",
-                "signer",
-                "tokenAddress"
-            ],
-            "descriptions": "",
-            "references": [
-                "ids",
-                "signer"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp < expiredAt",
-            "involved_variables": [
-                "ECDSA",
-                "this",
-                "amount",
-                "token",
-                "msg.sender",
-                "ids",
-                "id",
-                "expiredAt",
-                "ethSignedMessageHash",
-                "signature",
-                "block.timestamp",
-                "signer",
-                "tokenAddress"
-            ],
-            "descriptions": "",
-            "references": [
-                "ids",
-                "signer"
-            ]
-        },
-        {
-            "potential_checks": "token.balanceOf(address(this)) >= amount == False",
-            "involved_variables": [
-                "ECDSA",
-                "this",
-                "amount",
-                "token",
-                "msg.sender",
-                "ids",
-                "id",
-                "expiredAt",
-                "ethSignedMessageHash",
-                "signature",
-                "block.timestamp",
-                "signer",
-                "tokenAddress"
-            ],
-            "descriptions": "",
-            "references": [
-                "ids",
-                "signer"
+                "_balances"
             ]
         }
     ],
     "verifyClaimTokenSignature(address tokenAddress, address sender, uint256 id, uint256 amount, uint256 expiredAt, bytes signature)": [
-        {
-            "potential_checks": "ECDSA.recover(ethSignedMessageHash,signature) == signer == False",
-            "involved_variables": [
-                "signature",
-                "ECDSA",
-                "signer",
-                "ethSignedMessageHash"
-            ],
-            "descriptions": "",
-            "references": [
-                "signer"
-            ]
-        }
+
     ]
 }
