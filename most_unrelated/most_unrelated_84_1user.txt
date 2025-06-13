@@ -1,0 +1,7 @@
+- As a user, I want to claim tokens for a specific order by providing a valid signature from signers, so that I can receive tokens after a cliff period.
+- As a user, I want to withdraw my tokens after the cliff period, so that I can use them.
+- As an admin, I want to pause the contract to prevent claims and withdraws during an emergency, so that I can protect user funds.
+- As an admin, I want to freeze a claim record to prevent withdrawal, so that I can handle disputes or malicious claims.
+- As an owner, I want to update the signers and the threshold, so that I can manage the security of the claim and withdraw processes.
+- As an owner, I want to update the cliff time boundaries, so that I can adjust the vesting conditions.
+- As an owner, I want to withdraw ERC20 tokens (other than the ATH token) from the contract, so that I can recover accidentally sent tokens.
