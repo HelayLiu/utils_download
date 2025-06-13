@@ -3,85 +3,12 @@
         {
             "potential_checks": "tokenBlacklist[msg.sender] == false",
             "involved_variables": [
-                "_value",
-                "txFee",
                 "tokenBlacklist",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Prevent blacklisted users from transferring tokens.",
             "references": [
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
-            ]
-        },
-        {
-            "potential_checks": "_value <= balances[msg.sender]",
-            "involved_variables": [
-                "_value",
-                "txFee",
-                "tokenBlacklist",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
-            ]
-        },
-        {
-            "potential_checks": "txFee > 0 && msg.sender != FeeAddress == False",
-            "involved_variables": [
-                "_value",
-                "txFee",
-                "tokenBlacklist",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
-            ]
-        },
-        {
-            "potential_checks": "burnFee > 0 && msg.sender != FeeAddress == False",
-            "involved_variables": [
-                "_value",
-                "txFee",
-                "tokenBlacklist",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
+                "balances"
             ]
         }
     ],
@@ -89,49 +16,12 @@
         {
             "potential_checks": "tokenBlacklist[msg.sender] == false",
             "involved_variables": [
-                "allowed",
-                "_value",
-                "txFee",
                 "tokenBlacklist",
-                "_from",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Prevent blacklisted users from transferring tokens.",
             "references": [
-                "allowed",
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
-            ]
-        },
-        {
-            "potential_checks": "_value <= balances[_from]",
-            "involved_variables": [
-                "allowed",
-                "_value",
-                "txFee",
-                "tokenBlacklist",
-                "_from",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "allowed",
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
+                "balances"
             ]
         },
         {
@@ -139,137 +29,30 @@
             "involved_variables": [
                 "allowed",
                 "_value",
-                "txFee",
-                "tokenBlacklist",
                 "_from",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the spender has enough allowance to transfer the specified value.",
             "references": [
                 "allowed",
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
-            ]
-        },
-        {
-            "potential_checks": "txFee > 0 && _from != FeeAddress == False",
-            "involved_variables": [
-                "allowed",
-                "_value",
-                "txFee",
-                "tokenBlacklist",
-                "_from",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "allowed",
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
-            ]
-        },
-        {
-            "potential_checks": "burnFee > 0 && _from != FeeAddress == False",
-            "involved_variables": [
-                "allowed",
-                "_value",
-                "txFee",
-                "tokenBlacklist",
-                "_from",
-                "_to",
-                "burnFee",
-                "FeeAddress",
-                "balances",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "allowed",
-                "txFee",
-                "tokenBlacklist",
-                "FeeAddress",
-                "balances",
-                "burnFee"
+                "balances"
             ]
         }
     ],
     "approve(address _spender, uint256 _value) returns (bool)": [],
     "increaseApproval(address _spender, uint256 _addedValue) returns (bool)": [],
     "decreaseApproval(address _spender, uint256 _subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "_subtractedValue > oldValue == False",
-            "involved_variables": [
-                "oldValue",
-                "_subtractedValue"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "blackListAddress(address listAddress, bool isBlackListed) returns (bool)": [
         {
-            "potential_checks": "paused",
-            "involved_variables": [
-                "tokenBlacklist",
-                "paused",
-                "_address",
-                "_isBlackListed",
-                "owner",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "tokenBlacklist",
-                "paused",
-                "owner"
-            ]
-        },
-        {
             "potential_checks": "msg.sender == owner",
             "involved_variables": [
-                "tokenBlacklist",
-                "paused",
-                "_address",
-                "_isBlackListed",
                 "owner",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Only the owner can blacklist or unblacklist an address.",
             "references": [
-                "tokenBlacklist",
-                "paused",
-                "owner"
-            ]
-        },
-        {
-            "potential_checks": "tokenBlacklist[_address] != _isBlackListed == False",
-            "involved_variables": [
-                "tokenBlacklist",
-                "paused",
-                "_address",
-                "_isBlackListed",
-                "owner",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "tokenBlacklist",
-                "paused",
-                "owner"
+                "tokenBlacklist"
             ]
         }
     ],
@@ -278,26 +61,11 @@
             "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
-                "paused",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Only the owner can pause the contract.",
             "references": [
-                "paused",
-                "owner"
-            ]
-        },
-        {
-            "potential_checks": "paused == False",
-            "involved_variables": [
-                "msg.sender",
-                "paused",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "paused",
-                "owner"
+                "paused"
             ]
         }
     ],
@@ -306,26 +74,11 @@
             "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
-                "paused",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Only the owner can unpause the contract.",
             "references": [
-                "paused",
-                "owner"
-            ]
-        },
-        {
-            "potential_checks": "paused == False",
-            "involved_variables": [
-                "msg.sender",
-                "paused",
-                "owner"
-            ],
-            "descriptions": "",
-            "references": [
-                "paused",
-                "owner"
+                "paused"
             ]
         }
     ],
@@ -334,10 +87,9 @@
             "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
-                "newOwner",
-                "owner"
+                "newOwner"
             ],
-            "descriptions": "",
+            "descriptions": "Only the current owner can transfer ownership to a new owner.",
             "references": [
                 "owner"
             ]
@@ -346,47 +98,75 @@
     "balanceOf(address _owner) returns (uint256)": [],
     "allowance(address _owner, address _spender) returns (uint256)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "tokenBlacklist[from] == false",
+            "involved_variables": [
+                "tokenBlacklist",
+                "from"
+            ],
+            "descriptions": "Prevent blacklisted users from transferring tokens.",
+            "references": [
+                "balances"
+            ]
+        },
+        {
+            "potential_checks": "value <= allowed[from][msg.sender]",
+            "involved_variables": [
+                "allowed",
+                "value",
+                "from",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the spender has enough allowance to transfer the specified value.",
+            "references": [
+                "allowed",
+                "balances"
+            ]
+        }
+    ],
     "approve(address spender, uint256 value) returns (bool)": [],
     "balanceOf(address who) returns (uint256)": [],
-    "transfer(address to, uint256 value) returns (bool)": [],
-    "burn(uint256 _value)": [
+    "transfer(address to, uint256 value) returns (bool)": [
         {
-            "potential_checks": "_value <= balances[_who] == False",
+            "potential_checks": "tokenBlacklist[msg.sender] == false",
             "involved_variables": [
-                "_value",
-                "balances",
-                "_who"
+                "tokenBlacklist",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Prevent blacklisted users from transferring tokens.",
             "references": [
                 "balances"
             ]
         }
     ],
+    "burn(uint256 _value)": [
+    ],
     "updateFee(uint256 _txFee, uint256 _burnFee, address _FeeAddress)": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
                 "owner"
             ],
             "descriptions": "",
             "references": [
-                "owner"
+                "txFee",
+                "burnFee"
             ]
         }
     ],
     "mint(address account, uint256 amount)": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "msg.sender",
                 "owner"
             ],
-            "descriptions": "",
+            "descriptions": "Only the owner can mint new tokens.",
             "references": [
-                "owner"
+                "balances",
+                "totalSupply"
             ]
         }
     ]
