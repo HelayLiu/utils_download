@@ -1,67 +1,51 @@
 {
     "totalSupply() returns (uint256)": [],
     "transfer(address _to, uint256 _value) returns (bool)": [
-        {
-            "potential_checks": "_value <= balances[msg.sender] == False",
-            "involved_variables": [
-                "_value",
-                "_to",
-                "balances",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "balances"
-            ]
-        }
     ],
     "balanceOf(address _owner) returns (uint256)": [],
     "balanceOf(address who) returns (uint256)": [],
     "transfer(address to, uint256 value) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "_value <= allowed[_from][msg.sender]",
+            "involved_variables": [
+                "allowed",
+                "_value",
+                "_from",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the account.",
+            "references": [
+                "balances",
+                "allowed"
+            ]
+        }
+    ],
     "approve(address spender, uint256 value) returns (bool)": [],
     "mint(address _address, uint256 _value)": [
         {
-            "potential_checks": "msg.sender == crowdsale == False",
+            "potential_checks": "msg.sender == crowdsale",
             "involved_variables": [
                 "msg.sender",
                 "crowdsale"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the crowdsale contract before minting tokens.",
             "references": [
-                "crowdsale"
+                "balances"
             ]
         }
     ],
     "transferFrom(address _from, address _to, uint256 _value) returns (bool)": [
         {
-            "potential_checks": "_value <= balances[_from]",
+            "potential_checks": "_value <= allowed[_from][msg.sender]",
             "involved_variables": [
                 "allowed",
                 "_value",
                 "_from",
-                "_to",
-                "balances",
                 "msg.sender"
             ],
-            "descriptions": "",
-            "references": [
-                "balances",
-                "allowed"
-            ]
-        },
-        {
-            "potential_checks": "_value <= allowed[_from][msg.sender] == False",
-            "involved_variables": [
-                "allowed",
-                "_value",
-                "_from",
-                "_to",
-                "balances",
-                "msg.sender"
-            ],
-            "descriptions": "",
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the account.",
             "references": [
                 "balances",
                 "allowed"
@@ -72,14 +56,5 @@
     "allowance(address _owner, address _spender) returns (uint256)": [],
     "increaseApproval(address _spender, uint256 _addedValue) returns (bool)": [],
     "decreaseApproval(address _spender, uint256 _subtractedValue) returns (bool)": [
-        {
-            "potential_checks": "_subtractedValue > oldValue == False",
-            "involved_variables": [
-                "oldValue",
-                "_subtractedValue"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ]
 }
