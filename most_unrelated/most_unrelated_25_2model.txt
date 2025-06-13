@@ -3,7 +3,7 @@
     · Read restricted to None.
 - routerMiddlewareBase: 
     · Write restricted to RESOURCE_SETTER role.
-    · Read restricted to None.
+    · Read restricted to keccak256 protection.
 - gatewayContract: 
     · Write restricted to RESOURCE_SETTER role.
     · Read restricted to None.

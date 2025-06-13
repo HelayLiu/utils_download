@@ -63,6 +63,17 @@
                 "routerMiddlewareBase",
                 "gatewayContract"
             ]
+        },
+        {
+            "potential_checks":"routerMiddlewareBase = keccak256(_routerMiddlewareBase)",
+            "involved_variables": [
+                "routerMiddlewareBase",
+                "_routerMiddlewareBase"
+            ],
+            "descriptions": "Ensure the router middleware base should be set to the keccak256 hash of the provided value.",
+            "references": [
+                "routerMiddlewareBase"
+            ]
         }
     ],
     "updateTokenMessenger(address _tokenMessenger)": [
