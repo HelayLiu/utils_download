@@ -1,92 +1,72 @@
 {
     "approveAndCall(address spender, uint256 value, bytes data) returns (bool)": [],
     "transferAndCall(address to, uint256 value, bytes data) returns (bool)": [
+    ],
+    "permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
         {
-            "potential_checks": "balance >= value == False",
+            "potential_checks": "block.timestamp <= deadline",
             "involved_variables": [
-                "balance",
-                "value",
-                "this",
-                "to"
+                "deadline",
+                "block.timestamp"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the deadline has not passed before allowing the permit.",
+            "references": ["allowance"]
+        },
+        {
+            "potential_checks": "verifyEIP712(owner, spender, amount, deadline, v, r, s) || verifyPersonalSign(owner, spender, amount, deadline, v, r, s) == False",
+            "involved_variables": [
+                "owner",
+                "spender",
+                "amount",
+                "v",
+                "r",
+                "s"
+            ],
+            "descriptions": "Ensure that the signature is valid for the permit.",
+            "references": ["allowance"]
         }
     ],
-    "permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
     "nonces(address owner) returns (uint256)": [],
     "totalSupply() returns (uint256)": [],
     "balanceOf(address account) returns (uint256)": [],
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
-    "owner() returns (address)": [
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "block.timestamp >= _newOwnerEffectiveTime == False",
-            "involved_variables": [
-                "_newOwnerEffectiveTime",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "_newOwnerEffectiveTime"
-            ]
+        "specific_checks": "allowance[from][msg.sender] >= value",
+        "involved_variables": ["allowance", "value", "from", "msg.sender"],
+        "descriptions": "Verify spender's allowance is sufficient.",
+        "references": ["balanceOf", "allowance"]
         }
+    ],
+    "owner() returns (address)": [
     ],
     "changeDCRMOwner(address newOwner) returns (bool)": [
         {
-            "potential_checks": "msg.sender == owner()",
+            "potential_checks": "msg.sender == _oldOwner",
             "involved_variables": [
-                "_newOwnerEffectiveTime",
                 "msg.sender",
-                "block.timestamp",
-                "newOwner"
+                "_oldOwner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before changing ownership.",
             "references": [
-                "_newOwnerEffectiveTime"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= _newOwnerEffectiveTime == False",
-            "involved_variables": [
-                "_newOwnerEffectiveTime",
-                "msg.sender",
-                "block.timestamp",
-                "newOwner"
-            ],
-            "descriptions": "",
-            "references": [
-                "_newOwnerEffectiveTime"
+                "_newOwner"
             ]
         }
     ],
     "Swapin(bytes32 txhash, address account, uint256 amount) returns (bool)": [
         {
-            "potential_checks": "msg.sender == owner()",
+            "potential_checks": "msg.sender == _oldOwner || msg.sender == _newOwner",
             "involved_variables": [
-                "_newOwnerEffectiveTime",
                 "msg.sender",
-                "block.timestamp",
-                "account"
+                "_oldOwner",
+                "_newOwner"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is either the old or new owner before processing the swap-in.",
             "references": [
-                "_newOwnerEffectiveTime"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= _newOwnerEffectiveTime == False",
-            "involved_variables": [
-                "_newOwnerEffectiveTime",
-                "msg.sender",
-                "block.timestamp",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "_newOwnerEffectiveTime"
+                "balanceOf",
+                "_totalSupply"
             ]
         }
     ],
@@ -96,140 +76,58 @@
         {
             "potential_checks": "block.timestamp <= deadline",
             "involved_variables": [
-                "target",
-                "hashStruct",
                 "deadline",
-                "r",
-                "s",
-                "v",
                 "block.timestamp"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the deadline has not passed before allowing the permit.",
+            "references": ["allowance"]
         },
         {
-            "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s) == False",
+            "potential_checks": "verifyEIP712(owner, spender, amount, deadline, v, r, s) || verifyPersonalSign(owner, spender, amount, deadline, v, r, s) == False",
             "involved_variables": [
-                "target",
-                "hashStruct",
-                "deadline",
-                "r",
-                "s",
+                "owner",
+                "spender",
+                "amount",
                 "v",
-                "block.timestamp"
+                "r",
+                "s"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the signature is valid for the permit.",
+            "references": ["allowance"]
         }
     ],
     "transferWithPermit(address target, address to, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) returns (bool)": [
         {
             "potential_checks": "block.timestamp <= deadline",
             "involved_variables": [
-                "balance",
-                "target",
-                "this",
-                "hashStruct",
                 "deadline",
-                "to",
-                "r",
-                "s",
-                "v",
-                "block.timestamp",
-                "value"
+                "block.timestamp"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the deadline has not passed before allowing the permit.",
+            "references": ["allowance"]
         },
         {
-            "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s)",
+            "potential_checks": "verifyEIP712(owner, spender, amount, deadline, v, r, s) || verifyPersonalSign(owner, spender, amount, deadline, v, r, s) == False",
             "involved_variables": [
-                "balance",
-                "target",
-                "this",
-                "hashStruct",
-                "deadline",
-                "to",
-                "r",
-                "s",
+                "owner",
+                "spender",
+                "amount",
                 "v",
-                "block.timestamp",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "balance >= value == False",
-            "involved_variables": [
-                "balance",
-                "target",
-                "this",
-                "hashStruct",
-                "deadline",
-                "to",
                 "r",
-                "s",
-                "v",
-                "block.timestamp",
-                "value"
+                "s"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the signature is valid for the permit.",
+            "references": ["allowance"]
         }
     ],
     "transfer(address to, uint256 value) returns (bool)": [
-        {
-            "potential_checks": "balance >= value == False",
-            "involved_variables": [
-                "balance",
-                "value",
-                "this",
-                "to"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "transferFrom(address from, address to, uint256 value) returns (bool)": [
         {
-            "potential_checks": "from != msg.sender",
-            "involved_variables": [
-                "allowed",
-                "this",
-                "to",
-                "msg.sender",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "allowed != type()(uint256).max",
-            "involved_variables": [
-                "allowed",
-                "this",
-                "to",
-                "msg.sender",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "allowed >= value == False",
-            "involved_variables": [
-                "allowed",
-                "this",
-                "to",
-                "msg.sender",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
+        "specific_checks": "allowance[from][msg.sender] >= value",
+        "involved_variables": ["allowance", "value", "from", "msg.sender"],
+        "descriptions": "Verify spender's allowance is sufficient.",
+        "references": ["balanceOf", "allowance"]
         }
     ]
 }
