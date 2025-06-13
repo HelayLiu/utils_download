@@ -29,7 +29,7 @@
     ],
     "pancakeV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes data)": [
         {
-            "specific_checks": "CallbackValidation.verifyCallback(pancakeFactoryV3, tokenIn, tokenOut, fee)",
+            "potential_checks": "CallbackValidation.verifyCallback(pancakeFactoryV3, tokenIn, tokenOut, fee)",
             "involved_variables": ["pancakeFactoryV3", "tokenIn", "tokenOut", "fee"],
             "descriptions": "Validate callback caller is an authentic PancakeSwap V3 pool.",
             "references": []
@@ -37,7 +37,7 @@
     ],
     "uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes data)": [
         {
-  "specific_checks": "CallbackValidation.verifyCallback(factoryV3, tokenIn, tokenOut, fee)",
+  "potential_checks": "CallbackValidation.verifyCallback(factoryV3, tokenIn, tokenOut, fee)",
   "involved_variables": ["factoryV3", "tokenIn", "tokenOut", "fee"],
   "descriptions": "Validate callback caller is an authentic Uniswap V3 pool.",
   "references": []
@@ -46,7 +46,7 @@
     "initialize(address _factoryV3, address _pancakeFactoryV3, address _WETH, address _feeCollector, uint256 _feeRate)": [],
     "buyMemeToken(address tokenManager, address token, address recipient, uint256 funds, uint256 minAmount) returns (uint256)": [
         {
-        "specific_checks": "tokenManager == address(0xEC4549caDcE5DA21Df6E6422d448034B5233bFbC) || tokenManager == address(0x5c952063c7fc8610FFDB798152D69F0B9550762b)",
+        "potential_checks": "tokenManager == address(0xEC4549caDcE5DA21Df6E6422d448034B5233bFbC) || tokenManager == address(0x5c952063c7fc8610FFDB798152D69F0B9550762b)",
         "involved_variables": ["tokenManager"],
         "descriptions": "Restrict to authorized token managers only.",
         "references": ["balance"]
@@ -67,7 +67,7 @@
     "swapV2MultiHopExactOut(address tokenIn, uint256 amountInMax, uint256 amountOut, address[] path, address recipient, uint256 deadline, address factory) returns (uint256[])": [],
     "uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes _data)": [
         {
-  "specific_checks": "CallbackValidation.verifyCallback(factoryV3, tokenIn, tokenOut, fee)",
+  "potential_checks": "CallbackValidation.verifyCallback(factoryV3, tokenIn, tokenOut, fee)",
   "involved_variables": ["factoryV3", "tokenIn", "tokenOut", "fee"],
   "descriptions": "Validate callback caller is an authentic Uniswap V3 pool.",
   "references": []
@@ -75,7 +75,7 @@
     ],
     "pancakeV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes _data)": [
         {
-  "specific_checks": "CallbackValidation.verifyCallback(pancakeFactoryV3, tokenIn, tokenOut, fee)",
+  "potential_checks": "CallbackValidation.verifyCallback(pancakeFactoryV3, tokenIn, tokenOut, fee)",
   "involved_variables": ["pancakeFactoryV3", "tokenIn", "tokenOut", "fee"],
   "descriptions": "Validate callback caller is an authentic PancakeSwap V3 pool.",
   "references": []
