@@ -2,60 +2,48 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "isClaimed(uint256 index) returns (bool)": [],
     "claim(uint256 index, address account, uint256 amount, bytes32[] merkleProof)": [
-        {
-            "potential_checks": "block.timestamp > endTime == False",
-            "involved_variables": [
-                "block.timestamp",
-                "endTime"
-            ],
-            "descriptions": "",
-            "references": [
-                "endTime"
-            ]
-        }
+
     ],
     "token() returns (address)": [],
     "merkleRoot() returns (bytes32)": [],
     "withdraw()": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "block.timestamp",
-                "endTime"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before withdrawing funds.",
             "references": [
-                "endTime"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp < endTime == False",
-            "involved_variables": [
-                "block.timestamp",
-                "endTime"
-            ],
-            "descriptions": "",
-            "references": [
-                "endTime"
+                "_balances"
             ]
         }
+
     ]
 }
