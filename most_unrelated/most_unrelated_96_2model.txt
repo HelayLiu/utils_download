@@ -1,0 +1,21 @@
+- _balances (mapping):  
+  · Write restricted to the token holder (via transfer/burn) or approved spender (via transferFrom).  
+  · Read restricted to public (via balanceOf).  
+- _allowances (nested mapping):  
+  · Write restricted to the token owner (via approve/permit) or spender during transferFrom.  
+  · Read restricted to public (via allowance).  
+- _totalSupply (uint256):  
+  · Write restricted to contract during mint/burn.  
+  · Read restricted to public (via totalSupply).  
+- _owner (address):  
+  · Write restricted to current owner (via transferOwnership/renounceOwnership).  
+  · Read restricted to public (via owner).  
+- _paused (bool):  
+  · Write restricted to owner (via pause/unpause).  
+  · Read restricted to public (via paused).  
+- _nonces (mapping):  
+  · Write restricted to token holder during permit usage.  
+  · Read restricted to public (via nonces).  
+- EIP-712 state (immutable vars):  
+  · Write restricted to none (set at deployment).  
+  · Read restricted to public (via eip712Domain/DOMAIN_SEPARATOR).  

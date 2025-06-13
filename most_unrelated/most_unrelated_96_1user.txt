@@ -1,0 +1,8 @@
+- As a token holder, I want to transfer my tokens to another address, so that I can make payments or exchange tokens.
+- As a token holder, I want to burn my tokens, so that I can reduce the total supply.
+- As a token holder, I want to approve another address to spend my tokens, so that they can transfer tokens on my behalf.
+- As a token holder, I want to use a signed message to approve a spender without a transaction, so that I can save gas and time.
+- As the contract owner, I want to pause token transfers, so that I can stop all token movements in case of an emergency.
+- As the contract owner, I want to unpause token transfers, so that normal operations can resume after an emergency.
+- As the contract owner, I want to transfer ownership of the contract, so that I can assign a new owner.
+- As the contract owner, I want to renounce ownership, so that the contract becomes ownerless.

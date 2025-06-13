@@ -1,5 +1,24 @@
 {
-    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [],
+    "permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
+        {
+            "potential_checks": "deadline >= block.timestamp",
+            "involved_variables": [
+                "deadline",
+                "block.timestamp"
+
+            ],
+            "descriptions": "Ensure that the permit is not expired.",
+            "references": [
+                "_allowances"
+            ]
+        },
+        {
+            "potential_checks": "signer == owner",  
+            "involved_variables": ["signer", "owner","v","r","s"],  
+            "descriptions": "Verify signature matches token owner.",  
+            "references": ["_allowances"]              
+        }
+    ],
     "nonces(address owner) returns (uint256)": [],
     "DOMAIN_SEPARATOR() returns (bytes32)": [],
     "eip712Domain() returns (bytes1, string, string, uint256, address, bytes32, uint256[])": [],
@@ -11,120 +30,91 @@
     "transfer(address to, uint256 value) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 value) returns (bool)": [],
-    "transferFrom(address from, address to, uint256 value) returns (bool)": [],
+    "transferFrom(address from, address to, uint256 value) returns (bool)": [
+        {
+            "potential_checks": "_allowances[from][msg.sender] >= value",
+            "involved_variables": [
+                "from",
+                "msg.sender",
+                "value",
+                "_allowances"
+            ],
+            "descriptions": "Ensure that the spender has enough allowance to transfer from the account.",
+            "references": [
+                "_allowances",
+                "_balances"
+            ]
+        }
+    ],
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "paused() returns (bool)": [],
     "burn(uint256 value)": [
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "fromBalance",
-                "account",
-                "to",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "fromBalance < value == False",
-            "involved_variables": [
-                "fromBalance",
-                "account",
-                "to",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        }
     ],
     "burnFrom(address account, uint256 value)": [
         {
-            "potential_checks": "currentAllowance != type()(uint256).max == False",
+            "potential_checks": "_allowances[account][msg.sender] >= value",
             "involved_variables": [
-                "fromBalance",
                 "account",
-                "currentAllowance",
-                "to",
-                "from",
-                "value"
+                "msg.sender",
+                "value",
+                "_allowances"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [
-                "fromBalance",
-                "account",
-                "currentAllowance",
-                "to",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "fromBalance < value == False",
-            "involved_variables": [
-                "fromBalance",
-                "account",
-                "currentAllowance",
-                "to",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the spender has enough allowance to burn from the account.",
+            "references": [
+                "_allowances",
+                "_balances",
+                "_totalSupply"
+            ]
         }
     ],
     "pause()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before pausing the contract.",
+            "references": ["_paused"]
         }
     ],
     "unpause()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "! paused()",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before unpausing the contract.",
+            "references": [
+                "_paused"
+            ]
         }
     ]
 }
