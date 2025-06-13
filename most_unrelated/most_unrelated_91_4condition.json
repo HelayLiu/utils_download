@@ -34,7 +34,7 @@
     "approve(address spender, uint256 amount) returns (bool)": [],
     "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
         {
-        "specific_checks": "allowance[from][msg.sender] >= value",
+        "potential_checks": "allowance[from][msg.sender] >= value",
         "involved_variables": ["allowance", "value", "from", "msg.sender"],
         "descriptions": "Verify spender's allowance is sufficient.",
         "references": ["balanceOf", "allowance"]
@@ -124,7 +124,7 @@
     ],
     "transferFrom(address from, address to, uint256 value) returns (bool)": [
         {
-        "specific_checks": "allowance[from][msg.sender] >= value",
+        "potential_checks": "allowance[from][msg.sender] >= value",
         "involved_variables": ["allowance", "value", "from", "msg.sender"],
         "descriptions": "Verify spender's allowance is sufficient.",
         "references": ["balanceOf", "allowance"]

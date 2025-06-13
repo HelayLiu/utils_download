@@ -1,0 +1,8 @@
+- As an owner, I want to authorize addresses so that they can help manage the bridge.
+- As an owner, I want to whitelist tokens so that they can be deposited and unlocked.
+- As an owner, I want to enable or disable deposits to control the flow of tokens.
+- As an owner, I want to perform emergency withdrawals to recover tokens in case of issues.
+- As an authorized address, I want to whitelist tokens so that they can be used in the bridge.
+- As an authorized address, I want to unlock tokens for users so that they can receive their tokens on the other chain.
+- As a user, I want to deposit tokens (when enabled) so that they can be bridged.
+- As a user, I want to check my deposit amount for a token.

@@ -2,237 +2,120 @@
     "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "transferOwnership(address newOwner)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "newOwner"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
     "authorizeAddress(address _addr, bool _status)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before authorizing an address.",
+            "references": ["_authorized"]
         }
     ],
     "whitelistToken(address token, bool status)": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before whitelisting a token.",
+            "references": ["_whitelistedTokens"]
         }
     ],
     "whitelistTokenbyAuthorized(address token, bool status)": [
         {
-            "potential_checks": "_authorized[msg.sender] == False",
+            "potential_checks": "_authorized[msg.sender]",
             "involved_variables": [
                 "msg.sender",
                 "_authorized"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is an authorized address before whitelisting a token.",
             "references": [
-                "_authorized"
+                "_whitelistedTokens"
             ]
         }
     ],
     "enableDeposits()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before enabling deposits.",
+            "references": [
+                "_depositEnabled"
+            ]
         }
     ],
     "disableDeposits()": [
         {
-            "potential_checks": "owner() == msg.sender == False",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before disabling deposits.",
+            "references": [
+                "_depositEnabled"
+            ]
         }
     ],
     "depositToken(address token, uint256 amount)": [
         {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "msg.value",
-                "_depositEnabled",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_depositEnabled"
-            ]
-        },
-        {
             "potential_checks": "_whitelistedTokens[token]",
             "involved_variables": [
                 "_whitelistedTokens",
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "msg.value",
-                "_depositEnabled",
-                "msg.sender"
+                "token"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the token is whitelisted before allowing deposits.",
             "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_depositEnabled"
+                "_deposits"
             ]
         },
-        {
-            "potential_checks": "_depositEnabled",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "msg.value",
-                "_depositEnabled",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_depositEnabled"
-            ]
-        },
-        {
-            "potential_checks": "msg.value == 0",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "msg.value",
-                "_depositEnabled",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_depositEnabled"
-            ]
-        },
-        {
-            "potential_checks": "IERC20(token).transferFrom(msg.sender,address(this),amount) == False",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "msg.value",
-                "_depositEnabled",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_depositEnabled"
-            ]
-        }
+        {  
+        "potential_checks": "token == address(0) ? msg.value == amount : msg.value == 0",  
+        "involved_variables": ["token", "msg.value", "amount"],  
+        "descriptions": "Enforces native currency rules: exact ETH for native deposits, zero ETH for ERC20.",  
+        "references": ["_deposits"]  
+        } 
     ],
     "emergencyWithdraw(address token, uint256 amount)": [
         {
-            "potential_checks": "owner() == msg.sender",
+            "potential_checks": "_owner == msg.sender",
             "involved_variables": [
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
+                "_owner",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is the current owner before emergency withdrawal.",
             "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "IERC20(token).balanceOf(address(this)) >= amount",
-            "involved_variables": [
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
-            ]
-        },
-        {
-            "potential_checks": "IERC20(token).transfer(msg.sender,amount) == False",
-            "involved_variables": [
-                "this",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_ENTERED",
-                "_status"
+                "balance"
             ]
         }
     ],
@@ -240,127 +123,12 @@
         {
             "potential_checks": "_authorized[msg.sender]",
             "involved_variables": [
-                "_whitelistedTokens",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
                 "_authorized",
-                "contractBalance",
-                "to",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is an authorized address before unlocking tokens.",
             "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_authorized"
-            ]
-        },
-        {
-            "potential_checks": "_status != _ENTERED",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "_authorized",
-                "contractBalance",
-                "to",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_authorized"
-            ]
-        },
-        {
-            "potential_checks": "_whitelistedTokens[token]",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "_authorized",
-                "contractBalance",
-                "to",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_authorized"
-            ]
-        },
-        {
-            "potential_checks": "amount > 0",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "_authorized",
-                "contractBalance",
-                "to",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_authorized"
-            ]
-        },
-        {
-            "potential_checks": "contractBalance >= amount",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "_authorized",
-                "contractBalance",
-                "to",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_authorized"
-            ]
-        },
-        {
-            "potential_checks": "IERC20(token).transfer(to,amount) == False",
-            "involved_variables": [
-                "_whitelistedTokens",
-                "amount",
-                "_ENTERED",
-                "token",
-                "_status",
-                "_authorized",
-                "contractBalance",
-                "to",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "_whitelistedTokens",
-                "_ENTERED",
-                "_status",
-                "_authorized"
+                "balance"
             ]
         }
     ],

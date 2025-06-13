@@ -1,0 +1,15 @@
+- `_deposits: mapping(address => mapping(address => uint256)) private`  
+  · Write restricted to users (during deposits) and authorized addresses (during unlocking).  
+  · Read restricted to anyone via `getDepositAmount`.  
+
+- `_authorized: mapping(address => bool) private`  
+  · Write restricted to the owner (via `authorizeAddress`).  
+  · Read restricted to contract-internal modifiers (no public read).  
+
+- `_whitelistedTokens: mapping(address => bool) private`  
+  · Write restricted to the owner (via `whitelistToken`) or authorized addresses (via `whitelistTokenbyAuthorized`).  
+  · Read restricted to contract-internal modifiers (no public read).  
+
+- `_depositEnabled: bool private`  
+  · Write restricted to the owner (via `enableDeposits`/`disableDeposits`).  
+  · Read restricted to contract-internal modifiers (no public read).  
