@@ -1,17 +1,7 @@
 {
     "approveAndCall(address spender, uint256 value, bytes data) returns (bool)": [],
     "transferAndCall(address to, uint256 value, bytes data) returns (bool)": [
-        {
-            "potential_checks": "balance >= value == False",
-            "involved_variables": [
-                "balance",
-                "value",
-                "this",
-                "to"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+
     ],
     "nonces(address owner) returns (uint256)": [],
     "totalSupply() returns (uint256)": [],
@@ -20,140 +10,75 @@
     "transfer(address recipient, uint256 amount) returns (bool)": [],
     "allowance(address owner, address spender) returns (uint256)": [],
     "approve(address spender, uint256 amount) returns (bool)": [],
-    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "allowance[from][msg.sender] >= value",
+            "involved_variables": ["allowance", "from", "msg.sender", "value"],
+            "descriptions": "Verifies spender has sufficient allowance.",
+            "references": ["allowance", "balanceOf"]
+        }
+    ],
     "permit(address target, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)": [
         {
             "potential_checks": "block.timestamp <= deadline",
             "involved_variables": [
-                "target",
-                "hashStruct",
                 "deadline",
-                "r",
-                "s",
-                "v",
                 "block.timestamp"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the permit is not expired.",
+            "references": ["_allowances"]
         },
         {
-            "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s) == False",
+            "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s)",
             "involved_variables": [
                 "target",
                 "hashStruct",
                 "deadline",
                 "r",
                 "s",
-                "v",
-                "block.timestamp"
+                "v"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the signature is valid.",
+            "references": ["_allowances"]
         }
     ],
     "transferWithPermit(address target, address to, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) returns (bool)": [
         {
             "potential_checks": "block.timestamp <= deadline",
             "involved_variables": [
-                "balance",
-                "target",
-                "this",
-                "hashStruct",
                 "deadline",
-                "to",
-                "r",
-                "s",
-                "v",
-                "block.timestamp",
-                "value"
+                "block.timestamp"
             ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the permit is not expired.",
+            "references": ["_allowances", "balanceOf"]
         },
         {
             "potential_checks": "verifyEIP712(target,hashStruct,v,r,s) || verifyPersonalSign(target,hashStruct,v,r,s)",
             "involved_variables": [
-                "balance",
                 "target",
-                "this",
                 "hashStruct",
                 "deadline",
-                "to",
                 "r",
                 "s",
-                "v",
-                "block.timestamp",
-                "value"
+                "v"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "balance >= value == False",
-            "involved_variables": [
-                "balance",
-                "target",
-                "this",
-                "hashStruct",
-                "deadline",
-                "to",
-                "r",
-                "s",
-                "v",
-                "block.timestamp",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Ensure that the signature is valid.",
+            "references": ["_allowances", "balanceOf"]
         }
     ],
     "owner() returns (address)": [
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
-            ]
-        }
     ],
     "mpc() returns (address)": [
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
-            ]
-        }
     ],
     "setVaultOnly(bool enabled)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault",
             "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
+                "vault",
+                "pendingVault",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault to toggle swapout mode.",
             "references": [
                 "delayVault"
             ]
@@ -161,261 +86,123 @@
     ],
     "initVault(address _vault)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault",
             "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "_init"
+                "vault",
+                "pendingVault",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can initialize the vault.",
             "references": [
                 "delayVault",
-                "_init"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "_init"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault",
-                "_init"
-            ]
-        },
-        {
-            "potential_checks": "_init == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "_init"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault",
+                "vault",
+                "pendingVault",
+                "_isMinter",
+                "minters",
                 "_init"
             ]
         }
     ],
     "setMinter(address _auth)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault",
             "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
+                "vault",
+                "pendingVault",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can set a new minter.",
             "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
+                "pendingMinter",
+                "delayMinter"
             ]
         }
     ],
     "setVault(address _vault)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault",
             "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
+                "vault",
+                "pendingVault",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can set a new vault.",
             "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
                 "delayVault",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
+                "pendingVault"
             ]
         }
     ],
     "applyVault()": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault ",
             "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
+                "vault",
+                "pendingVault",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can apply the new vault.",
             "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
+                "vault"
             ]
         }
     ],
     "applyMinter()": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault",
             "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "delayMinter"
+                "vault",
+                "pendingVault",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can apply the new minter.",
             "references": [
-                "delayVault",
-                "delayMinter"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "delayMinter"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault",
-                "delayMinter"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayMinter == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "delayMinter"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault",
-                "delayMinter"
+                "minters",
+                "isMinter"
             ]
         }
     ],
     "revokeMinter(address _auth)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault",
             "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
+                "vault",
+                "pendingVault",
+                "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can revoke a minter.",
             "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
+                "isMinter"
             ]
         }
     ],
     "getAllMinters() returns (address[])": [],
     "changeVault(address newVault) returns (bool)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault ",
             "involved_variables": [
-                "delayVault",
                 "msg.sender",
-                "block.timestamp",
-                "newVault"
+                "pendingVault",
+                "vault"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can change the vault address.",
             "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "newVault"
-            ],
-            "descriptions": "",
-            "references": [
+                "pendingVault",
                 "delayVault"
             ]
         }
     ],
     "changeMPCOwner(address newVault) returns (bool)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault ",
             "involved_variables": [
-                "delayVault",
                 "msg.sender",
-                "block.timestamp",
-                "newVault"
+                "pendingVault",
+                "vault"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can change the MPC owner address.",
             "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "newVault"
-            ],
-            "descriptions": "",
-            "references": [
+                "pendingVault",
                 "delayVault"
             ]
         }
@@ -425,12 +212,12 @@
             "potential_checks": "isMinter[msg.sender]",
             "involved_variables": [
                 "msg.sender",
-                "account",
                 "isMinter"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is a minter before minting tokens.",
             "references": [
-                "isMinter"
+                "balanceOf",
+                "_totalSupply"
             ]
         }
     ],
@@ -438,14 +225,13 @@
         {
             "potential_checks": "isMinter[msg.sender]",
             "involved_variables": [
-                "account",
                 "msg.sender",
-                "from",
                 "isMinter"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is a minter before burning tokens.",
             "references": [
-                "isMinter"
+                "balanceOf",
+                "_totalSupply"
             ]
         }
     ],
@@ -454,146 +240,55 @@
             "potential_checks": "isMinter[msg.sender]",
             "involved_variables": [
                 "msg.sender",
-                "account",
                 "isMinter"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is a minter before swap in tokens.",
             "references": [
-                "isMinter"
+                "balanceOf",
+                "_totalSupply"
             ]
         }
     ],
     "Swapout(uint256 amount, address bindaddr) returns (bool)": [
         {
-            "potential_checks": "_vaultOnly",
+            "potential_checks": "isMinter[msg.sender]",
             "involved_variables": [
-                "bindaddr",
-                "account",
-                "_vaultOnly"
+                "msg.sender",
+                "isMinter"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is a minter before swap out tokens.",
             "references": [
-                "_vaultOnly"
+                "balanceOf",
+                "_totalSupply"
             ]
         }
     ],
     "depositWithPermit(address target, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s, address to) returns (uint256)": [
-        {
-            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
-            "involved_variables": [
-                "underlying",
-                "account",
-                "this"
-            ],
-            "descriptions": "",
-            "references": [
-                "underlying"
-            ]
-        }
     ],
     "depositWithTransferPermit(address target, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s, address to) returns (uint256)": [
-        {
-            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
-            "involved_variables": [
-                "underlying",
-                "account",
-                "this"
-            ],
-            "descriptions": "",
-            "references": [
-                "underlying"
-            ]
-        }
+
     ],
     "deposit() returns (uint256)": [
-        {
-            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
-            "involved_variables": [
-                "underlying",
-                "account",
-                "this"
-            ],
-            "descriptions": "",
-            "references": [
-                "underlying"
-            ]
-        }
+
     ],
     "deposit(uint256 amount) returns (uint256)": [
-        {
-            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
-            "involved_variables": [
-                "underlying",
-                "account",
-                "this"
-            ],
-            "descriptions": "",
-            "references": [
-                "underlying"
-            ]
-        }
+
     ],
     "deposit(uint256 amount, address to) returns (uint256)": [
-        {
-            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
-            "involved_variables": [
-                "underlying",
-                "account",
-                "this"
-            ],
-            "descriptions": "",
-            "references": [
-                "underlying"
-            ]
-        }
+
     ],
     "depositVault(uint256 amount, address to) returns (uint256)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault ",
             "involved_variables": [
-                "this",
-                "delayVault",
-                "underlying",
-                "account",
                 "msg.sender",
-                "block.timestamp"
+                "pendingVault",
+                "vault"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can deposit to the vault.",
             "references": [
-                "delayVault",
-                "underlying"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "this",
-                "delayVault",
-                "underlying",
-                "account",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault",
-                "underlying"
-            ]
-        },
-        {
-            "potential_checks": "underlying != address(0x0) && underlying != address(this)",
-            "involved_variables": [
-                "this",
-                "delayVault",
-                "underlying",
-                "account",
-                "msg.sender",
-                "block.timestamp"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault",
-                "underlying"
+                "balanceOf",
+                "_totalSupply"
             ]
         }
     ],
@@ -602,85 +297,29 @@
     "withdraw(uint256 amount, address to) returns (uint256)": [],
     "withdrawVault(address from, uint256 amount, address to) returns (uint256)": [
         {
-            "potential_checks": "msg.sender == mpc()",
+            "potential_checks": "msg.sender == vault || msg.sender == pendingVault ",
             "involved_variables": [
-                "delayVault",
                 "msg.sender",
-                "block.timestamp",
-                "account"
+                "pendingVault",
+                "vault"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that only vault can withdraw to the vault.",
             "references": [
-                "delayVault"
-            ]
-        },
-        {
-            "potential_checks": "block.timestamp >= delayVault == False",
-            "involved_variables": [
-                "delayVault",
-                "msg.sender",
-                "block.timestamp",
-                "account"
-            ],
-            "descriptions": "",
-            "references": [
-                "delayVault"
+                "balanceOf",
+                "_totalSupply"
             ]
         }
     ],
     "approve(address spender, uint256 value) returns (bool)": [],
     "transfer(address to, uint256 value) returns (bool)": [
-        {
-            "potential_checks": "balance >= value == False",
-            "involved_variables": [
-                "balance",
-                "value",
-                "this",
-                "to"
-            ],
-            "descriptions": "",
-            "references": []
-        }
+
     ],
     "transferFrom(address from, address to, uint256 value) returns (bool)": [
         {
-            "potential_checks": "from != msg.sender",
-            "involved_variables": [
-                "allowed",
-                "this",
-                "to",
-                "msg.sender",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "allowed != type()(uint256).max",
-            "involved_variables": [
-                "allowed",
-                "this",
-                "to",
-                "msg.sender",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "allowed >= value == False",
-            "involved_variables": [
-                "allowed",
-                "this",
-                "to",
-                "msg.sender",
-                "from",
-                "value"
-            ],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "allowance[from][msg.sender] >= value",
+            "involved_variables": ["allowance", "from", "msg.sender", "value"],
+            "descriptions": "Verifies spender has sufficient allowance.",
+            "references": ["allowance", "balanceOf"]
         }
     ]
 }
