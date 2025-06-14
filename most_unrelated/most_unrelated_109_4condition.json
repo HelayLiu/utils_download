@@ -1,0 +1,84 @@
+{
+    "withdraw(string key)": [
+        {
+            "potential_checks": "msg.sender == tx.origin",
+            "involved_variables": [
+                "keyHash",
+                "msg.value",
+                "msg.sender",
+                "tx.origin",
+                "key"
+            ],
+            "descriptions": "",
+            "references": [
+                "keyHash"
+            ]
+        },
+        {
+            "potential_checks": "keyHash == keccak256()(abi.encodePacked(key))",
+            "involved_variables": [
+                "keyHash",
+                "msg.value",
+                "msg.sender",
+                "tx.origin",
+                "key"
+            ],
+            "descriptions": "",
+            "references": [
+                "keyHash"
+            ]
+        },
+        {
+            "potential_checks": "msg.value > 400000000000000000 == False",
+            "involved_variables": [
+                "keyHash",
+                "msg.value",
+                "msg.sender",
+                "tx.origin",
+                "key"
+            ],
+            "descriptions": "",
+            "references": [
+                "keyHash"
+            ]
+        }
+    ],
+    "setup_key(string key)": [
+        {
+            "potential_checks": "keyHash == 0x0 == False",
+            "involved_variables": [
+                "keyHash"
+            ],
+            "descriptions": "",
+            "references": [
+                "keyHash"
+            ]
+        }
+    ],
+    "new_hassh(bytes32 new_hash)": [
+        {
+            "potential_checks": "keyHash == 0x0 == False",
+            "involved_variables": [
+                "keyHash"
+            ],
+            "descriptions": "",
+            "references": [
+                "keyHash"
+            ]
+        }
+    ],
+    "clear()": [
+        {
+            "potential_checks": "msg.sender == owner == False",
+            "involved_variables": [
+                "owner",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "owner"
+            ]
+        }
+    ],
+    "get_id() returns (bytes32)": []
+}

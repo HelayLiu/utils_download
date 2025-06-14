@@ -1,0 +1,6 @@
+- As a token holder, I want to securely transfer my tokens to others, knowing that lossless protection prevents unauthorized transfers if enabled.
+- As the recovery admin, I need to propose and execute lossless mode changes after a timelock to handle emergency security scenarios.
+- As the recovery admin, I require a secure ownership transfer mechanism using cryptographic keys to prevent unauthorized admin changes.
+- As the lossless controller contract, I must confiscate blacklisted funds from compromised addresses to protect the ecosystem.
+- As an admin, I need to update admin addresses securely to maintain operational control over contract parameters.
+- As a user, I expect my token balances and allowances to be isolated and modifiable only by me or authorized entities.

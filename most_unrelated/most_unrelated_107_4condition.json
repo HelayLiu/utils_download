@@ -1,0 +1,322 @@
+{
+    "withdraw()": [
+        {
+            "potential_checks": "bought_tokens",
+            "involved_variables": [
+                "emergency_used",
+                "msg.sender",
+                "tokens_to_withdraw",
+                "bought_tokens",
+                "contract_token_balance",
+                "token",
+                "fee",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "emergency_used",
+                "bought_tokens",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "emergency_used",
+            "involved_variables": [
+                "emergency_used",
+                "msg.sender",
+                "tokens_to_withdraw",
+                "bought_tokens",
+                "contract_token_balance",
+                "token",
+                "fee",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "emergency_used",
+                "bought_tokens",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "contract_token_balance != 0",
+            "involved_variables": [
+                "emergency_used",
+                "msg.sender",
+                "tokens_to_withdraw",
+                "bought_tokens",
+                "contract_token_balance",
+                "token",
+                "fee",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "emergency_used",
+                "bought_tokens",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "token.transfer(creator,fee)",
+            "involved_variables": [
+                "emergency_used",
+                "msg.sender",
+                "tokens_to_withdraw",
+                "bought_tokens",
+                "contract_token_balance",
+                "token",
+                "fee",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "emergency_used",
+                "bought_tokens",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "token.transfer(msg.sender,tokens_to_withdraw - fee) == False",
+            "involved_variables": [
+                "emergency_used",
+                "msg.sender",
+                "tokens_to_withdraw",
+                "bought_tokens",
+                "contract_token_balance",
+                "token",
+                "fee",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "token",
+                "emergency_used",
+                "bought_tokens",
+                "creator"
+            ]
+        }
+    ],
+    "refund_me()": [
+        {
+            "potential_checks": "bought_tokens == False",
+            "involved_variables": [
+                "bought_tokens"
+            ],
+            "descriptions": "",
+            "references": [
+                "bought_tokens"
+            ]
+        }
+    ],
+    "buy_the_tokens(string _password)": [
+        {
+            "potential_checks": "this.balance > min_amount",
+            "involved_variables": [
+                "this",
+                "None",
+                "hash_pwd",
+                "_password",
+                "msg.sender",
+                "sale",
+                "min_amount",
+                "bought_tokens",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "hash_pwd",
+                "sale",
+                "bought_tokens",
+                "min_amount",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "bought_tokens",
+            "involved_variables": [
+                "this",
+                "None",
+                "hash_pwd",
+                "_password",
+                "msg.sender",
+                "sale",
+                "min_amount",
+                "bought_tokens",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "hash_pwd",
+                "sale",
+                "bought_tokens",
+                "min_amount",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "sale != 0x0",
+            "involved_variables": [
+                "this",
+                "None",
+                "hash_pwd",
+                "_password",
+                "msg.sender",
+                "sale",
+                "min_amount",
+                "bought_tokens",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "hash_pwd",
+                "sale",
+                "bought_tokens",
+                "min_amount",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "msg.sender == creator || hash_pwd == keccak256()(_password) == False",
+            "involved_variables": [
+                "this",
+                "None",
+                "hash_pwd",
+                "_password",
+                "msg.sender",
+                "sale",
+                "min_amount",
+                "bought_tokens",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "hash_pwd",
+                "sale",
+                "bought_tokens",
+                "min_amount",
+                "creator"
+            ]
+        }
+    ],
+    "set_sale_address(address _sale, string _password)": [
+        {
+            "potential_checks": "msg.sender == creator || hash_pwd == keccak256()(_password)",
+            "involved_variables": [
+                "hash_pwd",
+                "_password",
+                "msg.sender",
+                "sale",
+                "bought_tokens",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "sale",
+                "hash_pwd",
+                "bought_tokens",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "sale == 0x0",
+            "involved_variables": [
+                "hash_pwd",
+                "_password",
+                "msg.sender",
+                "sale",
+                "bought_tokens",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "sale",
+                "hash_pwd",
+                "bought_tokens",
+                "creator"
+            ]
+        },
+        {
+            "potential_checks": "bought_tokens == False",
+            "involved_variables": [
+                "hash_pwd",
+                "_password",
+                "msg.sender",
+                "sale",
+                "bought_tokens",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "sale",
+                "hash_pwd",
+                "bought_tokens",
+                "creator"
+            ]
+        }
+    ],
+    "set_token_address(address _token, string _password)": [
+        {
+            "potential_checks": "msg.sender == creator || hash_pwd == keccak256()(_password) == False",
+            "involved_variables": [
+                "hash_pwd",
+                "msg.sender",
+                "_password",
+                "creator"
+            ],
+            "descriptions": "",
+            "references": [
+                "hash_pwd",
+                "creator"
+            ]
+        }
+    ],
+    "emergy_withdraw(address _token)": [
+        {
+            "potential_checks": "block.number >= (buy_block + 43953)",
+            "involved_variables": [
+                "msg.sender",
+                "block.number",
+                "buy_block",
+                "contract_token_balance",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "buy_block"
+            ]
+        },
+        {
+            "potential_checks": "contract_token_balance != 0",
+            "involved_variables": [
+                "msg.sender",
+                "block.number",
+                "buy_block",
+                "contract_token_balance",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "buy_block"
+            ]
+        },
+        {
+            "potential_checks": "token.transfer(msg.sender,contract_token_balance) == False",
+            "involved_variables": [
+                "msg.sender",
+                "block.number",
+                "buy_block",
+                "contract_token_balance",
+                "token"
+            ],
+            "descriptions": "",
+            "references": [
+                "buy_block"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+- As a user, I can deposit ETH into the contract, ensuring my deposited balance is isolated and tracked individually.  
+- As a user, I can withdraw tokens proportional to my deposited ETH after tokens are purchased, with my balance isolated from others.  
+- As a user, I can refund my ETH before token purchase, with my balance securely isolated and updated.  
+- As the creator or a password holder, I can configure the sale/token addresses and trigger token purchases, ensuring administrative state isolation.  
+- As any user after 1 week, I can emergency-withdraw all tokens (flawed: violates balance isolation by transferring entire contract tokens).  
+- As the creator, I receive a 1% fee during token withdrawals, enforcing reward isolation.  

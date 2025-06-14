@@ -1,0 +1,35 @@
+- allowedContracts: mapping(address => bool) public  
+  · Write restricted to Contract Owner.  
+  · Read restricted to None.  
+
+- totalDailyShares: mapping(uint256 => uint256) public  
+  · Write restricted to Allowed Contracts or Internal Functions.  
+  · Read restricted to None.  
+
+- submitted: mapping(bytes => shareData) public  
+  · Write restricted to User (via validated submission).  
+  · Read restricted to None.  
+
+- submittedByOwner: mapping(address => mapping(uint => bool)) public  
+  · Write restricted to User (during submission).  
+  · Read restricted to None.  
+
+- dayClaimed: mapping(address => mapping(uint => bool)) public  
+  · Write restricted to User (during claim).  
+  · Read restricted to None.  
+
+- usedData: mapping(bytes => bool) public  
+  · Write restricted to Contract (enforces data uniqueness).  
+  · Read restricted to None.  
+
+- timeZoneOffset: int public  
+  · Write restricted to Contract Owner.  
+  · Read restricted to None.  
+
+- tknHash: bytes32 private  
+  · Write restricted to Contract Owner.  
+  · Read restricted to Internal Functions (cryptographic validation).  
+
+- dockCon: IDock public  
+  · Write restricted to Contract Owner.  
+  · Read restricted to None.  

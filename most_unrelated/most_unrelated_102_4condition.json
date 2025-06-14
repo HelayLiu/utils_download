@@ -1,0 +1,343 @@
+{
+    "totalSupply() returns (uint256)": [],
+    "balanceOf(address account) returns (uint256)": [],
+    "transfer(address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "isLosslessOn == False",
+            "involved_variables": [
+                "isLosslessOn",
+                "senderBalance",
+                "amount",
+                "recipient",
+                "sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "isLosslessOn"
+            ]
+        },
+        {
+            "potential_checks": "senderBalance >= amount == False",
+            "involved_variables": [
+                "isLosslessOn",
+                "senderBalance",
+                "amount",
+                "recipient",
+                "sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "isLosslessOn"
+            ]
+        }
+    ],
+    "allowance(address owner, address spender) returns (uint256)": [],
+    "approve(address spender, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "isLosslessOn == False",
+            "involved_variables": [
+                "owner",
+                "isLosslessOn",
+                "spender",
+                "amount",
+                "_allowances"
+            ],
+            "descriptions": "",
+            "references": [
+                "_allowances",
+                "isLosslessOn"
+            ]
+        },
+        {
+            "potential_checks": "(amount == 0) || (_allowances[msg.sender][spender] == 0)",
+            "involved_variables": [
+                "owner",
+                "isLosslessOn",
+                "spender",
+                "amount",
+                "_allowances"
+            ],
+            "descriptions": "",
+            "references": [
+                "_allowances",
+                "isLosslessOn"
+            ]
+        }
+    ],
+    "transferFrom(address sender, address recipient, uint256 amount) returns (bool)": [
+        {
+            "potential_checks": "isLosslessOn == False",
+            "involved_variables": [
+                "owner",
+                "isLosslessOn",
+                "spender",
+                "senderBalance",
+                "amount",
+                "recipient",
+                "sender",
+                "currentAllowance"
+            ],
+            "descriptions": "",
+            "references": [
+                "isLosslessOn"
+            ]
+        },
+        {
+            "potential_checks": "senderBalance >= amount",
+            "involved_variables": [
+                "owner",
+                "isLosslessOn",
+                "spender",
+                "senderBalance",
+                "amount",
+                "recipient",
+                "sender",
+                "currentAllowance"
+            ],
+            "descriptions": "",
+            "references": [
+                "isLosslessOn"
+            ]
+        },
+        {
+            "potential_checks": "currentAllowance >= amount",
+            "involved_variables": [
+                "owner",
+                "isLosslessOn",
+                "spender",
+                "senderBalance",
+                "amount",
+                "recipient",
+                "sender",
+                "currentAllowance"
+            ],
+            "descriptions": "",
+            "references": [
+                "isLosslessOn"
+            ]
+        }
+    ],
+    "getAdmin() returns (address)": [],
+    "transferOutBlacklistedFunds(address[] from)": [
+        {
+            "potential_checks": "msg.sender == address(lossless)",
+            "involved_variables": [
+                "lossless",
+                "senderBalance",
+                "from",
+                "i",
+                "recipient",
+                "amount",
+                "sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "lossless"
+            ]
+        },
+        {
+            "potential_checks": "i < from.length",
+            "involved_variables": [
+                "lossless",
+                "senderBalance",
+                "from",
+                "i",
+                "recipient",
+                "amount",
+                "sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "lossless"
+            ]
+        },
+        {
+            "potential_checks": "senderBalance >= amount == False",
+            "involved_variables": [
+                "lossless",
+                "senderBalance",
+                "from",
+                "i",
+                "recipient",
+                "amount",
+                "sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "lossless"
+            ]
+        }
+    ],
+    "setLosslessAdmin(address newAdmin)": [
+        {
+            "potential_checks": "msg.sender == recoveryAdmin",
+            "involved_variables": [
+                "newAdmin",
+                "recoveryAdmin"
+            ],
+            "descriptions": "",
+            "references": [
+                "recoveryAdmin"
+            ]
+        }
+    ],
+    "transferRecoveryAdminOwnership(address candidate, bytes32 keyHash)": [
+        {
+            "potential_checks": "msg.sender == recoveryAdmin",
+            "involved_variables": [
+                "candidate",
+                "recoveryAdmin"
+            ],
+            "descriptions": "",
+            "references": [
+                "recoveryAdmin"
+            ]
+        }
+    ],
+    "acceptRecoveryAdminOwnership(bytes key)": [
+        {
+            "potential_checks": "msg.sender == recoveryAdminCanditate",
+            "involved_variables": [
+                "recoveryAdminKeyHash",
+                "recoveryAdminCanditate",
+                "key"
+            ],
+            "descriptions": "",
+            "references": [
+                "recoveryAdminKeyHash",
+                "recoveryAdminCanditate"
+            ]
+        },
+        {
+            "potential_checks": "keccak256(bytes)(key) == recoveryAdminKeyHash == False",
+            "involved_variables": [
+                "recoveryAdminKeyHash",
+                "recoveryAdminCanditate",
+                "key"
+            ],
+            "descriptions": "",
+            "references": [
+                "recoveryAdminKeyHash",
+                "recoveryAdminCanditate"
+            ]
+        }
+    ],
+    "proposeLosslessTurnOff()": [
+        {
+            "potential_checks": "msg.sender == recoveryAdmin == False",
+            "involved_variables": [
+                "recoveryAdmin"
+            ],
+            "descriptions": "",
+            "references": [
+                "recoveryAdmin"
+            ]
+        }
+    ],
+    "executeLosslessTurnOff()": [
+        {
+            "potential_checks": "msg.sender == recoveryAdmin",
+            "involved_variables": [
+                "losslessTurnOffTimestamp",
+                "isLosslessTurnOffProposed",
+                "recoveryAdmin",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "losslessTurnOffTimestamp",
+                "isLosslessTurnOffProposed",
+                "recoveryAdmin"
+            ]
+        },
+        {
+            "potential_checks": "isLosslessTurnOffProposed",
+            "involved_variables": [
+                "losslessTurnOffTimestamp",
+                "isLosslessTurnOffProposed",
+                "recoveryAdmin",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "losslessTurnOffTimestamp",
+                "isLosslessTurnOffProposed",
+                "recoveryAdmin"
+            ]
+        },
+        {
+            "potential_checks": "losslessTurnOffTimestamp <= block.timestamp == False",
+            "involved_variables": [
+                "losslessTurnOffTimestamp",
+                "isLosslessTurnOffProposed",
+                "recoveryAdmin",
+                "block.timestamp"
+            ],
+            "descriptions": "",
+            "references": [
+                "losslessTurnOffTimestamp",
+                "isLosslessTurnOffProposed",
+                "recoveryAdmin"
+            ]
+        }
+    ],
+    "executeLosslessTurnOn()": [
+        {
+            "potential_checks": "msg.sender == recoveryAdmin == False",
+            "involved_variables": [
+                "recoveryAdmin"
+            ],
+            "descriptions": "",
+            "references": [
+                "recoveryAdmin"
+            ]
+        }
+    ],
+    "name() returns (string)": [],
+    "symbol() returns (string)": [],
+    "decimals() returns (uint8)": [],
+    "increaseAllowance(address spender, uint256 addedValue) returns (bool)": [
+        {
+            "potential_checks": "isLosslessOn == False",
+            "involved_variables": [
+                "owner",
+                "spender",
+                "isLosslessOn"
+            ],
+            "descriptions": "",
+            "references": [
+                "isLosslessOn"
+            ]
+        }
+    ],
+    "decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)": [
+        {
+            "potential_checks": "isLosslessOn == False",
+            "involved_variables": [
+                "owner",
+                "isLosslessOn",
+                "spender",
+                "subtractedValue",
+                "currentAllowance"
+            ],
+            "descriptions": "",
+            "references": [
+                "isLosslessOn"
+            ]
+        },
+        {
+            "potential_checks": "currentAllowance >= subtractedValue",
+            "involved_variables": [
+                "owner",
+                "isLosslessOn",
+                "spender",
+                "subtractedValue",
+                "currentAllowance"
+            ],
+            "descriptions": "",
+            "references": [
+                "isLosslessOn"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,970 @@
+{
+    "pendingOwner() returns (address)": [],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "newOwner"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "acceptOwnership()": [],
+    "owner() returns (address)": [],
+    "renounceOwnership()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "paused() returns (bool)": [],
+    "pause()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "unpause()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "! paused()",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "allowContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "disallowContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "__importLegacyGlobalShares(uint256 _start, uint256 _end)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "_end",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i <= _end == False",
+            "involved_variables": [
+                "_end",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getUserDockComposition(address _user) returns (MINING.dockCompData)": [
+        {
+            "potential_checks": "compData._userSlots > compData._dockedNbr == False",
+            "involved_variables": [
+                "j",
+                "leaseCon",
+                "remainingSlots",
+                "i",
+                "compData",
+                "totalItems"
+            ],
+            "descriptions": "",
+            "references": [
+                "leaseCon"
+            ]
+        },
+        {
+            "potential_checks": "totalItems > compData._leasedNbr + compData._dockedNbr == False",
+            "involved_variables": [
+                "j",
+                "leaseCon",
+                "remainingSlots",
+                "i",
+                "compData",
+                "totalItems"
+            ],
+            "descriptions": "",
+            "references": [
+                "leaseCon"
+            ]
+        },
+        {
+            "potential_checks": "i < compData._dockedNbr == False",
+            "involved_variables": [
+                "j",
+                "leaseCon",
+                "remainingSlots",
+                "i",
+                "compData",
+                "totalItems"
+            ],
+            "descriptions": "",
+            "references": [
+                "leaseCon"
+            ]
+        },
+        {
+            "potential_checks": "j < remainingSlots && j < compData._leasedNbr == False",
+            "involved_variables": [
+                "j",
+                "leaseCon",
+                "remainingSlots",
+                "i",
+                "compData",
+                "totalItems"
+            ],
+            "descriptions": "",
+            "references": [
+                "leaseCon"
+            ]
+        }
+    ],
+    "getUserDockCompositionAndUpdate(address _user) returns (MINING.dockCompData)": [
+        {
+            "potential_checks": "compData._userSlots > compData._dockedNbr == False",
+            "involved_variables": [
+                "j",
+                "leaseCon",
+                "remainingSlots",
+                "i",
+                "compData",
+                "totalItems"
+            ],
+            "descriptions": "",
+            "references": [
+                "leaseCon"
+            ]
+        },
+        {
+            "potential_checks": "totalItems > compData._leasedNbr + compData._dockedNbr == False",
+            "involved_variables": [
+                "j",
+                "leaseCon",
+                "remainingSlots",
+                "i",
+                "compData",
+                "totalItems"
+            ],
+            "descriptions": "",
+            "references": [
+                "leaseCon"
+            ]
+        },
+        {
+            "potential_checks": "i < compData._dockedNbr == False",
+            "involved_variables": [
+                "j",
+                "leaseCon",
+                "remainingSlots",
+                "i",
+                "compData",
+                "totalItems"
+            ],
+            "descriptions": "",
+            "references": [
+                "leaseCon"
+            ]
+        },
+        {
+            "potential_checks": "j < remainingSlots && j < compData._leasedNbr == False",
+            "involved_variables": [
+                "j",
+                "leaseCon",
+                "remainingSlots",
+                "i",
+                "compData",
+                "totalItems"
+            ],
+            "descriptions": "",
+            "references": [
+                "leaseCon"
+            ]
+        }
+    ],
+    "submit(string _tkn, address _owner, uint256[] _tokensId, uint256[] data, uint256[] workouts, uint256 _day) returns (bool)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "isValidDateToSubmit(_day)",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "compData._userSlots > compData._dockedNbr == False",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "totalItems > compData._leasedNbr + compData._dockedNbr == False",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "i < compData._dockedNbr == False",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "j < remainingSlots && j < compData._leasedNbr == False",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "msg.value >= (_fees)",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "keccak256(bytes)(abi.encodePacked(_tkn)) == tknHash",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "dockCon.isOwnerOfAll(_owner,_tokensId)",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "isAlreadySubmitted(_owner,_day)",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "checkDataUnique == false || usedData[fPrint] == false",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "_shares > 0",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "i < tokensId.length",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        },
+        {
+            "potential_checks": "isAlreadySubmittedByMiner(tokensId[i],_day) == False",
+            "involved_variables": [
+                "leaseCon",
+                "remainingSlots",
+                "tknHash",
+                "usedData",
+                "j",
+                "msg.value",
+                "checkDataUnique",
+                "dockCon",
+                "_fees",
+                "_shares",
+                "_owner",
+                "tokensId",
+                "compData",
+                "totalItems",
+                "_tkn",
+                "fPrint",
+                "_day",
+                "_tokensId",
+                "i"
+            ],
+            "descriptions": "",
+            "references": [
+                "checkDataUnique",
+                "leaseCon",
+                "tknHash",
+                "dockCon",
+                "usedData"
+            ]
+        }
+    ],
+    "claim(string _tkn, address _owner) returns (bool)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "tknHash",
+                "_tkn"
+            ],
+            "descriptions": "",
+            "references": [
+                "tknHash"
+            ]
+        },
+        {
+            "potential_checks": "keccak256(bytes)(abi.encodePacked(_tkn)) == tknHash == False",
+            "involved_variables": [
+                "tknHash",
+                "_tkn"
+            ],
+            "descriptions": "",
+            "references": [
+                "tknHash"
+            ]
+        }
+    ],
+    "claimWithTokens(string _tkn, address _owner, address[] tokens) returns (bool)": [
+        {
+            "potential_checks": "paused()",
+            "involved_variables": [
+                "tknHash",
+                "_tkn"
+            ],
+            "descriptions": "",
+            "references": [
+                "tknHash"
+            ]
+        },
+        {
+            "potential_checks": "keccak256(bytes)(abi.encodePacked(_tkn)) == tknHash == False",
+            "involved_variables": [
+                "tknHash",
+                "_tkn"
+            ],
+            "descriptions": "",
+            "references": [
+                "tknHash"
+            ]
+        }
+    ],
+    "addDailyShares(uint32 _day, uint256 _shares)": [
+        {
+            "potential_checks": "allowedContracts[msg.sender] == true == False",
+            "involved_variables": [
+                "allowedContracts",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "allowedContracts"
+            ]
+        }
+    ],
+    "isAlreadySubmitted(address _owner, uint256 _days) returns (bool)": [],
+    "isAlreadySubmittedByMiner(uint256 _tkn, uint256 _day) returns (bool)": [],
+    "getInvalidMinersToSubmit(uint256[] _tkns, uint256 _day) returns (uint256[])": [
+        {
+            "potential_checks": "i < _tkns.length == False",
+            "involved_variables": [
+                "_tkns",
+                "i_scope_0",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "i_scope_0 < _tkns.length == False",
+            "involved_variables": [
+                "_tkns",
+                "i_scope_0",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getPendingClaimsNbr(address _owner) returns (uint256)": [],
+    "getPendingClaims(address _owner) returns (MINING.submittedData[])": [],
+    "getSubmissionsPerDay(uint256 _day, uint256 _length) returns (MINING.submittedPerDay[])": [
+        {
+            "potential_checks": "i < _length == False",
+            "involved_variables": [
+                "i",
+                "_length"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getSubPerDay(address _owner, uint32 _days) returns (MINING.shareData)": [],
+    "getClaimPerDay(address _owner, uint32 _days) returns (MINING.shareData)": [],
+    "getDate() returns (uint256)": [],
+    "getTime() returns (uint256)": [],
+    "SetTimeZoneOffset(int256 _value)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getDayShares(uint256 _day) returns (uint256)": [],
+    "simulateShares(uint256[] tokensId, uint256[] data, uint256[] workouts) returns (uint256)": [],
+    "isValidDateToSubmit(uint256 _days) returns (bool)": [],
+    "isValidDateToMine(uint256 _days) returns (bool)": [
+        {
+            "potential_checks": "_days > getDate()",
+            "involved_variables": [
+                "startingDate",
+                "_days"
+            ],
+            "descriptions": "",
+            "references": [
+                "startingDate"
+            ]
+        },
+        {
+            "potential_checks": "_days < startingDate == False",
+            "involved_variables": [
+                "startingDate",
+                "_days"
+            ],
+            "descriptions": "",
+            "references": [
+                "startingDate"
+            ]
+        }
+    ],
+    "getAirdropsPerDay() returns (IAirdrops.dailyDistribution[])": [],
+    "getAirdropsActive() returns (address[])": [
+        {
+            "potential_checks": "i < list.length == False",
+            "involved_variables": [
+                "list",
+                "i"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "trackId(address _owner, uint256 _days) returns (bytes)": [],
+    "dataFprint(uint256 _days, uint256[] data, uint256[] workouts) returns (bytes)": [],
+    "getMaxClaimDays() returns (uint256)": [],
+    "getTokenValueTier() returns (uint256)": [],
+    "getSubFees(uint256[] tokensId) returns (uint256, uint256)": [],
+    "getClaimFees(uint256 _days) returns (uint256, uint256)": [],
+    "setusdTokenAddress(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setwrappedCoinAddress(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "settokenPricingCon(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setLegacyContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setActivitiesContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setdockContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setFeesContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "_addr",
+                "feesCon"
+            ],
+            "descriptions": "",
+            "references": [
+                "feesCon"
+            ]
+        }
+    ],
+    "setLogsContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setLeaseContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setAirdropsContract(address _addr)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setTknHash(string _str)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setStartingDate(uint256 _days)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setUniqueCheck(bool _v)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "setDaysBuffer(uint256 _days)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "getDaysBuffer() returns (uint256)": [],
+    "getBalance() returns (uint256)": [],
+    "withdraw()": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "withdrawAmount(uint256 _amount)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [
+                "_amount"
+            ],
+            "descriptions": "",
+            "references": []
+        },
+        {
+            "potential_checks": "_amount <= getBalance() == False",
+            "involved_variables": [
+                "_amount"
+            ],
+            "descriptions": "",
+            "references": []
+        }
+    ],
+    "transferToken(address _tokenAddress, address addr, uint256 amount) returns (uint256)": [
+        {
+            "potential_checks": "owner() != msg.sender",
+            "involved_variables": [],
+            "descriptions": "",
+            "references": []
+        }
+    ]
+}

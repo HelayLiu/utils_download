@@ -1,0 +1,30 @@
+- balances: mapping (address => uint256) public  
+  · Write restricted to the user (via deposit/refund) or contract (during withdraw/emergency).  
+  · Read restricted to None (public).  
+- bought_tokens: bool public  
+  · Write restricted to creator/password holder (in `buy_the_tokens`).  
+  · Read restricted to None (public).  
+- contract_eth_value: uint256 public  
+  · Write restricted to contract (set during `buy_the_tokens`, updated in `withdraw`).  
+  · Read restricted to None (public).  
+- sale: address public  
+  · Write restricted to creator/password holder (in `set_sale_address`).  
+  · Read restricted to None (public).  
+- token: ERC20 public  
+  · Write restricted to creator/password holder (in `set_token_address`).  
+  · Read restricted to None (public).  
+- buy_block: uint256 public  
+  · Write restricted to creator/password holder (in `buy_the_tokens`).  
+  · Read restricted to None (public).  
+- emergency_used: bool public  
+  · Write restricted to any user (in `emergy_withdraw`).  
+  · Read restricted to None (public).  
+- hash_pwd: bytes32 private  
+  · Write restricted to None (immutable post-deployment).  
+  · Read restricted to contract (private, but on-chain visible).  
+- min_amount/max_amount: uint256 constant  
+  · Write restricted to None (immutable).  
+  · Read restricted to None (public constants).  
+- creator: address constant  
+  · Write restricted to None (immutable).  
+  · Read restricted to None (public).  

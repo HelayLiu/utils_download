@@ -1,0 +1,9 @@
+- `question` (public string):  
+  · Write restricted to `questionSender` (via `StartGame`/`NewQuestion`).  
+  · Read restricted to None (publicly accessible).  
+- `questionSender` (internal address):  
+  · Write restricted to the contract (only during initialization via `StartGame`).  
+  · Read restricted to the contract (internal, no external access).  
+- `responseHash` (internal bytes32):  
+  · Write restricted to `questionSender` (via `StartGame`/`NewQuestion`).  
+  · Read restricted to the contract (internal, used only for answer verification).  

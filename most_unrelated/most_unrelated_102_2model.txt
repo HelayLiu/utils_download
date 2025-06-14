@@ -1,0 +1,35 @@
+- _balances: mapping(address => uint256) private  
+  · Write restricted to the token owner (via transfers) or lossless controller (blacklist recovery).  
+  · Read restricted to None (publicly viewable via balanceOf).
+
+- _allowances: mapping(address => mapping(address => uint256)) private  
+  · Write restricted to the allowance owner (via approve/transferFrom) or lossless controller.  
+  · Read restricted to None (publicly viewable via allowance).
+
+- recoveryAdmin: address public  
+  · Write restricted to the current recovery admin (ownership transfer).  
+  · Read restricted to None.
+
+- recoveryAdminCanditate: address private  
+  · Write restricted to the recovery admin (during ownership proposal).  
+  · Read restricted to None.
+
+- recoveryAdminKeyHash: bytes32 private  
+  · Write restricted to the recovery admin (during ownership proposal).  
+  · Read restricted to None.
+
+- admin: address public  
+  · Write restricted to the recovery admin (via setLosslessAdmin).  
+  · Read restricted to None.
+
+- isLosslessOn: bool public  
+  · Write restricted to the recovery admin (turn on/off lossless mode).  
+  · Read restricted to None.
+
+- isLosslessTurnOffProposed: bool public  
+  · Write restricted to the recovery admin (propose mode change).  
+  · Read restricted to None.
+
+- losslessTurnOffTimestamp: uint256 public  
+  · Write restricted to the recovery admin (set timelock).  
+  · Read restricted to None.

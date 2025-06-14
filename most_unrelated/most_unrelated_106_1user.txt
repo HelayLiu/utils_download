@@ -1,0 +1,9 @@
+- Game Creator (questionSender):  
+  - As the game creator, I want to initialize the game by setting a question and hashed answer, and be the only one who can stop the game or update the question.  
+  - I need exclusive write access to game parameters (`question`, `responseHash`) and withdrawal rights.  
+- Players (External Users):  
+  - As a player, I want to submit answers to the question with >1 ETH to win the contract balance, with guarantees that:  
+    - My transaction is processed only if I’m an EOA (preventing contract exploits).  
+    - The answer verification uses an isolated, tamper-proof hash (`responseHash`).  
+- Security Requirements:  
+  - State variables like `questionSender` and `responseHash` must be internally isolated (readable only by the contract) to prevent unauthorized access.  

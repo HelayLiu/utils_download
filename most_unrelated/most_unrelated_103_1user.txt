@@ -1,0 +1,5 @@
+- As a governor, I want to add/remove implementations to upgrade contract logic securely after a timelock.
+- As a governor, I want to nominate/remove other governors to manage administrative roles.
+- As a user, I want my interactions delegated to the current implementation without exposing governance controls.
+- As a governor, I want to finalize implementations to prevent further upgrades and ensure stability.
+- As a user, I rely on the proxy to delegate calls correctly while isolating governance state.

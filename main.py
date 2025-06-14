@@ -49,7 +49,7 @@ if __name__ == "__main__":
     path="/home/liuhan/utils_download/most_unrelated"
     files=["105","106","107","108","109","100","101","102","103","104"]
     # for file in tqdm(os.listdir(path)):
-    for f in tqdm{files}:
+    for f in tqdm(files):
         file=f"most_unrelated_{f}.sol"
         if file.endswith('.sol'):
             # if os.path.exists(os.path.join(path, file.replace('.sol', '_state.txt'))):

@@ -1,0 +1,27 @@
+- `governanceInfo` (mapping): 
+  · Write restricted to governors via governance functions.  
+  · Read restricted to governors via `proxyIsGovernor`.  
+
+- `initializationHash` (mapping): 
+  · Write restricted to governors during `addImplementation`/`removeImplementation`.  
+  · Read restricted to governors during `upgradeTo`.  
+
+- `enabledTime` (mapping): 
+  · Write restricted to governors during `addImplementation`/`removeImplementation`.  
+  · Read restricted to governors during `upgradeTo`.  
+
+- `initialized` (mapping): 
+  · Write restricted to implementations during initialization via `upgradeTo`.  
+  · Read restricted to governors.  
+
+- `IMPLEMENTATION_SLOT` (storage): 
+  · Write restricted to governors during `upgradeTo`.  
+  · Read exposed publicly via `implementation()`.  
+
+- `FINALIZED_STATE_SLOT` (storage): 
+  · Write restricted to governors during finalized `upgradeTo`.  
+  · Read exposed publicly via `isNotFinalized()`.  
+
+- `UPGRADE_DELAY_SLOT` (storage): 
+  · Write restricted to constructor.  
+  · Read exposed publicly via `getUpgradeActivationDelay()`.  

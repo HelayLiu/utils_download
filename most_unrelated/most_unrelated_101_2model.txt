@@ -1,0 +1,48 @@
+- `transferRole`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `minterRole`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `metadataRole`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `maxTotalSupply`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `_currentIndex` (ERC721A): 
+  · Write restricted to internal functions (minting/burning).
+  · Read restricted to None.
+- `_burnCounter` (ERC721A): 
+  · Write restricted to internal functions (burning).
+  · Read restricted to None.
+- `_name`/`_symbol` (ERC721A): 
+  · Write restricted to initializer.
+  · Read restricted to None.
+- `contractURI`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `platformFeeRecipient`/`platformFeeBps`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `royaltyRecipient`/`royaltyBps`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `royaltyInfoForToken`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `recipient` (PrimarySale): 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.
+- `encryptedData` (DelayedReveal): 
+  · Write restricted to METADATA_ROLE.
+  · Read restricted to None.
+- `nextTokenIdToLazyMint`: 
+  · Write restricted to MINTER_ROLE.
+  · Read restricted to None.
+- `_hasRole` (Permissions): 
+  · Write restricted to role admins.
+  · Read restricted to None.
+- `claimCondition`: 
+  · Write restricted to DEFAULT_ADMIN_ROLE.
+  · Read restricted to None.

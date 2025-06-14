@@ -1,0 +1,70 @@
+{
+    "Try(string _response)": [
+        {
+            "potential_checks": "msg.sender == tx.origin",
+            "involved_variables": [
+                "msg.value",
+                "msg.sender",
+                "_response",
+                "tx.origin",
+                "responseHash"
+            ],
+            "descriptions": "",
+            "references": [
+                "responseHash"
+            ]
+        },
+        {
+            "potential_checks": "responseHash == keccak256()(_response) && msg.value > 1000000000000000000 == False",
+            "involved_variables": [
+                "msg.value",
+                "msg.sender",
+                "_response",
+                "tx.origin",
+                "responseHash"
+            ],
+            "descriptions": "",
+            "references": [
+                "responseHash"
+            ]
+        }
+    ],
+    "StartGame(string _question, string _response)": [
+        {
+            "potential_checks": "responseHash == 0x0 == False",
+            "involved_variables": [
+                "responseHash"
+            ],
+            "descriptions": "",
+            "references": [
+                "responseHash"
+            ]
+        }
+    ],
+    "StopGame()": [
+        {
+            "potential_checks": "msg.sender == questionSender == False",
+            "involved_variables": [
+                "questionSender",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "questionSender"
+            ]
+        }
+    ],
+    "NewQuestion(string _question, bytes32 _responseHash)": [
+        {
+            "potential_checks": "msg.sender == questionSender == False",
+            "involved_variables": [
+                "questionSender",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "questionSender"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+- keyHash (bytes32 private):
+  · Write restricted to any caller (only if unset, enforced via `keyHash == 0x0`).
+  · Read restricted to contract-internal logic (no external exposure).
+
+- owner (address private):
+  · Write restricted to constructor (deployer-only initialization).
+  · Read restricted to contract-internal logic (used for `clear` access control).
+
+- wallet_id (bytes32 private):
+  · Write restricted to none (immutable after deployment).
+  · Read restricted to any caller via `get_id` (publicly accessible).

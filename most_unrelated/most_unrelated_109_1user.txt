@@ -1,0 +1,4 @@
+- As an external user, I want to securely set a withdrawal key hash to protect my funds, ensuring that only I can set it once to maintain integrity.
+- As a user, I want to withdraw the contract's entire balance by providing the correct key and sending over 0.4 ETH, guaranteeing isolation of funds through key validation.
+- As the contract owner, I want exclusive rights to destroy the contract, preventing unauthorized access to sensitive operations.
+- As any caller, I want to publicly view the immutable `wallet_id` for identification without access restrictions.

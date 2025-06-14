@@ -1,0 +1,539 @@
+{
+    "implementation() returns (address)": [],
+    "proxyIsGovernor(address testGovernor) returns (bool)": [
+        {
+            "potential_checks": "gub.initialized == False",
+            "involved_variables": [
+                "governanceInfo",
+                "gub"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        }
+    ],
+    "proxyNominateNewGovernor(address newGovernor)": [
+        {
+            "potential_checks": "isGovernor(msg.sender)",
+            "involved_variables": [
+                "governanceInfo",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "gub.initialized == False",
+            "involved_variables": [
+                "governanceInfo",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        }
+    ],
+    "proxyRemoveGovernor(address governorForRemoval)": [
+        {
+            "potential_checks": "isGovernor(msg.sender)",
+            "involved_variables": [
+                "governanceInfo",
+                "governorForRemoval",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "gub.initialized",
+            "involved_variables": [
+                "governanceInfo",
+                "governorForRemoval",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "msg.sender != governorForRemoval == False",
+            "involved_variables": [
+                "governanceInfo",
+                "governorForRemoval",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        }
+    ],
+    "proxyAcceptGovernance()": [
+        {
+            "potential_checks": "gub.initialized",
+            "involved_variables": [
+                "governanceInfo",
+                "newGovernor",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "msg.sender == gub.candidateGovernor",
+            "involved_variables": [
+                "governanceInfo",
+                "newGovernor",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "isGovernor(newGovernor) == False",
+            "involved_variables": [
+                "governanceInfo",
+                "newGovernor",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        }
+    ],
+    "proxyCancelNomination()": [
+        {
+            "potential_checks": "isGovernor(msg.sender)",
+            "involved_variables": [
+                "governanceInfo",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "gub.initialized == False",
+            "involved_variables": [
+                "governanceInfo",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        }
+    ],
+    "getUpgradeActivationDelay() returns (uint256)": [],
+    "initialize(bytes )": [],
+    "isNotFinalized() returns (bool)": [],
+    "addImplementation(address newImplementation, bytes data, bool finalize)": [
+        {
+            "potential_checks": "isGovernor(msg.sender)",
+            "involved_variables": [
+                "newImplementation",
+                "msg.sender",
+                "governanceInfo",
+                "gub",
+                "Addresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "gub.initialized",
+            "involved_variables": [
+                "newImplementation",
+                "msg.sender",
+                "governanceInfo",
+                "gub",
+                "Addresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "newImplementation.isContract() == False",
+            "involved_variables": [
+                "newImplementation",
+                "msg.sender",
+                "governanceInfo",
+                "gub",
+                "Addresses"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        }
+    ],
+    "removeImplementation(address newImplementation)": [
+        {
+            "potential_checks": "isGovernor(msg.sender)",
+            "involved_variables": [
+                "governanceInfo",
+                "activation_time",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "gub.initialized",
+            "involved_variables": [
+                "governanceInfo",
+                "activation_time",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        },
+        {
+            "potential_checks": "activation_time > 0 == False",
+            "involved_variables": [
+                "governanceInfo",
+                "activation_time",
+                "gub",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo"
+            ]
+        }
+    ],
+    "upgradeTo(address newImplementation, bytes data, bool finalize)": [
+        {
+            "potential_checks": "isGovernor(msg.sender)",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "gub.initialized",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "isNotFinalized()",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "implementationIsFrozen()",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "_implementation == ZERO_ADDRESS == False",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "(success,returndata) = _implementation.delegatecall(abi.encodeWithSignature(isFrozen()))",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "activation_time > 0",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "activation_time <= now",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "init_vector_hash == keccak256(bytes)(abi.encode(data,finalize))",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "(success,returndata) = newImplementation.delegatecall(abi.encodeWithSelector(this.initialize.selector,data))",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "(success,returndata) = newImplementation.delegatecall(abi.encodeWithSignature(isFrozen()))",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "abi.decode(returndata,(bool))",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        },
+        {
+            "potential_checks": "finalize == False",
+            "involved_variables": [
+                "ZERO_ADDRESS",
+                "msg.sender",
+                "init_vector_hash",
+                "success",
+                "_implementation",
+                "data",
+                "finalize",
+                "governanceInfo",
+                "now",
+                "bool",
+                "activation_time",
+                "gub",
+                "returndata"
+            ],
+            "descriptions": "",
+            "references": [
+                "governanceInfo",
+                "ZERO_ADDRESS"
+            ]
+        }
+    ]
+}

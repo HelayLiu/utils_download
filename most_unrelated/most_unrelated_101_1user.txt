@@ -1,0 +1,7 @@
+- As a contract admin, I want to manage roles and permissions to enforce access control for critical operations like setting fees, royalties, and claim conditions.
+- As a minter, I want to lazy mint tokens without revealing metadata immediately, so I can prepare tokens for future distribution.
+- As a metadata admin, I want to reveal token metadata securely using encryption keys to control the visibility of token details.
+- As a claimer, I want to claim tokens under specific conditions (allowlists, quantity limits) while ensuring my access is validated against the current claim phase.
+- As a royalty recipient, I want to receive royalty payments from secondary sales based on predefined percentages.
+- As a platform fee recipient, I want to collect fees from primary sales to support platform operations.
+- As a token holder, I want to transfer or burn my tokens while adhering to transfer restrictions enforced by the contract.

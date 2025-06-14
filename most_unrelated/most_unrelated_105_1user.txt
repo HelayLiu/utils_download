@@ -1,0 +1,6 @@
+- As a sender, I want to set a password hash with a minimum 1 ETH deposit to initialize the gift contract securely.
+- As a sender, I want to adjust the unlock time to control when the gift can be claimed or revoked.
+- As a sender, I want to permanently close the contract after confirming the password hash to prevent unauthorized changes.
+- As a user, I want to claim the gift by providing the correct password after the unlock time to receive the contract balance.
+- As a sender, I want to revoke the funds after the unlock time to recover the balance if unclaimed.
+- As any user, I want to compute password hashes off-chain using `GetHash` to verify password integrity without on-chain transactions.  

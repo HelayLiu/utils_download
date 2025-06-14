@@ -1,0 +1,5 @@
+- As a user, I want to submit my daily mining shares with verified fitness data so that I can earn rewards while ensuring my data integrity and ownership are protected through cryptographic checks and miner token validation.
+- As a user, I want to claim accumulated rewards for eligible mining days so that I receive token distributions proportional to my shares, with fee verification and isolation of my claim history from others.
+- As the contract owner, I need to configure system parameters (time zones, data uniqueness checks, contract dependencies) to maintain operational integrity while restricting write access to authorized roles.
+- As an allowed external contract, I require permissioned access to add global daily shares to ensure accurate reward distribution calculations without compromising existing user submissions.
+- As a token owner, I expect my dock/lease composition to be securely computed for share calculations with read isolation preventing unauthorized access to my NFT holdings.

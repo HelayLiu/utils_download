@@ -1,0 +1,107 @@
+{
+    "GetHash(bytes pass) returns (bytes32)": [],
+    "SetPass(bytes32 hash)": [
+        {
+            "potential_checks": "(! closed && (msg.value > 1000000000000000000)) || hashPass == 0x0 == False",
+            "involved_variables": [
+                "closed",
+                "hashPass",
+                "msg.value"
+            ],
+            "descriptions": "",
+            "references": [
+                "closed",
+                "hashPass"
+            ]
+        }
+    ],
+    "SetGiftTime(uint256 date)": [
+        {
+            "potential_checks": "msg.sender == sender == False",
+            "involved_variables": [
+                "sender",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "sender"
+            ]
+        }
+    ],
+    "GetGift(bytes pass)": [
+        {
+            "potential_checks": "now > unlockTime",
+            "involved_variables": [
+                "unlockTime",
+                "now",
+                "pass",
+                "hashPass"
+            ],
+            "descriptions": "",
+            "references": [
+                "unlockTime",
+                "hashPass"
+            ]
+        },
+        {
+            "potential_checks": "hashPass == keccak256()(pass) == False",
+            "involved_variables": [
+                "unlockTime",
+                "now",
+                "pass",
+                "hashPass"
+            ],
+            "descriptions": "",
+            "references": [
+                "unlockTime",
+                "hashPass"
+            ]
+        }
+    ],
+    "Revoce()": [
+        {
+            "potential_checks": "now > unlockTime",
+            "involved_variables": [
+                "unlockTime",
+                "now",
+                "sender",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "unlockTime",
+                "sender"
+            ]
+        },
+        {
+            "potential_checks": "msg.sender == sender == False",
+            "involved_variables": [
+                "unlockTime",
+                "now",
+                "sender",
+                "msg.sender"
+            ],
+            "descriptions": "",
+            "references": [
+                "unlockTime",
+                "sender"
+            ]
+        }
+    ],
+    "PassHasBeenSet(bytes32 hash)": [
+        {
+            "potential_checks": "msg.sender == sender && hash == hashPass == False",
+            "involved_variables": [
+                "msg.sender",
+                "sender",
+                "hashPass",
+                "hash"
+            ],
+            "descriptions": "",
+            "references": [
+                "sender",
+                "hashPass"
+            ]
+        }
+    ]
+}

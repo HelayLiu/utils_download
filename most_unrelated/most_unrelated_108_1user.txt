@@ -1,0 +1,5 @@
+- As a contract owner, I want exclusive control to destroy the contract and recover funds, ensuring no unauthorized party can terminate operations.
+- As a user, I want to securely initialize the withdrawal key hash only once, preventing overwrites after initial setup to maintain system integrity.
+- As a user, I want to withdraw funds by proving knowledge of the secret key and sending >0.2 ETH, ensuring only authorized users access contract balances.
+- As a user, I want to initialize the key hash via raw bytes (if unset), providing flexibility in key management while preserving immutability after setup.
+- As a user, I interact via EOA (Externally Owned Account) to prevent smart contract exploits during withdrawals, adding a layer of security.
