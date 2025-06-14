@@ -1,55 +1,56 @@
 {
     "withdraw(string key)": [
         {
-            "potential_checks": "msg.sender == tx.origin",
+            "specific_checks": "msg.sender == tx.origin",
             "involved_variables": [
-                "keyHash",
-                "msg.value",
                 "msg.sender",
-                "tx.origin",
-                "key"
+                "tx.origin"
             ],
-            "descriptions": "",
+            "descriptions": "Prevent contract calls (ensure EOA-only access for security).",
             "references": [
-                "keyHash"
+                "balance"
             ]
         },
         {
-            "potential_checks": "keyHash == keccak256()(abi.encodePacked(key))",
+            "specific_checks": "keyHash == keccak256(abi.encodePacked(key))",
             "involved_variables": [
-                "keyHash",
-                "msg.value",
-                "msg.sender",
-                "tx.origin",
-                "key"
-            ],
-            "descriptions": "",
-            "references": [
                 "keyHash"
+            ],
+            "descriptions": "Validate withdrawal key against stored hash to enforce fund access isolation.",
+            "references": [
+                "keyHash",
+                "balance"
             ]
         },
         {
-            "potential_checks": "msg.value > 400000000000000000 == False",
+            "specific_checks": "msg.value > 0.4 ether",
             "involved_variables": [
-                "keyHash",
-                "msg.value",
-                "msg.sender",
-                "tx.origin",
-                "key"
+                "msg.value"
             ],
-            "descriptions": "",
+            "descriptions": "Require minimum ETH sent (>0.4) to mitigate trivial withdrawal attacks.",
             "references": [
-                "keyHash"
+                "balance"
             ]
         }
     ],
     "setup_key(string key)": [
         {
-            "potential_checks": "keyHash == 0x0 == False",
+            "specific_checks": "keyHash == 0x0",
             "involved_variables": [
                 "keyHash"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure keyHash is unset before initialization (one-time write isolation).",
+            "references": [
+                "keyHash"
+            ]
+        },
+        {
+            "specific_checks": "keyHash = keccak256(abi.encodePacked(key));",
+            "involved_variables": [
+                "keyHash",
+                "key"
+            ],
+            "descriptions": "Set keyHash to keccak256 hash of provided key (ensures integrity).",
             "references": [
                 "keyHash"
             ]
@@ -57,11 +58,11 @@
     ],
     "new_hassh(bytes32 new_hash)": [
         {
-            "potential_checks": "keyHash == 0x0 == False",
+            "specific_checks": "keyHash == 0x0",
             "involved_variables": [
                 "keyHash"
             ],
-            "descriptions": "",
+            "descriptions": "Restrict hash update to uninitialized state (immutable after first set).",
             "references": [
                 "keyHash"
             ]
@@ -69,14 +70,15 @@
     ],
     "clear()": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "specific_checks": "msg.sender == owner",
             "involved_variables": [
-                "owner",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
+                "msg.sender",
                 "owner"
+            ],
+            "descriptions": "Enforce owner-only access for self-destruct to protect contract lifecycle.",
+            "references": [
+                "owner",
+                "selfdestruct"
             ]
         }
     ],

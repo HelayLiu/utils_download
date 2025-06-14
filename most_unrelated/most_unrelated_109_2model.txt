@@ -1,6 +1,6 @@
 - keyHash (bytes32 private):
   · Write restricted to any caller (only if unset, enforced via `keyHash == 0x0`).
-  · Read restricted to contract-internal logic (no external exposure).
+  · Read restricted to contract-internal logic amd should be stored as hash for integrity
 
 - owner (address private):
   · Write restricted to constructor (deployer-only initialization).
