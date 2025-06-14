@@ -1,0 +1,7 @@
+- As an owner, I want to manage transaction throttling parameters (max transfer amount, whitelisting) to protect against malicious activities.
+- As a recovery admin, I want to securely transfer blacklisted funds to the lossless contract to recover stolen tokens.
+- As a user, I want my token balances and transaction history isolated from others, ensuring only authorized entities can modify them.
+- As a recovery admin, I want to propose and execute turning off lossless features (after a timelock) for emergency responses.
+- As a recovery admin, I want to transfer the recovery admin role securely using cryptographic verification.
+- As a user, I want transaction throttling rules (time delays, max amounts) applied consistently to prevent abuse.
+- As the lossless controller, I want exclusive access to confiscate blacklisted funds when lossless mode is active.

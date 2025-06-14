@@ -1,0 +1,39 @@
+- `_owner` (Ownable):  
+  · Write restricted to the current owner (via `transferOwnership`/`renounceOwnership`).  
+  · Read restricted to public (anyone can query).  
+- `_restrictionActive` (TransactionThrottler):  
+  · Write restricted to the owner.  
+  · Read restricted to contract-internal.  
+- `_maxTransferAmount` (TransactionThrottler):  
+  · Write restricted to the owner (via `setMaxTransferAmount`).  
+  · Read restricted to contract-internal.  
+- `_isWhitelisted` (TransactionThrottler):  
+  · Write restricted to the owner (via `whitelistAccount`).  
+  · Read restricted to public (via `isWhitelisted`).  
+- `_isUnthrottled` (TransactionThrottler):  
+  · Write restricted to the owner (via `unthrottleAccount`).  
+  · Read restricted to public (via `isUnthrottled`).  
+- `_previousTx` (TransactionThrottler):  
+  · Write restricted to contract (during throttling checks).  
+  · Read restricted to contract-internal.  
+- `_balances` (EdenTokenLL):  
+  · Write restricted to contract (transfers/mints/burns) and lossless controller (blacklist recovery).  
+  · Read restricted to public (via `balanceOf`).  
+- `_allowances` (EdenTokenLL):  
+  · Write restricted to users (via approvals) and contract (allowance updates).  
+  · Read restricted to public (via `allowance`).  
+- `recoveryAdmin`:  
+  · Write restricted to recovery admin (via ownership transfer).  
+  · Read restricted to public.  
+- `admin`:  
+  · Write restricted to recovery admin (via `setLosslessAdmin`).  
+  · Read restricted to public.  
+- `isLosslessOn`:  
+  · Write restricted to recovery admin (via `executeLosslessTurnOn/Off`).  
+  · Read restricted to public.  
+- `recoveryAdminCandidate`, recoveryAdminKeyHash (EdenTokenLL):
+  · Write restricted to recovery admin (via transferRecoveryAdminOwnership) and then set to zero by acceptRecoveryAdminOwnership.
+  · Read restricted to private.
+- `recoveryAdminKeyHash` (EdenTokenLL):
+  · Write restricted to recovery admin (via transferRecoveryAdminOwnership) and then set to zero by acceptRecoveryAdminOwnership.
+  · Read restricted to private and stored as a hash for integrity
