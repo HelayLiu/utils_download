@@ -1,11 +1,22 @@
 {
     "setup(string key)": [
         {
-            "potential_checks": "keyHash == 0x0 == False",
+            "potential_checks": "keyHash == 0x0",
             "involved_variables": [
                 "keyHash"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure keyHash is uninitialized before allowing setup to prevent overwrites.",
+            "references": [
+                "keyHash"
+            ]
+        },
+        {
+            "potential_checks": "keyHash = keccak256(abi.encodePacked(key))",
+            "involved_variables": [
+                "keyHash",
+                "key"
+            ],
+            "descriptions": "Sets keyHash to the keccak256 hash of the provided key, ensuring integrity.",
             "references": [
                 "keyHash"
             ]
@@ -15,53 +26,56 @@
         {
             "potential_checks": "msg.sender == tx.origin",
             "involved_variables": [
-                "keyHash",
-                "msg.value",
                 "msg.sender",
-                "tx.origin",
-                "key"
+                "tx.origin"
             ],
-            "descriptions": "",
+            "descriptions": "Restrict caller to EOAs (not contracts) to prevent reentrancy attacks.",
             "references": [
-                "keyHash"
+                "balance"
             ]
         },
         {
-            "potential_checks": "keyHash == keccak256()(abi.encodePacked(key))",
+            "potential_checks": "keyHash == keccak256(abi.encodePacked(key))",
             "involved_variables": [
                 "keyHash",
-                "msg.value",
-                "msg.sender",
-                "tx.origin",
                 "key"
             ],
-            "descriptions": "",
+            "descriptions": "Validate secret key against stored hash to authorize fund access and the key should be stored as hash.",
             "references": [
-                "keyHash"
+                "keyHash",
+                "balance"
             ]
         },
         {
-            "potential_checks": "msg.value > 200000000000000000 == False",
+            "potential_checks": "msg.value > 0.2 ether",
             "involved_variables": [
-                "keyHash",
-                "msg.value",
-                "msg.sender",
-                "tx.origin",
-                "key"
+                "msg.value"
             ],
-            "descriptions": "",
+            "descriptions": "Require >0.2 ETH sent to trigger full balance transfer.",
             "references": [
-                "keyHash"
+                "balance"
             ]
         }
     ],
-    "update(bytes32 _keyHash)": [
+    "update(string key, string new_key)": [
         {
-            "potential_checks": "keyHash == 0x0 == False",
+            "potential_checks": "keyHash == keccak256(abi.encodePacked(key))",
             "involved_variables": [
-                "keyHash"
+                "keyHash",
+                "key"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure keyHash matches the hash of the provided key before allowing update to prevent unauthorized changes.",
+            "references": [
+                "keyHash"
+            ]
+        },
+        {
+            "potential_checks": "keyHash = keccak256(abi.encodePacked(key))",
+            "involved_variables": [
+                "keyHash",
+                "key"
+            ],
+            "descriptions": "Sets keyHash to the keccak256 hash of the provided key, ensuring integrity.",
             "references": [
                 "keyHash"
             ]
@@ -69,14 +83,15 @@
     ],
     "clear()": [
         {
-            "potential_checks": "msg.sender == owner == False",
+            "potential_checks": "msg.sender == owner",
             "involved_variables": [
                 "owner",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Allows the contract owner to clear the keyHash, resetting state variables.",
             "references": [
-                "owner"
+                "owner",
+                "selfdestruct"
             ]
         }
     ]

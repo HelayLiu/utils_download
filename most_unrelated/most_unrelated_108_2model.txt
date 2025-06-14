@@ -1,6 +1,6 @@
 - keyHash (bytes32):
   · Write restricted to: Any caller until initialized (keyHash == 0x0). Immutable once set.
-  · Read restricted to: Contract-internal logic only (no external visibility).
+  · Read restricted to: Contract-internal logic only and should be stored as hash for integrity.
 
 - owner (address):
   · Write restricted to: Deployment constructor only (immutable post-creation).
