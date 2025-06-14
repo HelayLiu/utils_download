@@ -1,813 +1,241 @@
 {
     "pendingOwner() returns (address)": [],
-    "transferOwnership(address newOwner)": [
-        {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [
-                "newOwner"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
-    "acceptOwnership()": [],
-    "owner() returns (address)": [],
     "renounceOwnership()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before renouncing ownership.",
+            "references": [
+                "_owner"
+            ]
         }
     ],
+    "transferOwnership(address newOwner)": [
+        {
+            "potential_checks": "_owner == msg.sender",
+            "involved_variables": [
+                "_owner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the current owner before transfer ownership.",
+            "references": [
+                "_owner"
+            ]
+        }
+    ],
+    "acceptOwnership()": [
+        {
+            "potential_checks": "pendingOwner == msg.sender",
+            "involved_variables": [
+                "pendingOwner",
+                "msg.sender"
+            ],
+            "descriptions": "Ensure that the caller is the pending owner before accepting ownership.",
+            "references": [
+                "pendingOwner"
+            ]
+        }
+    ],
+    "owner() returns (address)": [],
     "paused() returns (bool)": [],
     "pause()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "paused()",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to pause contract",
+            "references": [
+                "_paused"
+            ]
         }
     ],
     "unpause()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "! paused()",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to unpause contract",
+            "references": [
+                "_paused"
+            ]
         }
     ],
     "allowContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to allow a contract",
+            "references": [
+                "_allowedContracts"
+            ]
         }
     ],
     "disallowContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to disallow a contract",
+            "references": [
+                "_allowedContracts"
+            ]
         }
     ],
     "__importLegacyGlobalShares(uint256 _start, uint256 _end)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "msg.sender == _owner",
             "involved_variables": [
-                "_end",
-                "i"
+                "_owner",
+                "msg.sender"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i <= _end == False",
-            "involved_variables": [
-                "_end",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
-    "getUserDockComposition(address _user) returns (MINING.dockCompData)": [
-        {
-            "potential_checks": "compData._userSlots > compData._dockedNbr == False",
-            "involved_variables": [
-                "j",
-                "leaseCon",
-                "remainingSlots",
-                "i",
-                "compData",
-                "totalItems"
-            ],
-            "descriptions": "",
+            "descriptions": "Allows only owner to import legacy global shares",
             "references": [
-                "leaseCon"
-            ]
-        },
-        {
-            "potential_checks": "totalItems > compData._leasedNbr + compData._dockedNbr == False",
-            "involved_variables": [
-                "j",
-                "leaseCon",
-                "remainingSlots",
-                "i",
-                "compData",
-                "totalItems"
-            ],
-            "descriptions": "",
-            "references": [
-                "leaseCon"
-            ]
-        },
-        {
-            "potential_checks": "i < compData._dockedNbr == False",
-            "involved_variables": [
-                "j",
-                "leaseCon",
-                "remainingSlots",
-                "i",
-                "compData",
-                "totalItems"
-            ],
-            "descriptions": "",
-            "references": [
-                "leaseCon"
-            ]
-        },
-        {
-            "potential_checks": "j < remainingSlots && j < compData._leasedNbr == False",
-            "involved_variables": [
-                "j",
-                "leaseCon",
-                "remainingSlots",
-                "i",
-                "compData",
-                "totalItems"
-            ],
-            "descriptions": "",
-            "references": [
-                "leaseCon"
+                "totalDailyShares"
             ]
         }
     ],
-    "getUserDockCompositionAndUpdate(address _user) returns (MINING.dockCompData)": [
-        {
-            "potential_checks": "compData._userSlots > compData._dockedNbr == False",
-            "involved_variables": [
-                "j",
-                "leaseCon",
-                "remainingSlots",
-                "i",
-                "compData",
-                "totalItems"
-            ],
-            "descriptions": "",
-            "references": [
-                "leaseCon"
-            ]
-        },
-        {
-            "potential_checks": "totalItems > compData._leasedNbr + compData._dockedNbr == False",
-            "involved_variables": [
-                "j",
-                "leaseCon",
-                "remainingSlots",
-                "i",
-                "compData",
-                "totalItems"
-            ],
-            "descriptions": "",
-            "references": [
-                "leaseCon"
-            ]
-        },
-        {
-            "potential_checks": "i < compData._dockedNbr == False",
-            "involved_variables": [
-                "j",
-                "leaseCon",
-                "remainingSlots",
-                "i",
-                "compData",
-                "totalItems"
-            ],
-            "descriptions": "",
-            "references": [
-                "leaseCon"
-            ]
-        },
-        {
-            "potential_checks": "j < remainingSlots && j < compData._leasedNbr == False",
-            "involved_variables": [
-                "j",
-                "leaseCon",
-                "remainingSlots",
-                "i",
-                "compData",
-                "totalItems"
-            ],
-            "descriptions": "",
-            "references": [
-                "leaseCon"
-            ]
-        }
-    ],
+    "getUserDockComposition(address _user) returns (MINING.dockCompData)": [],
+    "getUserDockCompositionAndUpdate(address _user) returns (MINING.dockCompData)": [],
     "submit(string _tkn, address _owner, uint256[] _tokensId, uint256[] data, uint256[] workouts, uint256 _day) returns (bool)": [
         {
-            "potential_checks": "paused()",
+            "potential_checks": "dockCon.isOwnerOfAll(_owner, _tokensId)",
             "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
                 "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
+                "_tokensId"
             ],
-            "descriptions": "",
+            "descriptions": "Authenticate user ownership of all submitted tokens.",
             "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "isValidDateToSubmit(_day)",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "compData._userSlots > compData._dockedNbr == False",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "totalItems > compData._leasedNbr + compData._dockedNbr == False",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "i < compData._dockedNbr == False",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "j < remainingSlots && j < compData._leasedNbr == False",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
+                "submittedByOwner",
+                "totalDailyShares",
+                "dailySubmissions",
+                "submittedByDock",
+                "submittedByOwner",
+                "submitted",
                 "usedData"
             ]
         },
         {
             "potential_checks": "msg.value >= (_fees)",
             "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
                 "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
+                "_fees"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the value sent with the transaction is sufficient to cover the fees.",
             "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
+                "submittedByOwner",
+                "totalDailyShares",
+                "dailySubmissions",
+                "submittedByDock",
+                "submittedByOwner",
+                "submitted",
                 "usedData"
             ]
         },
         {
-            "potential_checks": "keccak256(bytes)(abi.encodePacked(_tkn)) == tknHash",
+            "potential_checks": "keccak256(abi.encodePacked(_tkn)) == tknHash",
             "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
                 "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
+                "_tkn"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the token hash matches the expected value and the tknHash should store the hash of the token string.",
             "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "dockCon.isOwnerOfAll(_owner,_tokensId)",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
+                "submittedByOwner",
+                "totalDailyShares",
+                "dailySubmissions",
+                "submittedByDock",
+                "submittedByOwner",
+                "submitted",
                 "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "isAlreadySubmitted(_owner,_day)",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "checkDataUnique == false || usedData[fPrint] == false",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "_shares > 0",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "i < tokensId.length",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
-            ]
-        },
-        {
-            "potential_checks": "isAlreadySubmittedByMiner(tokensId[i],_day) == False",
-            "involved_variables": [
-                "leaseCon",
-                "remainingSlots",
-                "tknHash",
-                "usedData",
-                "j",
-                "msg.value",
-                "checkDataUnique",
-                "dockCon",
-                "_fees",
-                "_shares",
-                "_owner",
-                "tokensId",
-                "compData",
-                "totalItems",
-                "_tkn",
-                "fPrint",
-                "_day",
-                "_tokensId",
-                "i"
-            ],
-            "descriptions": "",
-            "references": [
-                "checkDataUnique",
-                "leaseCon",
-                "tknHash",
-                "dockCon",
-                "usedData"
+                "tknHash"
             ]
         }
     ],
     "claim(string _tkn, address _owner) returns (bool)": [
         {
-            "potential_checks": "paused()",
+            "potential_checks": "keccak256(abi.encodePacked(_tkn)) == tknHash",
             "involved_variables": [
                 "tknHash",
                 "_tkn"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the token hash matches the expected value and the tknHash should store the hash of the token string.",
             "references": [
-                "tknHash"
-            ]
-        },
-        {
-            "potential_checks": "keccak256(bytes)(abi.encodePacked(_tkn)) == tknHash == False",
-            "involved_variables": [
                 "tknHash",
-                "_tkn"
-            ],
-            "descriptions": "",
-            "references": [
-                "tknHash"
+                "claimed",
+                "submitted",
+                "dayClaimed"
             ]
         }
     ],
     "claimWithTokens(string _tkn, address _owner, address[] tokens) returns (bool)": [
         {
-            "potential_checks": "paused()",
+            "potential_checks": "keccak256(abi.encodePacked(_tkn)) == tknHash",
             "involved_variables": [
                 "tknHash",
                 "_tkn"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the token hash matches the expected value and the tknHash should store the hash of the token string.",
             "references": [
-                "tknHash"
-            ]
-        },
-        {
-            "potential_checks": "keccak256(bytes)(abi.encodePacked(_tkn)) == tknHash == False",
-            "involved_variables": [
                 "tknHash",
-                "_tkn"
-            ],
-            "descriptions": "",
-            "references": [
-                "tknHash"
+                "claimed",
+                "submitted",
+                "dayClaimed"
             ]
         }
     ],
     "addDailyShares(uint32 _day, uint256 _shares)": [
         {
-            "potential_checks": "allowedContracts[msg.sender] == true == False",
+            "potential_checks": "allowedContracts[msg.sender] == true",
             "involved_variables": [
                 "allowedContracts",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Ensure that the caller is an allowed contract before adding daily shares.",
             "references": [
-                "allowedContracts"
+                "totalDailyShares"
             ]
         }
     ],
     "isAlreadySubmitted(address _owner, uint256 _days) returns (bool)": [],
     "isAlreadySubmittedByMiner(uint256 _tkn, uint256 _day) returns (bool)": [],
-    "getInvalidMinersToSubmit(uint256[] _tkns, uint256 _day) returns (uint256[])": [
-        {
-            "potential_checks": "i < _tkns.length == False",
-            "involved_variables": [
-                "_tkns",
-                "i_scope_0",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "i_scope_0 < _tkns.length == False",
-            "involved_variables": [
-                "_tkns",
-                "i_scope_0",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
+    "getInvalidMinersToSubmit(uint256[] _tkns, uint256 _day) returns (uint256[])": [],
     "getPendingClaimsNbr(address _owner) returns (uint256)": [],
     "getPendingClaims(address _owner) returns (MINING.submittedData[])": [],
-    "getSubmissionsPerDay(uint256 _day, uint256 _length) returns (MINING.submittedPerDay[])": [
-        {
-            "potential_checks": "i < _length == False",
-            "involved_variables": [
-                "i",
-                "_length"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
+    "getSubmissionsPerDay(uint256 _day, uint256 _length) returns (MINING.submittedPerDay[])": [],
     "getSubPerDay(address _owner, uint32 _days) returns (MINING.shareData)": [],
     "getClaimPerDay(address _owner, uint32 _days) returns (MINING.shareData)": [],
     "getDate() returns (uint256)": [],
     "getTime() returns (uint256)": [],
     "SetTimeZoneOffset(int256 _value)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the time zone offset.",
+            "references": [
+                "_timeZoneOffset"
+            ]
         }
     ],
     "getDayShares(uint256 _day) returns (uint256)": [],
     "simulateShares(uint256[] tokensId, uint256[] data, uint256[] workouts) returns (uint256)": [],
     "isValidDateToSubmit(uint256 _days) returns (bool)": [],
-    "isValidDateToMine(uint256 _days) returns (bool)": [
-        {
-            "potential_checks": "_days > getDate()",
-            "involved_variables": [
-                "startingDate",
-                "_days"
-            ],
-            "descriptions": "",
-            "references": [
-                "startingDate"
-            ]
-        },
-        {
-            "potential_checks": "_days < startingDate == False",
-            "involved_variables": [
-                "startingDate",
-                "_days"
-            ],
-            "descriptions": "",
-            "references": [
-                "startingDate"
-            ]
-        }
-    ],
+    "isValidDateToMine(uint256 _days) returns (bool)": [],
     "getAirdropsPerDay() returns (IAirdrops.dailyDistribution[])": [],
-    "getAirdropsActive() returns (address[])": [
-        {
-            "potential_checks": "i < list.length == False",
-            "involved_variables": [
-                "list",
-                "i"
-            ],
-            "descriptions": "",
-            "references": []
-        }
-    ],
+    "getAirdropsActive() returns (address[])": [],
     "trackId(address _owner, uint256 _days) returns (bytes)": [],
     "dataFprint(uint256 _days, uint256[] data, uint256[] workouts) returns (bytes)": [],
     "getMaxClaimDays() returns (uint256)": [],
@@ -816,60 +244,90 @@
     "getClaimFees(uint256 _days) returns (uint256, uint256)": [],
     "setusdTokenAddress(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the USD token address.",
+            "references": [
+                "usdToken"
+            ]
         }
     ],
     "setwrappedCoinAddress(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the wrapped coin address.",
+            "references": [
+                "wrappedCoin"
+            ]
         }
     ],
     "settokenPricingCon(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the token pricing contract address.",
+            "references": [
+                "tokenPricingCon"
+            ]
         }
     ],
     "setLegacyContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the legacy contract address.",
+            "references": [
+                "legacyCon"
+            ]
         }
     ],
     "setActivitiesContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the activities contract address.",
+            "references": [
+                "activitiesCon"
+            ]
         }
     ],
     "setdockContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the dock contract address.",
+            "references": [
+                "dockCon"
+            ]
         }
     ],
     "setFeesContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "msg.sender == _owner",
             "involved_variables": [
-                "_addr",
-                "feesCon"
+                "msg.sender",
+                "_owner"
             ],
-            "descriptions": "",
+            "descriptions": "Allows only owner to set the fees contract address.",
             "references": [
                 "feesCon"
             ]
@@ -877,94 +335,145 @@
     ],
     "setLogsContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the logs contract address.",
+            "references": [
+                "logsCon"
+            ]
         }
     ],
     "setLeaseContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the lease contract address.",
+            "references": [
+                "leaseCon"
+            ]
         }
     ],
     "setAirdropsContract(address _addr)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the airdrops contract address.",
+            "references": [
+                "airdropsCon"
+            ]
         }
     ],
     "setTknHash(string _str)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the token hash.",
+            "references": [
+                "tknHash"
+            ]
+        },
+        {
+            "potential_checks": "tknHash = keccak256(abi.encodePacked(_str)",
+            "involved_variables": [
+                "tknHash",
+                "_str"
+            ],
+            "descriptions": "Ensure that the token hash is set correctly by hashing the provided string.",
+            "references": [
+                "tknHash"
+            ]
         }
     ],
     "setStartingDate(uint256 _days)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the starting date.",
+            "references": [
+                "startingDate"
+            ]
         }
     ],
     "setUniqueCheck(bool _v)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the unique check flag.",
+            "references": [
+                "checkDataUnique"
+            ]
         }
     ],
     "setDaysBuffer(uint256 _days)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to set the days buffer.",
+            "references": [
+                "daysBuffer"
+            ]
         }
     ],
     "getDaysBuffer() returns (uint256)": [],
     "getBalance() returns (uint256)": [],
     "withdraw()": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to withdraw funds from the contract.",
+            "references": [
+                "balance"
+            ]
         }
     ],
     "withdrawAmount(uint256 _amount)": [
         {
-            "potential_checks": "owner() != msg.sender",
+            "potential_checks": "msg.sender == _owner",
             "involved_variables": [
-                "_amount"
+                "msg.sender",
+                "_owner"
             ],
-            "descriptions": "",
-            "references": []
-        },
-        {
-            "potential_checks": "_amount <= getBalance() == False",
-            "involved_variables": [
-                "_amount"
-            ],
-            "descriptions": "",
-            "references": []
+            "descriptions": "Allows only owner to withdraw a specific amount from the contract.",
+            "references": [
+                "balance"
+            ]
         }
     ],
     "transferToken(address _tokenAddress, address addr, uint256 amount) returns (uint256)": [
         {
-            "potential_checks": "owner() != msg.sender",
-            "involved_variables": [],
-            "descriptions": "",
-            "references": []
+            "potential_checks": "msg.sender == _owner",
+            "involved_variables": [
+                "msg.sender",
+                "_owner"
+            ],
+            "descriptions": "Allows only owner to transfer tokens from the contract.",
+            "references": [
+                "balance"
+            ]
         }
     ]
 }

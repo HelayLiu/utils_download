@@ -28,7 +28,7 @@
 
 - tknHash: bytes32 private  
   · Write restricted to Contract Owner.  
-  · Read restricted to Internal Functions (cryptographic validation).  
+  · Read restricted to Internal Functions and stored as a hash for integrity
 
 - dockCon: IDock public  
   · Write restricted to Contract Owner.  
