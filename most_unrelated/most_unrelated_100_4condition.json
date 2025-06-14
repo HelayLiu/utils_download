@@ -135,7 +135,7 @@
             "descriptions": "The key must match the stored hash.",
             "references": [
                 "recoveryAdmin",
-                "recoveryAdminCandidate"
+                "recoveryAdminKeyHash"
             ]
         }
     ],

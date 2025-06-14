@@ -16,8 +16,8 @@
 
 - recoveryAdminKeyHash: bytes32 private  
   · Write restricted to the recovery admin (during ownership proposal).  
-  · Read restricted to None.
-
+  · Read restricted to private and and stored as a hash for integrity.
+  
 - admin: address public  
   · Write restricted to the recovery admin (via setLosslessAdmin).  
   · Read restricted to None.
