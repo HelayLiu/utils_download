@@ -2,105 +2,66 @@
     "GetHash(bytes pass) returns (bytes32)": [],
     "SetPass(bytes32 hash)": [
         {
-            "potential_checks": "(! closed && (msg.value > 1000000000000000000)) || hashPass == 0x0 == False",
+            "potential_checks": "(! closed && (msg.value > 1 ether)) || hashPass == 0x0",
             "involved_variables": [
                 "closed",
                 "hashPass",
                 "msg.value"
             ],
-            "descriptions": "",
-            "references": [
-                "closed",
-                "hashPass"
-            ]
+            "descriptions": "Enforces write access to hashPass/sender/unlockTime: requires either an open contract with 1+ ETH deposit or uninitialized state.",
+            "references": ["hashPass", "sender", "unlockTime"]
         }
     ],
     "SetGiftTime(uint256 date)": [
         {
-            "potential_checks": "msg.sender == sender == False",
+            "potential_checks": "msg.sender == sender",
             "involved_variables": [
                 "sender",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Enforces write access to unlockTime: requires sender to be the contract owner.",
             "references": [
-                "sender"
+                "unlockTime"
             ]
         }
     ],
     "GetGift(bytes pass)": [
-        {
-            "potential_checks": "now > unlockTime",
-            "involved_variables": [
-                "unlockTime",
-                "now",
-                "pass",
-                "hashPass"
-            ],
-            "descriptions": "",
+
+{
+            "potential_checks": "hashPass == keccak256(pass)",
+            "involved_variables": ["hashPass", "pass"],
+            "descriptions": "Validates password correctness before transferring contract balance and pass should be stored as hash.",
             "references": [
-                "unlockTime",
-                "hashPass"
-            ]
-        },
-        {
-            "potential_checks": "hashPass == keccak256()(pass) == False",
-            "involved_variables": [
-                "unlockTime",
-                "now",
-                "pass",
-                "hashPass"
-            ],
-            "descriptions": "",
-            "references": [
-                "unlockTime",
-                "hashPass"
+                "hashPass",
+                "balance"
             ]
         }
     ],
     "Revoce()": [
         {
-            "potential_checks": "now > unlockTime",
+            "potential_checks": "msg.sender == sender",
             "involved_variables": [
-                "unlockTime",
-                "now",
                 "sender",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Allows the contract owner to revoke the contract, resetting state variables.",
             "references": [
-                "unlockTime",
-                "sender"
-            ]
-        },
-        {
-            "potential_checks": "msg.sender == sender == False",
-            "involved_variables": [
-                "unlockTime",
-                "now",
-                "sender",
-                "msg.sender"
-            ],
-            "descriptions": "",
-            "references": [
-                "unlockTime",
-                "sender"
+                "balance"
             ]
         }
     ],
     "PassHasBeenSet(bytes32 hash)": [
         {
-            "potential_checks": "msg.sender == sender && hash == hashPass == False",
+            "potential_checks": "msg.sender == sender && hash == hashPass",
             "involved_variables": [
                 "msg.sender",
                 "sender",
                 "hashPass",
                 "hash"
             ],
-            "descriptions": "",
+            "descriptions": "Checks if the password has been set by comparing the provided hash with the stored hash.",
             "references": [
-                "sender",
-                "hashPass"
+                "closed"
             ]
         }
     ]

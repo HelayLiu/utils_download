@@ -1,6 +1,6 @@
 - `hashPass` (bytes32 public):
     · Write restricted to: Any caller via `SetPass` if `(!closed && msg.value > 1 ether) || hashPass==0x0` holds, or the sender via `PassHasBeenSet` with matching hash.
-    · Read restricted to: None (publicly accessible).
+    · Read restricted to be stored as hash for integrity.
 
 - `closed` (bool private):
     · Write restricted to: The sender via `PassHasBeenSet` only when `msg.sender == sender && hash == hashPass`.
