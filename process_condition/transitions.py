@@ -255,7 +255,7 @@ def get_all_state_variables(path,file) -> List[str]:
     res = []
     for var in contract.state_variables:
         temp = get_sources(var)
-        if var.is_constant:
-            continue
+        # if var.is_constant:
+        #     continue
         res.append(temp)
     return res
