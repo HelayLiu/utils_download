@@ -7,3 +7,4 @@ __pycache__/
 !**/*_4condition.json
 !**/*_1user.txt
 !**/*_2model.txt
+*.bk
