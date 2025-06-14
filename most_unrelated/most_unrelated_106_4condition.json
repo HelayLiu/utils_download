@@ -1,41 +1,26 @@
 {
     "Try(string _response)": [
-        {
-            "potential_checks": "msg.sender == tx.origin",
-            "involved_variables": [
-                "msg.value",
-                "msg.sender",
-                "_response",
-                "tx.origin",
-                "responseHash"
-            ],
-            "descriptions": "",
-            "references": [
-                "responseHash"
-            ]
-        },
-        {
-            "potential_checks": "responseHash == keccak256()(_response) && msg.value > 1000000000000000000 == False",
-            "involved_variables": [
-                "msg.value",
-                "msg.sender",
-                "_response",
-                "tx.origin",
-                "responseHash"
-            ],
-            "descriptions": "",
-            "references": [
-                "responseHash"
-            ]
-        }
+        {  
+        "potential_checks": "msg.sender == tx.origin",  
+        "involved_variables": ["msg.sender", "tx.origin"],  
+        "descriptions": "Ensures only EOAs (not contracts) can participate.",  
+        "references": ["balance"]  
+        },  
+        {  
+        "potential_checks": "responseHash == keccak256(_response) && msg.value > 1 ether",  
+        "involved_variables": ["responseHash", "msg.value"],  
+        "descriptions": "Validates answer integrity and stake amount before transferring balance, the response should be stored as hash.",
+        "references": ["responseHash","balance"]  
+        } 
     ],
     "StartGame(string _question, string _response)": [
         {
-            "potential_checks": "responseHash == 0x0 == False",
+            "potential_checks": "responseHash = keccak256(_response)",
             "involved_variables": [
-                "responseHash"
+                "responseHash",
+                "_response"
             ],
-            "descriptions": "",
+            "descriptions": "Sets the responseHash to the keccak256 hash of the provided response, ensuring integrity.",
             "references": [
                 "responseHash"
             ]
@@ -43,27 +28,28 @@
     ],
     "StopGame()": [
         {
-            "potential_checks": "msg.sender == questionSender == False",
+            "potential_checks": "msg.sender == questionSender",
             "involved_variables": [
                 "questionSender",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Enforces write access to questionSender: requires the sender to be the one who started the game.",
             "references": [
-                "questionSender"
+                "balance"
             ]
         }
     ],
     "NewQuestion(string _question, bytes32 _responseHash)": [
         {
-            "potential_checks": "msg.sender == questionSender == False",
+            "potential_checks": "msg.sender == questionSender",
             "involved_variables": [
                 "questionSender",
                 "msg.sender"
             ],
-            "descriptions": "",
+            "descriptions": "Enforces write access to questionSender: requires the sender to be the one who started the game.",
             "references": [
-                "questionSender"
+                "question",
+                "responseHash"
             ]
         }
     ]

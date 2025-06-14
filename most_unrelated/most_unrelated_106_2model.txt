@@ -6,4 +6,4 @@
   · Read restricted to the contract (internal, no external access).  
 - `responseHash` (internal bytes32):  
   · Write restricted to `questionSender` (via `StartGame`/`NewQuestion`).  
-  · Read restricted to the contract (internal, used only for answer verification).  
+  · Read restricted to the contract (internal, used only for answer verification) and should be stored as hash for integrity.  
