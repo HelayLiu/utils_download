@@ -1,277 +1,73 @@
 {
     "withdraw()": [
         {
-            "potential_checks": "bought_tokens",
+            "potential_checks": "!bought_tokens",
             "involved_variables": [
-                "emergency_used",
-                "msg.sender",
-                "tokens_to_withdraw",
-                "bought_tokens",
-                "contract_token_balance",
-                "token",
-                "fee",
-                "creator"
+                "bought_tokens"
             ],
-            "descriptions": "",
+            "descriptions": "Prevent re-purchasing tokens.",
             "references": [
-                "token",
-                "emergency_used",
-                "bought_tokens",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "emergency_used",
-            "involved_variables": [
-                "emergency_used",
-                "msg.sender",
-                "tokens_to_withdraw",
-                "bought_tokens",
-                "contract_token_balance",
-                "token",
-                "fee",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "emergency_used",
-                "bought_tokens",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "contract_token_balance != 0",
-            "involved_variables": [
-                "emergency_used",
-                "msg.sender",
-                "tokens_to_withdraw",
-                "bought_tokens",
-                "contract_token_balance",
-                "token",
-                "fee",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "emergency_used",
-                "bought_tokens",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "token.transfer(creator,fee)",
-            "involved_variables": [
-                "emergency_used",
-                "msg.sender",
-                "tokens_to_withdraw",
-                "bought_tokens",
-                "contract_token_balance",
-                "token",
-                "fee",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "emergency_used",
-                "bought_tokens",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "token.transfer(msg.sender,tokens_to_withdraw - fee) == False",
-            "involved_variables": [
-                "emergency_used",
-                "msg.sender",
-                "tokens_to_withdraw",
-                "bought_tokens",
-                "contract_token_balance",
-                "token",
-                "fee",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "token",
-                "emergency_used",
-                "bought_tokens",
-                "creator"
+                "balances"
             ]
         }
     ],
     "refund_me()": [
         {
-            "potential_checks": "bought_tokens == False",
+            "potential_checks": "!bought_tokens",
             "involved_variables": [
                 "bought_tokens"
             ],
-            "descriptions": "",
+            "descriptions": "Prevent re-purchasing tokens.",
             "references": [
-                "bought_tokens"
+                "balances"
             ]
         }
     ],
     "buy_the_tokens(string _password)": [
         {
-            "potential_checks": "this.balance > min_amount",
+            "potential_checks": "msg.sender == creator || hash_pwd == keccak256(_password)",
             "involved_variables": [
-                "this",
-                "None",
-                "hash_pwd",
-                "_password",
                 "msg.sender",
-                "sale",
-                "min_amount",
-                "bought_tokens",
-                "creator"
+                "creator",
+                "hash_pwd",
+                "_password"
             ],
-            "descriptions": "",
+            "descriptions": "Restrict access to creator/password holders and ensures password is hashed.",
             "references": [
                 "hash_pwd",
-                "sale",
+                "buy_block",
                 "bought_tokens",
-                "min_amount",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "bought_tokens",
-            "involved_variables": [
-                "this",
-                "None",
-                "hash_pwd",
-                "_password",
-                "msg.sender",
-                "sale",
-                "min_amount",
-                "bought_tokens",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "hash_pwd",
-                "sale",
-                "bought_tokens",
-                "min_amount",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "sale != 0x0",
-            "involved_variables": [
-                "this",
-                "None",
-                "hash_pwd",
-                "_password",
-                "msg.sender",
-                "sale",
-                "min_amount",
-                "bought_tokens",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "hash_pwd",
-                "sale",
-                "bought_tokens",
-                "min_amount",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "msg.sender == creator || hash_pwd == keccak256()(_password) == False",
-            "involved_variables": [
-                "this",
-                "None",
-                "hash_pwd",
-                "_password",
-                "msg.sender",
-                "sale",
-                "min_amount",
-                "bought_tokens",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "hash_pwd",
-                "sale",
-                "bought_tokens",
-                "min_amount",
-                "creator"
+                "contract_eth_value"
             ]
         }
     ],
     "set_sale_address(address _sale, string _password)": [
         {
-            "potential_checks": "msg.sender == creator || hash_pwd == keccak256()(_password)",
+            "potential_checks": "msg.sender == creator || hash_pwd == keccak256(_password)",
             "involved_variables": [
-                "hash_pwd",
-                "_password",
                 "msg.sender",
-                "sale",
-                "bought_tokens",
-                "creator"
+                "creator",
+                "hash_pwd",
+                "_password"
             ],
-            "descriptions": "",
+            "descriptions": "Restrict access to creator/password holders and ensures password is hashed.",
             "references": [
-                "sale",
-                "hash_pwd",
-                "bought_tokens",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "sale == 0x0",
-            "involved_variables": [
-                "hash_pwd",
-                "_password",
-                "msg.sender",
-                "sale",
-                "bought_tokens",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "sale",
-                "hash_pwd",
-                "bought_tokens",
-                "creator"
-            ]
-        },
-        {
-            "potential_checks": "bought_tokens == False",
-            "involved_variables": [
-                "hash_pwd",
-                "_password",
-                "msg.sender",
-                "sale",
-                "bought_tokens",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
-                "sale",
-                "hash_pwd",
-                "bought_tokens",
-                "creator"
+                "sale"
             ]
         }
     ],
     "set_token_address(address _token, string _password)": [
         {
-            "potential_checks": "msg.sender == creator || hash_pwd == keccak256()(_password) == False",
+            "potential_checks": "msg.sender == creator || hash_pwd == keccak256(_password)",
             "involved_variables": [
-                "hash_pwd",
                 "msg.sender",
-                "_password",
-                "creator"
-            ],
-            "descriptions": "",
-            "references": [
+                "creator",
                 "hash_pwd",
-                "creator"
+                "_password"
+            ],
+            "descriptions": "Restrict access to creator/password holders and ensures password is hashed.",
+            "references": [
+                "token"
             ]
         }
     ],
@@ -279,43 +75,13 @@
         {
             "potential_checks": "block.number >= (buy_block + 43953)",
             "involved_variables": [
-                "msg.sender",
                 "block.number",
-                "buy_block",
-                "contract_token_balance",
-                "token"
-            ],
-            "descriptions": "",
-            "references": [
                 "buy_block"
-            ]
-        },
-        {
-            "potential_checks": "contract_token_balance != 0",
-            "involved_variables": [
-                "msg.sender",
-                "block.number",
-                "buy_block",
-                "contract_token_balance",
-                "token"
             ],
-            "descriptions": "",
+            "descriptions": "Enforce 1-week delay after token purchase.",
             "references": [
-                "buy_block"
-            ]
-        },
-        {
-            "potential_checks": "token.transfer(msg.sender,contract_token_balance) == False",
-            "involved_variables": [
-                "msg.sender",
-                "block.number",
-                "buy_block",
-                "contract_token_balance",
-                "token"
-            ],
-            "descriptions": "",
-            "references": [
-                "buy_block"
+                "balances",
+                "emergency_used"
             ]
         }
     ]

@@ -21,7 +21,7 @@
   · Read restricted to None (public).  
 - hash_pwd: bytes32 private  
   · Write restricted to None (immutable post-deployment).  
-  · Read restricted to contract (private, but on-chain visible).  
+  · Read restricted to contract (private) and should be stored as hash for integrity.  
 - min_amount/max_amount: uint256 constant  
   · Write restricted to None (immutable).  
   · Read restricted to None (public constants).  
