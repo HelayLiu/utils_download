@@ -4,7 +4,7 @@
 
 - `initializationHash` (mapping): 
   · Write restricted to governors during `addImplementation`/`removeImplementation`.  
-  · Read restricted to governors during `upgradeTo`.  
+  · Read restricted to governors during `upgradeTo` and stored as a hash for integrity
 
 - `enabledTime` (mapping): 
   · Write restricted to governors during `addImplementation`/`removeImplementation`.  
