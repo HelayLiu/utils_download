@@ -36,7 +36,7 @@
   · Read restricted to None.
 - `encryptedData` (DelayedReveal): 
   · Write restricted to METADATA_ROLE.
-  · Read restricted to None.
+  · Read restricted to contract owner and stored as a hash for integrity
 - `nextTokenIdToLazyMint`: 
   · Write restricted to MINTER_ROLE.
   · Read restricted to None.
