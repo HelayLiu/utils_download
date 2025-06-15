@@ -1,3 +1,4 @@
+
 - `_balances: mapping(address => uint256) private`:  
   · Write restricted to user-owned addresses (transfers) or contract-internal logic (initial mint).  
   · Read restricted to None (public via `balanceOf`).  

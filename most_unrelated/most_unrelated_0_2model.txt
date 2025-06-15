@@ -1,3 +1,4 @@
+<Domain Models>
 - `_balances`: mapping(address => uint256) private  
   · Write restricted to the token owner (for their own balance) or the contract owner (for minting).  
   · Read restricted to the public via `balanceOf` function.  
@@ -19,3 +20,4 @@
 - `_owner`: address private  
   · Write restricted to the current owner (via ownership transfer/renunciation).  
   · Read restricted to the public via `owner` or `getOwner` functions.  
+</Domain Models>

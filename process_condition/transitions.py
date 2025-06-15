@@ -184,7 +184,52 @@ def enumerate_transitions(fn: FunctionContract, *, max_depth: int = 64) -> List[
         #     )
     return paths
 
+def get_func_sign_rw_v(path,file) -> List[str]:
+    config_path= os.path.join(path, file.replace('.sol', '.json'))
+    with open(config_path, 'r') as f:
+        config = json.load(f)
+    compiler_helper = CompilerHelper(os.path.join(path,file), version=config['version'], optimization=config['opt'], via_ir=config['via_ir'], contract_name=config['contract_name'])
+    slither = compiler_helper.get_slither()
+    contract = compiler_helper._contract[0]
+    res={}
+    for fn in contract.functions:
+        if fn.is_constructor or fn.is_fallback or fn.is_receive:
+            continue
+        if fn.visibility == "public" or fn.visibility == "external":
+            function_name = fn.signature[0]
+            function_args = ''
+            for i in range(len(fn.parameters)):
+                if function_args != '':
+                    function_args += ', '
+                param = fn.parameters[i]
+                function_args += f'{fn.signature[1][i]} {param.name}'
+            function_name += f'({function_args})'
+            function_returns = ', '.join(fn.signature[2])
+            function_name += f' returns ({function_returns})' if function_returns else ''
+            read_variables = []
+            write_variables = []
+            calls = []
+            not_tps = ['suicide(address)','selfdestruct(address)','abi.encodeCall()','raw_call()','send()']
 
+            for solidty_call in fn.solidity_calls:
+    
+                if str(solidty_call) in not_tps:
+                    calls.append(str(solidty_call))
+            for node in fn.all_nodes():
+                for var in node.variables_read:
+                    if isinstance(var, StateVariable):
+                        read_variables.append(str(var))
+                for var in node.variables_written:
+                    if isinstance(var, StateVariable):
+                        write_variables.append(str(var))
+            read_variables = list(set(read_variables))
+            write_variables = list(set(write_variables))
+            calls = list(set(calls))
+            res[function_name] = {
+                "read_state_variables": read_variables,
+                "write_write_variables": write_variables,
+            }
+    return res
 def get_conditions(path,file) -> List[str]:
     config_path= os.path.join(path, file.replace('.sol', '.json'))
     with open(config_path, 'r') as f:
@@ -253,7 +298,7 @@ def get_all_state_variables(path,file) -> List[str]:
     slither = compiler_helper.get_slither()
     contract = compiler_helper._contract[0]
     res = []
-    for var in contract.state_variables:
+    for var in contract.state_variables_ordered:
         temp = get_sources(var)
         # if var.is_constant:
         #     continue

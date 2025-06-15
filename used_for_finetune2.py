@@ -131,8 +131,12 @@ if __name__ == "__main__":
 
                 if os.path.exists(os.path.join(root_path, output_file)):
                     continue
-                with open(os.path.join(root_path,file),'r') as f:
-                    code=f.read()
+                if file=="most_unrelated_74.sol":
+                    with open(os.path.join(root_path,file.replace('.sol','_short.bk')),'r') as f:
+                        code=f.read()
+                else:
+                    with open(os.path.join(root_path,file),'r') as f:
+                        code=f.read()
                 usr_path = os.path.join(root_path, file.replace('.sol', '_1user.txt'))
                 with open(usr_path, 'r') as f:
                     usr = f.read()

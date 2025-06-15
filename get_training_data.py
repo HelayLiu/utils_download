@@ -1,8 +1,9 @@
 import os
 import json
+import tiktoken
 path = '/home/liuhan/utils_download/most_unrelated'
 base_prompt="""
- Role: You are a smart contract security architect. Given User Stories and Domain Models, your task is to analyze function signatures and the state variables and derive checks/constraints that enforce state isolation and cryptographic integrity.
+ Role: You are a smart contract security architect. Given User Stories and Domain Models, your task is to analyze function signatures with the read/write state variables and derive checks/constraints that enforce state isolation and cryptographic integrity.
     Instructions:
     1. User Stories & Domain Models Learning
     - Review User Stories to identify:
@@ -69,29 +70,41 @@ base_prompt="""
     }}]
 
 """
+def len_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> int:
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+    except KeyError:
+        encoding = tiktoken.get_encoding("cl100k_base")
+    tokens = encoding.encode(text)
+    len_tokens = len(tokens)
+    return  len_tokens
+    
 def get_training_data(path):
     training_data = []
+    total_tokens = 0
     for file in os.listdir(path):
-        if file.endswith('_domain_model.txt'):
+        if file.endswith('_2model.txt'):
             with open(os.path.join(path, file), 'r') as f:
                 domain = f.read()
-            check_path = os.path.join(path, file.replace('_domain_model.txt', '_4condition.json'))
+            check_path = os.path.join(path, file.replace('_2model.txt', '_4condition.json'))
             with open(check_path, 'r') as f:
                 func = json.load(f)
             func_str = str(func)
             usr_path = os.path.join(path, file.replace('.sol', '_1user.txt'))
             with open(usr_path, 'r') as f:
                 usr = f.read()
-            func_signature_path = os.path.join(path, file.replace('_domain_model.txt', '_function_signature.json'))
+            func_signature_path = os.path.join(path, file.replace('_2model.txt', '_function_wrv.json'))
             with open(func_signature_path, 'r') as f:
                 func_signature = json.load(f)
             func_signature_str = str(func_signature)
             usr_context = f""" User Stories: 
-            <User_Stories> {usr} <\User_Stories>
+            <User_Stories> {usr} </User_Stories>
             Domain Models: 
-            <Domain_Models>{domain}<\Domain_Models>
+            <Domain_Models>{domain}</Domain_Models>
             Function Signature: 
-            <Function_Signature>{func_signature_str}<\Function_Signature\n"""
+            <Functions>{func_signature_str}</Functions>"""
+            tokens = base_prompt + usr_context + func_str
+            lens= len_token(tokens)
             message = [
                 {
                     "role": "system",
@@ -107,11 +120,91 @@ def get_training_data(path):
                 }
             ]
             training_data.append(message)
-
+            total_tokens += lens
+    for file in os.listdir(path):
+        if file.endswith('domain_models_41_mini_res.txt'):
+            with open(os.path.join(path, file), 'r') as f:
+                domain = f.read()
+            check_path = os.path.join(path, file.replace('domain_models_41_mini_res.txt', '_4condition.json'))
+            with open(check_path, 'r') as f:
+                func = json.load(f)
+            func_str = str(func)
+            usr_path = os.path.join(path, file.replace('.sol', '_1user.txt'))
+            with open(usr_path, 'r') as f:
+                usr = f.read()
+            func_signature_path = os.path.join(path, file.replace('domain_models_41_mini_res.txt', '_function_wrv.json'))
+            with open(func_signature_path, 'r') as f:
+                func_signature = json.load(f)
+            func_signature_str = str(func_signature)
+            usr_context = f""" User Stories: 
+            <User_Stories> {usr} </User_Stories>
+            Domain Models: 
+            <Domain_Models>{domain}</Domain_Models>
+            Function Signature: 
+            <Functions>{func_signature_str}</Functions>"""
+            tokens = base_prompt + usr_context + func_str
+            lens= len_token(tokens)
+            message = [
+                {
+                    "role": "system",
+                    "content": base_prompt
+                },
+                {
+                    "role": "user",
+                    "content": usr_context
+                },
+                {
+                    "role": "assistant",
+                    "content": func_str
+                }
+            ]
+            training_data.append(message)
+            total_tokens += lens
+    for file in os.listdir(path):
+        if file.endswith('domain_models_o4_mini_res.txt'):
+            with open(os.path.join(path, file), 'r') as f:
+                domain = f.read()
+            check_path = os.path.join(path, file.replace('domain_models_o4_mini_res.txt', '_4condition.json'))
+            with open(check_path, 'r') as f:
+                func = json.load(f)
+            func_str = str(func)
+            usr_path = os.path.join(path, file.replace('.sol', '_1user.txt'))
+            with open(usr_path, 'r') as f:
+                usr = f.read()
+            func_signature_path = os.path.join(path, file.replace('domain_models_o4_mini_res.txt', '_function_wrv.json'))
+            with open(func_signature_path, 'r') as f:
+                func_signature = json.load(f)
+            func_signature_str = str(func_signature)
+            usr_context = f""" User Stories: 
+            <User_Stories> {usr} </User_Stories>
+            Domain Models: 
+            <Domain_Models>{domain}</Domain_Models>
+            Function Signature: 
+            <Functions>{func_signature_str}</Functions>"""
+            tokens = base_prompt + usr_context + func_str
+            lens= len_token(tokens)
+            message = [
+                {
+                    "role": "system",
+                    "content": base_prompt
+                },
+                {
+                    "role": "user",
+                    "content": usr_context
+                },
+                {
+                    "role": "assistant",
+                    "content": func_str
+                }
+            ]
+            training_data.append(message)
+            total_tokens += lens
             
-    return training_data
+    return training_data, total_tokens
 if __name__ == "__main__":
-    training_data = get_training_data(path)
+    training_data,total_tokens = get_training_data(path)
+    print(f"Total tokens in training data: {total_tokens}")
+    print(f"Total cost for training data: {(total_tokens)/1000000 * 5} USD")
     with open('/home/liuhan/utils_download/training_data.jsonl', 'w') as f:
         for data in training_data:
             json.dump(data, f)
