@@ -58,11 +58,13 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     The Domain Models are:  
     <Domain Models>  
     - [State Variable 1]:
-        · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
         · Write restricted to [Actor/Contract Type] or Write restricted to [None].
+        · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
+        
     - [State Variable 2]:
-        · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
         · Write restricted to [Actor/Contract Type] or Write restricted to [None].
+        · Read restricted to [Actor/Contract Type and stored as a hash for integrity] or Read restricted to [None].
+        
     </Domain Models>
 
     The EXAMPLES are:
@@ -80,13 +82,23 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
                                 {"role": "user", "content": f'''The user stories are <User Stories> {desc} </User Stories>.
                                         The state variables are 
                                         <State Variables>
-                                        bool private _opened;
-                                        mapping(address account => uint256) private _balances;
-                                        mapping(address account => mapping(address spender => uint256)) private _allowances;
-                                        uint256 private _totalSupply;
-                                        string private _name;
-                                        string private _symbol;
-                                        address private _owner;
+                                        bytes4 public constant RECEIVE_MESSAGE = bytes4(keccak256(bytes("receiveMessage(bytes)")))
+                                        uint256 public constant MAX_CHAIN_ID = type(uint64).max / 2 - 36
+                                        uint256 public constant GAS_LIMIT = 300_000
+                                        uint256 public constant MAX_GAS_LIMIT = 2_000_000
+                                        address public immutable olas
+                                        address public immutable stakingFactory
+                                        address public immutable l2MessageRelayer
+                                        address public immutable l1DepositProcessor
+                                        uint256 public immutable l1SourceChainId
+                                        uint256 public withheldAmount
+                                        uint256 public stakingBatchNonce
+                                        address public owner
+                                        uint8 public paused
+                                        uint8 internal _locked
+                                        mapping(bytes32 => bool) public stakingQueueingNonces
+                                        uint256 public constant BRIDGE_PAYLOAD_LENGTH = 32
+                                        address public immutable l2TokenRelayer
                                         </State Variables>
                                         '''},
                             ],
@@ -99,13 +111,13 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    temp_cou=3
+    temp_cou=4
     root_path = f"/home/liuhan/utils_download/similar_code{temp_cou}"
     os.makedirs(root_path, exist_ok=True)
     example_str=""
     cou=0
     for file in tqdm(os.listdir(root_path)):
-        if file.endswith('_gpt4omini_withgraph_new.txt'):
+        if file.endswith('_gpt41mini.txt'):
             cou+=1
             with open(os.path.join(root_path,file),'r') as f:
                 example_str+=f"EXAMPLE {cou} \n"
@@ -114,5 +126,5 @@ if __name__ == "__main__":
     with open(f"/home/liuhan/utils_download/summary_test{temp_cou}.txt",'r') as f:
         scenario=f.read()
     res=summarize_by_LLMs(scenario,example_str)
-    with open(f'/home/liuhan/utils_download/requirement_test_gpt4omini{temp_cou}.txt','w') as f:
+    with open(f'/home/liuhan/utils_download/requirement_test_gpt41mini{temp_cou}.txt','w') as f:
         f.write(res)

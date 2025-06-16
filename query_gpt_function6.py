@@ -100,38 +100,21 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
     usr_content=f"""
     The general User Stories are: 
     <User Stories> 
-    - This contract serves as a wrapper for ERC20 tokens, allowing users to mint tokens based on their holdings of ERC721 and ERC1155 tokens. It ensures user-specific state isolation by maintaining individual balances in a mapping, preventing any unintended state leakage between users. The contract also implements reentrancy guards to protect against potential attacks during token transfers and minting operations.
-    - As a user, I want my ERC20 token balance to be isolated from others, ensuring that my transactions do not affect other users' balances.
-    - As a user, I want to mint ERC20 tokens by interacting with ERC721 and ERC1155 tokens, ensuring that my actions are secure and do not interfere with other users' transactions.
-    - As a user, I want to unwrap my ERC20 tokens back into ERC1155 tokens, with the assurance that my balance is accurately calculated and that I receive the correct amount of tokens in return.
-    - As a user, I want to ensure that my token transfers are protected against reentrancy attacks, so that my funds remain secure during transactions.
-    - As a contract owner, I want to control the opening and closing of the minting process, ensuring that I can manage the supply of tokens effectively.
+    - As a player, I want to participate in the OddEven game by submitting my number and paying 1 ether, so that I can compete for the total balance.  
+    - As a player, I want to ensure that my address and chosen number are stored privately, so that other players cannot see my information during the game.  
+    - As a player, I want to receive my winnings automatically if I win, so that I do not have to manually claim my prize after the game ends.  
+    - As a player, I want to know that the game will only proceed when two players have joined, ensuring a fair competition.  
+    - As a player, I want to ensure that my funds are securely transferred to the winner without any risk of failure, so that I can trust the game's outcome.  
+    - As a player, I want to be assured that my participation in the game is isolated from other players, maintaining the integrity of my individual game experience.  
     </User Stories>
     
 
     The Domain Models are:
     <Domain Models>  
-    - _opened: bool private _opened;  
-        · Read restricted to Owner.  
-        · Write restricted to Owner.  
-    - _balances: mapping(address => uint256) private _balances;  
-        · Read restricted to None.  
-        · Write restricted to the user themselves or the contract (e.g., minting, burning) or the owner.  
-    - _allowances: mapping(address => mapping(address => uint256)) private _allowances;  
-        · Read restricted to None.  
-        · Write restricted to the user themselves or the contract or the owner.  
-    - _totalSupply: uint256 private _totalSupply;  
-        · Read restricted to None.  
-        · Write restricted to the owner or the contract (e.g., minting, burning).  
-    - _name: string private _name;  
-        · Read restricted to None.  
-        · Write restricted to the owner.  
-    - _symbol: string private _symbol;  
-        · Read restricted to None.  
-        · Write restricted to the owner.  
-    - _owner: address private _owner;  
-        · Read restricted to None.  
-        · Write restricted to the contract owner.  
+    - [players]:
+        · This array of Player structs is private, ensuring that only the contract can access the player addresses and their chosen numbers. This enforces isolation by preventing other players from viewing each other's information during the game.
+    - [count]:
+        · This variable tracks the number of players that have joined the game. It is not marked as private, but its usage is controlled within the contract logic to ensure that it only reflects the number of players currently participating, thus maintaining the integrity of the game state and ensuring that the game only proceeds when two players have joined.
     </Domain Models>
 
     The functions are:
@@ -153,13 +136,14 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
                             seed=0,
                             # top_p=0
                         )
+        json_res = json.loads((response.choices[0].message.content).replace("'", "\""))
     except Exception as e:
         print('Error in response')
         print(e)
         return None
     print(f"Prompt tokens: {response.usage.prompt_tokens}")
     print(f"Completion tokens: {response.usage.completion_tokens}")
-    return response.choices[0].message.content
+    return json_res
 
 if __name__ == "__main__":
     with open('/home/liuhan/utils_download/test_contract3_function_wrv.json','r') as f:

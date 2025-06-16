@@ -47,22 +47,30 @@ def split(data):
     return usr, model, checks
 
 if __name__ == "__main__":
-    path="/home/liuhan/utils_download/most_unrelated"
-    # files=["105","106","107","108","109","100","101","102","103","104"]
-    for file in tqdm(os.listdir(path)):
-    # for f in tqdm(files):
-        # file=f"most_unrelated_{f}.sol"
-        if file.endswith('.sol'):
-            # if file!= "most_unrelated_109.sol":
-            #     continue
-            # if os.path.exists(os.path.join(path, file.replace('.sol', '_state.txt'))):
-            #     continue
-            # all_state= get_all_state_variables(path, file)
-            # with open(os.path.join(path, file.replace('.sol', '_state.txt')), 'w') as f:
-            #     f.write('\n'.join(all_state))
-            all_funcs = get_func_sign_rw_v(path, file)
-            with open(os.path.join(path, file.replace('.sol', '_function_wrv.json')), 'w') as f:
-                json.dump(all_funcs, f, indent=4)
+    path="/home/liuhan/utils_download"
+    file="test_contract4.sol"
+    ll_funcs = get_func_sign_rw_v(path, file)
+    with open(os.path.join(path, file.replace('.sol', '_function_wrv.json')), 'w') as f:
+        json.dump(ll_funcs, f, indent=4)
+    # all_state= get_all_state_variables(path, file)
+    # with open(os.path.join(path, file.replace('.sol', '_state.txt')), 'w') as f:
+    #     f.write('\n'.join(all_state))
+    # path="/home/liuhan/utils_download/most_unrelated"
+    # # files=["105","106","107","108","109","100","101","102","103","104"]
+    # for file in tqdm(os.listdir(path)):
+    # # for f in tqdm(files):
+    #     # file=f"most_unrelated_{f}.sol"
+    #     if file.endswith('.sol'):
+    #         # if file!= "most_unrelated_109.sol":
+    #         #     continue
+    #         # if os.path.exists(os.path.join(path, file.replace('.sol', '_state.txt'))):
+    #         #     continue
+    #         # all_state= get_all_state_variables(path, file)
+    #         # with open(os.path.join(path, file.replace('.sol', '_state.txt')), 'w') as f:
+    #         #     f.write('\n'.join(all_state))
+    #         all_funcs = get_func_sign_rw_v(path, file)
+    #         with open(os.path.join(path, file.replace('.sol', '_function_wrv.json')), 'w') as f:
+    #             json.dump(all_funcs, f, indent=4)
             # condition_save_path=os.path.join(path,file.replace('.sol','_4condition.json'))
             # if os.path.exists(condition_save_path):
             #     continue

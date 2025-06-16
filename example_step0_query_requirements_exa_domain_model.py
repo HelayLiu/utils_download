@@ -25,7 +25,7 @@ def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> i
     return truncated_code, len_tokens
 
 
-def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
+def summarize_by_LLMs(desc,graph,model="gpt-4.1-mini"):
     role_content=f"""
     Role: You are a smart contract Architect and Requirements Engineering Expert. You will be given a smart contracts a state variable transition graph of the contract, which is a directed graph where each node represents a situation of all the state variables of the contract, and each edge represents a transition between two situations. The transition is triggered by a function call, and for each different condition of the function call, there is a different transition. 
     Now your task is to analyze a given smart contract and generate User Stories and Domain Models focused on state isolation across users and contracts.
@@ -120,7 +120,7 @@ def summarize_by_LLMs(desc,graph,model="gpt-4o-mini-2024-07-18"):
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    temp_cou=3
+    temp_cou=4
     root_path = f"/home/liuhan/utils_download/similar_code{temp_cou}"
     os.makedirs(root_path, exist_ok=True)
     cou=0
@@ -131,9 +131,10 @@ if __name__ == "__main__":
                 code=f.read()
             code, len_tokens=truncate_token(code,max_token=100000)
             file_name = file.split('.')[0]
-            graph_path = os.path.join(root_path, f"{file_name}_graph.txt")
+            graph_path = os.path.join(root_path, f"{file_name}_setting.json")
             with open(graph_path, 'r') as f:
-                graph = f.read()
+                settings = json.load(f)
+            graph = settings.get('stg', '')
             re_try=0
             while True:
 
@@ -146,5 +147,5 @@ if __name__ == "__main__":
                     continue
                 else:
                     break
-            with open(os.path.join(root_path,f"{file}_gpt4omini_withgraph_new.txt"),'w') as f:
+            with open(os.path.join(root_path,f"{file}_gpt41mini.txt"),'w') as f:
                 f.write(requirement)

@@ -23,7 +23,7 @@ def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> i
     len_tokens = len(tokens)
     truncated_code = encoding.decode(tokens)
     return truncated_code, len_tokens
-def summarize_by_LLMs(desc,model="gpt-4o-mini-2024-07-18"):
+def summarize_by_LLMs(desc,model="gpt-4.1-mini"):
     role_content="""
     Roles: You are a smart contract developer and requirements engineering expert. Your task is to analyze a given smart contract and generate User Stories of the contract.
 
@@ -66,7 +66,7 @@ def summarize_by_LLMs(desc,model="gpt-4o-mini-2024-07-18"):
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    temp_cou=3
+    temp_cou=4
     with open(f'/home/liuhan/utils_download/test_contract{temp_cou}.sol','r') as f:
         code=f.read()
     code=truncate_token(code)

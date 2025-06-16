@@ -28,6 +28,7 @@ base_prompt="""
                     "involved_variables": ["msg.sender", "_patient", "msg.value"],
                     "potential_checks": "msg.sender == _patient && msg.value > 0",
                     "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords and msg.value > 0 to ensure a valid transaction."
+                    "reference": ["_balances"]
                 }}
             ]
             you should split them into two parts:
@@ -36,11 +37,13 @@ base_prompt="""
                     "involved_variables": ["msg.sender", "_patient"],
                     "potential_checks": "msg.sender == _patient",
                     "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
+                    "reference": ["_balances"]
                 }},
                 {{
                     "involved_variables": ["msg.value"],
                     "potential_checks": "msg.value > 0",
                     "descriptions": "Ensure msg.value > 0 to validate the transaction amount."
+                    "reference": ["_balances"]
                 }}
             ]            
         
@@ -51,10 +54,11 @@ base_prompt="""
 
     4. Output Format
     You should ONLY output a JSON object in the following formate without any other text. 
-    In your response, you should include three parts:
+    In your response, you should include four parts:
     - Involved variables: A list of all the involved variables of the checks in the function signature and global variables, e.g, msg.sender, _patient, _encryptedData, recordHash, etc. 
     - Potential checks: The specific constraints of the potential checks should be done in the function, e.g., A == B, C = keccak256(D), etc. 
     - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
+    - Reference: A list of all the state variables that lead to the isolation checks and encryption-focused checks.
     Each part should be a dictionary, for example, the output should be like this:
     [{{
         "potential_checks": "msg.sender == _patient",
@@ -105,7 +109,7 @@ def get_training_data(path):
             <Functions>{func_signature_str}</Functions>"""
             tokens = base_prompt + usr_context + func_str
             lens= len_token(tokens)
-            message = [
+            message = {"messages":[
                 {
                     "role": "system",
                     "content": base_prompt
@@ -118,7 +122,7 @@ def get_training_data(path):
                     "role": "assistant",
                     "content": func_str
                 }
-            ]
+            ]}
             training_data.append(message)
             total_tokens += lens
     for file in os.listdir(path):
@@ -144,7 +148,7 @@ def get_training_data(path):
             <Functions>{func_signature_str}</Functions>"""
             tokens = base_prompt + usr_context + func_str
             lens= len_token(tokens)
-            message = [
+            message = {"messages":[
                 {
                     "role": "system",
                     "content": base_prompt
@@ -157,7 +161,7 @@ def get_training_data(path):
                     "role": "assistant",
                     "content": func_str
                 }
-            ]
+            ]}
             training_data.append(message)
             total_tokens += lens
     for file in os.listdir(path):
@@ -183,7 +187,7 @@ def get_training_data(path):
             <Functions>{func_signature_str}</Functions>"""
             tokens = base_prompt + usr_context + func_str
             lens= len_token(tokens)
-            message = [
+            message = {"messages":[
                 {
                     "role": "system",
                     "content": base_prompt
@@ -196,7 +200,7 @@ def get_training_data(path):
                     "role": "assistant",
                     "content": func_str
                 }
-            ]
+            ]}
             training_data.append(message)
             total_tokens += lens
             

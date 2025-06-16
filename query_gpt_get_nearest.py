@@ -46,19 +46,37 @@ def process_code(code):
     return code
 
 if __name__ == "__main__":
-    temp_cou=3
+    temp_cou=4
     client=MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
     collection_source=client['contracts']['top_contracts']
-    docs=collection_source.find({'code':{'$exists':True}},{'code_hash':1,'embedding':1,'code':1})
+    docs=collection_source.find({'used':True},{'code_hash':1,'embedding':1,'code':1,"viaIR":1,"optimization":1,"version":1,"stg":1,"contract_name":1})
     embeddings=[]
     all_hashs=set()
     codes=[]
+    settings=[]
     for doc in tqdm(docs):
         code=doc['code']
         code_hash=doc['code_hash']
         embedding=doc['embedding']
+        viaIR=doc['viaIR'] if 'viaIR' in doc else False
+        optimization=True if doc['optimization']=='1' else False
+        version=doc['version']
+        version =version.split('+')[0]
+        if version.startswith('v'):
+            version = version[1:]
+        stg=doc['stg']
+        contract_name=doc['contract_name']
+        setting={
+            'via_ir': viaIR,
+            'opt': optimization,
+            'version': version,
+            'stg': stg,
+            'contract_name': contract_name
+        }
+        
         if code_hash in all_hashs:
             continue
+        settings.append(setting)
         all_hashs.add(code_hash)
         codes.append(code)
         embeddings.append(embedding)
@@ -75,9 +93,13 @@ if __name__ == "__main__":
     k = 10
     D, I = index.search(code_embedding, k)
     codes = [codes[i] for i in I[0]]
+    code_settings = [settings[i] for i in I[0]]
     cou=0
     os.makedirs(f"/home/liuhan/utils_download/similar_code{temp_cou}", exist_ok=True)
-    for code in codes:
-        with open(f"/home/liuhan/utils_download/similar_code{temp_cou}/contract_{cou}.sol",'w') as f:
+    for i in range(len(codes)):
+        code =codes[i]
+        setting = code_settings[i]
+        with open(f"/home/liuhan/utils_download/similar_code{temp_cou}/contract_{i}.sol",'w') as f:
             f.write(code)
-        cou+=1
+        with open(f"/home/liuhan/utils_download/similar_code{temp_cou}/contract_{i}_setting.json",'w') as f:
+            json.dump(setting, f, indent=4)

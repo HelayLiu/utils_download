@@ -80,6 +80,7 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
     - Involved variables: A list of all the involved variables of the checks in the function signature and global variables, e.g, msg.sender, _patient, _encryptedData, recordHash, etc. 
     - Potential checks: The specific constraints of the potential checks should be done in the function, e.g., A == B, C = keccak256(D), etc. 
     - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
+    - Reference: A list of all the state variables that lead to the isolation checks and encryption-focused checks.
     Each part should be a dictionary, for example, the output should be like this:
     [{{
         "potential_checks": "msg.sender == _patient",
@@ -100,38 +101,93 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
     usr_content=f"""
     The general User Stories are: 
     <User Stories> 
-    - This contract serves as a wrapper for ERC20 tokens, allowing users to mint tokens based on their holdings of ERC721 and ERC1155 tokens. It ensures user-specific state isolation by maintaining individual balances in a mapping, preventing any unintended state leakage between users. The contract also implements reentrancy guards to protect against potential attacks during token transfers and minting operations.
-    - As a user, I want my ERC20 token balance to be isolated from others, ensuring that my transactions do not affect other users' balances.
-    - As a user, I want to mint ERC20 tokens by interacting with ERC721 and ERC1155 tokens, ensuring that my actions are secure and do not interfere with other users' transactions.
-    - As a user, I want to unwrap my ERC20 tokens back into ERC1155 tokens, with the assurance that my balance is accurately calculated and that I receive the correct amount of tokens in return.
-    - As a user, I want to ensure that my token transfers are protected against reentrancy attacks, so that my funds remain secure during transactions.
-    - As a contract owner, I want to control the opening and closing of the minting process, ensuring that I can manage the supply of tokens effectively.
+- As an owner, I want to securely manage the contract by changing ownership, pausing, unpausing, draining native funds, and migrating to a new contract, so that I can maintain control and ensure safe upgrades or emergency stops.  
+- As a message relayer (L2 message relayer), I want to send and receive authenticated messages between L2 and L1, ensuring only authorized relayers can interact with the contract to maintain secure cross-chain communication.  
+- As a deposit processor on L1, I want to send staking requests to L2, so that tokens can be staked on behalf of targets on L2 in a controlled and verifiable manner.  
+- As a staking target, I want to receive approved OLAS token deposits for staking, ensuring that only valid and verified staking targets receive tokens, and that amounts do not exceed allowed limits.  
+- As a user or system interacting with the contract, I want queued staking requests to be redeemable later if immediate staking is not possible (e.g., due to paused state or insufficient balance), so that no staking incentives are lost and can be processed when conditions allow.  
+- As the contract, I want to isolate write access by enforcing ownership and relayer-only permissions, preventing unauthorized state changes or message processing.  
+- As the contract, I want to isolate read access by restricting sensitive state changes and event emissions to authorized actors, ensuring that only relevant parties can observe or trigger state transitions.  
+- As the contract, I want to maintain internal state isolation per staking batch nonce and target, so that staking requests and withheld amounts are tracked individually and securely without interference between different users or batches.  
+- As the contract, I want to withhold OLAS tokens for invalid or excessive staking requests, isolating these amounts until they can be resolved or synced back to L1, ensuring that invalid requests do not affect valid staking operations.  
+- As the contract, I want to prevent reentrancy attacks by using a locking mechanism during critical state changes, ensuring that user-specific state updates are atomic and isolated.  
+- As the DAO or owner, I want to manually process or restore staking data that failed to be delivered from L1, so that the system can recover from bridge or message delivery failures without losing user funds or state.  
     </User Stories>
     
 
     The Domain Models are:
     <Domain Models>  
-    - _opened: bool private _opened;  
-        · Read restricted to Owner.  
-        · Write restricted to Owner.  
-    - _balances: mapping(address => uint256) private _balances;  
-        · Read restricted to None.  
-        · Write restricted to the user themselves or the contract (e.g., minting, burning) or the owner.  
-    - _allowances: mapping(address => mapping(address => uint256)) private _allowances;  
-        · Read restricted to None.  
-        · Write restricted to the user themselves or the contract or the owner.  
-    - _totalSupply: uint256 private _totalSupply;  
-        · Read restricted to None.  
-        · Write restricted to the owner or the contract (e.g., minting, burning).  
-    - _name: string private _name;  
-        · Read restricted to None.  
-        · Write restricted to the owner.  
-    - _symbol: string private _symbol;  
-        · Read restricted to None.  
-        · Write restricted to the owner.  
-    - _owner: address private _owner;  
-        · Read restricted to None.  
-        · Write restricted to the contract owner.  
+        - owner: address public  
+            · Write restricted to current owner only (ownership transfer functions).  
+            · Read unrestricted (public).  
+
+        - paused: uint8 public  
+            · Write restricted to owner only (pause/unpause functions).  
+            · Read unrestricted (public).  
+
+        - _locked: uint8 internal  
+            · Write restricted internally to contract during critical state changes to prevent reentrancy.  
+            · Read restricted internally (private).  
+
+        - withheldAmount: uint256 public  
+            · Write restricted to internal contract logic managing invalid or excessive staking requests and manual recovery by owner/DAO.  
+            · Read unrestricted (public).  
+
+        - stakingBatchNonce: uint256 public  
+            · Write restricted to internal contract logic incrementing per staking batch processed.  
+            · Read unrestricted (public).  
+            · Isolates staking batches to track requests and state per batch nonce.  
+
+        - stakingQueueingNonces: mapping(bytes32 => bool) public  
+            · Write restricted to internal contract logic managing queued staking requests per unique nonce and target.  
+            · Read unrestricted (public).  
+            · Isolates queued staking requests per batch nonce and target to prevent interference.  
+
+        - olas: address public immutable  
+            · Write restricted to contract deployment only (immutable).  
+            · Read unrestricted (public).  
+
+        - stakingFactory: address public immutable  
+            · Write restricted to contract deployment only (immutable).  
+            · Read unrestricted (public).  
+
+        - l2MessageRelayer: address public immutable  
+            · Write restricted to contract deployment only (immutable).  
+            · Read unrestricted (public).  
+            · Write access restricted in functions to only this relayer for message sending/receiving.  
+
+        - l1DepositProcessor: address public immutable  
+            · Write restricted to contract deployment only (immutable).  
+            · Read unrestricted (public).  
+            · Write access restricted in functions to only this processor for sending staking requests.  
+
+        - l1SourceChainId: uint256 public immutable  
+            · Write restricted to contract deployment only (immutable).  
+            · Read unrestricted (public).  
+
+        - l2TokenRelayer: address public immutable  
+            · Write restricted to contract deployment only (immutable).  
+            · Read unrestricted (public).  
+
+        - RECEIVE_MESSAGE: bytes4 public constant  
+            · Immutable constant, no write access after deployment.  
+            · Read unrestricted (public).  
+
+        - MAX_CHAIN_ID: uint256 public constant  
+            · Immutable constant, no write access after deployment.  
+            · Read unrestricted (public).  
+
+        - GAS_LIMIT: uint256 public constant  
+            · Immutable constant, no write access after deployment.  
+            · Read unrestricted (public).  
+
+        - MAX_GAS_LIMIT: uint256 public constant  
+            · Immutable constant, no write access after deployment.  
+            · Read unrestricted (public).  
+
+        - BRIDGE_PAYLOAD_LENGTH: uint256 public constant  
+            · Immutable constant, no write access after deployment.  
+            · Read unrestricted (public).  
     </Domain Models>
 
     The functions are:
@@ -153,17 +209,18 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
                             seed=0,
                             # top_p=0
                         )
+        json_res = json.loads((response.choices[0].message.content).replace("'", "\""))
     except Exception as e:
         print('Error in response')
         print(e)
         return None
     print(f"Prompt tokens: {response.usage.prompt_tokens}")
     print(f"Completion tokens: {response.usage.completion_tokens}")
-    return response.choices[0].message.content
+    return json_res
 
 if __name__ == "__main__":
-    with open('/home/liuhan/utils_download/test_contract3_function_wrv.json','r') as f:
+    with open('/home/liuhan/utils_download/test_contract4_function_wrv.json','r') as f:
         content = json.load(f)
     res=summarize_by_LLMs(content,"test",model="ft:gpt-4.1-mini-2025-04-14:hkust-cybersecurity-lab::BieHcNJb")
-    with open('/home/liuhan/utils_download/checks_test_finetune.json','w') as f:
+    with open('/home/liuhan/utils_download/checks4_test_finetune.json','w') as f:
         json.dump(res,f,indent=4)
