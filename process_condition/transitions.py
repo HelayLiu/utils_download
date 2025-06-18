@@ -299,8 +299,8 @@ def get_all_state_variables(path,file) -> List[str]:
     contract = compiler_helper._contract[0]
     res = []
     for var in contract.state_variables_ordered:
-        temp = get_sources(var)
-        # if var.is_constant:
-        #     continue
+        temp = get_sources(var,file)
+        if var.is_constant:
+            continue
         res.append(temp)
     return res

@@ -7,12 +7,27 @@ import httpx
 import os
 import tiktoken
 from config import OPENAI_API_KEY
+from pydantic import BaseModel
+
+class FunctionChecks(BaseModel):
+    
+    potential_checks: str
+    involved_variables: list[str]
+    descriptions: str
+    reference: list[str]
+class FunctionChecksList(BaseModel):
+    function_signature: str
+    checks: list[FunctionChecks]
+class FunctionChecksListResponse(BaseModel):
+    result: list[FunctionChecksList]
+
 proxy_1 = "http://127.0.0.1:20171"
 # 配置 HTTP 代理地址
 proxies = {
     "http": "http://127.0.0.1:20171",
     "https": "http://127.0.0.1:20171",
 }
+
 def truncate_token(text: str, model: str = 'gpt-4.1-mini', max_token=128000) -> int:
     try:
         encoding = tiktoken.encoding_for_model(model)
@@ -80,7 +95,11 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
     - Involved variables: A list of all the involved variables of the checks in the function signature and global variables, e.g, msg.sender, _patient, _encryptedData, recordHash, etc. 
     - Potential checks: The specific constraints of the potential checks should be done in the function, e.g., A == B, C = keccak256(D), etc. 
     - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
+    - Reference: A list of all the state variables that lead to the checks, e.g., _balances, _encryptedData, recordHash, etc.
     Each part should be a dictionary, for example, the output should be like this:
+    
+    {{"function_signature": "function submitNumber(uint256 _number) public payable",
+    "checks":
     [{{
         "potential_checks": "msg.sender == _patient",
         "involved_variables": ["msg.sender", "_patient"],
@@ -93,6 +112,17 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
         "descriptions": "Ensure keccak256(_encryptedData) to validate data integrity."
         "reference": ["recordHash"]
     }}]
+    "function_signature": "..."
+    "checks": [
+        {{
+            "potential_checks": "...",
+            "involved_variables": [...],
+            "descriptions": "...",
+            "reference": [...]
+        }},
+        ...
+    ]
+    }}
 
 
     """
@@ -126,7 +156,7 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
     # The function validates the token ID, potentially mints new tokens for the sender based on the received amount and a predefined ratio (ERC1155_RATIO), and always returns its function selector to acknowledge the receipt of ERC-1155 tokens.
     try:
         client= OpenAI(api_key=OPENAI_API_KEY,http_client=httpx.Client(proxy=proxy_1))
-        response = client.chat.completions.create(
+        response = client.beta.chat.completions.parse(
                             model=model,
                             messages=[
                                 {"role": "system", "content": role_content},
@@ -134,9 +164,10 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
                             ],
                             temperature = 0,
                             seed=0,
-                            # top_p=0
+                            response_format=FunctionChecksListResponse
+    
                         )
-        json_res = json.loads((response.choices[0].message.content).replace("'", "\""))
+        json_res = json.loads((response.choices[0].message.content))
     except Exception as e:
         print('Error in response')
         print(e)
@@ -148,6 +179,6 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
 if __name__ == "__main__":
     with open('/home/liuhan/utils_download/test_contract3_function_wrv.json','r') as f:
         content = json.load(f)
-    res=summarize_by_LLMs(content,"test",model="ft:gpt-4.1-mini-2025-04-14:hkust-cybersecurity-lab::BieHcNJb")
+    res=summarize_by_LLMs(content,"test")#,model="ft:gpt-4.1-mini-2025-04-14:hkust-cybersecurity-lab::BieHcNJb")
     with open('/home/liuhan/utils_download/checks_test_finetune.json','w') as f:
         json.dump(res,f,indent=4)

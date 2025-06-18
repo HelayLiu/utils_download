@@ -82,23 +82,8 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
                                 {"role": "user", "content": f'''The user stories are <User Stories> {desc} </User Stories>.
                                         The state variables are 
                                         <State Variables>
-                                        bytes4 public constant RECEIVE_MESSAGE = bytes4(keccak256(bytes("receiveMessage(bytes)")))
-                                        uint256 public constant MAX_CHAIN_ID = type(uint64).max / 2 - 36
-                                        uint256 public constant GAS_LIMIT = 300_000
-                                        uint256 public constant MAX_GAS_LIMIT = 2_000_000
-                                        address public immutable olas
-                                        address public immutable stakingFactory
-                                        address public immutable l2MessageRelayer
-                                        address public immutable l1DepositProcessor
-                                        uint256 public immutable l1SourceChainId
-                                        uint256 public withheldAmount
-                                        uint256 public stakingBatchNonce
-                                        address public owner
-                                        uint8 public paused
-                                        uint8 internal _locked
-                                        mapping(bytes32 => bool) public stakingQueueingNonces
-                                        uint256 public constant BRIDGE_PAYLOAD_LENGTH = 32
-                                        address public immutable l2TokenRelayer
+                                        Player[2] private players;
+                                        uint count = 0;
                                         </State Variables>
                                         '''},
                             ],
@@ -111,13 +96,13 @@ def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini"):
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    temp_cou=4
+    temp_cou=2
     root_path = f"/home/liuhan/utils_download/similar_code{temp_cou}"
     os.makedirs(root_path, exist_ok=True)
     example_str=""
     cou=0
     for file in tqdm(os.listdir(root_path)):
-        if file.endswith('_gpt41mini.txt'):
+        if file.endswith('_gpt41mini0.txt'):
             cou+=1
             with open(os.path.join(root_path,file),'r') as f:
                 example_str+=f"EXAMPLE {cou} \n"

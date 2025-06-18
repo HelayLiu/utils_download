@@ -23,7 +23,7 @@ def truncate_token(text: str, model: str = 'gpt-4o-mini', max_token=128000) -> i
     len_tokens = len(tokens)
     truncated_code = encoding.decode(tokens)
     return truncated_code, len_tokens
-def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
+def summarize_by_LLMs(desc,examples,model="gpt-4.1-mini-2025-04-14"):
     role_content=f"""
     Role: You are a smart contract security architect. Given User Stories and Domain Models, your task is to analyze function signatures and the state variables and derive checks/constraints that enforce state isolation and cryptographic integrity.
     Instructions:
@@ -34,23 +34,84 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
         · Isolation Rules: Domain Models defining state variable isolation (e.g., private mapping(address => bytes)).
         · Encryption Needs: Variables requiring hashing (e.g., keccak256) per Domain Models.
     2. Function Analysis
-    - Analyze the function signature and state variables to identify their roles and contributions.
+    - Analyze the function signature and read/written state variables to identify their roles and contributions, you should understand what the function is doing.
     - Identify isolation checks and constraints based on the Domain Models and User Stories:
-        - Read/Write Isolation:
-            · Use arguments/global variables (msg.sender, msg.value, this, etc.) to enforce per-user/contract access (e.g., msg.sender == _owner).
-        - Cross-Contract Encapsulation:
-            · Validate external contract interactions (e.g., _externalContract in whitelist).
-        - Integrity via Hashing:
-            · If a state variable is private, consider that it is necessary to using keccak256 or other hashing to ensure the integrity of seemingly private data (e.g., luckyNumber = keccak256(_luckyNumber)).
-    3. Output Format
-    You should ONLY output a JSON object in the following formate without any other text.
-    - Keys: Arguments/global variables involved in isolation checks or encryption-focused checks.
-    - Values: Descriptions of isolation or encryption-focused checks.
-    For example, the output should be like this:
-    {{  
-        ["msg.sender", "_patient"]: "Verify msg.sender == _patient to enforce write access to _encryptedRecords.",  
-        ["_encryptedData", "recordHash"]: "Ensure keccak256(_encryptedData) == recordHash to validate data integrity."  
+        - Read Isolation:
+            · For each read state variable, ensure it should check the related Domain Models, i.e., if the variable should not be read by other users, it should be **encrypted or hashed**.
+        - Write Isolation:
+            · For each written state variable, ensure it should check the related Domain Models (e.g., checking ownership, access control).
+    - NOTE THAT DO NOT CONTAIN ANY LOGIC OF THE FUNCTIONALITY, LIKE ASSIGNMENTS OR ADD OR SUBTRACTION, I.E., =, +=, -=, ETC.
+      YOU JUST NEED TO FOCUS ON THE ISOLATION CHECKS AND ENCRYPTION-FOCUSED CHECKS.
+        - For example, [the amount should add to the balance of the user, i.e., _balances[msg.sender] = _balances[msg.sender] + amount.] should not be included in the output.
+    - TRY TO SPLIT THE CHECKS IF THE CHECKS USING AND, YOU CAN SPLIT THEM INTO TWO PARTS.
+        - For example, 
+            [
+                {{
+                    "involved_variables": ["msg.sender", "_patient", "msg.value"],
+                    "potential_checks": "msg.sender == _patient && msg.value > 0",
+                    "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords and msg.value > 0 to ensure a valid transaction."
+                    "reference": ["_balances"]
+                }}
+            ]
+            you should split them into two parts:
+            [
+                {{
+                    "involved_variables": ["msg.sender", "_patient"],
+                    "potential_checks": "msg.sender == _patient",
+                    "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords.",
+                    "reference": ["_balances"]
+                }},
+                {{
+                    "involved_variables": ["msg.value"],
+                    "potential_checks": "msg.value > 0",
+                    "descriptions": "Ensure msg.value > 0 to validate the transaction amount.",
+                    "reference": ["_balances"]
+                }}
+            ]            
+        
+    3. Union of checks:
+        - If the checks are intended to achieve a similar goal, you should union them together.
+           · For example, if two of the state variables are both need to check the ownership of the user, you can union them together.
+              i.e., _balances[msg.sender] and _allowances[msg.sender][spender] should both check the authorization of the user, i.e., msg.sender == authorizedUser, you can union them together.
+
+    4. Output Format
+    You should ONLY output a JSON object in the following formate without any other text. 
+    In your response, you should include three parts:
+    - Involved variables: A list of all the involved variables of the checks in the function signature and global variables, e.g, msg.sender, _patient, _encryptedData, recordHash, etc. 
+    - Potential checks: The specific constraints of the potential checks should be done in the function, e.g., A == B, C = keccak256(D), etc. 
+    - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
+    - Reference: A list of all the state variables that lead to the checks, e.g., _balances, _encryptedData, recordHash, etc.
+    Each part should be a dictionary, for example, the output should be like this:
+    
+    {{"function_signature": "function submitNumber(uint256 _number) public payable",
+    "checks":
+    [{{
+        "potential_checks": "msg.sender == _patient",
+        "involved_variables": ["msg.sender", "_patient"],
+        "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
+        "reference": ["_balances"]
+    }},
+    {{
+        "involved_variables": ["_encryptedData", "recordHash"],
+        "potential_checks": "recordHash = keccak256(_encryptedData)",
+        "descriptions": "Ensure keccak256(_encryptedData) to validate data integrity."
+        "reference": ["recordHash"]
+    }}]
+    "function_signature": "..."
+    "checks": [
+        {{
+            "potential_checks": "...",
+            "involved_variables": [...],
+            "descriptions": "...",
+            "reference": [...]
+        }},
+        ...
+    ]
     }}
+
+    """
+
+    usr_content=f"""
 
     The general User Stories are:  
     <User Stories>
@@ -64,28 +125,20 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
 
     The Domain Models are:
     <Domain Models>  
-    - [players]:
-        · This array of Player structs is private, ensuring that only the contract can access the player addresses and their chosen numbers. This enforces isolation by preventing other players from viewing each other's information during the game.
-    - [count]:
-        · This variable tracks the number of players that have joined the game. It is not marked as private, but its usage is controlled within the contract logic to ensure that it only reflects the number of players currently participating, thus maintaining the integrity of the game state and ensuring that the game only proceeds when two players have joined.
+    - players: Player[2] private  
+        · Write restricted to contract internal logic only (when players join the game).  
+        · Read restricted to contract internal logic only (private storage to prevent other players from seeing addresses and chosen numbers).  
+    - count: uint private  
+        · Write restricted to contract internal logic only (incremented when players join).  
+        · Read restricted to contract internal logic only (private to prevent external visibility).  
     </Domain Models>
-    """
-
-    usr_content=f"""
     The function signature is:
-    <function_signature>
-        function play(uint number) public payable;
-    </function_signature>
-    The state variables are:
-    <state_variables>
-        struct Player {{
-                address addr;
-                uint number;
-            }}
-
-        Player[2] private players;
-        uint count = 0;
-    </state_variables>
+    <functions>
+        function play(uint number) public payable:{{
+        "read_state_variables": ["count"],
+        "write_state_variables": ["players", "count"],
+        }}
+    </functions>
     """
     try:
         client= OpenAI(api_key=OPENAI_API_KEY,http_client=httpx.Client(proxy=proxy_1))
@@ -96,6 +149,7 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
                                 {"role": "user", "content": usr_content},
                             ],
                             temperature = 0,
+                            seed=0,
                         )
     except Exception as e:
         print('Error in response')
@@ -104,6 +158,6 @@ def summarize_by_LLMs(desc,examples,model="gpt-4o-mini-2024-07-18"):
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    res=summarize_by_LLMs("test","test")
-    with open('/home/liuhan/utils_download/checks_test_gpt4omini2_new.txt','w') as f:
+    res=summarize_by_LLMs("test","test",model="ft:gpt-4.1-mini-2025-04-14:hkust-cybersecurity-lab::BieHcNJb")
+    with open('/home/liuhan/utils_download/checks_test_finetune_2.txt','w') as f:
         f.write(res)

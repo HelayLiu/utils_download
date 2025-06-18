@@ -45,13 +45,69 @@ def split(data):
         elif is_check:
             checks.append(line)
     return usr, model, checks
+def main(doc):
+    _id=doc['_id']
+    try:
 
+            # if "all_state" in doc and doc['all_state'] is not None:
+            #     continue
+
+        
+        if not doc['success']:
+            return
+        if 'all_state' in doc and doc['all_state'] is not None  and doc['all_state'] != '':
+            return
+        code=doc['code']
+        contract_name=doc['contract_name']
+        version=doc['version'].split('+')[0].replace('v','')
+        opt=True if doc['optimization']=='1' else False
+        via_ir=doc.get('viaIR', False)
+        with open(f"/home/liuhan/utils_download/{_id}.sol", 'w') as f:
+            f.write(code)
+        config= {
+            'contract_name': contract_name,
+            'version': version,
+            'opt': opt, 
+            'via_ir': via_ir,
+        }
+        with open(f"/home/liuhan/utils_download/{_id}.json", 'w') as f:
+            json.dump(config, f, indent=4)
+        
+        all_state=get_all_state_variables("/home/liuhan/utils_download", f"{_id}.sol")
+
+        all_state_str = '\n'.join(all_state)
+        collection_source.update_one(
+            {'_id': _id},
+            {'$set': {'all_state': all_state_str}}
+        )
+        print(f"Processed contract {_id} successfully with {len(all_state)} state variables.")
+    except Exception as e:
+        print(f"Error processing contract {_id}: {e}")
+        return
+    finally:
+        if os.path.exists(f"/home/liuhan/utils_download/{_id}.sol"):
+            os.remove(f"/home/liuhan/utils_download/{_id}.sol")
+        if os.path.exists(f"/home/liuhan/utils_download/{_id}.json"):
+            os.remove(f"/home/liuhan/utils_download/{_id}.json")
 if __name__ == "__main__":
-    path="/home/liuhan/utils_download"
-    file="test_contract4.sol"
-    ll_funcs = get_func_sign_rw_v(path, file)
-    with open(os.path.join(path, file.replace('.sol', '_function_wrv.json')), 'w') as f:
-        json.dump(ll_funcs, f, indent=4)
+    from pymongo import MongoClient
+    client=MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
+    collection_source=client['contracts']['top_contracts']
+    docs=collection_source.find({'used':True},{'_id':1,'code':1,'contract_name':1,'version':1,'optimization':1,'viaIR':1,'success':1,'all_state':1})
+    for doc in tqdm(docs):
+        main(doc)
+    # docs=list(docs)
+    # import multiprocessing
+    # pool= multiprocessing.Pool(processes=20)
+    # pool.map(main, docs)
+    
+
+    # all_state=get_all_state_variables("/home/liuhan/utils_download", "temp.sol")
+    # path="/home/liuhan/utils_download"
+    # file="test_contract4.sol"
+    # ll_funcs = get_func_sign_rw_v(path, file)
+    # with open(os.path.join(path, file.replace('.sol', '_function_wrv.json')), 'w') as f:
+    #     json.dump(ll_funcs, f, indent=4)
     # all_state= get_all_state_variables(path, file)
     # with open(os.path.join(path, file.replace('.sol', '_state.txt')), 'w') as f:
     #     f.write('\n'.join(all_state))

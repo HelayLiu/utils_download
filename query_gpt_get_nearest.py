@@ -46,7 +46,7 @@ def process_code(code):
     return code
 
 if __name__ == "__main__":
-    temp_cou=4
+    temp_cou=2
     client=MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
     collection_source=client['contracts']['top_contracts']
     docs=collection_source.find({'used':True},{'code_hash':1,'embedding':1,'code':1,"viaIR":1,"optimization":1,"version":1,"stg":1,"contract_name":1})
