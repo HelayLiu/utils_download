@@ -76,10 +76,10 @@ def main(doc):
         all_state=get_all_state_variables("/home/liuhan/utils_download", f"{_id}.sol")
 
         all_state_str = '\n'.join(all_state)
-        collection_source.update_one(
-            {'_id': _id},
-            {'$set': {'all_state': all_state_str}}
-        )
+        # collection_source.update_one(
+        #     {'_id': _id},
+        #     {'$set': {'all_state': all_state_str}}
+        # )
         print(f"Processed contract {_id} successfully with {len(all_state)} state variables.")
     except Exception as e:
         print(f"Error processing contract {_id}: {e}")
@@ -90,12 +90,12 @@ def main(doc):
         if os.path.exists(f"/home/liuhan/utils_download/{_id}.json"):
             os.remove(f"/home/liuhan/utils_download/{_id}.json")
 if __name__ == "__main__":
-    from pymongo import MongoClient
-    client=MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
-    collection_source=client['contracts']['top_contracts']
-    docs=collection_source.find({'used':True},{'_id':1,'code':1,'contract_name':1,'version':1,'optimization':1,'viaIR':1,'success':1,'all_state':1})
-    for doc in tqdm(docs):
-        main(doc)
+    # from pymongo import MongoClient
+    # client=MongoClient("mongodb://shuaicpu5.cse.ust.hk:27017/")
+    # collection_source=client['contracts']['top_contracts']
+    # docs=collection_source.find({'used':True},{'_id':1,'code':1,'contract_name':1,'version':1,'optimization':1,'viaIR':1,'success':1,'all_state':1})
+    # for doc in tqdm(docs):
+    #     main(doc)
     # docs=list(docs)
     # import multiprocessing
     # pool= multiprocessing.Pool(processes=20)
@@ -103,9 +103,9 @@ if __name__ == "__main__":
     
 
     # all_state=get_all_state_variables("/home/liuhan/utils_download", "temp.sol")
-    # path="/home/liuhan/utils_download"
-    # file="test_contract4.sol"
-    # ll_funcs = get_func_sign_rw_v(path, file)
+    path="/home/liuhan/utils_download"
+    file="test_contract4.sol"
+    ll_funcs = get_func_sign_rw_v(path, file)
     # with open(os.path.join(path, file.replace('.sol', '_function_wrv.json')), 'w') as f:
     #     json.dump(ll_funcs, f, indent=4)
     # all_state= get_all_state_variables(path, file)

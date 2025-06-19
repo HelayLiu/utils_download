@@ -91,36 +91,40 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
 
     4. Output Format
     You should ONLY output a JSON object in the following formate without any other text. 
-    In your response, you should include three parts:
-    - Involved variables: A list of all the involved variables of the checks in the function signature and global variables, e.g, msg.sender, _patient, _encryptedData, recordHash, etc. 
-    - Potential checks: The specific constraints of the potential checks should be done in the function, e.g., A == B, C = keccak256(D), etc. 
-    - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
-    - Reference: A list of all the state variables that lead to the isolation checks and encryption-focused checks.
-    Each part should be a dictionary, for example, the output should be like this:
-    {{"function_signature": "function submitNumber(uint256 _number) public payable",
-    "checks":
-    [{{
-        "potential_checks": "msg.sender == _patient",
-        "involved_variables": ["msg.sender", "_patient"],
-        "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
-        "reference": ["_balances"]
-    }},
+    The JSON objects should be a dictionary with the following fields:
+    - Keys:   The function signature of the function, e.g., function submitNumber(uint256 _number) public payable.
+    - Values: A list of checks that should be done in the function, each check is a JSON object with the following fields:
+        - Involved variables: A list of all the involved variables of the checks in the function signature and global variables, e.g, msg.sender, _patient, _encryptedData, recordHash, etc. 
+        - Potential checks: The specific constraints of the potential checks should be done in the function, e.g., A == B, C = keccak256(D), etc. 
+        - Descriptions: A sentences of the description of the isolation checks and encryption-focused checks.
+        - Reference: A list of all the state variables that lead to the checks, e.g., _balances, _encryptedData, recordHash, etc.
+    For example, the output should be like this:
     {{
-        "involved_variables": ["_encryptedData", "recordHash"],
-        "potential_checks": "recordHash = keccak256(_encryptedData)",
-        "descriptions": "Ensure keccak256(_encryptedData) to validate data integrity."
-        "reference": ["recordHash"]
-    }}]
-    "function_signature": "..."
-    "checks": [
-        {{
-            "potential_checks": "...",
-            "involved_variables": [...],
-            "descriptions": "...",
-            "reference": [...]
-        }},
-        ...
-    ]
+        "function submitNumber(uint256 _number) public payable":
+        [
+            {{
+                "potential_checks": "msg.sender == _patient",
+                "involved_variables": ["msg.sender", "_patient"],
+                "descriptions": "Verify msg.sender == _patient to enforce write access to _encryptedRecords."
+                "reference": ["_balances"]
+            }},
+            {{
+                "involved_variables": ["_encryptedData", "recordHash"],
+                "potential_checks": "recordHash = keccak256(_encryptedData)",
+                "descriptions": "Ensure keccak256(_encryptedData) to validate data integrity."
+                "reference": ["recordHash"]
+            }}
+        ]
+        "<function_signature>": 
+        [
+            {{
+                "potential_checks": "...",
+                "involved_variables": [...],
+                "descriptions": "...",
+                "reference": [...]
+            }},
+            ...
+        ]
     }}
 
 
@@ -227,7 +231,7 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
     # The function validates the token ID, potentially mints new tokens for the sender based on the received amount and a predefined ratio (ERC1155_RATIO), and always returns its function selector to acknowledge the receipt of ERC-1155 tokens.
     try:
         client= OpenAI(api_key=OPENAI_API_KEY,http_client=httpx.Client(proxy=proxy_1))
-        response = client.beta.chat.completions.parse(
+        response = client.chat.completions.create(
                             model=model,
                             messages=[
                                 {"role": "system", "content": role_content},
@@ -235,7 +239,7 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
                             ],
                             temperature = 0,
                             seed=0,
-                            response_format=FunctionChecksListResponse
+                            response_format={ 'type': "json_object" }
     
                         )
         json_res = json.loads((response.choices[0].message.content))
@@ -250,6 +254,6 @@ def summarize_by_LLMs(funcs,examples,model="gpt-4.1-mini"):
 if __name__ == "__main__":
     with open('/home/liuhan/utils_download/test_contract4_function_wrv.json','r') as f:
         content = json.load(f)
-    res=summarize_by_LLMs(content,"test")#,model="ft:gpt-4.1-mini-2025-04-14:hkust-cybersecurity-lab::BieHcNJb")
-    with open('/home/liuhan/utils_download/checks4_test_.json','w') as f:
+    res=summarize_by_LLMs(content,"test",model="ft:gpt-4.1-mini-2025-04-14:hkust-cybersecurity-lab::BieHcNJb")
+    with open('/home/liuhan/utils_download/checks4_test_new.json','w') as f:
         json.dump(res,f,indent=4)
