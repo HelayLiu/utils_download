@@ -103,9 +103,18 @@ if __name__ == "__main__":
     
 
     # all_state=get_all_state_variables("/home/liuhan/utils_download", "temp.sol")
-    path="/home/liuhan/utils_download"
-    file="test_contract4.sol"
-    ll_funcs = get_func_sign_rw_v(path, file)
+    # path="/home/liuhan/utils_download"
+    # file="test_contract4.sol"
+    # ll_funcs = get_func_sign_rw_v(path, file)
+    path="/home/liuhan/utils_download/most_unrelated"
+    for file in tqdm(os.listdir(path)):
+        if not file.endswith('.sol'):
+            continue
+        get_state= get_func_sign_rw_v(path, file)
+        save_name = file.replace('.sol', '_function_wrv.json')
+        file_path = os.path.join(path, save_name)
+        with open(file_path, 'w') as f:
+            json.dump(get_state, f, indent=4)
     # with open(os.path.join(path, file.replace('.sol', '_function_wrv.json')), 'w') as f:
     #     json.dump(ll_funcs, f, indent=4)
     # all_state= get_all_state_variables(path, file)

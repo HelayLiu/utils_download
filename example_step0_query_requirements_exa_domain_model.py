@@ -178,7 +178,7 @@ if __name__ == "__main__":
             all_out_tokens += out_tokens
             if res is None:
                 re_try += 1
-                if re_try > 10:
+                if re_try > 50:
                     print("Error in response")
                     break
                 continue

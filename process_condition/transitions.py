@@ -193,7 +193,7 @@ def get_func_sign_rw_v(path,file) -> List[str]:
     contract = compiler_helper._contract[0]
     res={}
     for fn in contract.functions:
-        if fn.is_constructor or fn.is_fallback or fn.is_receive :
+        if fn.is_constructor or fn.is_fallback or fn.is_receive or fn.is_shadowed:
             continue
         if fn.visibility == "public" or fn.visibility == "external":
             function_name = fn.signature[0]

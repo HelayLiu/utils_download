@@ -2,6 +2,7 @@ from openai import OpenAI
 import httpx
 import time
 from config import OPENAI_API_KEY
+from openai.types.fine_tuning import SupervisedMethod, SupervisedHyperparameters
 proxy = "http://127.0.0.1:20171"
 client= OpenAI(api_key=OPENAI_API_KEY,http_client=httpx.Client(proxy=proxy))
 # 步骤1：上传训练数据文件
@@ -29,7 +30,7 @@ def upload_file(file_path):
 # 假设我们的训练数据文件名为'training_data.jsonl'
 # file_id = upload_file("/home/liuhan/utils_download/training_data.jsonl")
 # print(f"上传的文件ID: {file_id}")
-# file_id='file-EL4oiu2SvsryC2tAHRFnzr'
+file_id='file-RQJm6onn67ufJcM7m8xHvZ'
 
 
 # 步骤2：创建微调任务
@@ -37,14 +38,20 @@ def create_fine_tune_job(file_id, model="gpt-4.1-mini-2025-04-14"):
     response = client.fine_tuning.jobs.create(
         training_file=file_id,
         model=model,
+        method={
+            "type": "supervised",
+            "supervised": SupervisedMethod(
+            hyperparameters=SupervisedHyperparameters(
+                n_epochs=3
+            )
+            )}
         # 可以添加其他参数，如n_epochs, batch_size, learning_rate_multiplier等
         # 具体参数参考：https://platform.openai.com/docs/api-reference/fine-tunes/create
     )
     return response.id
 
-# fine_tune_job_id = create_fine_tune_job(file_id, model="gpt-4.1-mini-2025-04-14")
-# print(f"微调任务ID: {fine_tune_job_id}")
-fine_tune_job_id='ftjob-OKzxC5KLmhHCExCySwAIKzjI'
+fine_tune_job_id = create_fine_tune_job(file_id, model="ft:gpt-4.1-mini-2025-04-14:hkust-cybersecurity-lab::BqEJk6ck")
+print(f"微调任务ID: {fine_tune_job_id}")
 # 步骤3：监控微调任务状态
 def monitor_fine_tune_job(job_id):
     while True:
@@ -61,7 +68,7 @@ def monitor_fine_tune_job(job_id):
             time.sleep(10)
 
 monitor_fine_tune_job(fine_tune_job_id)
-pass
+# pass
 # # 使用微调后的模型进行推理
 # def generate_text(prompt, model_id):
 #     response = client.chat.completions.create(
